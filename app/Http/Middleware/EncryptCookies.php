@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Http\Middleware;
+namespace Noblex\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Http;
+namespace Noblex\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -16,9 +16,9 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \noblex\Http\Middleware\TrimStrings::class,
+        \Noblex\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \noblex\Http\Middleware\TrustProxies::class,
+        \Noblex\Http\Middleware\TrustProxies::class,
     ];
 
     /**
@@ -28,12 +28,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \noblex\Http\Middleware\EncryptCookies::class,
+            \Noblex\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \noblex\Http\Middleware\VerifyCsrfToken::class,
+            \Noblex\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \noblex\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \Noblex\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];

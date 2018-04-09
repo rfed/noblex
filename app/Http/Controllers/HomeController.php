@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Http\Controllers;
+namespace Noblex\Http\Controllers;
 
 use Illuminate\Http\Request;
 

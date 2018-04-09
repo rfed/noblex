@@ -1,9 +1,10 @@
 <?php
 
-namespace noblex\Http\Controllers\Auth;
+namespace Noblex\Http\Controllers\Auth;
 
-use noblex\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Noblex\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|email|string',
+            'password' => 'required|string',
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Http\Middleware;
+namespace Noblex\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 

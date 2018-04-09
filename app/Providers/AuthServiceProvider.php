@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Providers;
+namespace Noblex\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'noblex\Model' => 'noblex\Policies\ModelPolicy',
+        'Noblex\Model' => 'Noblex\Policies\ModelPolicy',
     ];
 
     /**

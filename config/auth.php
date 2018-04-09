@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => noblex\User::class,
+            'model' => Noblex\User::class,
         ],
 
         // 'users' => [

@@ -1,9 +1,9 @@
 <?php
 
-namespace noblex\Http\Controllers\Auth;
+namespace Noblex\Http\Controllers\Auth;
 
-use noblex\User;
-use noblex\Http\Controllers\Controller;
+use Noblex\User;
+use Noblex\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \noblex\User
+     * @return \Noblex\User
      */
     protected function create(array $data)
     {

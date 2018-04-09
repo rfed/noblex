@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Providers;
+namespace Noblex\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'noblex\Events\Event' => [
-            'noblex\Listeners\EventListener',
+        'Noblex\Events\Event' => [
+            'Noblex\Listeners\EventListener',
         ],
     ];
 

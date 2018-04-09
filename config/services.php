@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => noblex\User::class,
+        'model' => Noblex\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

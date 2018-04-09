@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Console;
+namespace Noblex\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;

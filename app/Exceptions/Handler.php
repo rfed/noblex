@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Exceptions;
+namespace Noblex\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Noblex\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,11 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(noblex\User::class, function (Faker $faker) {
+$factory->define(Noblex\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'name' => 'admin',
+        'email' => 'fede@lavacoders.com',
+        'password' => bcrypt('noblex2030'), 
         'remember_token' => str_random(10),
     ];
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Http\Middleware;
+namespace Noblex\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

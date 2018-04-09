@@ -1,8 +1,8 @@
 <?php
 
-namespace noblex\Http\Controllers\Auth;
+namespace Noblex\Http\Controllers\Auth;
 
-use noblex\Http\Controllers\Controller;
+use Noblex\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller

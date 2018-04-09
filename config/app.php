@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        noblex\Providers\AppServiceProvider::class,
-        noblex\Providers\AuthServiceProvider::class,
-        // noblex\Providers\BroadcastServiceProvider::class,
-        noblex\Providers\EventServiceProvider::class,
-        noblex\Providers\RouteServiceProvider::class,
+        Noblex\Providers\AppServiceProvider::class,
+        Noblex\Providers\AuthServiceProvider::class,
+        // Noblex\Providers\BroadcastServiceProvider::class,
+        Noblex\Providers\EventServiceProvider::class,
+        Noblex\Providers\RouteServiceProvider::class,
 
     ],
 

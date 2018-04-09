@@ -1,6 +1,6 @@
 <?php
 
-namespace noblex\Providers;
+namespace Noblex\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
