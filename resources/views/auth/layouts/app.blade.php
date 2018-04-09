@@ -38,8 +38,7 @@
 
     <script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/global/scripts/app.min.js') }}"></script>
-    
+        
 </body>
 
 </html>
