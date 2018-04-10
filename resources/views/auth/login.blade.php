@@ -33,27 +33,17 @@
 
         <hr>
 
-        <!-- <div class="form-actions"> -->
-            <button type="submit" class="btn green uppercase">Login</button>
+        <button type="submit" class="btn green uppercase">Login</button>
+        
+        <label class="rememberme check mt-checkbox mt-checkbox-outline">
+            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>Recordarme
+            <span></span>
+        </label>
+        
+        <a href="{{ route('password.request') }}" class="forget-password pull-left" id="forget-password">
+            Olvidaste la contraseña?
+        </a>
             
-            <label class="rememberme check mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>Recordarme
-                <span></span>
-            </label>
-            
-            <a href="{{ route('password.request') }}" class="forget-password pull-left" id="forget-password">
-                Olvidaste la contraseña?
-            </a>
-            
-            <!-- <div class="clearfix"></div> -->
-
-        <!-- </div> -->
-
-        <!-- <div class="create-account">
-            <p>
-                <a href="javascript:;" id="register-btn" class="uppercase">Crear cuenta</a>
-            </p>
-        </div> -->
     </form>
 
 @endsection
