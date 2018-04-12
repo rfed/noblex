@@ -5,7 +5,7 @@ namespace Noblex\Repositories;
 use Noblex\Category;
 use Noblex\Repositories\Interfaces\CategoryInterface;
 
-class EloquentCategory implements CategoryInterface
+class EloquentCategory
 {
 	public function getAll() 
 	{
