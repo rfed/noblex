@@ -7,7 +7,7 @@
 
         <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
 
-            <li class="nav-item start active open">
+            <li class="nav-item start {{ activeMenu('home') }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
@@ -24,6 +24,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item start {{ activeMenu('categorias*') }}">
+                <a href="{{ route('categorias.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Categorias</span>
+                </a>
             </li>
         </ul>
         <!-- END SIDEBAR MENU -->

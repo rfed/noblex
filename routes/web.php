@@ -1,5 +1,11 @@
 <?php
 
+/*DB::listen(function($query)
+{
+	echo "<pre>{{$query->sql}}</pre>";  // Para ver las consultas sql que se estan generando.
+});
+*/
+
 // Authentication Routes...
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login');
@@ -15,4 +21,7 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+
+// Categorias
+Route::resource('categorias', 'CategoryController');

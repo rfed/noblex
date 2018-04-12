@@ -18,7 +18,7 @@
 
                     @include('includes.bar')
 
-                    
+                    <br>
                     @yield('content')
 
                 </div>
@@ -31,3 +31,18 @@
         <!-- END PAGE-CONTAINER -->
 
 @include('includes.footer')
+
+<script>
+    toastr.options = {
+        "timeOut": "3000",
+    }
+    @if(Session('success'))
+        toastr.success("{{ Session('success') }}");
+    @endif 
+    @if(Session('info'))
+        toastr.info("{{ Session('info') }}");
+    @endif 
+    @if(Session('danger'))
+        toastr.error("{{ Session('danger') }}");
+    @endif 
+</script>

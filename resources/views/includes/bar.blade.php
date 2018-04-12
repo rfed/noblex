@@ -6,7 +6,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Dashboard</span>
+            <span>{{ ucwords(Request::segment(1)) }}</span>
         </li>
     </ul>
 </div>

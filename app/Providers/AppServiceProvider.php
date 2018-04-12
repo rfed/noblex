@@ -4,6 +4,8 @@ namespace Noblex\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Noblex\Repositories\CacheCategory;
+use Noblex\Repositories\Interfaces\CategoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        $this->app->bind(
+            CategoryInterface::class, 
+            CacheCategory::class
+        );
     }
 
     /**
