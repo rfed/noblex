@@ -2,8 +2,9 @@
 
 namespace Noblex\Http\Controllers\Auth;
 
-use Noblex\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use Noblex\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
@@ -35,5 +36,12 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('admin.auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
     }
 }

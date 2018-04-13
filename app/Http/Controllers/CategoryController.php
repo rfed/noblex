@@ -26,13 +26,13 @@ class CategoryController extends Controller
     {
         $categorias = $this->category->getAll();
 
-        return view('pages.categorias.index', compact("categorias"));
+        return view('admin.pages.categorias.index', compact("categorias"));
     }
 
 
     public function create()
     {
-        return view('pages.categorias.form');
+        return view('admin.pages.categorias.form');
     }
 
 
@@ -48,7 +48,7 @@ class CategoryController extends Controller
     {
         $categoria = $this->category->findById($id);
 
-        return view('pages.categorias.form', compact("categoria"));
+        return view('admin.pages.categorias.form', compact("categoria"));
     }
 
 

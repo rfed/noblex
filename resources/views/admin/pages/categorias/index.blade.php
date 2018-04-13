@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 	
 	@push('styles')
 		<link href="{{ asset('admin/assets/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" />
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 	
-	@include('pages.categorias.delete')
+	@include('admin.pages.categorias.delete')
 
 @endsection
 

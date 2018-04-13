@@ -1,14 +1,14 @@
-@include('includes.head')
+@include('admin.includes.head')
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
     <div class="page-wrapper">
         
-        @include('includes.header')
+        @include('admin.includes.header')
 
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
 
-            @include('includes.menu')
+            @include('admin.includes.menu')
 
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
@@ -16,7 +16,7 @@
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
 
-                    @include('includes.bar')
+                    @include('admin.includes.bar')
 
                     <br>
                     @yield('content')
@@ -30,7 +30,7 @@
         </div>
         <!-- END PAGE-CONTAINER -->
 
-@include('includes.footer')
+@include('admin.includes.footer')
 
 <script>
     toastr.options = {
