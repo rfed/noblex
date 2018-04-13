@@ -31,6 +31,12 @@
                     <span class="title">Categorias</span>
                 </a>
             </li>
+            <li class="nav-item start {{ activeMenu('productos*') }}">
+                <a href="{{ route('productos.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Productos</span>
+                </a>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

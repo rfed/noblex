@@ -25,3 +25,6 @@ Route::get('home', 'HomeController@index')->name('home');
 
 // Categorias
 Route::resource('categorias', 'CategoryController');
+
+// Productos
+Route::resource('productos', 'ProductController');

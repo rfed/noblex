@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateAttributeCategoryProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('attribute_category_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('url');
-            $table->integer('root_id')->nullable();
-            $table->boolean('visible')->default(true);
+            $table->integer('attribute_category_id')->unsigned();
+            $table->string('value', 500);
             $table->timestamps();
+
+            $table->foreign('attribute_category_id')->references('id')->on('attribute_category')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('attribute_category_product');
     }
 }
