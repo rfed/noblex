@@ -7,9 +7,9 @@ use Noblex\Repositories\Interfaces\CategoryInterface;
 
 class EloquentCategory
 {
-	public function getAll() 
+	public function getAll($root_id=0) 
 	{
-		return Category::OrderBy('id', 'DESC')->get();
+		return Category::where('root_id', $root_id)->orderBy('id', 'DESC')->get();
 	}
 	
 
@@ -23,7 +23,8 @@ class EloquentCategory
 	{
 		$data = request()->validate([
             'name'    => 'required',
-            'url'       => 'nullable'
+            'url'     => 'nullable',
+            'root_id' => 'required'
         ]);
 
         if($data['url'] == null) 

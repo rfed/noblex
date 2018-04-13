@@ -22,17 +22,35 @@ class CategoryController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $categorias = $this->category->getAll();
+        $root_id = $request['root_id'];
+        if (empty($root_id)) {
+            $root_id = 1;
+            $parentCategory = null;
+        }
+        else {
+            $parentCategory = $this->category->findById($root_id);
+        }
 
-        return view('pages.categorias.index', compact("categorias"));
+        $categorias = $this->category->getAll($root_id);
+
+        return view('pages.categorias.index', compact("categorias", "root_id", "parentCategory"));
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('pages.categorias.form');
+        $root_id = $request['root_id'];
+        if (empty($root_id)) {
+            $root_id = 1;
+            $parentCategory = null;
+        }
+        else {
+            $parentCategory = $this->category->findById($root_id);
+        }
+
+        return view('pages.categorias.form', compact("root_id", "parentCategory"));
     }
 
 
@@ -40,30 +58,36 @@ class CategoryController extends Controller
     {
         $this->category->store($request);
 
-        return redirect()->route('categorias.index')->with('success', 'Categoria agregada correctamente.');
+        return redirect('categorias/?root_id='.$request['root_id'])->with('success', 'Categoria agregada correctamente.');
     }
 
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $categoria = $this->category->findById($id);
+        $root_id = $categoria->root_id;
+        $parentCategory = Category::find($root_id);
 
-        return view('pages.categorias.form', compact("categoria"));
+        return view('pages.categorias.form', compact("categoria", "root_id", "parentCategory"));
     }
 
 
     public function update(Request $request, $id)
     {
-        $this->category->update($request, $id);
+        $root_id = $request['root_id'];
 
-        return redirect()->route('categorias.index')->with('info', 'Categoria editada correctamente.');
+        $this->category->update($request, $id);        
+
+        return redirect('categorias/?root_id='.$root_id)->with('info', 'Categoria editada correctamente.');
     }
 
     
     public function destroy($id)
     {
+        $categoria = $this->category->findById($id);
+
         $this->category->destroy($id);
 
-        return redirect()->route('categorias.index')->with('danger', 'Categoria eliminada correctamente.');
+        return redirect('categorias/?root_id='.$categoria->root_id)->with('danger', 'Categoria eliminada correctamente.');
     }
 }

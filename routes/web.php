@@ -24,4 +24,5 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('home', 'HomeController@index')->name('home');
 
 // Categorias
+Route::get('categorias', 'CategoryController@index')->name('categorias.index');
 Route::resource('categorias', 'CategoryController');

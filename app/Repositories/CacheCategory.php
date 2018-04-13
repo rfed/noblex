@@ -16,11 +16,14 @@ class CacheCategory implements CategoryInterface
 	}
 
 
-	public function getAll() 
+	public function getAll($root_id=0) 
 	{
+		return $this->category->getAll($root_id);
+		/*
 		return Cache::tags('categorias')->rememberForever("categorias.index", function() {
             return $this->category->getAll();
         });
+        */
 	}
 
 

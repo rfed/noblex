@@ -1,5 +1,9 @@
 @extends('layouts.app')
 	
+@section('breadcrumbs')
+	{{ Breadcrumbs::render('categorias.edit', $parentCategory, @$categoria) }}
+@endsection
+
 @section('content')
 	
 	<div class="tab-pane">
@@ -47,6 +51,8 @@
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-3 col-md-9">
+								<input type="hidden" name="root_id" value="{{ $root_id }}" />
+								
 								<button type="submit" class="btn {{ isset($categoria) ? 'yellow' : 'blue' }}">
                                     <i class="fa fa-check"></i> {{ isset($categoria) ? 'Editar' : 'Agregar' }}
                                 </button>
