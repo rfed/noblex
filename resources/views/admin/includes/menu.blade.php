@@ -26,13 +26,13 @@
                 </ul>
             </li>
             <li class="nav-item start {{ activeMenu('categorias*') }}">
-                <a href="{{ route('categorias.index') }}" class="nav-link nav-toggle">
+                <a href="{{ route('admin.categorias.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Categorias</span>
                 </a>
             </li>
             <li class="nav-item start {{ activeMenu('productos*') }}">
-                <a href="{{ route('productos.index') }}" class="nav-link nav-toggle">
+                <a href="{{ route('admin.productos.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Productos</span>
                 </a>

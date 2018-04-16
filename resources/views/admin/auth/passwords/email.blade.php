@@ -8,7 +8,7 @@
         </div>
     @endif
 
-    <form class="login-form" id="formEmail" method="POST" action="{{ route('password.email') }}">
+    <form class="login-form" id="formEmail" method="POST" action="{{ route('admin.password.email') }}">
         @csrf
     
         <h3 class="form-title font-green">Olvidaste la contraseña?</h3>

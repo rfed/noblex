@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="btn-group">
-                    <a href="{{ route('productos.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
+                    <a href="{{ route('admin.productos.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>

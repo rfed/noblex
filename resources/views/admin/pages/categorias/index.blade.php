@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="btn-group">
-                    <a href="{{ route('categorias.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
+                    <a href="{{ route('admin.categorias.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                             	</button>
 	                            <ul class="dropdown-menu pull-left" role="menu">
 	                                <li>
-	                                    <a href="{{ route('categorias.edit', $categoria->id) }}">
+	                                    <a href="{{ route('admin.categorias.edit', $categoria->id) }}">
 	                                        <i class="icon-pencil"></i> Editar 
 	                                    </a>
 	                                </li>
@@ -54,7 +54,7 @@
 	                                    <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
 	                                    	data-id="{{$categoria->id}}"
 	                                    	data-name="{{$categoria->name}}"
-	                                    	data-url="{{ route('categorias.destroy', $categoria->id) }}">
+	                                    	data-url="{{ route('admin.categorias.destroy', $categoria->id) }}">
 	                                        <i class="icon-trash"></i> Eliminar 
 	                                    </a>
 	                                </li>

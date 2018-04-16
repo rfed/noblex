@@ -18,7 +18,7 @@
 			<div class="portlet-body form">
 
 				<!-- BEGIN FORM-->
-				<form action="{{ isset($categoria) ? route('categorias.update', $categoria->id) : route('categorias.store') }}" method="POST" class="form-horizontal form-row-seperated">
+				<form action="{{ isset($categoria) ? route('admin.categorias.update', $categoria->id) : route('admin.categorias.store') }}" method="POST" class="form-horizontal form-row-seperated">
 					@csrf
 
 					@isset($categoria)
@@ -51,7 +51,7 @@
                                     <i class="fa fa-check"></i> {{ isset($categoria) ? 'Editar' : 'Agregar' }}
                                 </button>
 
-								<a href="{{ route('categorias.index') }}" type="button" class="btn default">Volver</a>
+								<a href="{{ route('admin.categorias.index') }}" type="button" class="btn default">Volver</a>
 
 							</div>
 						</div>
