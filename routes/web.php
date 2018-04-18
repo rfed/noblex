@@ -3,8 +3,8 @@
 /*DB::listen(function($query)
 {
 	echo "<pre>{{$query->sql}}</pre>";  // Para ver las consultas sql que se estan generando.
-});
-*/
+});*/
+
 
 // Authentication Routes...
 Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
@@ -25,13 +25,24 @@ Route::get('home', 'Admin\HomeController@index')->name('admin.home');
 
 // Categorias
 
-Route::resource('categorias', 'Admin\CategoryController', ['names' => 'admin.categorias']);
+Route::resource('categorias', 'Admin\CategoryController', [
+	'names' => 'admin.categorias'
+]);
 
 // Productos
-Route::resource('productos', 'Admin\ProductController', ['names' => 'admin.productos']);
+Route::resource('productos', 'Admin\ProductController', [
+	'names' => 'admin.productos'
+]);
 
-// Media
-Route::resource('productos/files', 'Admin\ProductMediaController', ['names' => 'admin.productos.files']);
+// Productos Media
+Route::resource('productos/files', 'Admin\ProductMediaController', [
+	'names' => 'admin.productos.files'
+]);
+
+// Productos relacionados
+Route::resource('productos/relacionados', 'Admin\RelatedproductController', [
+	'names' 	=> 'admin.productos.relacionados'
+]);
 
 
 

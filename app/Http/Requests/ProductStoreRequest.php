@@ -24,11 +24,24 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'sku'               => 'required|unique:product,sku',
+            'sku'               => 'required|max:30|unique:products,sku',
+            'name'              => 'required|max:100',
             'brand_id'          => 'required',
             'category_id'       => 'required',
             'short_description' => 'required|max:200',
-            'description'       => 'required',
+            'description'       => 'required'
+        ];
+
+        
+    }
+
+    public function attributes()
+    {
+        return [
+            'brand_id'          => 'marca',
+            'category_id'       => 'categoria',
+            'short_description' => 'descripción corta',
+            'description'       => 'descripción'
         ];
     }
 }

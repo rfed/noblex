@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsMediaTable extends Migration
+class CreateRelatedproductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateProductsMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_media', function (Blueprint $table) {
+        Schema::create('relatedproducts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->string('source', 500);
-            $table->enum('type', ['image', 'featured', 'document', 'video'])->default('image');
-            $table->integer('position')->unsigned();
+            $table->integer('product_relationship_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('product_relationship_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateProductsMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_media');
+        Schema::dropIfExists('relatedproducts');
     }
 }

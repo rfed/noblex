@@ -2,85 +2,65 @@
 
 namespace Noblex\Http\Controllers\Admin;
 
-use Noblex\ProductMedia;
 use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
+use Noblex\ProductMedia;
+use Noblex\Repositories\EloquentProduct;
+use Noblex\Repositories\EloquentProductMedia;
 
 class ProductMediaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        return "procesando imagen...";
+
+    public function store(EloquentProduct $product, EloquentProductMedia $productMedia, Request $request)
+    {    
+        $producto_id = $productMedia->store($request);
+        $productos = $product->getAllDistinctId($producto_id);
+
+        return view('admin.pages.productsRelated.create', compact("producto_id", "productos"));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Noblex\ProductMedia  $productMedia
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(ProductMedia $productMedia)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Noblex\ProductMedia  $productMedia
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(ProductMedia $productMedia)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Noblex\ProductMedia  $productMedia
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, ProductMedia $productMedia)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Noblex\ProductMedia  $productMedia
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProductMedia $productMedia)
+
+    public function destroy(Request $request, ProductMedia $productMedia)
     {
-        //
+        if($request->ajax())
+        {
+            //$contenido = Storage::url($request->file('image'));
+            //$request->name = request()->file('image')->store('public');
+            return $request;
+        }
     }
 }

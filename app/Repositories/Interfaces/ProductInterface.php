@@ -6,11 +6,13 @@ interface ProductInterface
 {
 	public function getAll();
 
-	public function findById($id);
+	//public function findById($id);
 
 	public function store($request);
 
-	public function update($request, $id);
+	public function getAllById($id);
 
-	public function destroy($id);
+	//public function update($request, $id);
+
+	//public function destroy($id);
 }

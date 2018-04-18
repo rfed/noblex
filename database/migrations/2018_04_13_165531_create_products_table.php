@@ -21,7 +21,8 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->text('short_description');
             $table->text('description');
-            $table->boolean('active')->default(true);
+            $table->boolean('featured')->default(0);
+            $table->boolean('active')->default(0);
             $table->timestamps();
 
             $table->foreign('brand_id')->references('id')->on('brands');

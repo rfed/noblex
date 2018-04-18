@@ -3,26 +3,30 @@
 namespace Noblex\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Noblex\Brand;
-use Noblex\Category;
 use Noblex\Http\Controllers\Controller;
+use Noblex\Http\Requests\ProductStoreRequest;
 use Noblex\Product;
 use Noblex\Repositories\CacheBrand;
 use Noblex\Repositories\CacheCategory;
-use Noblex\Http\Requests\ProductStoreRequest;
+use Noblex\Repositories\Interfaces\ProductInterface;
 
 
 class ProductController extends Controller
 {
-    public function __construct()
+    private $product;
+
+    public function __construct(ProductInterface $product)
     {
         $this->middleware('auth');
+        $this->product = $product;
     }
+
 
     public function index()
     {
-        return view('admin.pages.productos.index');
+        $productos = $this->product->getAll();
+
+        return view('admin.pages.products.index', compact("productos"));
     }
 
 
@@ -30,14 +34,17 @@ class ProductController extends Controller
     {
         $categorias = $category->getAll();
         $brands = $brand->getAll();
+        $productos = $this->product->getAll();
 
-        return view('admin.pages.productos.create', compact("categorias", "brands"));
+        return view('admin.pages.products.create', compact("categorias", "brands", "productos"));
     }
 
 
     public function store(ProductStoreRequest $request)
     {
-        Product::create($request->validated());
+        $product = $this->product->store($request);
+
+        return view('admin.pages.productsMedia.create', compact("product"));
     }
 
 

@@ -3,7 +3,6 @@
 namespace Noblex\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Noblex\Category;
 use Noblex\Repositories\Interfaces\CategoryInterface;
 use Noblex\Http\Controllers\Controller;
 
@@ -27,13 +26,13 @@ class CategoryController extends Controller
     {
         $categorias = $this->category->getAll();
 
-        return view('admin.pages.categorias.index', compact("categorias"));
+        return view('admin.pages.categories.index', compact("categorias"));
     }
 
 
     public function create()
     {
-        return view('admin.pages.categorias.form');
+        return view('admin.pages.categories.form');
     }
 
 
@@ -49,7 +48,7 @@ class CategoryController extends Controller
     {
         $categoria = $this->category->findById($id);
 
-        return view('admin.pages.categorias.form', compact("categoria"));
+        return view('admin.pages.categories.form', compact("categoria"));
     }
 
 

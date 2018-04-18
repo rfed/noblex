@@ -8,16 +8,16 @@
 @section('content')
 
 	<div class="table-toolbar">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="btn-group">
-                    <a href="{{ route('admin.productos.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="btn-group">
+					<a href="{{ route('admin.productos.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
+						<i class="fa fa-plus"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-md-12">

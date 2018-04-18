@@ -8,53 +8,57 @@
 @section('content')
 
 	<div class="table-toolbar">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="btn-group">
-                    <a href="{{ route('admin.categorias.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="btn-group">
+					<a href="{{ route('admin.productos.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
+						<i class="fa fa-plus"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-md-12">
 
-			<table id="categorias" width="100%" class="table table-striped table-bordered table-hover">
+			<table id="productos" width="100%" class="table table-striped table-bordered table-hover">
 				
 				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>URL</th>
-						<th></th>
+						<th>SKU</th>
+						<th>Categoria</th>
+						<th>active</th>
+						<th></th>					
 					</tr>
 				</thead>
 
 				<tbody>
 					
-					@foreach($categorias as $categoria)
-
 					<tr>
-						<td>{{ $categoria->name }}</td>
-						<td>{{ $categoria->url }}</td>
+						<td>Producto 1</td>
+						<td>SKU</td>
+						<td>Categoria</td>
+						<td>Active</td>
 						<td>
 							<div class="btn-group">
-                            	<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 	Acciones
+                            	<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acciones
                                 	<i class="fa fa-angle-down"></i>
                             	</button>
 	                            <ul class="dropdown-menu pull-left" role="menu">
+	                            	<li>
+	                                    <a href="#">
+	                                        <i class="icon-eye"></i> Visualizar 
+	                                    </a>
+	                                </li>
 	                                <li>
-	                                    <a href="{{ route('admin.categorias.edit', $categoria->id) }}">
+	                                    <a href="#">
 	                                        <i class="icon-pencil"></i> Editar 
 	                                    </a>
 	                                </li>
 	                                <li>
-	                                    <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
-	                                    	data-id="{{$categoria->id}}"
-	                                    	data-name="{{$categoria->name}}"
-	                                    	data-url="{{ route('admin.categorias.destroy', $categoria->id) }}">
+	                                    <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal">
 	                                        <i class="icon-trash"></i> Eliminar 
 	                                    </a>
 	                                </li>
@@ -63,8 +67,6 @@
                     	</td>
 					</tr>
 
-					@endforeach
-
 				</tbody>
 
 			</table>
@@ -72,12 +74,12 @@
 		</div>
 	</div>
 	
-	@include('admin.pages.categorias.delete')
+	@include('admin.pages.productos.delete')
 
 @endsection
 
 @push('scripts')
 	<script src="{{ asset('admin/assets/global/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
-    <script src="{{ asset('admin/assets/pages/categorias/js/main.js') }}"></script>
+    <script src="{{ asset('admin/assets/pages/productos/js/main.js') }}"></script>
 @endpush
