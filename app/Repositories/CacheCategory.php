@@ -26,7 +26,7 @@ class CacheCategory implements CategoryInterface
 
 	public function findById($id) 
 	{
-		return Cache::tags('categorias')->rememberForever('categorias.{id}.edit', function() use ($id) {
+		return Cache::tags('categorias')->rememberForever("categorias.{$id}", function() use ($id) {
             return $this->category->findById($id);
         });
 	}

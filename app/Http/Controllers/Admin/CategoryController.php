@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.pages.categories.form');
+        return view('admin.pages.categories.create');
     }
 
 
@@ -48,7 +48,7 @@ class CategoryController extends Controller
     {
         $categoria = $this->category->findById($id);
 
-        return view('admin.pages.categories.form', compact("categoria"));
+        return view('admin.pages.categories.edit', compact("categoria"));
     }
 
 
