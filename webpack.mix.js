@@ -1,7 +1,6 @@
 let mix = require('laravel-mix');
 
-mix.styles(['public/admin/assets/global/plugins/bootstrap/css/bootstrap.min.css',
-			'public/admin/assets/global/css/components.min.css',
+mix.styles(['public/admin/assets/global/css/components.min.css',
 			'public/admin/assets/layouts/css/layout.min.css',
 			'public/admin/assets/layouts/css/themes/darkblue.min.css',
 			'public/admin/assets/global/plugins/toastr/css/toastr.min.css',

@@ -29,7 +29,7 @@
 						<th>Nombre</th>
 						<th>SKU</th>
 						<th>Categoria</th>
-						<th>active</th>
+						<th>activo</th>
 						<th></th>					
 					</tr>
 				</thead>
@@ -41,7 +41,7 @@
 						<tr>
 							<td>{{ $producto->name }}</td>
 							<td>{{ $producto->sku }}</td>
-							<td>{{ $producto->category_id }}</td>
+							<td>{{ $producto->category->name }}</td>
 							<td>{{ $producto->active }}</td>
 							<td>
 								<div class="btn-group">

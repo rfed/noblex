@@ -2,10 +2,8 @@
 
 namespace Noblex\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
 use Noblex\ProductMedia;
-use Noblex\Repositories\EloquentProduct;
 use Noblex\Repositories\EloquentProductMedia;
 
 class ProductMediaController extends Controller
@@ -21,18 +19,17 @@ class ProductMediaController extends Controller
     }
 
 
-    public function create()
+    public function create($product)
     {
-        //
+        return view('admin.pages.productsMedia.create', compact("product"));
     }
 
 
-    public function store(EloquentProduct $product, EloquentProductMedia $productMedia, Request $request)
+    public function store($product, EloquentProductMedia $productMedia)
     {    
-        $producto_id = $productMedia->store($request);
-        $productos = $product->getAllDistinctId($producto_id);
-
-        return view('admin.pages.productsRelated.create', compact("producto_id", "productos"));
+        $productMedia->store($product);
+    
+        return redirect()->route('admin.productos.relacionados.create', $product);
     }
 
 

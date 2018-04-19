@@ -3,6 +3,7 @@
 namespace Noblex;
 
 use Illuminate\Database\Eloquent\Model;
+use Noblex\Product;
 
 class Category extends Model
 {
@@ -11,5 +12,10 @@ class Category extends Model
 	public function setNameAttribute($name)
 	{
 		$this->attributes['name'] = ucfirst($name);
+	}
+
+	public function products()
+	{
+		return $this->hasMany(Product::class);
 	}
 }

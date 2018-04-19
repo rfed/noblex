@@ -16,10 +16,12 @@ class CreateAttributeCategoryProductTable extends Migration
         Schema::create('attribute_category_product', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('attribute_category_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->string('value', 500);
             $table->timestamps();
 
-            $table->foreign('attribute_category_id')->references('id')->on('attribute_category')->onDelete('cascade');
+            $table->foreign('attribute_category_id')->references('id')->on('attribute_category')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

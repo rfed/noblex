@@ -8,7 +8,7 @@ class EloquentProduct
 {
 	public function getAll()
 	{
-		return Product::all();
+		return Product::with('category:id,name')->get();
 	}
 
 	public function getAllDistinctId($id)

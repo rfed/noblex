@@ -18,11 +18,11 @@
 			<div class="portlet-body form">
 
 				<!-- BEGIN FORM-->
-					{!! Form::open(['route' => 'admin.productos.files.store', 'class' => 'form-horizontal', 'id' => 'formAdd']) !!}
+					{!! Form::open(['route' => ['admin.productos.files.store', $product], 'class' => 'form-horizontal', 'id' => 'formAdd']) !!}
 				
 						<div class="form-body">
 							
-							@include('admin.pages.productsMedia.partials.form', ['producto' => $product])
+							@include('admin.pages.productsMedia.partials.form')
 
 						</div>
 
@@ -43,7 +43,7 @@
 		var product_id = {{$product}};
 
 		var image = new Dropzone('#images', {
-			'url': 'productos/files',
+			'url': '../files',
 			'paramName': 'image',
 			'autoProcessQueue': false,
 			/*'params': {
@@ -67,7 +67,7 @@
 		});
 
 		var featured_image = new Dropzone('#featured-image', {
-			'url': 'productos/files',
+			'url': '../files',
 			'paramName': 'featured_image',
 			'autoProcessQueue': false,
 			'addRemoveLinks': true,
@@ -89,7 +89,7 @@
 		});
 
 		var documento = new Dropzone('#document', {
-			'url': 'productos/files',
+			'url': '../files',
 			'paramName': 'document',
 			'autoProcessQueue': false,
 			'addRemoveLinks': true,

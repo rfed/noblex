@@ -4,24 +4,31 @@ namespace Noblex\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
-use Noblex\Relatedproduct;
+use Noblex\Repositories\EloquentProduct;
 use Noblex\Repositories\EloquentRelatedProduct;
 
 class RelatedproductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
     }
 
 
-    public function create()
+    public function create($product, EloquentProduct $Eloquentproduct)
     {
-        //
+        $productos = $Eloquentproduct->getAllDistinctId($product);
+
+        return view('admin.pages.relatedProducts.create', compact("product", "productos"));
     }
 
 
-    public function store(EloquentRelatedProduct $relatedProduct, Request $request)
+    public function store(Request $request, EloquentRelatedProduct $relatedProduct)
     {
         $relatedProduct->store($request);
 

@@ -3,6 +3,7 @@
 namespace Noblex;
 
 use Illuminate\Database\Eloquent\Model;
+use Noblex\Category;
 use Noblex\ProductMedia;
 
 class Product extends Model
@@ -12,5 +13,10 @@ class Product extends Model
     public function productsMedia()
     {
     	return $this->hasMany(ProductMedia::class);
+    }
+
+    public function category()
+    {
+    	return $this->belongsTo(Category::class);
     }
 }

@@ -34,15 +34,27 @@ Route::resource('productos', 'Admin\ProductController', [
 	'names' => 'admin.productos'
 ]);
 
+
 // Productos Media
-Route::resource('productos/files', 'Admin\ProductMediaController', [
-	'names' => 'admin.productos.files'
-]);
+Route::group([
+	'prefix' => 'productos'
+], function() { 
+
+	Route::get('{product}/files/create', 'Admin\ProductMediaController@create')->name('admin.productos.files.create');
+	Route::post('{product?}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');
+
+});
+
 
 // Productos relacionados
-Route::resource('productos/relacionados', 'Admin\RelatedproductController', [
-	'names' 	=> 'admin.productos.relacionados'
-]);
+Route::group([
+	'prefix' => 'productos'
+], function() {
+
+	Route::get('{product}/relacionados/create', 'Admin\RelatedproductController@create')->name('admin.productos.relacionados.create');
+	Route::post('{product}/relacionados', 'Admin\RelatedproductController@store')->name('admin.productos.relacionados.store');
+
+});
 
 
 

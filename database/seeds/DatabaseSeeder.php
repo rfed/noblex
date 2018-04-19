@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             AttributeGroupsTableSeeder::class,
             AttributesTableSeeder::class,
             AttributeCategoriesTableSeeder::class,
+            FeaturesTableSeeder::class
         ]);
     }
 }

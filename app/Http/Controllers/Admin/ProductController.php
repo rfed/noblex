@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Requests\ProductStoreRequest;
 use Noblex\Product;
+use Noblex\ProductMedia;
 use Noblex\Repositories\CacheBrand;
 use Noblex\Repositories\CacheCategory;
 use Noblex\Repositories\Interfaces\ProductInterface;
@@ -44,7 +45,7 @@ class ProductController extends Controller
     {
         $product = $this->product->store($request);
 
-        return view('admin.pages.productsMedia.create', compact("product"));
+        return redirect()->route('admin.productos.files.create', $product);
     }
 
 
