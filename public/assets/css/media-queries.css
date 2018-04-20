@@ -1,0 +1,436 @@
+@media (max-width: 1320px){
+
+	.carousel_product_box_link .owl-nav {
+		display: none
+	}
+
+	.product_box_link .info .full_block > div img {
+		margin-left: 10px
+	}
+
+}
+
+
+
+@media (min-width: 1200px){
+
+	.menu_mobile {
+		display: none !important
+	}
+
+}
+
+
+
+@media (max-width: 1199px){
+
+	.header.open_mobile {
+		border-color: #3d357c;
+		transition: border-color 0.2s linear
+	}
+
+	.header .menu,
+	.header .user,
+	.header .networks_list {
+		display: none
+	}
+
+	.header .block_menu_1 {
+		width: 91%;
+		padding: 12px 0
+	}
+
+	.header .block_menu_2 {
+		background-color: #3d357c;
+		text-align: right;
+		width: 9%
+	}
+
+	.header:after {
+		background-color: #3d357c
+	}
+
+	.header .search_box {
+		display: none
+	}
+
+	.header .btn_menu {
+		display: block
+	}
+
+	footer .g-recaptcha {
+		width: 100%
+	}
+
+	footer .access_list .newsletter form .submit_block input[type=submit] {
+		float: none;
+		display: table;
+		margin: auto
+	}
+
+
+	.main_head .tags {
+		width: 100%;
+		white-space: nowrap;
+		overflow: auto
+	}
+
+	.main_head .breadcrumb + .tags {
+		padding-top: 0
+	}
+
+	.main_head .tags a:first-child {
+		margin: 0
+	}
+
+	.main_head .section_info {
+		width: 60%
+	}
+
+	.main_head .section_tools {
+		width: 40%
+	}
+
+}
+
+
+
+@media (max-width: 991px){
+
+	.header .block_menu_1 {
+		width: 91%
+	}
+
+	.header .block_menu_2 {
+		width: 9%
+	}
+
+	main {
+		padding-top: 74px
+	}
+
+	main {
+		padding-top: 120px
+	}
+
+	.main_head .section_info .breadcrumb {
+		display: none
+	}
+
+	.main_head .breadcrumb + .tags {
+		padding-top: 15px
+	}
+
+
+	.section_info + .divider {
+		padding-top: 20px
+	}
+
+	.section_info.mobile {
+		display: block
+	}
+
+	.fixed_tools {
+		right: 25px;
+		bottom: 30px
+	}
+
+	.fixed_tools .scroll_top {
+		display: none !important
+	}
+
+	.product_box_link .info .half_block {
+		width: 100%;
+		padding-left: 0 !important;
+		padding-top: 10px;
+		padding-bottom: 0;
+		min-height: initial;
+		min-height: auto
+	}
+
+	.product_box_link .info .half_block:first-child {
+		padding-top: 15px
+	}
+
+	.product_list_carousel .item .title {
+		font-size: 13px
+	}
+
+	.product_list_carousel .item .id,
+	.product_list_carousel .item .description {
+		font-size: 12px
+	}
+
+	.product_list_carousel .item .btn,
+	.product_list_carousel .item a .feature {
+		opacity: 1
+	}
+
+	#categoria .main_head .section_tools,
+	#producto .main_head .section_tools {
+		display: none
+	}
+
+	#producto main {
+		padding-top: 70px
+	}
+
+	.tools_content {
+		margin-bottom: 20px
+	}
+
+	.tools_content .section_tools {
+		width: 100%
+	}
+
+	.tools_content .section_tools a {
+		display: block;
+		margin: 0;
+		margin-bottom: 10px
+	}
+
+	.tools_content .buy_btn {
+		width: 100%;
+		text-align: left
+	}
+
+	.tools_content .buy_btn a {
+		max-width: 100%
+	}
+
+
+	.product_list_carousel .item .checkbox {
+		display: none
+	}
+
+
+	.product_banner {
+		padding: 0 10px
+	}
+
+	.product_banner .info {
+		display: none
+	}
+
+	.product_banner .image {
+		text-align: center
+	}
+
+	.product_banner.mobile {
+		padding: 0
+	}
+
+	.product_banner.mobile,
+	.product_banner.mobile .title,
+	.product_banner.mobile .text,
+	.product_banner.mobile .code {
+		display: block
+	}
+
+	.product_banner .image {
+		width: 100%;
+		padding: 0
+	}
+
+	.product_banner .image .features {
+		display: block;
+		width: 100%
+	}
+
+
+	.product_detail_contain h2 {
+		font-size: 37px;
+		line-height: 38px
+	}
+
+	.product_detail_contain h2 + span {
+		font-size: 20px;
+		line-height: 21px
+	}
+
+	.product_detail_contain div.align_right,
+	.product_detail_contain div.align_left {
+		padding: 0
+	}
+
+	.product_detail_contain div.align_right h2,
+	.product_detail_contain div.align_right span,
+	.product_detail_contain div.align_right p,
+	.product_detail_contain div.align_left h2,
+	.product_detail_contain div.align_left span,
+	.product_detail_contain div.align_left p {
+		text-align: left
+	}
+
+	#producto .details .container {
+		padding: 0 15px
+	}
+
+	.product_view {
+		margin-bottom: 30px;
+		padding: 20px 40px
+	}
+
+	.product_view .owl-nav .owl-prev,
+	.product_view .owl-nav .owl-next {
+		height: 50px
+	}
+
+	.product_view .owl-nav .owl-prev {
+		left: 0
+	}
+
+	.product_view .owl-nav .owl-next {
+		right: 0
+	}
+
+}
+
+
+
+
+@media (max-width: 767px){
+
+	footer .access_list {
+		padding: 10px 0
+	}
+
+	footer .access_list .column {
+		padding: 0 20px;
+		padding-top: 20px;
+		min-height: initial;
+		min-height: auto
+	}
+
+	footer .access_list .column:first-child {
+		padding-top: 0
+	}
+
+	footer .access_list .newsletter {
+		border: none
+	}
+
+	footer .copyright small {
+		display: block;
+		margin-top: 5px
+	}
+
+	footer .access_list .newsletter form .submit_block {
+		text-align: center
+	}
+
+	footer .g-recaptcha {
+		transform: scale(0.7)
+	}
+
+	.zocalo > div {
+		width: 100%;
+		text-align: center !important;
+		margin: 12px 0
+	}
+
+	.main_head .section_info {
+		width: 100%
+	}
+
+	.breadcrumb {
+		margin: 0;
+		width: 100%
+	}
+
+	.main_head .section_tools {
+		width: 100%;
+		text-align: left;
+		margin-top: 20px;
+		margin-bottom: 10px
+	}
+
+	.main_head .section_tools {
+		margin: 0
+	}
+
+	.product_box_link .info .full_block.no_padding {
+		padding: 20px 0
+	}
+
+	.product_box_link .info .full_block > div {
+		width: 100%
+	}
+
+	.product_box_link .info .full_block > div .features {
+		text-align: left
+	}
+
+	.product_box_link .info .full_block > div .features img {
+		margin-top: 10px;
+		margin-left: 0;
+		margin-right: 10px
+	}
+
+	.product_box_link .info p.strong.sizefix,
+	.product_box_link .info p.strong.sizefix strong,
+	.product_box_link .info p.strong,
+	.product_box_link .info p.strong strong {
+		font-size: 27px;
+		line-height: 25px
+	}
+
+	.product_box_link .info .full_block p,
+	.product_box_link .info .half_block p {
+		line-height: 23px;
+		font-size: 18px
+	}
+
+	.product_box_link .btn.link {
+	    max-width: 151px;
+	    padding: 7px 0;
+		font-size: 13px
+	}
+
+	.product_box_link .info .full_block > div .features img {
+		max-height: 33px
+	}
+
+	.product_box_link .info .features > img {
+		border: none;
+		padding-left: 0
+	}
+
+	.table .section {
+		width: 100%;
+		padding: 0 !important
+	}
+
+	.table .section > div {
+		margin-bottom: 20px
+	}
+
+	.table .section p {
+		width: 100% !important
+	}
+
+	
+}
+
+
+
+@media (max-width: 500px){
+
+	footer .access_list .column {
+		width: 100%;
+		border: none
+	}
+
+	.promobox .item {
+		width: 100%
+	}
+
+	.promobox .item a {
+		margin-top: 20px !important
+	}
+
+	.promobox .item:first-child a {
+		margin-top: 0 !important
+	}
+
+}

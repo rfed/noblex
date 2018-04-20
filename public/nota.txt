@@ -1,0 +1,6 @@
+Datos del <body>
+
+home.html			-> id="home"
+prodcuto.html			-> id="producto"
+categoria.html			-> id="categoria"
+categoria_individual.html	-> id="categoria"
