@@ -31,7 +31,7 @@
         
         <hr>
 
-        <a href="{{ url('/') }}" id="back-btn" class="btn green btn-outline">Volver</a>
+        <a href="{{ url('panel/') }}" id="back-btn" class="btn green btn-outline">Volver</a>
         <button type="submit" id="submit-email" class="btn btn-success uppercase pull-right">Enviar</button>
 
     </form>

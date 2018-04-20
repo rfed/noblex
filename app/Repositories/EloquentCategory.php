@@ -32,6 +32,11 @@ class EloquentCategory implements CategoryInterface
         else
             $data['url'] = str_slug($data['url']);
 
+        if($request->input('visible') == 'on')
+            $data['visible'] = 1;
+        else
+        	$data['visible'] = 0;
+
 		Category::create($data);
 	}
 
@@ -47,6 +52,11 @@ class EloquentCategory implements CategoryInterface
             $data['url'] = str_slug($data['name']);
         else
             $data['url'] = str_slug($data['url']);
+
+        if($request->input('visible') == 'on')
+            $data['visible'] = 1;
+        else
+        	$data['visible'] = 0;
         
         $categoria = Category::findOrFail($id);
         $categoria->update($data);
@@ -58,5 +68,9 @@ class EloquentCategory implements CategoryInterface
 		$categoria = Category::findOrFail($id);
 
         $categoria->delete();
+
+        $subcategorias = Category::where('root_id', $id);
+
+        $subcategorias->delete();
 	}
 }

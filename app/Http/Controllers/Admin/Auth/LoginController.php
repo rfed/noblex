@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/panel/home';
 
     /**
      * Create a new controller instance.
@@ -49,5 +49,14 @@ class LoginController extends Controller
             $this->username() => 'required|email|string',
             'password' => 'required|string',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/panel');
     }
 }

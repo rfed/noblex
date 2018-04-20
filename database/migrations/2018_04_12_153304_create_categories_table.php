@@ -17,9 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url')->nullable();
-            $table->integer('root_id')->default(1);
+            $table->integer('root_id')->default(0);
             $table->string('image')->nullable();
-            $table->boolean('visible')->default(1);
+            $table->boolean('visible')->default(0);
             $table->timestamps();
         });
     }

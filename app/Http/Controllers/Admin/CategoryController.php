@@ -59,7 +59,7 @@ class CategoryController extends Controller
     {
         $this->category->store($request);
 
-        return redirect('categorias/?root_id='.$request['root_id'])->with('success', 'Categoria agregada correctamente.');
+        return redirect('panel/categorias/?root_id='.$request['root_id'])->with('success', 'Categoria agregada correctamente.');
     }
 
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
 
         $this->category->update($request, $id);        
 
-        return redirect('categorias/?root_id='.$root_id)->with('info', 'Categoria editada correctamente.');
+        return redirect('panel/categorias/?root_id='.$root_id)->with('info', 'Categoria editada correctamente.');
     }
 
     
@@ -89,6 +89,6 @@ class CategoryController extends Controller
 
         $this->category->destroy($id);
 
-        return redirect('categorias/?root_id='.$categoria->root_id)->with('danger', 'Categoria eliminada correctamente.');
+        return redirect('panel/categorias/?root_id='.$categoria->root_id)->with('danger', 'Categoria eliminada correctamente.');
     }
 }

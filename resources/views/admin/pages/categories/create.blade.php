@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
-	
+
+@push('styles')
+	<link rel="stylesheet" href="{{ asset('admin/assets/pages/productos/dropzone/dropzone.min.css') }}">
+@endpush
+
 @section('content')
 	
 	<div class="tab-pane">
@@ -31,11 +35,14 @@
 @push('scripts')
 	<script src="{{ asset('admin/assets/pages/categorias/js/jquery.stringtoslug.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/categorias/js/speakingurl.min.js') }}"></script>
+	<script src="{{ asset('admin/assets/pages/categorias/dropzone/dropzone.js') }}"></script>
 	
 
 	<script>
 		$(function() {
+
 			$("#name").stringToSlug();
+			
 		});
 	</script>
 @endpush

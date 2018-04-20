@@ -7,7 +7,7 @@
 
         <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
 
-            <li class="nav-item start {{ activeMenu('home') }}">
+            <li class="nav-item start {{ activeMenu('panel/home') }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
@@ -25,13 +25,13 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ activeMenu('categorias*') }}">
+            <li class="nav-item start {{ activeMenu('panel/categorias*') }}">
                 <a href="{{ route('admin.categorias.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Categorias</span>
                 </a>
             </li>
-            <li class="nav-item start {{ activeMenu('productos*') }}">
+            <li class="nav-item start {{ activeMenu('panel/productos*') }}">
                 <a href="{{ route('admin.productos.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Productos</span>

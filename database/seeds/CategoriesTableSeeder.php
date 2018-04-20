@@ -13,9 +13,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name'  => 'Raiz',
-            'root_id' => 0
-        ]);
-        
+            'name'  => 'Raiz'        
+        ]);   
     }
 }

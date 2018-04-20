@@ -7,7 +7,7 @@ use Noblex\Product;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'url', 'root_id'];
+    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible'];
 
 	public function setNameAttribute($name)
 	{
