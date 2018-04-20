@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 	
-@section('breadcrumbs')
+@section('admin.includes.breadcrumbs')
 	{{ Breadcrumbs::render('categorias.edit', $parentCategory, @$categoria) }}
 @endsection
 

@@ -4,8 +4,8 @@ namespace Noblex\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Noblex\Repositories\CacheCategory;
-use Noblex\Repositories\CacheProduct;
+use Noblex\Repositories\EloquentProduct;
+use Noblex\Repositories\EloquentCategory;
 use Noblex\Repositories\Interfaces\CategoryInterface;
 use Noblex\Repositories\Interfaces\ProductInterface;
 
@@ -22,12 +22,12 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             CategoryInterface::class, 
-            CacheCategory::class
+            EloquentCategory::class
         );
 
         $this->app->bind(
             ProductInterface::class,
-            CacheProduct::class
+            EloquentProduct::class
         );
     }
 

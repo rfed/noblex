@@ -3,8 +3,9 @@
 namespace Noblex\Repositories;
 
 use Noblex\Product;
+use Noblex\Repositories\Interfaces\ProductInterface;
 
-class EloquentProduct
+class EloquentProduct implements ProductInterface
 {
 	public function getAll()
 	{

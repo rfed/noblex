@@ -7,8 +7,8 @@ use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Requests\ProductStoreRequest;
 use Noblex\Product;
 use Noblex\ProductMedia;
-use Noblex\Repositories\CacheBrand;
-use Noblex\Repositories\CacheCategory;
+use Noblex\Repositories\EloquentBrand;
+use Noblex\Repositories\EloquentCategory;
 use Noblex\Repositories\Interfaces\ProductInterface;
 
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
     }
 
 
-    public function create(CacheCategory $category, CacheBrand $brand)
+    public function create(EloquentCategory $category, EloquentBrand $brand)
     {
         $categorias = $category->getAll();
         $brands = $brand->getAll();

@@ -14,7 +14,7 @@ class CategoryController extends Controller
     // Las interfaces no se pueden instanciar. 
         
     /* App/Providers/ServiceProvider.php definimos un bind para decirle a Laravel que cuando intentemos instanciar la interface,
-     * automaticamente nos devuelva una instancia del objeto CacheCategory.
+     * automaticamente nos devuelva una instancia del objeto EloquentCategory.
      */
     public function __construct(CategoryInterface $category)
     {

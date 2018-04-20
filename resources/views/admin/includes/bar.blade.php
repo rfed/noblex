@@ -1,6 +1,6 @@
 
 <div class="page-bar">
-    @section('breadcrumbs')
+    @section('admin.includes.breadcrumbs')
 
     @show
 </div>

@@ -3,8 +3,9 @@
 namespace Noblex\Repositories;
 
 use Noblex\Brand;
+use Noblex\Repositories\Interfaces\BrandInterface;
 
-class EloquentBrand 
+class EloquentBrand implements BrandInterface 
 {
 	public function getAll()
 	{

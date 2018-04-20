@@ -5,7 +5,7 @@
 	<link href="{{ asset('admin/assets/global/css/plugins.min.css') }}" rel="stylesheet" />
 @endpush
 
-@section('breadcrumbs')
+@section('admin.includes.breadcrumbs')
 	{{ Breadcrumbs::render('categorias', $parentCategory) }}
 @endsection
 
