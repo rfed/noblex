@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Cache;
 use Noblex\Category;
 
 class CategoriesTableSeeder extends Seeder
@@ -14,15 +13,9 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create([
-        	'name'	=> 'TV',
-        	'url'	=> 'tv'
+            'name'  => 'Raiz',
+            'root_id' => 0
         ]);
-
-        Category::create([
-        	'name'	=> 'Celulares',
-        	'url'	=> 'celulares-huawei'
-        ]);
-
-        Cache::clear();
+        
     }
 }

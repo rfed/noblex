@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 	
+@section('breadcrumbs')
+	{{ Breadcrumbs::render('categorias.edit', $parentCategory, @$categoria) }}
+@endsection
+
 @section('content')
 	
 	<div class="tab-pane">

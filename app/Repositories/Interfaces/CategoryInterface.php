@@ -4,7 +4,7 @@ namespace Noblex\Repositories\Interfaces;
 
 interface CategoryInterface 
 {
-	public function getAll();
+	public function getAll($root_id=0);
 
 	public function findById($id);
 
