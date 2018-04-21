@@ -21,7 +21,6 @@
 				{!! Form::open(['route' => 'admin.categorias.store', 'class' => 'form-horizontal form-row-seperated']) !!}
 
 					@include('admin.pages.categories.partials.form')
-
 					
 				{!! Form::close() !!}
 				<!-- END FORM-->

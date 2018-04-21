@@ -3,9 +3,9 @@
 namespace Noblex\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use Noblex\Http\Controllers\Controller;
+use Noblex\Http\Controllers\Front\FrontController;
 
-class HomeController extends Controller
+class HomeController extends FrontController
 {
     /**
      * Create a new controller instance.
@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
+        parent::__construct();
     }
 
     /**

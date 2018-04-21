@@ -5,98 +5,65 @@
         <div class="block_menu_1">
             <div class="logo">
                 <a href="#">
-                    <img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+                    <img src="{{ asset('assets/imgs/iconos/noblex.svg') }}" alt="Noblex" />
                 </a>
             </div>
 
             <div class="menu">
                 <ul>
-                    <li>
-                        <a href="#">Smartphone</a>
+                    @foreach($menu_raiz->childs as $cat)
+                        @if($cat->visible == 1)
+                            <li>
+                                <a href="#">{{ $cat->name }}</a>
+                                <div class="submenu">
+                                    <div class="submenu_content">
+                                        <button class="close" type="button">
+                                            <span class="fa fa-times"></span>
+                                            <span class="sr-only">Cerrar</span>
+                                        </button>
 
-                        <div class="submenu">
+                                        <div class="content">
+                                            <span><strong>{{ $cat->name }}</strong></span>
+                                            @if($cat->childs)
+                                                @foreach($cat->childs as $sub)
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">{{ $sub->name }}</a>
+                                                        <div>
+                                                            @if($sub->feautured)
+                                                            <!-- CONTENIDO COLUMNA 2 -->
+                                                            <a href="#">
+                                                                <p class="title"><strong>Último lanzamiento</strong></p>
+                                                                <p>{{ $sub->feautured->name }} <strong>{{ $sub->feautured->short_description }}</strong></p>
 
-                            <div class="submenu_content">
+                                                                <img src="assets/imgs/imagenes/prod_1.png" alt='DA65X6500X LED TV Smart 65 Full UHD' />
+                                                            </a>
+                                                            @endif
+                                                            <!-- FIN CONTENIDO COLUMNA 2 -->
 
-                                <button class="close" type="button">
-                                    <span class="fa fa-times"></span>
-                                    <span class="sr-only">Cerrar</span>
-                                </button>
+                                                            @if($sub->info->count() > 0)
+                                                            <div class="info">
+                                                                <!-- CONTENIDO COLUMNA 3 -->
+                                                                <p class="title"><strong>Info de interés</strong></p>
 
-                                <div class="content">
+                                                                @foreach($sub->info as $info)
+                                                                <a href="{{ $info->url }}">{{ $info->text }}</a>
+                                                                @endforeach
 
-                                    <!-- CONTENIDO COLUMNA 1 -->
-                                    
-                                    <span><strong>TV</strong></span>
-
-                                    <ul>
-                                        <li>
-                                            <a href="#">Smart 4k</a>
-
-                                            <div>
-                                                <!-- CONTENIDO COLUMNA 2 -->
-
-                                                <a href="#">
-                                                    <p class="title"><strong>Último lanzamiento</strong></p>
-                                                    <p>DA65X6500X <strong>LED TV Smart 65&quot; Full UHD</strong></p>
-
-                                                    <img src="assets/imgs/imagenes/prod_1.png" alt='DA65X6500X LED TV Smart 65 Full UHD' />
-                                                </a>
-
-                                                <!-- FIN CONTENIDO COLUMNA 2 -->
-
-
-                                                <div class="info">
-                                                    <!-- CONTENIDO COLUMNA 3 -->
-
-                                                    <p class="title"><strong>Info de interés</strong></p>
-
-                                                    <a href="#">¿Qué es 4k?</a>
-                                                    <a href="#">¿Cómo funciona XMotion?</a>
-                                                    <a href="#">¿Qué aplicaciones traen los equipos?</a>
-
-                                                    <!-- CONTENIDO COLUMNA 3 -->
-                                                </div>
-                                            </div>
-
-                                        </li>
-                                        <li>
-                                            <a href="#">Smart</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">LED</a>
-                                        </li>
-                                    </ul>
-
-                                    <!-- FIN CONTENIDO COLUMNA 1 -->
-
+                                                                <!-- CONTENIDO COLUMNA 3 -->
+                                                            </div>
+                                                            @endif
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">Smartwatch</a>
-                    </li>
-                    <li>
-                        <a href="#">E-reader</a>
-                    </li>
-                    <li>
-                        <a href="#">Audio</a>
-                    </li>
-                    <li>
-                        <a href="#">TV</a>
-                    </li>
-                    <li>
-                        <a href="#">Tablets</a>
-                    </li>
-                    <li>
-                        <a href="#">Aires Acondicionados</a>
-                    </li>
-                    <li>
-                        <a href="#">Otros</a>
-                    </li>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </div>

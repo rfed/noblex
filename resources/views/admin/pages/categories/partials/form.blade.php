@@ -25,6 +25,12 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			{!! Form::label('feautured_product', 'Producto Destacado', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				{!! Form::text('feautured_product', null, ['class' => 'form-control', 'data-size' => 'small', 'id' => 'feautured_product']) !!}
+			</div>
+		</div>
 		<!-- <div class="form-group">
 		  		 	{!! Form::label('image', 'Imagen', ['class' => 'control-label col-md-3']) !!}
 		  		 	<div class="col-md-3">

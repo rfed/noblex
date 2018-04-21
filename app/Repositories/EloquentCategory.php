@@ -24,7 +24,8 @@ class EloquentCategory implements CategoryInterface
 		$data = request()->validate([
             'name'    => 'required',
             'url'     => 'nullable',
-            'root_id' => 'required'
+            'root_id' => 'required',
+            'feautured_product' => 'nullable'
         ]);
 
         if($data['url'] == null) 
@@ -45,7 +46,8 @@ class EloquentCategory implements CategoryInterface
 	{
 		$data = request()->validate([
             'name'    => 'required',
-            'url'       => 'nullable'
+            'url'       => 'nullable',
+            'feautured_product' => 'nullable'
         ]);
 
         if($data['url'] == null) 
