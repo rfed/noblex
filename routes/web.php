@@ -64,4 +64,4 @@ Route::group([
 
 });
 
-
+Route::get('/', 'Front\HomeController@index')->name('home');

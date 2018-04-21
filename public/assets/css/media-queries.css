@@ -30,8 +30,7 @@
 	}
 
 	.header .menu,
-	.header .user,
-	.header .networks_list {
+	.header .user {
 		display: none
 	}
 
@@ -109,10 +108,6 @@
 		padding-top: 74px
 	}
 
-	main {
-		padding-top: 120px
-	}
-
 	.main_head .section_info .breadcrumb {
 		display: none
 	}
@@ -171,8 +166,9 @@
 		display: none
 	}
 
-	#producto main {
-		padding-top: 70px
+	#home main,
+	#categoria main {
+		padding-top: 120px
 	}
 
 	.tools_content {
@@ -284,6 +280,22 @@
 		right: 0
 	}
 
+	body.template main .content,
+	#legales main .content {
+		padding-left: 15px;
+		padding-right: 15px
+	}
+
+
+	#institucional .institucional_info .item {
+		width: 50%
+	}
+
+	/*#institucional .text_block {
+		
+	}*/
+
+
 }
 
 
@@ -308,6 +320,10 @@
 
 	footer .access_list .newsletter {
 		border: none
+	}
+
+	footer .copyright {
+		width: 100%
 	}
 
 	footer .copyright small {
@@ -407,6 +423,138 @@
 
 	.table .section p {
 		width: 100% !important
+	}
+
+
+	.related_links {
+		margin-top: 30px;
+		margin-bottom: 0
+	}
+
+	.related_links .item {
+		margin-bottom: 30px
+	}
+
+	.related_links p strong {
+		font-size: 20px
+	}
+
+
+	.input_group.search input[type="text"] {
+		font-size: 20px
+	}
+
+
+
+
+	#erorr_404 .content h1 {
+		font-size: 50px
+	}
+
+	#erorr_404 .content h1 + p {
+		font-size: 20px;
+		line-height: 24px
+	}
+
+
+	#sin_resultados .content h1 {
+		margin-bottom: 20px;
+		line-height: 25px;
+		font-size: 20px
+	}
+
+	#sin_resultados .content h1 + p {
+		font-size: 17px;
+		line-height: 20px
+	}
+
+
+
+	.pagination .showing,
+	.pagination .pages {
+		width: 100%;
+		text-align: center
+	}
+
+	.pagination .pages {
+		padding-top: 10px
+	}
+
+	.pagination .pages a {
+		margin: 0
+	}
+
+	.pagination .pages a.next,
+	.pagination .pages a.prev {
+		width: 36px;
+		padding: 1px 0;
+		font-family: 'Font Awesome 5 Free';
+		font-weight: 900;
+		text-align: center
+	}
+
+
+	.pagination .pages a.next span,
+	.pagination .pages a.prev span {
+		display: none
+	}	
+
+	.pagination .pages a.next span.fa,
+	.pagination .pages a.next span.fas,
+	.pagination .pages a.next span.far,
+	.pagination .pages a.next span.fab,
+	.pagination .pages a.prev span.fa,
+	.pagination .pages a.prev span.fas,
+	.pagination .pages a.prev span.far,
+	.pagination .pages a.prev span.fab {
+		display: inline-block;
+		font-size: 20px;
+		padding: 7px 0
+	}
+
+
+
+
+	#resultados h1 {
+		font-size: 19px
+	}
+
+	#resultados h1 + p {
+		font-size: 16px
+	}
+
+
+
+	#registro .form .fecha > span {
+		width: 100%
+	}
+
+	#registro .form .fecha .align_inputs {
+		width: 100%
+	}
+
+	#registro .section_title {
+		font-size: 25px
+	}
+
+	#registro .section_title + p {
+		font-size: 19px;
+		line-height: 25px
+	}
+
+
+
+	.form .g-recaptcha {
+		width: 100%;
+		transform: scale(0.8);
+		transform-origin: top left;
+		display: inline-block;
+		float: none
+	}
+
+	.form .submit_block input[type=submit] {
+		width: 100%;
+		float: none
 	}
 
 	
