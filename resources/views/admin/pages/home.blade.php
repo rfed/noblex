@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('breadcrumbs')
+@section('includes.admin.breadcrumbs')
 	{{ Breadcrumbs::render('home') }}
 @endsection
 

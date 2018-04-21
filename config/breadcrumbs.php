@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'view' => 'includes.breadcrumbs',
+    'view' => 'admin.includes.breadcrumbs',
 
     /*
     |--------------------------------------------------------------------------
