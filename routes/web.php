@@ -35,6 +35,12 @@ Route::group([
 	]);
 
 
+	// Marcas
+	Route::resource('marcas', 'Admin\BrandController', [
+		'names' => 'admin.brands'
+	]);
+
+
 	// Productos
 	Route::resource('productos', 'Admin\ProductController', [
 		'names' => 'admin.productos'
