@@ -66,9 +66,9 @@
 			$('.dz-progress').hide();
 		});
 
-		var featured_image = new Dropzone('#featured-image', {
+		var featured_image_desktop = new Dropzone('#featured-image_desktop', {
 			'url': '../files',
-			'paramName': 'featured_image',
+			'paramName': 'featured_image_desktop',
 			'autoProcessQueue': false,
 			'addRemoveLinks': true,
 			'dictRemoveFile': 'Eliminar imagen',
@@ -80,11 +80,33 @@
 			'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen destacada'
 		});
 
-		featured_image.on("sending",function(file,xhr,data){
+		featured_image_desktop.on("sending",function(file,xhr,data){
 		   	data.append("product_id", product_id);  // Otra forma de envio de parametros cuando dropzone hace el post al subir una imagen.
 		});
 
-		featured_image.on("addedfile", function() {
+		featured_image_desktop.on("addedfile", function() {
+			$('.dz-progress').hide();
+		});
+
+		var featured_image_mobile = new Dropzone('#featured-image_mobile', {
+			'url': '../files',
+			'paramName': 'featured_image_mobile',
+			'autoProcessQueue': false,
+			'addRemoveLinks': true,
+			'dictRemoveFile': 'Eliminar imagen',
+			'acceptedFiles': 'image/*',
+			'maxFiles': 1,
+			'headers': {
+				'X-CSRF-TOKEN': '{{ csrf_token() }}'
+			},
+			'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen destacada'
+		});
+
+		featured_image_mobile.on("sending",function(file,xhr,data){
+		   	data.append("product_id", product_id);  // Otra forma de envio de parametros cuando dropzone hace el post al subir una imagen.
+		});
+
+		featured_image_mobile.on("addedfile", function() {
 			$('.dz-progress').hide();
 		});
 
@@ -112,13 +134,22 @@
 
 		Dropzone.autoDiscover = false;
 
-		featured_image.on('error', function(file, res) {
+		featured_image_desktop.on('error', function(file, res) {
 			var msg;
 
 			if(res == 'You can not upload any more files.')
 				msg = 'No puedes subir mas de una imagen.'
 
-			$(".dz-error-message:last > span").text(msg);
+			$(".dz-error-message > span").text(msg);
+		});
+
+		featured_image_mobile.on('error', function(file, res) {
+			var msg;
+
+			if(res == 'You can not upload any more files.')
+				msg = 'No puedes subir mas de una imagen.'
+
+			$(".dz-error-message > span").text(msg);
 		});
 
 		documento.on('error', function(file, res) {
@@ -127,12 +158,13 @@
 			if(res == 'You can not upload any more files.')
 				msg = 'No puedes subir mas de un archivo.'
 
-			$(".dz-error-message:last > span").text(msg);
+			$(".dz-error-message > span").text(msg);
 		});
 
 		$("#submitFiles").on('click', function(){
 			image.processQueue();
-			featured_image.processQueue();
+			featured_image_desktop.processQueue();
+			featured_image_mobile.processQueue();
 			documento.processQueue();
 		});
 

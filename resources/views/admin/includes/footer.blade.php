@@ -5,6 +5,10 @@
 
 </div>
 <!-- END PAGE-WRAPPER -->
+
+<script>
+	var baseUrl = "{{ url('panel/') }}";
+</script>
         
 <script src="{{ asset('js/app.js') }}"></script>
 

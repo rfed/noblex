@@ -36,6 +36,12 @@ class CategoryController extends Controller
 
         $categorias = $this->category->getAll($root_id);
 
+        if(request()->ajax())
+        {
+            $subcategorias = $this->category->getSubcategories($request->id_categoria);
+            return $subcategorias;
+        }
+
         return view('admin.pages.categories.index', compact("categorias", "root_id", "parentCategory"));
     }
 

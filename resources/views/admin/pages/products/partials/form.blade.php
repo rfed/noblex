@@ -2,7 +2,7 @@
 	<div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
 		{!! Form::label('sku', 'SKU', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			{!! Form::text('sku', null, ['class' => 'form-control', 'id' => 'sku']) !!}
+			{!! Form::text('sku', null, ['class' => 'form-control', 'id' => 'sku', 'autocomplete' => 'off']) !!}
 			{!! $errors->first('sku', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
@@ -10,7 +10,7 @@
 	<div class="form-group {{ $errors->first('name') ? 'has-error' : '' }}">
 		{!! Form::label('name', 'Nombre', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) !!}
+			{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'autocomplete' => 'off']) !!}
 			{!! $errors->first('name', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
@@ -30,14 +30,14 @@
 		</div>
 	</div>
 
-	<div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}">
+	<div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}" id="category">
 		{!! Form::label('category', 'Categoria', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			<select name="category_id" id="category_id" class="form-control">
+			<select name="category_id" id="category_id" class="form-control" onchange="subcategorias(this.value);">
 				<option value="">Seleccione una categoría</option>
 				
 				@foreach($categorias as $categoria)
-					<option value="{{ $categoria->id }}" {{ old('category_id') != $categoria->id ?: 'selected' }}>{{ $categoria->name }}</option>
+					<option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
 				@endforeach
 
 			</select>
@@ -45,10 +45,19 @@
 		</div>
 	</div>
 
+	<div class="form-group" id="subcategory" style="display:none">
+		{!! Form::label('subcategory', 'Subcategoria', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-9">
+			<select name="subcategory_id" id="subcategory_id" class="form-control">
+				<option value="">Seleccione una Subcategoría</option>
+			</select>
+		</div>
+	</div>
+
 	<div class="form-group {{ $errors->first('short_description') ? 'has-error' : '' }}">
 		{!! Form::label('short_description', 'Descripción corta', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			{!! Form::text('short_description', null, ['class' => 'form-control', 'id' => 'short_description']) !!}
+			{!! Form::text('short_description', null, ['class' => 'form-control', 'id' => 'short_description', 'autocomplete' => 'off']) !!}
 			{!! $errors->first('short_description', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
@@ -58,6 +67,42 @@
 		<div class="col-md-9">
 			{!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) !!}
 			{!! $errors->first('description', '<span class="help-block"> :message </span>') !!}
+		</div>
+	</div>
+
+	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
+		{!! Form::label('feature', 'Features', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-9">
+			<select name="feature_product_id[]" class="selectpicker" multiple title="Seleccione los features" data-show-subtext="true" data-live-search="true" data-width="50%">
+
+				@foreach($features as $feature)
+					<option value="{{ $feature->id }}" 
+						@if( old("feature_product_id") ) 
+							{{ (in_array($feature->id, old("feature_product_id")) ? 'selected' : '') }}
+						@endif
+					>{{ $feature->name }}</option>
+				@endforeach
+
+			</select>
+			{!! $errors->first('feature', '<span class="help-block"> :message </span>') !!}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('relatedproducts', 'Productos relacionados', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-9">
+			<select name="product_relationship_id[]" class="selectpicker" multiple title="Seleccione los productos relacionados" data-show-subtext="true" data-live-search="true" data-width="50%">
+
+				@foreach($productos as $product)
+					<option value="{{ $product->id }}"
+						@if( old("product_relationship_id") ) 
+							{{ (in_array($product->id, old("product_relationship_id")) ? 'selected' : '') }}
+						@endif
+						>{{ $product->name }}</option>
+				@endforeach
+
+			</select>
+			{!! $errors->first('relatedproducts', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
 
@@ -76,7 +121,6 @@
 		</div>
 	</div>
 
-	
 	<div class="form-actions">
 		<div class="row">
 			<div class="col-md-offset-3 col-md-9">

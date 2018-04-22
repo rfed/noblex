@@ -9,6 +9,7 @@ use Noblex\Product;
 use Noblex\ProductMedia;
 use Noblex\Repositories\EloquentBrand;
 use Noblex\Repositories\EloquentCategory;
+use Noblex\Repositories\EloquentFeature;
 use Noblex\Repositories\Interfaces\ProductInterface;
 
 
@@ -31,13 +32,14 @@ class ProductController extends Controller
     }
 
 
-    public function create(EloquentCategory $category, EloquentBrand $brand)
+    public function create(EloquentCategory $category, EloquentBrand $brand, EloquentFeature $feature)
     {
-        $categorias = $category->getAll();
+        $categorias = $category->getAllDistinctRaiz();
         $brands = $brand->getAll();
         $productos = $this->product->getAll();
+        $features = $feature->getAll();
 
-        return view('admin.pages.products.create', compact("categorias", "brands", "productos"));
+        return view('admin.pages.products.create', compact("categorias", "brands", "productos", "features"));
     }
 
 

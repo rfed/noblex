@@ -19,14 +19,29 @@ class EloquentProduct implements ProductInterface
 
 	public function store($request)
 	{
+		$data = $request->validated();
+
 		if($request->input('featured') == 'on')
-            $request['featured'] = 1;
+            $data['featured'] = 1;
 
         if($request->input('active') == 'on')
-            $request['active'] = 1;
+            $data['active'] = 1;
 
-        $product = Product::create($request->all())->id;
+        if($request->input('subcategory_id'))
+        	$data['category_id'] = $request->subcategory_id;
 
-       	return $product;
+        $product = Product::create($data);
+
+        if($request->input('feature_product_id'))
+        {
+            $product->features()->attach($request->feature_product_id);
+        }
+
+        if($request->input('product_relationship_id'))
+        {
+        	$product->relatedproducts()->attach($request->product_relationship_id);
+        }
+     
+       	return $product->id;
 	}
 }

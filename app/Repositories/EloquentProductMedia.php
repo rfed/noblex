@@ -20,9 +20,17 @@ class EloquentProductMedia
                 $productMedia->source = $file;
             }
 
-            if(!empty(request()->file('featured_image'))) {
-                $file = request()->file('featured_image')->store('productos', 'public');
+            if(!empty(request()->file('featured_image_desktop'))) {
+                $file = request()->file('featured_image_desktop')->store('productos', 'public');
 
+                $productMedia->featured = 1;
+                $productMedia->source = $file;
+            }
+
+            if(!empty(request()->file('featured_image_mobile'))) {
+                $file = request()->file('featured_image_mobile')->store('productos', 'public');
+
+                $productMedia->type = 'image_mobile';
                 $productMedia->featured = 1;
                 $productMedia->source = $file;
             }

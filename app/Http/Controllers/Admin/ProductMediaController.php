@@ -4,6 +4,7 @@ namespace Noblex\Http\Controllers\Admin;
 
 use Noblex\Http\Controllers\Controller;
 use Noblex\ProductMedia;
+use Noblex\Repositories\EloquentProduct;
 use Noblex\Repositories\EloquentProductMedia;
 
 class ProductMediaController extends Controller
@@ -19,9 +20,13 @@ class ProductMediaController extends Controller
     }
 
 
-    public function create($product)
+    public function create($product, EloquentProduct $productos)
     {
-        return view('admin.pages.productsMedia.create', compact("product"));
+        $productos = $productos->getAll();
+        if($productos->pluck('id')->contains($product))
+            return view('admin.pages.productsMedia.create', compact("product"));
+
+        return redirect()->route('admin.productos.index');
     }
 
 
@@ -29,7 +34,7 @@ class ProductMediaController extends Controller
     {    
         $productMedia->store($product);
     
-        return redirect()->route('admin.productos.relacionados.create', $product);
+        return redirect()->route('admin.productos.index');
     }
 
 
