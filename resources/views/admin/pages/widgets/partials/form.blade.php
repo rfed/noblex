@@ -1,5 +1,5 @@
 <div class="form-body">
-    
+{!! Form::hidden('position') !!}
 <div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
     {!! Form::label('title', 'Titulo', ['class' => 'control-label col-md-3']) !!}
     <div class="col-md-9">
@@ -20,13 +20,6 @@
         {!! $errors->first('type', '<span class="help-block"> :message </span>') !!}
     </div>
 </div>
-<div class="form-group">
-    {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
-    <div class="col-md-9">
-        {!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
-    </div>
-</div>
-
 <div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
     {!! Form::label('category_id', 'Categoria', ['class' => 'control-label col-md-3']) !!}
     
@@ -43,32 +36,46 @@
                 <?php $childs = $cat->menuChilds(); ?>
                         <optgroup label="{{ $cat->name }}">
                             @if(count($childs) < 1)
-                                $eq = (int)$widget->category_id !== (int)$cat->id;
-                                <option value="{{ $cat->id }}" {{ $widget->category_id !== $cat->id ?: 'selected' }}>{{ $cat->name}}</option>
+                                $eq = (int)@$widget->category_id !== (int)$cat->id;
+                                <option value="{{ $cat->id }}" {{ @$widget->category_id !== $cat->id ?: 'selected' }}>{{ $cat->name}}</option>
                             @else
                                 @foreach(@$childs as $child)
                                 <?php
 
-                                    $eq = (int)$widget->category_id !== (int)$cat->id;
+                                    $eq = (int)@$widget->category_id !== (int)$cat->id;
                                 ?>
-                                    <option value="{{ @$child->id }}" {{ $widget->category_id !== $child->id ?: 'selected' }} >{{ @$child->name}}</option>
+                                    <option value="{{ @$child->id }}" {{ @$widget->category_id !== $child->id ?: 'selected' }} >{{ @$child->name}}</option>
                                 @endforeach
                             @endif
                         </optgroup>
                 @endforeach
             </select>
             @else
-                <?php $categoria = $categoria ? $categoria : $widget->category; ?>
+                <?php $categoria = $categoria ? $categoria :  @$widget->category; ?>
                 {!! Form::text('category_name', $categoria->name, ['class' => 'form-control', 'id' => 'title', 'readonly' => 'true']) !!}
                 {!! Form::hidden('category_id', $categoria->id) !!}
             @endif
             {!! $errors->first('category_id', '<span class="help-block"> :message </span>') !!}
         </div>
 </div>
+<div class="form-group">
+    {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
+    <div class="col-md-9">
+        {!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+    </div>
+</div>
+
 
 @if(@$widget)
 
-    @if($widget->category)
+    <div class="form-group">
+        {!! Form::label('feautures', 'Feautures', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::checkbox('feautures', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+        </div>
+    </div>
+
+    @if(@$widget->category)
     <div class="form-group">
         {!! Form::label('show_prods', 'Mostrar productos', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
@@ -77,6 +84,7 @@
     </div>
     @endif
 
+    <?php /*
     @if($widget->type == 1 || $widget->type == 3)
     <div class="form-group {{ $errors->first('description') ? 'has-error' : '' }}">
         {!! Form::label('description', 'Descripción', ['class' => 'control-label col-md-3']) !!}
@@ -100,10 +108,11 @@
         </div>
     </div>
     @endif
+    */?>
     
     @include('admin.pages.widgets.partials.form_media')
 
-    @if($widget->show_prods)
+    @if(@$widget->show_prods)
 
     @endif
 @endif

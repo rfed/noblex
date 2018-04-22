@@ -8,11 +8,8 @@
 
 @foreach($widgets as $widget)
     <?php $template = 'front.widgets.'.\Config::get("widgets.types")[$widget->type]['type'] ?>
-    @include($template, $widget)
     <?php $productos = $widget->productos(); ?>
-    @if($widget->show_prods && count($productos))
-        @include('front.widgets.productos', $productos);
-    @endif
+    @include($template, $widget)
 @endforeach
 
 @endsection

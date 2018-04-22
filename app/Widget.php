@@ -9,7 +9,7 @@ use Noblex\Product;
 class Widget extends Model
 {	
     public $timestamps = false;
-    protected $fillable = ['title', 'description', 'btn_text', 'url', 'category_id', 'position', 'type', 'active', 'show_prods'];
+    protected $fillable = ['title', 'description', 'btn_text', 'url', 'category_id', 'position', 'type', 'active', 'show_prods', 'feautures'];
 
     public function category()
     {

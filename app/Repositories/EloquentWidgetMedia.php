@@ -16,31 +16,48 @@ class EloquentWidgetMedia implements WidgetMediaInterface
 	{
 		if($request->ajax())
         {
-            if($request->get('media_id')){
-                $widgetMedia = WidgetMedia::find($request->get('media_id'));
-            }else{
-                $widgetMedia = new WidgetMedia;
-            }
-            $widgetMedia->widget_id = request()->get('widget_id');
+
+            $widgetMedia = $request->all();
 
             if(!empty($request->file('image'))) {
 
                 $file = $request->file('image')->store('widgets', 'public');
-                $widgetMedia->type = 'image';
-                $widgetMedia->source = $file;
+                $widgetMedia['type'] = 'image';
+                $widgetMedia['source'] = $file;
+                
             }
 
             if(!empty($request->file('video'))) {
                 $file = $request->file('video')->store('widgets', 'public');
-                $widgetMedia->type = 'video';
-                $widgetMedia->source = $file;
+                $widgetMedia['type'] = 'video';
+                $widgetMedia['source'] = $file;
             }
 
             if(!$request->get('position')){
-                $widgetMedia->position = 0;
+                $last = WidgetMedia::where('widget_id', $widgetMedia['widget_id'])->orderBy('position', 'desc')->first();
+                $widgetMedia['position'] = $last ? $last->position + 1 : 0;
+            }
+            // if(!$request->get('source'))
+            //     $widgetMedia['source'] = '';
+
+            // if(!$request->get('title'))
+            //     $widgetMedia['title'] = '';
+
+            // if(!$request->get('description'))
+            //     $widgetMedia['description'] = '';
+            
+            // if(!$request->get('link'))
+            //     $widgetMedia['description'] = '';
+
+            if($request->get('id')){
+                $med = WidgetMedia::find($request->get('id'));
+                $med->update($widgetMedia);
+            }else{
+                $med = WidgetMedia::create($widgetMedia);
             }
             
-            $widgetMedia->save();
+
+            return $med;
         }
     }
     

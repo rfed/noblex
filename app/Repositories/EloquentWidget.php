@@ -45,19 +45,25 @@ class EloquentWidget implements WidgetInterface
 			'category_id' => 'nullable'
 		]);
 		
-		if($request->input('active') == 'on')
+		if($request->get('active') == 'on')
             $data['active'] = 1;
         else
 			$data['active'] = 0;
+
+		if($request->get('feautures') == 'on')
+            $data['feautures'] = 1;
+        else
+			$data['feautures'] = 0;
 		
-		if($request->input('show_prods') == 'on')
+		if($request->get('show_prods') == 'on')
             $data['show_prods'] = 1;
         else
         	$data['show_prods'] = 0;
 		
-		if(!array_key_exists('position', $data))
-			$data['position'] = 0;
-
+		if(!$request->get('position')){
+			$last = Widget::orderBy('position', 'desc')->first();
+			$data['position'] = $last ? $last->position + 1 : 0;
+		}
 		
 		return Widget::create($data);
 	}
@@ -76,18 +82,20 @@ class EloquentWidget implements WidgetInterface
             'show_prods' => 'nullable'
 		]);
 		
-		if($request->input('active') == 'on')
+		if($request->get('active') == 'on')
             $data['active'] = 1;
         else
 			$data['active'] = 0;
+
+		if($request->get('feautures') == 'on')
+            $data['feautures'] = 1;
+        else
+			$data['feautures'] = 0;
 		
-		if($request->input('show_prods') == 'on')
+		if($request->get('show_prods') == 'on')
             $data['show_prods'] = 1;
         else
         	$data['show_prods'] = 0;
-		
-		if(!array_key_exists('position', $data)) 
-			$data['position'] = 0;
 
 		$widget = Widget::findOrFail($id);
 		$widget->update($data);

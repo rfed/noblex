@@ -80,7 +80,7 @@ class WidgetController extends Controller
     public function destroy($id)
     {
 
-        $this->widget->destroy($id);
+        return $this->widget->destroy($id);
 
         return redirect('panel/widgets')->with('danger', 'Widget eliminado correctamente.');
     }

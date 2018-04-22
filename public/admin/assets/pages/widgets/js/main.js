@@ -17,6 +17,7 @@ $(function(){
 		var url = $(this).data('url');
 
 		$("#nombre").html(name);
+		$("#widget-form-delete").attr('action', 'panel/widgets/'+id);
 		$("#form-delete").attr('action', url);
 	});
 

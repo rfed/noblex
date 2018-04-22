@@ -40,23 +40,22 @@
 							<td>{{ $widget->position }}</td>
 							<td>{{ $widget->title }}</td>
 							<td>{{ \Config::get("widgets.types")[$widget->type]["text"] }}</td>
-							<td>{{ $widget->category ? $widget->category->name : '' }}</td>
+							<td>@if($widget->category)<a href="{{ route('admin.categorias.edit', $widget->category_id) }}" >{{ $widget->category->name }}</a>@endif</td>
 							<td>{{ $widget->active ? 'Si' : 'No' }}</td>
 							<td>
 								{!! Form::hidden('id', $widget->id, array('class' => "id")) !!}
-							<div class="btn-group">
-                    	        <a href="{{ route('admin.widgets.edit', $widget->id) }}">
-                                    <i class="icon-pencil"></i> Editar 
-                                </a>
-                                |
-                                <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
-                                	data-id="{{ $widget->id }}"
-                                	data-name="{{ $widget->title }}"
-                                	data-url="{{ route('admin.widgets.destroy', $widget->id) }}">
-                                    <i class="icon-trash"></i> Eliminar 
-                                </a>
-	                            
-                        	</div>
+								<div class="btn-group">
+									<a href="{{ route('admin.widgets.edit', $widget->id) }}">
+										<i class="icon-pencil"></i> Editar 
+									</a>
+									|
+
+									<a href="#" class="delete-widget"
+									data-id="{{ $widget->id }}">
+										<i class="icon-trash"></i> Eliminar 
+									</a>
+									
+								</div>
 	                    	</td>
 						</tr>
 
@@ -68,7 +67,6 @@
 
 		</div>
 	</div>
-@include('admin.pages.widgets.delete')
     
 
 @push('scripts')
@@ -76,13 +74,43 @@
     <script src="{{ asset('admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/widgets/js/main.js') }}"></script>
+
+<script>
+$.ajaxSetup({
+	headers: { "X-CSRF-TOKEN": '{{ csrf_token() }}' }
+});
+$(document).ready(function(){
+	$(document).on('click', '.delete-widget', function(e){
+		var id = $(this).data('id');
+		var tr = $(this).parent().parent().parent();
+		console.log(id);
+		console.log($(tr));
+
+		e.preventDefault();
+		$.ajax({
+			url: '/panel/widgets/' + id,
+			type: 'DELETE',
+			success: function(result) {
+				console.log("HEcho");
+				$(tr).remove();
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+
+		return false;
+	});
+});
+</script>
+
 	@if(!@$no_sort)
 	<script>
+		$.ajaxSetup({
+			headers: { "X-CSRF-TOKEN": '{{ csrf_token() }}' }
+		});
+
 		$( function() {
-			$.ajaxSetup({
-				headers: { "X-CSRF-TOKEN": '{{ csrf_token() }}' }
-			});
-			
 			
 			$( "#sortable" ).disableSelection();
 

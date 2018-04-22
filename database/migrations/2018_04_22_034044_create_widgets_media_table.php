@@ -16,7 +16,7 @@ class CreateWidgetsMediaTable extends Migration
         Schema::create('widgets_media', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('widget_id')->unsigned();
-            $table->string('source', 500);
+            $table->string('source', 500)->nullable();
             $table->enum('type', ['image', 'video'])->default('image');
             $table->integer('position')->unsigned();
             $table->integer('title')->nullable();

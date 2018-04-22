@@ -58,6 +58,7 @@
 
 	</div>
 @push('scripts')
+
 <script>
 
 var total_info = {{ $categoria->info->count() }};
