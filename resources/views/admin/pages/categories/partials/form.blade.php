@@ -1,6 +1,4 @@
-	
 	{!! Form::hidden('root_id', $root_id) !!}
-
 	<div class="form-body">
 
 		<div class="form-group {{ $errors->first('name') ? 'has-error' : '' }}">
@@ -15,6 +13,7 @@
 			{!! Form::label('url', 'URL', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
 				{!! Form::text('url', null, ['class' => 'form-control', 'id' => 'permalink', 'placeholder' => 'URL']) !!} 
+				{!! $errors->first('url', '<span class="help-block"> :message </span>') !!}
 			</div>
 		</div>
 
@@ -31,5 +30,4 @@
 		  	    		<div id="image" class="dropzone"></div>
 		  	    	</div>
 		  		</div> -->
-
 	</div>

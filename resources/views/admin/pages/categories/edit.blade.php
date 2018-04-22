@@ -16,6 +16,7 @@
 <!-- BEGIN FORM-->
 {!! Form::model($categoria, ['route' => ['admin.categorias.update', $categoria->id], 'class' => 'form-horizontal form-row-seperated', 'method' => 'PUT']) !!}
 
+	{!! Form::hidden('root_id', $root_id) !!}
 	<!-- END FORM-->
 	<div class="tab-content">
 		
@@ -52,21 +53,17 @@
 			</div>
 		</div>
 
-		<div class="tab-pane" id="tab-menu">
+		<div class="tab-pane" id="tab-home">
 			<div class="portlet box yellow">
 
 				<div class="portlet-title">
 					<div class="caption">
-						<i class="fa fa-plus"></i> Datos de Home
+						<i class="fa fa-plus"></i> Widgets de Home
 					</div>
 				</div>
 
 				<div class="portlet-body form">
-					Check mostrar en home?<br>
-					Estilo: 1 imagen, 1 video, 3 videos.<br>
-
-					Check mostrar productos destacados?<br>
-					Listado productos destacados?<br>
+					@include('admin.pages.categories.partials.form_home')
 				</div>
 			</div>
 		</div>

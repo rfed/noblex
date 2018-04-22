@@ -5,6 +5,7 @@ namespace Noblex;
 use Illuminate\Database\Eloquent\Model;
 use Noblex\Product;
 use Noblex\InfoInteres;
+use Noblex\Widget;
 
 class Category extends Model
 {
@@ -37,5 +38,9 @@ class Category extends Model
 	public function info()
 	{
 		return $this->hasMany(InfoInteres::class);
+	}
+
+	public function widgets(){
+		return $this->hasMany(Widget::class);
 	}
 }

@@ -6,8 +6,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Noblex\Repositories\EloquentProduct;
 use Noblex\Repositories\EloquentCategory;
+use Noblex\Repositories\EloquentWidget;
+use Noblex\Repositories\EloquentWidgetMedia;
 use Noblex\Repositories\Interfaces\CategoryInterface;
 use Noblex\Repositories\Interfaces\ProductInterface;
+use Noblex\Repositories\Interfaces\WidgetInterface;
+use Noblex\Repositories\Interfaces\WidgetMediaInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +32,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ProductInterface::class,
             EloquentProduct::class
+        );
+
+        $this->app->bind(
+            WidgetInterface::class,
+            EloquentWidget::class
+        );
+
+        $this->app->bind(
+            WidgetMediaInterface::class,
+            EloquentWidgetMedia::class
         );
     }
 

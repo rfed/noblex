@@ -22,6 +22,16 @@
 
 					@include('admin.pages.categories.partials.form')
 					
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								{!! Form::button('<i class="fa fa-check"></i> Agregar', ['type' => 'submit', 'class' => 'btn blue', 'id' => 'submitFile']) !!}
+
+								<a href="{{ route('admin.categorias.index') }}" type="button" class="btn default">Volver</a>
+
+							</div>
+						</div>
+					</div>
 				{!! Form::close() !!}
 				<!-- END FORM-->
 				

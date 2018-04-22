@@ -1,6 +1,4 @@
 	
-	{!! Form::hidden('root_id', $root_id) !!}
-
 	<div class="form-body">
 
 		<div class="form-group {{ $errors->first('name') ? 'has-error' : '' }}">
