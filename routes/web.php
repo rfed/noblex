@@ -37,7 +37,8 @@ Route::group([
 
 	// Marcas
 	Route::resource('marcas', 'Admin\BrandController', [
-		'names' => 'admin.brands'
+		'names' 	=> 'admin.brands',
+		'except'	=> 'show'
 	]);
 
 
