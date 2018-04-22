@@ -51,17 +51,6 @@ Route::group([
 
 	});
 
-
-	// Productos relacionados
-	Route::group([
-		'prefix' => 'productos'
-	], function() {
-
-		Route::get('{product}/relacionados/create', 'Admin\RelatedproductController@create')->name('admin.productos.relacionados.create');
-		Route::post('{product}/relacionados', 'Admin\RelatedproductController@store')->name('admin.productos.relacionados.store');
-
-	});
-
 });
 
 

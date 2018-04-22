@@ -3,6 +3,7 @@
 namespace Noblex;
 
 use Illuminate\Database\Eloquent\Model;
+use Noblex\Brand;
 use Noblex\Category;
 use Noblex\Feature;
 use Noblex\ProductMedia;
@@ -30,5 +31,10 @@ class Product extends Model
     public function relatedproducts()
     {
         return $this->belongsToMany(Product::class, 'relatedproducts', 'product_id', 'product_relationship_id')->withTimestamps();
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 }
