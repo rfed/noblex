@@ -8,7 +8,7 @@ use Noblex\InfoInteres;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product'];
+    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu'];
 
 	public function setNameAttribute($name)
 	{
@@ -18,6 +18,10 @@ class Category extends Model
 	public function childs()
 	{
 		return $this->hasMany(Category::class, 'root_id', 'id');
+	}
+
+	public function menuChilds(){
+		return $this->childs->where('visible', 1)->where('menu', 1);
 	}
 
 	public function feautured()

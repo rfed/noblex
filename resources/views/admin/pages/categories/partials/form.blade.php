@@ -25,12 +25,6 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			{!! Form::label('feautured_product', 'Producto Destacado', ['class' => 'control-label col-md-3']) !!}
-			<div class="col-md-9">
-				{!! Form::text('feautured_product', null, ['class' => 'form-control', 'data-size' => 'small', 'id' => 'feautured_product']) !!}
-			</div>
-		</div>
 		<!-- <div class="form-group">
 		  		 	{!! Form::label('image', 'Imagen', ['class' => 'control-label col-md-3']) !!}
 		  		 	<div class="col-md-3">
@@ -38,19 +32,4 @@
 		  	    	</div>
 		  		</div> -->
 
-	</div>
-
-	<div class="form-actions">
-		<div class="row">
-			<div class="col-md-offset-3 col-md-9">
-				@isset($categoria)
-					{!! Form::button('<i class="fa fa-check"></i> Editar', ['type' => 'submit', 'class' => 'btn yellow', 'id' => 'submitFile']) !!}
-				@else
-					{!! Form::button('<i class="fa fa-check"></i> Agregar', ['type' => 'submit', 'class' => 'btn blue', 'id' => 'submitFile']) !!}
-				@endisset
-
-				<a href="{{ route('admin.categorias.index') }}" type="button" class="btn default">Volver</a>
-
-			</div>
-		</div>
 	</div>

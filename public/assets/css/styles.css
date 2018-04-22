@@ -713,7 +713,8 @@ footer .copyright > .networks_list li a:hover {
 	top: 0;
 	left: 230px;
 	height: 100%;
-	padding: 20px 40px
+	padding: 20px 40px;
+	background: #fff;
 }
 
 .header .menu .submenu .content > ul li > div .info {

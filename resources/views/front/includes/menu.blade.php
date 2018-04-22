@@ -12,9 +12,12 @@
             <div class="menu">
                 <ul>
                     @foreach($menu_raiz->childs as $cat)
-                        @if($cat->visible == 1)
+                        @if($cat->visible)
                             <li>
-                                <a href="#">{{ $cat->name }}</a>
+                                <a href="#" class="main-cat">{{ $cat->name }}</a>
+                                <?php $childs = $cat->menuChilds(); ?>
+                                @if(count($childs))
+
                                 <div class="submenu">
                                     <div class="submenu_content">
                                         <button class="close" type="button">
@@ -24,43 +27,47 @@
 
                                         <div class="content">
                                             <span><strong>{{ $cat->name }}</strong></span>
-                                            @if($cat->childs)
-                                                @foreach($cat->childs as $sub)
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">{{ $sub->name }}</a>
-                                                        <div>
-                                                            @if($sub->feautured)
-                                                            <!-- CONTENIDO COLUMNA 2 -->
-                                                            <a href="#">
-                                                                <p class="title"><strong>Último lanzamiento</strong></p>
-                                                                <p>{{ $sub->feautured->name }} <strong>{{ $sub->feautured->short_description }}</strong></p>
+                                            
+                                                @foreach($childs as $sub)
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" class="sub-cat">{{ $sub->name }}</a>
+                                                            <div class="cat-desc">
+                                                                @if($sub->feautured)
+                                                                <!-- CONTENIDO COLUMNA 2 -->
+                                                                <a href="#">
+                                                                    <p class="title"><strong>Último lanzamiento</strong></p>
+                                                                    <p>{{ $sub->feautured->name }} <strong>{{ $sub->feautured->short_description }}</strong></p>
+                                                                    <?php
+                                                                        $img = $sub->feautured->productsMedia->where('featured', 1)->first();
+                                                                    ?>
+                                                                    @if($img)
+                                                                    <img src="{{ asset('storage/'.$img->source) }}" alt="{{ $sub->feautured->name }}" />
+                                                                    @endif
+                                                                </a>
+                                                                @endif
+                                                                <!-- FIN CONTENIDO COLUMNA 2 -->
 
-                                                                <img src="assets/imgs/imagenes/prod_1.png" alt='DA65X6500X LED TV Smart 65 Full UHD' />
-                                                            </a>
-                                                            @endif
-                                                            <!-- FIN CONTENIDO COLUMNA 2 -->
+                                                                @if($sub->info->count())
+                                                                <div class="info">
+                                                                    <!-- CONTENIDO COLUMNA 3 -->
+                                                                    <p class="title"><strong>Info de interés</strong></p>
 
-                                                            @if($sub->info->count() > 0)
-                                                            <div class="info">
-                                                                <!-- CONTENIDO COLUMNA 3 -->
-                                                                <p class="title"><strong>Info de interés</strong></p>
+                                                                    @foreach($sub->info as $info)
+                                                                    <a href="{{ $info->url }}">{{ $info->text }}</a>
+                                                                    @endforeach
 
-                                                                @foreach($sub->info as $info)
-                                                                <a href="{{ $info->url }}">{{ $info->text }}</a>
-                                                                @endforeach
-
-                                                                <!-- CONTENIDO COLUMNA 3 -->
+                                                                    <!-- CONTENIDO COLUMNA 3 -->
+                                                                </div>
+                                                                @endif
                                                             </div>
-                                                            @endif
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                        </li>
+                                                    </ul>
                                                 @endforeach
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </li>
                         @endif
                     @endforeach
@@ -301,3 +308,21 @@
 </div>
 
 <!-- FIN MENÚ MOBILE -->
+@push('scripts')
+    <script>
+        $(document).on('ready', function(){
+
+            $('.cat-desc').hide();
+
+            $('.main-cat').on('mouseenter', function(){
+                $($(this).parent().find('ul')[0]).find('.cat-desc').show();
+                console.log();
+            })
+
+            $(".sub-cat").on('mouseenter', function(e){
+                $('.cat-desc').hide();
+                $(this).next('.cat-desc').show();
+            })
+        })
+    </script>
+@endpush
