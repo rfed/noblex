@@ -29,7 +29,7 @@ class EloquentWidgetMedia implements WidgetMediaInterface
             if(!empty($request->file('image'))) {
                 
                 $file = $request->file('image')->store('widgets', 'public');
-                $widgetMedia['type'] = 'images';
+                $widgetMedia['type'] = 'image';
                 $widgetMedia['source'] = $file;
                 
             }

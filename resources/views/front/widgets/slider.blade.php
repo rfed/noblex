@@ -3,11 +3,10 @@
     <div class="container">
         
         <div class="row">
-
+   
             <div class="carousel_product_box_link owl-carousel dots">
                 @foreach($media as $med)
-
-                    @if($med->source and $med->source != '')
+                    @if(@$med->source and @$med->source != '')
                     <!-- -->
                     <div class="item product_box_link">
                         <div class="image">
@@ -34,7 +33,7 @@
                     @endif
                 @endforeach
             </div>
-
+    
         </div>
     </div>
     @if($widget->show_prods && count($productos))
