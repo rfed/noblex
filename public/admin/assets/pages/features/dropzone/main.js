@@ -29,6 +29,7 @@ $(function() {
 				{
 					input_name = json.errorValidation[i];
 					$('.'+i).find(".msg").text(input_name);
+					$('.'+i).addClass('has-error');
 				}
 						
 			}else {
