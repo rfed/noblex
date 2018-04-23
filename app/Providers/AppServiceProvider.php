@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             BrandInterface::class,
-            BrandInterface::class
+            EloquentBrand::class
         );
 
         $this->app->bind(
