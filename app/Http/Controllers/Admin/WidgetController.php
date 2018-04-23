@@ -68,16 +68,17 @@ class WidgetController extends Controller
     public function update(Request $request, $id)
     {
         $this->widget->update($request, $id);
-        		
-		if($request->get('media')){
+ 
+        if($request->get('change') || $request->get('change-type')){
+            
+            return redirect()->route('admin.widgets.edit', $id);
+        }
+
+        if($request->get('media')){
 			$media = $request->get('media');
 			foreach($media as $w_id => $w_data){
 				$this->widgetMedia->update($w_data, $w_id);
 			}
-		}
-
-        if($request->get('change')){
-            return redirect()->route('admin.widgets.edit', $id);
         }
 
         return redirect()->route('admin.widgets.index');
@@ -86,7 +87,7 @@ class WidgetController extends Controller
 
     public function destroy($id)
     {
-
+        
         return $this->widget->destroy($id);
 
         return redirect('panel/widgets')->with('danger', 'Widget eliminado correctamente.');

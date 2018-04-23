@@ -49,9 +49,9 @@ class EloquentWidget implements WidgetInterface
 			'home'			=> 'nullable'
 		]);
 		
-		$data['active'] = $data['active'] == 'on' ?1:0;
-		$data['features'] = $data['features'] == 'on' ?1:0;
-		$data['show_prods'] = $data['show_prods'] == 'on' ?1:0;
+		$data['active'] = @$data['active'] == 'on' ?1:0;
+		$data['features'] = @$data['features'] == 'on' ?1:0;
+		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
 		$data['home'] = $data['home'] == 'on' ?1:0;
 		
 		if(!$data['position']){
@@ -65,6 +65,7 @@ class EloquentWidget implements WidgetInterface
 
 	public function update($request, $id) 
 	{
+		
 		
 		$data = request()->validate([
 			'title'    		=> 'nullable|max:80',
@@ -80,14 +81,26 @@ class EloquentWidget implements WidgetInterface
 			'home'			=> 'nullable'
 		]);
 
-		$data['active'] = $data['active'] == 'on' ?1:0;
-		$data['features'] = $data['features'] == 'on' ?1:0;
-		$data['show_prods'] = $data['show_prods'] == 'on' ?1:0;
-		$data['home'] = $data['home'] == 'on' ?1:0;
+		$data['active'] = @$data['active'] == 'on' ?1:0;
+		$data['features'] = @$data['features'] == 'on' ?1:0;
+		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
+		$data['home'] = @$data['home'] == 'on' ?1:0;
 
 		$widget = Widget::findOrFail($id);
+		
+		if($request->get('change-type')){
+			
+			WidgetMedia::where('widget_id', $widget->id)->delete();
+			$data['active'] = 0;
+			for($i = 0; $i < \Config::get('widgets.types')[$data['type']]['files'] ; $i++){
+				WidgetMedia::create([
+					'widget_id' => $widget->id,
+					'position' => $i,
+				]);
+			}
+		}
+		
 		$widget->update($data);
-
 		return $widget;
 	}
 

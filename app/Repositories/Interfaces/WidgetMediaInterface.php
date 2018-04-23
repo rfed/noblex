@@ -12,5 +12,7 @@ interface WidgetMediaInterface
 
 	public function update($request, $id);
 
+	public function create($data);
+
 	public function destroy($id);
 }

@@ -92,32 +92,6 @@
     @else
         {!! Form::hidden('show_prods', null) !!}
     @endif
-
-    <?php /*
-    @if($widget->type == 1 || $widget->type == 3)
-    <div class="form-group {{ $errors->first('description') ? 'has-error' : '' }}">
-        {!! Form::label('description', 'Descripción', ['class' => 'control-label col-md-3']) !!}
-        <div class="col-md-9">
-            {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) !!}
-            {!! $errors->first('description', '<span class="help-block"> :message </span>') !!}
-        </div> 
-    </div>
-    <div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
-        {!! Form::label('btn_text', 'Texto Boton', ['class' => 'control-label col-md-3']) !!}
-        <div class="col-md-9">
-            {!! Form::text('btn_text', null, ['class' => 'form-control', 'id' => 'title']) !!}
-            {!! $errors->first('btn_text', '<span class="help-block"> :message </span>') !!}
-        </div>
-    </div>
-    <div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
-        {!! Form::label('url', 'Link', ['class' => 'control-label col-md-3']) !!}
-        <div class="col-md-9">
-            {!! Form::text('url', null, ['class' => 'form-control', 'id' => 'title']) !!}
-            {!! $errors->first('url', '<span class="help-block"> :message </span>') !!}
-        </div>
-    </div>
-    @endif
-    */?>
     
     @include('admin.pages.widgets.partials.form_media')
 
@@ -133,9 +107,9 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-9">
 
-            {!! Form::button('Guardar <i class="fa fa-angle-double-right"></i>', ['type' => 'submit', 'class' => 'btn blue']) !!}
+            {!! Form::button('Guardar <i class="fa fa-angle-double-right"></i>', ['type' => 'submit', 'class' => 'btn blue submit']) !!}
 
-            {!! Form::button('Guardar y continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'button', 'class' => 'btn blue save-continue']) !!}
+            {!! Form::button('Guardar y continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'button', 'class' => 'btn blue submit', 'data-continue' => 'continue']) !!}
             
             <a href="{{ route('admin.productos.index') }}" type="button" class="btn default">Volver</a>
 
@@ -162,11 +136,31 @@
             $('.widget-form').submit();
         });
 
-        $('.save-continue').on('click', function(){
-            console.log("ACA");
-            $('.widget-form').append('<input type="hidden" name="change" value="1">');
+
+        $('.submit').click(function(e){
+            e.preventDefault();
+            var error = false;
+            console.log("Submit");
+            
+            var medias = $('.media-source');
+            medias.each(function(m){
+                console.log($(this).val());
+                if($(this).data('type') === 'image' && ($(this).val() == null || $(this).val() == '')){
+                    error = 'Complete todas las imágenes'
+                }
+            });
+
+            if(error){
+                alert(error);
+                return false;
+            }
+
+            if($(this).data('continue')){
+                $('.widget-form').append('<input type="hidden" name="change" value="1">');
+            }
+
             $('.widget-form').submit();
-        });
+        })
         
 
     })

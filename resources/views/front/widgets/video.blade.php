@@ -1,10 +1,14 @@
+
+@if($media->source)
+<?php $media = $media->first(); dd($media->toArray()); ?>
 <section>
+
     <div class="container">
         <div class="row">
 
             <div class="big product_box_link">
                 <video width="100%" controls>
-                    <source src="{{ asset('storage/'.$widget->media->first()->source) }}" type="video/mp4"/>
+                    {!! Embed::make($media->source)->parseUrl()->getIframe() !!}
                 </video>
                 
                 <?php $media = $media->first(); ?>
@@ -23,3 +27,4 @@
         @include('front.widgets.productos', $productos);
     @endif
 </section>
+@endif

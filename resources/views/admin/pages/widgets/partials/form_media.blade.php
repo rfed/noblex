@@ -40,12 +40,14 @@
     thumbs = thumbs ? $.parseJSON(thumbs) : null;
     var types = $.parseJSON('{!! json_encode(\Config::get("widgets.types")) !!}');
 
+    
+
     var widget_type = types[{{ $widget->type }}];
     var maxFiles = thumbs.length > 0 ? widget_type.files - thumbs.length : widget_type.files;
 
     if(thumbs){
         thumbs.forEach(function(thumb, i){
-            var drop = createRow(thumb);
+            createRow(thumb);
         })
     }
 
@@ -144,6 +146,9 @@
                         <span>${widget_type.size.width}px x ${widget_type.size.height}px</span>
                     </div>
                     <div style="width: 200px;" id="drop${data.id}" class="dropzone" data-type="{{ $widget->type }}"></div>
+
+                    <input type="hidden" class="media-source" id="source${data.id}" name="media[${data.id}][source]" value="${ data.source ? data.source : '' }" data-type="${ widget_type.type }">
+
                 </td>
                 <td>
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position">
@@ -175,6 +180,7 @@
                     </div>
                 </td>
             </tr>`);
+
             createDrop('#drop'+data.id, data);
     }
 
@@ -184,7 +190,7 @@
             type: 'POST',
             data: data,
             success: callback ? callback : function(){
-            
+                $("#source"+data).val(data.source) 
             },
             error: function(error){
                 console.log(error);
@@ -254,14 +260,16 @@
             $(".dz-error-message:last > span").text(msg);
         });
 
-        drop.on("addedfile", function(file) {
-            console.log(file);
+        drop.on("success", function(response) {
+            var m = $.parseJSON(response.xhr.response);
+            $('#source'+m.id).val(m.source);
             $('.dz-progress').hide();
         });
 
         drop.on("removedfile", function(e) {
-            
+            $('#source'+e.id).val("");
         });
+
         return drop;
     }
 

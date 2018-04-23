@@ -50,7 +50,7 @@ class Widget extends Model
             ->where('active', 1)
             ->orderBy('position', 'asc')->get();
     }
-    
+
     public function getMediaSorted(){
         return $this->media()->orderBy('position', 'asc')->get();
 	}
