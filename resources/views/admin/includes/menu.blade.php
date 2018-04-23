@@ -38,7 +38,7 @@
                 </a>
             </li>
 
-            <li class="nav-item start {{ activeMenu('panel/productos*') }}">
+            <li class="nav-item start {{ activeMenu('panel/widgets*') }}">
                 <a href="{{ route('admin.widgets.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Widgets</span>

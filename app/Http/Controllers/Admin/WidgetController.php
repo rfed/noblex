@@ -67,6 +67,7 @@ class WidgetController extends Controller
 
     public function update(Request $request, $id)
     {
+        dd($id);
         $this->widget->update($request, $id);
 
         		
@@ -98,7 +99,11 @@ class WidgetController extends Controller
     }
 
     public function createMedia(Request $request){
-        return $this->widgetMedia->upload($request);
+        if($request->get('id')){
+            return $this->widgetMedia->update($request->all(), $request->get('id'));
+        }else{
+            return $this->widgetMedia->upload($request);
+        }
     }
 
     public function deleteMedia($id){

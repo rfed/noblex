@@ -55,9 +55,16 @@ class EloquentWidgetMedia implements WidgetMediaInterface
     }
 
     public function update($data, $id){
-        
+
+        $link = array_key_exists('link', $data) && $data['link'] !== '' ? $data['link'] : null;
+
+        $target = array_key_exists('link_target', $data) ? $data['link_target'] : '_self';
+
+        $data['link'] = $link ? $target . "|" . $data['link'] : null;
+
         $media = $this->findById($id);
-        return $media->update($data);
+        $media->update($data);
+        return $media;
     }
     
     public function destroy($id){

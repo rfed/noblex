@@ -24,7 +24,7 @@ class HomeController extends FrontController
      */
     public function index()
     {
-        $widgets = Widget::where('active', 1)->orderBy('position', 'asc')->get();
+        $widgets = Widget::where('active', 1)->orderBy('position', 'asc')->with('media')->get();
         return view('front.pages.home', compact('widgets'));
     }
 }

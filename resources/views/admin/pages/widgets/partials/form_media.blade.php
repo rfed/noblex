@@ -96,6 +96,8 @@
             title: $('#title'+id).val(),
             description: $('#description'+id).val(),
             link: $('#link'+id).val(),
+            link_target: $('#link_target'+id).val(),
+            
         }
 
         saveMedia(data);
@@ -106,13 +108,11 @@
         e.preventDefault();
         var self = this;
         var id = $(this).data('id');
-        console.log(e)
         if(id){
             $.ajax({
                 url: '/panel/widgets/media/' + id,
                 type: 'DELETE',
                 success: function(result) {
-                    console.log(result);
                     $(self).parent().parent().parent().remove();
                 },
                 error: function(error){
@@ -127,6 +127,15 @@
 
     function createRow(data){
         
+        var linkTarget = '_self';
+        var linkUrl =  '#';
+
+        if(data.link && data.link !== ''){
+            var linkArr = data.link.split('|');
+            var linkTarget = linkArr.length > 1 ? linkArr[0] : '_self';
+            var linkUrl = linkArr.length > 1 ? linkArr[1] : '#';
+        }
+
         $("#media").find('tbody')
         .append(`<tr>
                 <td width="200" style="text-align:center">
@@ -140,7 +149,18 @@
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
                     <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control media_input">${data.description ? data.description : ''}</textarea>
-                    <input id="link${data.id}" type="text" name="media[${data.id}][link]" placeholder="Link" class="form-control media_input" value="${data.link ? data.link : ''}">
+                    <div class="row">
+                        <div class="col-md-4">
+                        <select name="media[${data.id}][link_target]" class="form-control media_input" id="link_target${data.id}">
+                            <option ${ linkTarget === '_self' ? 'selected' : '' } value="_self">_self</option>
+                            <option ${ linkTarget === '_blank' ? 'selected' : '' }  value="_blank">_blank</option>
+                        </select>
+                        </div>
+                        <div class="col-md-8">
+                        <input id="link${data.id}" type="text" name="media[${data.id}][link]" placeholder="Link" class="form-control  col-8 media_input" value="${linkUrl}">
+                        </div>
+                    </div>
+
                 </td>
                 <td width="200">
                     <div class="btn-group">
@@ -173,9 +193,6 @@
     }
 
     function createDrop(el, data){
-
-        console.log(data);
-
         var drop = new Dropzone(el, {
             url: '/panel/widgets/media',
             'paramName': widget_type.mime,
@@ -261,8 +278,6 @@
                     var pos = $(el).index();
                     var el_id = $(el).find('.position').val(pos);
                 })
-
-                console.log(list);
                 // $.ajax({
                 //     url: '/panel/widgets/orden',
                 //     type: 'post',

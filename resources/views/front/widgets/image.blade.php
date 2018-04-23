@@ -7,7 +7,7 @@
             <div class="item product_box_link">
                 
                 <div class="image">
-                    <a href="{{ $media->link ? $widget->url : '#' }}">
+                    <a target="{{ $media->linkTarget() }}" href="{{ $media->linkUrl() }}" title="{{ $media->title }}">
                         <img src="{{ asset('storage/' . $media->source) }}" />
                     </a>
                 </div>
