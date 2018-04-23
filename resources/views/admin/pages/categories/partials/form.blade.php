@@ -1,6 +1,4 @@
-	
 	{!! Form::hidden('root_id', $root_id) !!}
-
 	<div class="form-body">
 
 		<div class="form-group {{ $errors->first('name') ? 'has-error' : '' }}">
@@ -15,6 +13,7 @@
 			{!! Form::label('url', 'URL', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
 				{!! Form::text('url', null, ['class' => 'form-control', 'id' => 'permalink', 'placeholder' => 'URL']) !!} 
+				{!! $errors->first('url', '<span class="help-block"> :message </span>') !!}
 			</div>
 		</div>
 
@@ -31,20 +30,4 @@
 		  	    		<div id="image" class="dropzone"></div>
 		  	    	</div>
 		  		</div> -->
-
-	</div>
-
-	<div class="form-actions">
-		<div class="row">
-			<div class="col-md-offset-3 col-md-9">
-				@isset($categoria)
-					{!! Form::button('<i class="fa fa-check"></i> Editar', ['type' => 'submit', 'class' => 'btn yellow', 'id' => 'submitFile']) !!}
-				@else
-					{!! Form::button('<i class="fa fa-check"></i> Agregar', ['type' => 'submit', 'class' => 'btn blue', 'id' => 'submitFile']) !!}
-				@endisset
-
-				<a href="{{ route('admin.categorias.index') }}" type="button" class="btn default">Volver</a>
-
-			</div>
-		</div>
 	</div>

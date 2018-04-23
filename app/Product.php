@@ -18,6 +18,11 @@ class Product extends Model
     	return $this->hasMany(ProductMedia::class);
     }
 
+    public function featuredImg()
+    {
+    	return $this->hasOne(ProductMedia::class)->where('featured', 1);
+    }
+
     public function category()
     {
     	return $this->belongsTo(Category::class);

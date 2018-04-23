@@ -57,7 +57,7 @@ class CategoryController extends Controller
             $parentCategory = $this->category->findById($root_id);
         }
 
-        return view('admin.pages.categories.create', compact("root_id", "parentCategory"));
+        return view('admin.pages.categories.create', compact("root_id", "parentCategory", "products"));
     }
 
 
@@ -74,8 +74,8 @@ class CategoryController extends Controller
         $categoria = $this->category->findById($id);
         $root_id = $categoria->root_id;
         $parentCategory = Category::find($root_id);
-
-        return view('admin.pages.categories.edit', compact("categoria", "root_id", "parentCategory"));
+        $products = $categoria->products->pluck('id', 'name');
+        return view('admin.pages.categories.edit', compact("categoria", "root_id", "parentCategory", "products"));
     }
 
 
