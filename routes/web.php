@@ -47,7 +47,17 @@ Route::group([
 	], function() { 
 
 		Route::get('{product}/files/create', 'Admin\ProductMediaController@create')->name('admin.productos.files.create');
-		Route::post('{product?}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');
+		Route::post('{product}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');
+
+	});
+
+	// Productos modulo seccion
+	Route::group([
+		'prefix' => 'productos'
+	], function() { 
+
+		Route::get('{product}/section/create', 'Admin\ProductSectionController@create')->name('admin.productos.section.create');
+		Route::post('{product}/section', 'Admin\ProductSectionController@store')->name('admin.productos.section.store');
 
 	});
 
