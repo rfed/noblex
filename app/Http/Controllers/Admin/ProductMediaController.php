@@ -34,7 +34,7 @@ class ProductMediaController extends Controller
     {    
         $productMedia->store($product);
     
-        return redirect()->route('admin.productos.index');
+        return redirect()->route('admin.productos.section.create', $product);
     }
 
 

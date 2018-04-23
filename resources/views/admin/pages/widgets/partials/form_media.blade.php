@@ -110,7 +110,7 @@
         var id = $(this).data('id');
         if(id){
             $.ajax({
-                url: '/panel/widgets/media/' + id,
+                url: '../media/' + id,   // '/panel/widgets/media/' + id,
                 type: 'DELETE',
                 success: function(result) {
                     $(self).parent().parent().parent().remove();
@@ -180,7 +180,7 @@
 
     function saveMedia(data, callback){
         $.ajax({
-            url: '/panel/widgets/media',
+            url: '../media',  // /panel/widgets/media
             type: 'POST',
             data: data,
             success: callback ? callback : function(){
@@ -194,7 +194,7 @@
 
     function createDrop(el, data){
         var drop = new Dropzone(el, {
-            url: '/panel/widgets/media',
+            url: '../media',  // /panel/widgets/media
             'paramName': widget_type.mime,
             'maxFiles': 1,
             'addRemoveLinks': true,

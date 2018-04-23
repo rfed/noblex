@@ -64,17 +64,17 @@ Route::group([
 	], function() { 
 
 		Route::get('{product}/files/create', 'Admin\ProductMediaController@create')->name('admin.productos.files.create');
-		Route::post('{product?}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');
+		Route::post('{product}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');
 
 	});
 
-	// Productos relacionados
+	// Productos modulo seccion
 	Route::group([
 		'prefix' => 'productos'
-	], function() {
+	], function() { 
 
-		Route::get('{product}/relacionados/create', 'Admin\RelatedproductController@create')->name('admin.productos.relacionados.create');
-		Route::post('{product}/relacionados', 'Admin\RelatedproductController@store')->name('admin.productos.relacionados.store');
+		Route::get('{product}/section/create', 'Admin\ProductSectionController@create')->name('admin.productos.section.create');
+		Route::post('{product}/section', 'Admin\ProductSectionController@store')->name('admin.productos.section.store');
 
 	});
 
@@ -93,3 +93,5 @@ Route::group([
 });
 
 Route::get('/', 'Front\HomeController@index')->name('home');
+
+Route::get('/productos', 'Front\ProductController@index')->name('productos');
