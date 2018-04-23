@@ -129,21 +129,30 @@
 
     function createRow(data){
         
+        var title = '';
         var linkTarget = '_self';
-        var linkUrl =  '#';
+        var linkUrl =  data.link;
 
-        if(data.link && data.link !== ''){
-            var linkArr = data.link.split('|');
-            var linkTarget = linkArr.length > 1 ? linkArr[0] : '_self';
-            var linkUrl = linkArr.length > 1 ? linkArr[1] : '#';
+        if(data.type === 'image'){
+
+            if((data.link && data.link !== '')){
+                var linkArr = data.link.split('|');
+                var linkTarget = linkArr.length > 1 ? linkArr[0] : '_self';
+                var linkUrl = linkArr.length > 1 ? linkArr[1] : '#';
+            }
+
+            title = `<strong>Tamaño sugerido</strong><br>
+                    <span>${widget_type.size.width}px x ${widget_type.size.height}px</span> `;
+        }else {
+            title = `<strong>Video</strong><br>
+                    <span></span> `;
         }
 
         $("#media").find('tbody')
         .append(`<tr>
                 <td width="200" style="text-align:center">
                     <div class="sugested-size">
-                        <strong>Tamaño sugerido</strong><br>
-                        <span>${widget_type.size.width}px x ${widget_type.size.height}px</span>
+                        ${title}
                     </div>
                     <div style="width: 200px;" id="drop${data.id}" class="dropzone" data-type="{{ $widget->type }}"></div>
 
@@ -189,7 +198,9 @@
             url: '../media',  // /panel/widgets/media
             type: 'POST',
             data: data,
-            success: callback ? callback : function(){
+            success: callback ? callback : function(response){
+                console.log(data);
+                console.log(response);
                 $("#source"+data).val(data.source) 
             },
             error: function(error){

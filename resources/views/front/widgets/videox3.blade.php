@@ -3,9 +3,7 @@
         <div class="product_links_bar">
             @foreach($widget->media as $media)
             <div class="col-xs-12 col-sm-4">
-                <video width="100%" controls>
-                    <source src="{{ asset('storage/'.$media->source) }}" type="video/mp4"   >
-                </video>
+                {!! !empty($media->link) ? LaravelVideoEmbed::parse($media->linkUrl(),[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '213' ]) : '' !!}
             </div>
             @endforeach
         </div>

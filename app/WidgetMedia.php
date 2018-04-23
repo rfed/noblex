@@ -12,10 +12,12 @@ class WidgetMedia extends Model
 
 	public function linkUrl(){
 		$link = '#';
+
 		if($this->link){
 			$linkArr = explode('|', $this->link);
 			$link = ($linkArr && count($linkArr) == 2) ? $linkArr[1] : $this->link;
 		}
+
 		return $link;
 	}
 

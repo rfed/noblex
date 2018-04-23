@@ -6,9 +6,10 @@
    
             <div class="carousel_product_box_link owl-carousel dots">
                 @foreach($media as $med)
-                    @if(@$med->source and @$med->source != '')
+                @if(@$med->source and @$med->source != '')
                     <!-- -->
                     <div class="item product_box_link">
+                        
                         <div class="image">
                             <a target="{{ $med->linkTarget() }}" href="{{ $med->linkUrl() }}">
                                 <img src="{{ asset('storage/' . $med->source) }}" alt="Móviles" />
@@ -16,6 +17,7 @@
                         </div>
 
                         <div class="info">
+
                             <div class="half_block">
                                 <p class="strong"><strong>{{ $med->title }}</strong></p>
                             </div>

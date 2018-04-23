@@ -12,7 +12,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.5",
         "predis/predis": "^1.1",
-        "cohensive/embed": "dev-master"
+        "merujan99/laravel-video-embed": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

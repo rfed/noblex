@@ -5,8 +5,8 @@ return [
         1 => [
             'type' => 'image',
             'text' => 'Imagen grande y texto',
-            'files' => 1,
-            'mime' => 'image',
+            'files' => 4,
+            'mime' => 'image/video',
             'size' => [
                 'width' => 1140,
                 'height' => 432,

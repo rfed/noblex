@@ -1,6 +1,6 @@
 <section class="divider">
     <div class="container">
-        <?php $media = $media->first(); ?>
+        <?php $media = $widget->media->first();?>
         <a target="{{ $media->linkTarget() }}" href="{{ $media->linkUrl() }}">
             <img src="{{ asset('storage/'.$media->source) }}" alt="{{ $widget->title }}" />
         </a>

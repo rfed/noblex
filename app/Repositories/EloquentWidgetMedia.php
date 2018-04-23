@@ -17,7 +17,7 @@ class EloquentWidgetMedia implements WidgetMediaInterface
 	{
 		if($request->ajax())
         {
-
+            
             $widgetMedia = request()->validate([
                 'source'    		=> 'nullable',
                 'title'    		=> 'nullable|max:50',
@@ -34,12 +34,6 @@ class EloquentWidgetMedia implements WidgetMediaInterface
                 
             }
 
-            if(!empty($request->file('video'))) {
-                $file = $request->file('video')->store('widgets', 'public');
-                $widgetMedia['type'] = 'video';
-                $widgetMedia['source'] = $file;
-            }
-
             if(!$request->get('position')){
                 $last = WidgetMedia::where('widget_id', $request->get('widget_id'))->orderBy('position', 'desc')->first();
                 $widgetMedia['position'] = $last ? $last->position + 1 : 0;
@@ -49,6 +43,7 @@ class EloquentWidgetMedia implements WidgetMediaInterface
                 $med = WidgetMedia::find($request->get('id'));
                 $med->update($widgetMedia);
             }else{
+                $widgetMedia['widget_id'] = $request->get('widget_id');
                 $med = WidgetMedia::create($widgetMedia);
             }
             
@@ -66,17 +61,20 @@ class EloquentWidgetMedia implements WidgetMediaInterface
         
         $link = array_key_exists('link', $data) && $data['link'] !== '' ? $data['link'] : null;
 
-        $target = array_key_exists('link_target', $data) ? $data['link_target'] : '_self';
-
-        $data['link'] = $link ? $target . "|" . $data['link'] : null;
-
+        
         if(array_key_exists('image', $data)) {
-                
+            
             $file = $data['image']->store('widgets', 'public');
             $data['type'] = 'image';
             $data['source'] = $file;
             
+        }else{
+            $data['type'] = 'video';
         }
+
+        $target = $data['type'] == 'image' ? array_key_exists('link_target', $data) ? $data['link_target']. "|" : '_self' : '';
+
+        $data['link'] = $link ? $target  . $data['link'] : null;
 
         $media = $this->findById($id);
         $media->update($data);
@@ -85,7 +83,6 @@ class EloquentWidgetMedia implements WidgetMediaInterface
     
     public function destroy($id){
         $media = $this->findById($id);
-        dd($media);
         return $media->delete() ? 'OK' : '';
     }
 }
