@@ -42,6 +42,16 @@ Route::group([
 	]);
 
 
+	// Features
+	Route::resource('features', 'Admin\FeatureController', [
+		'names' 	=> 'admin.features',
+		'except'	=> 'show'
+	]);
+
+	Route::post('features/featuresUpload', 'Admin\FeatureController@upload')->name('admin.features.upload.store');
+	Route::post('features/deleteFeaturesImage', 'Admin\FeatureController@destroyImage')->name('admin.features.upload.delete');
+
+
 	// Productos
 	Route::resource('productos', 'Admin\ProductController', [
 		'names' => 'admin.productos'

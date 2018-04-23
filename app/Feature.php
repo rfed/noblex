@@ -7,7 +7,7 @@ use Noblex\Product;
 
 class Feature extends Model
 {
-	protected $fillable = ['name', 'description'];
+	protected $fillable = ['name', 'description', 'image'];
 
 	public function products()
 	{
