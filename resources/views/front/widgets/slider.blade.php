@@ -5,28 +5,28 @@
         <div class="row">
 
             <div class="carousel_product_box_link owl-carousel dots">
-                @foreach($widget->media as $media)
+                @foreach($media as $med)
 
-                    @if($media->source and $media->source != '')
+                    @if($med->source and $med->source != '')
                     <!-- -->
                     <div class="item product_box_link">
                         <div class="image">
-                            <a target="{{ $media->linkTarget() }}" href="{{ $media->linkUrl() }}">
-                                <img src="{{ asset('storage/' . $media->source) }}" alt="Móviles" />
+                            <a target="{{ $med->linkTarget() }}" href="{{ $med->linkUrl() }}">
+                                <img src="{{ asset('storage/' . $med->source) }}" alt="Móviles" />
                             </a>
                         </div>
 
                         <div class="info">
                             <div class="half_block">
-                                <p class="strong"><strong>{{ $media->title }}</strong></p>
+                                <p class="strong"><strong>{{ $med->title }}</strong></p>
                             </div>
 
                             <div class="half_block">
-                                <p>{!! $media->description !!}</p>
+                                <p>{!! $med->description !!}</p>
                             </div>
 
                             <div class="link_block">
-                                <a target="{{ $media->linkTarget() }}" href="{{ $media->linkUrl() }}" class="btn link">Ver todos</a>
+                                <a target="{{ $med->linkTarget() }}" href="{{ $med->linkUrl() }}" class="btn link">Ver todos</a>
                             </div>
                         </div>
                     </div>

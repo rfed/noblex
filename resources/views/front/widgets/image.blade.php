@@ -1,4 +1,4 @@
-<?php $media = $widget->media->first(); ?>
+<?php $media = $media ?>
 @if($media and $media->source)
 <section class="divider">
     <div class="container">

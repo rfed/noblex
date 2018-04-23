@@ -39,4 +39,19 @@ class Widget extends Model
     public function types(){
         return \Config::get('widgets.types');
     }
+
+
+	public function getSorted(){
+		return orderBy('position', 'asc')->get();
+    }
+    
+	public static function getHome(){
+        return Widget::where('home', 1)
+            ->where('active', 1)
+            ->orderBy('position', 'asc')->get();
+    }
+    
+    public function getMediaSorted(){
+        return $this->media()->orderBy('position', 'asc')->get();
+	}
 }

@@ -67,9 +67,7 @@ class WidgetController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($id);
         $this->widget->update($request, $id);
-
         		
 		if($request->get('media')){
 			$media = $request->get('media');

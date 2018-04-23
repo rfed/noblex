@@ -10,7 +10,8 @@
     <?php $template = 'front.widgets.'.\Config::get("widgets.types")
     [$widget->type]['type'] ?>
     <?php $productos = $widget->productos(); ?>
-    @include($template, $widget)
+    <?php $media = $widget->getMediaSorted(); ?>
+    @include($template, ['widget' => $widget,'media' => $media])
 @endforeach
 
 @endsection

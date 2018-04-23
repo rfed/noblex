@@ -7,12 +7,12 @@
                     <source src="{{ asset('storage/'.$widget->media->first()->source) }}" type="video/mp4"/>
                 </video>
                 
-
+                <?php $media = $media->first(); ?>
                 <div class="info">
                     <div class="full_block">
-                        <p class="strong"><strong>{{ $widget->media->first()->title }}</strong></p>
+                        <p class="strong"><strong>{{ $media->title }}</strong></p>
 
-                       {!! $widget->media->first()->description !!}
+                       {!! $media->description !!}
                     </div>
                 </div>
             </div>

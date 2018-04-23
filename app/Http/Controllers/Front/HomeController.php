@@ -7,12 +7,13 @@ use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Widget;
 class HomeController extends FrontController
 {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( )
     {
         parent::__construct();
     }
@@ -24,7 +25,7 @@ class HomeController extends FrontController
      */
     public function index()
     {
-        $widgets = Widget::where('active', 1)->orderBy('position', 'asc')->with('media')->get();
+        $widgets = Widget::getHome();
         return view('front.pages.home', compact('widgets'));
     }
 }

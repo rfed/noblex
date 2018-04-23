@@ -36,7 +36,7 @@
     });
 
     var widget_id = '{{ @$widget->id }}';
-    var thumbs = '{!! $widget->media->toJson() !!}';
+    var thumbs = '{!! $widget->getMediaSorted()->toJson() !!}';
     thumbs = thumbs ? $.parseJSON(thumbs) : null;
     var types = $.parseJSON('{!! json_encode(\Config::get("widgets.types")) !!}');
 
