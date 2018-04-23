@@ -35,7 +35,7 @@ class BrandController extends Controller
     {
         $this->brand->store($request);
 
-        return redirect()->route('admin.brands.index')->with('success', 'Marca agregada correctamente.');;
+        return redirect()->route('admin.brands.index')->with('success', 'Marca agregada correctamente.');
     }
 
 
