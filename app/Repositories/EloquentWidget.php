@@ -34,33 +34,27 @@ class EloquentWidget implements WidgetInterface
 
 	public function store($request) 
 	{
+		
 		$data = request()->validate([
-            'title'    => 'nullable',
-            'description'       => 'nullable',
-            'btn_text' => 'nullable',
-            'url' => 'nullable',
-			'show_prods' => 'nullable',
-			'position' => 'nullable',
-			'type' => 'required',
-			'category_id' => 'nullable'
+			'title'    		=> 'nullable|max:80',
+			'type' 			=> 'required',
+            'description'	=> 'nullable|max:100',
+            'active'		=> 'nullable',
+            'btn_text' 		=> 'nullable',
+            'url' 			=> 'nullable',
+            'category_id' 	=> 'nullable',
+			'show_prods' 	=> 'nullable',
+			'features' 		=> 'nullable',
+			'position' 		=> 'nullable',
+			'home'			=> 'nullable'
 		]);
 		
-		if($request->get('active') == 'on')
-            $data['active'] = 1;
-        else
-			$data['active'] = 0;
-
-		if($request->get('feautures') == 'on')
-            $data['feautures'] = 1;
-        else
-			$data['feautures'] = 0;
+		$data['active'] = $data['active'] == 'on' ?1:0;
+		$data['features'] = $data['features'] == 'on' ?1:0;
+		$data['show_prods'] = $data['show_prods'] == 'on' ?1:0;
+		$data['home'] = $data['home'] == 'on' ?1:0;
 		
-		if($request->get('show_prods') == 'on')
-            $data['show_prods'] = 1;
-        else
-        	$data['show_prods'] = 0;
-		
-		if(!$request->get('position')){
+		if(!$data['position']){
 			$last = Widget::orderBy('position', 'desc')->first();
 			$data['position'] = $last ? $last->position + 1 : 0;
 		}
@@ -71,38 +65,28 @@ class EloquentWidget implements WidgetInterface
 
 	public function update($request, $id) 
 	{
-
+		
 		$data = request()->validate([
-			'title'    => 'nullable',
-			'type' => 'required',
-            'description'       => 'nullable',
-            'btn_text' => 'nullable',
-            'url' => 'nullable',
-            'category_id' => 'nullable',
-            'show_prods' => 'nullable'
+			'title'    		=> 'nullable|max:80',
+			'type' 			=> 'required',
+            'description'	=> 'nullable|max:100',
+            'active'		=> 'nullable',
+            'btn_text' 		=> 'nullable',
+            'url' 			=> 'nullable',
+            'category_id' 	=> 'nullable',
+			'show_prods' 	=> 'nullable',
+			'features' 		=> 'nullable',
+			'position' 		=> 'nullable',
+			'home'			=> 'nullable'
 		]);
-		
-		if($request->get('active') == 'on')
-            $data['active'] = 1;
-        else
-			$data['active'] = 0;
 
-		if($request->get('feautures') == 'on')
-            $data['feautures'] = 1;
-        else
-			$data['feautures'] = 0;
-		
-		if($request->get('show_prods') == 'on')
-            $data['show_prods'] = 1;
-        else
-        	$data['show_prods'] = 0;
+		$data['active'] = $data['active'] == 'on' ?1:0;
+		$data['features'] = $data['features'] == 'on' ?1:0;
+		$data['show_prods'] = $data['show_prods'] == 'on' ?1:0;
+		$data['home'] = $data['home'] == 'on' ?1:0;
 
 		$widget = Widget::findOrFail($id);
 		$widget->update($data);
-
-		if($request->get('change-type')){
-			WidgetMedia::where('widget_id', $widget->id)->delete();
-		}
 
 		return $widget;
 	}

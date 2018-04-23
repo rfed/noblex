@@ -65,13 +65,15 @@ Route::group([
 	// Widgets
 	Route::delete('widgets/media/{id}', 'Admin\WidgetController@deleteMedia')->name('admin.widgets.media.delete');
 	
-	Route::post('widgets/media', 'Admin\WidgetController@upload')->name('admin.widgets.media.store');
-
-	Route::post('widgets/orden', 'Admin\WidgetController@ordenar')->name('admin.widgets.media.orden');
+	
 	
 	Route::resource('widgets', 'Admin\WidgetController', [
 		'names' => 'admin.widgets'
 	]);
+
+	Route::post('widgets/media', 'Admin\WidgetController@createMedia')->name('admin.widgets.media.store');
+
+	Route::post('widgets/orden', 'Admin\WidgetController@ordenar')->name('admin.widgets.media.orden');
 
 
 });

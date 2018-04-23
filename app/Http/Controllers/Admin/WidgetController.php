@@ -69,6 +69,14 @@ class WidgetController extends Controller
     {
         $this->widget->update($request, $id);
 
+        		
+		if($request->get('media')){
+			$media = $request->get('media');
+			foreach($media as $w_id => $w_data){
+				$this->widgetMedia->update($w_data, $w_id);
+			}
+		}
+
         if($request->get('change')){
             return redirect()->route('admin.widgets.edit', $id);
         }
@@ -89,8 +97,8 @@ class WidgetController extends Controller
         $this->widget->ordenar($request);
     }
 
-    public function upload(Request $request){
-        return $this->widgetMedia->store($request);
+    public function createMedia(Request $request){
+        return $this->widgetMedia->upload($request);
     }
 
     public function deleteMedia($id){

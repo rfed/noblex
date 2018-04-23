@@ -58,6 +58,7 @@
             {!! $errors->first('category_id', '<span class="help-block"> :message </span>') !!}
         </div>
 </div>
+
 <div class="form-group">
     {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
     <div class="col-md-9">
@@ -65,13 +66,19 @@
     </div>
 </div>
 
+<div class="form-group">
+    {!! Form::label('home', 'En Home', ['class' => 'control-label col-md-3']) !!}
+    <div class="col-md-9">
+        {!! Form::checkbox('home', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+    </div>
+</div>
 
 @if(@$widget)
 
     <div class="form-group">
-        {!! Form::label('feautures', 'Feautures', ['class' => 'control-label col-md-3']) !!}
+        {!! Form::label('features', 'Features', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
-            {!! Form::checkbox('feautures', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+            {!! Form::checkbox('features', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
         </div>
     </div>
 
@@ -82,6 +89,8 @@
             {!! Form::checkbox('show_prods', null, null, ['class' => 'make-switch', 'data-size' => 'show_prods', 'id' => 'active']) !!}
         </div>
     </div>
+    @else
+        {!! Form::hidden('show_prods', null) !!}
     @endif
 
     <?php /*
@@ -123,7 +132,10 @@
 <div class="form-actions">
     <div class="row">
         <div class="col-md-offset-3 col-md-9">
-            {!! Form::button('Continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'submit', 'class' => 'btn blue']) !!}
+
+            {!! Form::button('Guardar <i class="fa fa-angle-double-right"></i>', ['type' => 'submit', 'class' => 'btn blue']) !!}
+
+            {!! Form::button('Guardar y continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'button', 'class' => 'btn blue save-continue']) !!}
             
             <a href="{{ route('admin.productos.index') }}" type="button" class="btn default">Volver</a>
 
@@ -137,17 +149,22 @@
     $(document).on('ready', function(){
 
         $('#type-select').on('change', function(){
-            console.log("ACA");
+
             $('.widget-form').append('<input type="hidden" name="change" value="1">');
+            $('.widget-form').append('<input type="hidden" name="change-type" value="1">');
             $('#type-select').val($(this).val());
-            
             $('.widget-form').submit();
         });
 
         $('#category-select').on('change', function(){
-            console.log("ACA");
             $('.widget-form').append('<input type="hidden" name="change" value="1">');
             $('#category-select').val($(this).val());
+            $('.widget-form').submit();
+        });
+
+        $('.save-continue').on('click', function(){
+            console.log("ACA");
+            $('.widget-form').append('<input type="hidden" name="change" value="1">');
             $('.widget-form').submit();
         });
         

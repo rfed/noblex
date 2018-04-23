@@ -8,9 +8,9 @@ interface WidgetMediaInterface
 
 	public function findById($id);
 
-	public function store($request);
+	public function upload($request);
 
-	//public function update($request, $id);
+	public function update($request, $id);
 
 	public function destroy($id);
 }

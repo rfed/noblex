@@ -21,7 +21,7 @@
                     @endif
 
 
-                    @if(!$widget->feautures)
+                    @if(!$widget->feautres)
                         @if($media->description)
                         <div class="half_block">
                             <p>{!! $media->description !!}</p>

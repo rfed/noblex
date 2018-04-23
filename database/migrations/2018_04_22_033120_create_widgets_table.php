@@ -23,7 +23,7 @@ class CreateWidgetsTable extends Migration
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('position');
             $table->boolean('active')->default(0);
-            $table->boolean('feautures')->default(0);
+            $table->boolean('feautres')->default(0);
             $table->boolean('show_prods')->default(0);
 
             $table->foreign('category_id')->on('categories')->references('id')->onDelete('set null');

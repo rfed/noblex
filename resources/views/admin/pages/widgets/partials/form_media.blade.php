@@ -20,20 +20,7 @@
             </tr>
         </thead>
 
-        <tbody id="sortable">
-            
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <!-- <div class="btn-group">
-                        <a href="#" class="btn btn-primary add-media">
-                            <i class="icon-plus"></i> Agregar 
-                        </a>
-                    </div> -->
-                </td>
-            </tr>
-        </tbody>
+        <tbody id="sortable"></tbody>
 
     </table>
 </div>
@@ -41,6 +28,7 @@
 
 @push('scripts')
 <script src="{{ asset('admin/assets/pages/widgets/dropzone/dropzone.js') }}"></script>
+<script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <script>
 
     $.ajaxSetup({
@@ -57,9 +45,7 @@
 
     if(thumbs){
         thumbs.forEach(function(thumb, i){
-       
             var drop = createRow(thumb);
-
         })
     }
 
@@ -143,15 +129,20 @@
         
         $("#media").find('tbody')
         .append(`<tr>
-                <td>
+                <td width="200" style="text-align:center">
+                    <div class="sugested-size">
+                        <strong>Tamaño sugerido</strong><br>
+                        <span>${widget_type.size.width}px x ${widget_type.size.height}px</span>
+                    </div>
                     <div style="width: 200px;" id="drop${data.id}" class="dropzone" data-type="{{ $widget->type }}"></div>
                 </td>
                 <td>
+                    <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
                     <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control media_input">${data.description ? data.description : ''}</textarea>
                     <input id="link${data.id}" type="text" name="media[${data.id}][link]" placeholder="Link" class="form-control media_input" value="${data.link ? data.link : ''}">
                 </td>
-                <td>
+                <td width="200">
                     <div class="btn-group">
                         <a href="#" class="save-media" data-id="${data.id}">
                             <i class="icon-plus"></i> Guardar 
@@ -256,5 +247,35 @@
         });
         return drop;
     }
+
+    $( function() {
+			
+        $( "#sortable" ).disableSelection();
+
+        $( "#sortable" ).sortable({
+            update: function( e, index) {
+                var mi_id = $(e.target).find('.id').val();
+                var list = [];
+
+                $.each($("#sortable tr"), function(i, el){
+                    var pos = $(el).index();
+                    var el_id = $(el).find('.position').val(pos);
+                })
+
+                console.log(list);
+                // $.ajax({
+                //     url: '/panel/widgets/orden',
+                //     type: 'post',
+                //     data: {widgets:list},
+                //     success: function(result) {
+                //         console.log(result);
+                //     },
+                //     error: function(error){
+                //         console.log(error);
+                //     }
+                // });
+            }
+        });
+    } );
 </script>
 @endpush

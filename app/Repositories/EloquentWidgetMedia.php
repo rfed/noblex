@@ -9,22 +9,26 @@ use Noblex\Repositories\Interfaces\WidgetMediaInterface;
 class EloquentWidgetMedia implements WidgetMediaInterface
 {
     public function findById($id){
+        
         return WidgetMedia::findOrFail($id);
     }
 
-	public function store($request)
+	public function upload($request)
 	{
 		if($request->ajax())
         {
 
-            $widgetMedia = $request->all();
+            $widgetMedia = request()->validate([
+                'source'    		=> 'nullable',
+                'title'    		=> 'nullable|max:50',
+                'description'	=> 'nullable|max:100',
+                'link' 			=> 'nullable',
+            ]);
 
             if(!empty($request->file('image'))) {
-
                 $file = $request->file('image')->store('widgets', 'public');
                 $widgetMedia['type'] = 'image';
                 $widgetMedia['source'] = $file;
-                
             }
 
             if(!empty($request->file('video'))) {
@@ -34,20 +38,9 @@ class EloquentWidgetMedia implements WidgetMediaInterface
             }
 
             if(!$request->get('position')){
-                $last = WidgetMedia::where('widget_id', $widgetMedia['widget_id'])->orderBy('position', 'desc')->first();
+                $last = WidgetMedia::where('widget_id', $request->get('widget_id'))->orderBy('position', 'desc')->first();
                 $widgetMedia['position'] = $last ? $last->position + 1 : 0;
             }
-            // if(!$request->get('source'))
-            //     $widgetMedia['source'] = '';
-
-            // if(!$request->get('title'))
-            //     $widgetMedia['title'] = '';
-
-            // if(!$request->get('description'))
-            //     $widgetMedia['description'] = '';
-            
-            // if(!$request->get('link'))
-            //     $widgetMedia['description'] = '';
 
             if($request->get('id')){
                 $med = WidgetMedia::find($request->get('id'));
@@ -60,9 +53,16 @@ class EloquentWidgetMedia implements WidgetMediaInterface
             return $med;
         }
     }
+
+    public function update($data, $id){
+        
+        $media = $this->findById($id);
+        return $media->update($data);
+    }
     
     public function destroy($id){
-        $media = WidgetMedia::findOrFail($id);
+        $media = $this->findById($id);
+        dd($media);
         return $media->delete() ? 'OK' : '';
     }
 }

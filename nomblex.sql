@@ -395,14 +395,14 @@ CREATE TABLE `widgets` (
   `position` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `show_prods` tinyint(1) NOT NULL DEFAULT '0',
-  `feautures` tinyint(1) NOT NULL DEFAULT '0'
+  `features` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `widgets`
 --
 
-INSERT INTO `widgets` (`id`, `title`, `description`, `type`, `btn_text`, `url`, `category_id`, `position`, `active`, `show_prods`, `feautures`) VALUES
+INSERT INTO `widgets` (`id`, `title`, `description`, `type`, `btn_text`, `url`, `category_id`, `position`, `active`, `show_prods`, `features`) VALUES
 (3, 'Conocé nuestra línea y disfrutá del mundial', 'Experimentá la emoción de ver imágenes en la mejor definición y resolución. Accedé a lo mejor de Internet.', 1, 'Ver Todos', NULL, NULL, 3, 1, 0, 1),
 (4, 'Verdadera alta definición', '<p>Verdadera alta definición</p>\r\n<span>Hablamos de verdadera alta resolución. 4k es la abreviatura de de 4.000 píxeles (4096 x 2160 píxeles)</span>', 4, NULL, NULL, 14, 2, 1, 1, 0),
 (5, 'Box x 4', NULL, 6, NULL, NULL, NULL, 4, 1, 0, 0),
