@@ -30,7 +30,7 @@
 						<th>SKU</th>
 						<th>Categoria</th>
 						<th>activo</th>
-						<th></th>					
+						<th>Opciones</th>					
 					</tr>
 				</thead>
 
@@ -45,27 +45,17 @@
 							<td>{{ $producto->active }}</td>
 							<td>
 								<div class="btn-group">
-	                            	<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acciones
-	                                	<i class="fa fa-angle-down"></i>
-	                            	</button>
-		                            <ul class="dropdown-menu pull-left" role="menu">
-		                            	<li>
-		                                    <a href="#">
-		                                        <i class="icon-eye"></i> Visualizar 
-		                                    </a>
-		                                </li>
-		                                <li>
-		                                    <a href="#">
-		                                        <i class="icon-pencil"></i> Editar 
-		                                    </a>
-		                                </li>
-		                                <li>
-		                                    <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal">
-		                                        <i class="icon-trash"></i> Eliminar 
-		                                    </a>
-		                                </li>
-		                            </ul>
-	                        	</div>
+                    	        <a href="#">
+                                    <i class="icon-pencil"></i> Editar 
+                                </a>
+                                |
+                                <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
+                                	data-id="{{ $producto->id }}"
+                                	data-name="{{ $producto->name }}">
+                                    <i class="icon-trash"></i> Eliminar 
+                                </a>
+	                            
+                        	</div>
 	                    	</td>
 						</tr>
 

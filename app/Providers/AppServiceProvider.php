@@ -4,11 +4,15 @@ namespace Noblex\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Noblex\Repositories\EloquentProduct;
+use Noblex\Repositories\EloquentBrand;
 use Noblex\Repositories\EloquentCategory;
 use Noblex\Repositories\EloquentWidget;
 use Noblex\Repositories\EloquentWidgetMedia;
+use Noblex\Repositories\EloquentFeature;
+use Noblex\Repositories\EloquentProduct;
+use Noblex\Repositories\Interfaces\BrandInterface;
 use Noblex\Repositories\Interfaces\CategoryInterface;
+use Noblex\Repositories\Interfaces\FeatureInterface;
 use Noblex\Repositories\Interfaces\ProductInterface;
 use Noblex\Repositories\Interfaces\WidgetInterface;
 use Noblex\Repositories\Interfaces\WidgetMediaInterface;
@@ -42,6 +46,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             WidgetMediaInterface::class,
             EloquentWidgetMedia::class
+        );
+
+        $this->app->bind(
+            BrandInterface::class,
+            BrandInterface::class
+        );
+
+        $this->app->bind(
+            FeatureInterface::class,
+            EloquentFeature::class
         );
     }
 

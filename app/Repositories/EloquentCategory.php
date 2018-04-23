@@ -13,6 +13,19 @@ class EloquentCategory implements CategoryInterface
 	{
 		return Category::where('root_id', $root_id)->orderBy('id', 'DESC')->get();
 	}
+
+
+    public function getAllDistinctRaiz()
+    {
+        return Category::where('root_id', 1)->get();
+    }
+    
+
+    public function getSubcategories($category)
+    {
+        return Category::where('root_id', $category)
+                        ->where('name', '!=', 'Raiz')->get();
+    }
 	
 
 	public function findById($id) 

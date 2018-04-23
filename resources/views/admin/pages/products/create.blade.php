@@ -30,3 +30,7 @@
 	</div>
 
 @endsection
+
+@push('scripts')
+	<script src="{{ asset('admin/assets/pages/productos/js/app.js') }}"></script>
+@endpush

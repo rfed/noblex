@@ -2,13 +2,9 @@
 
 namespace Noblex\Repositories\Interfaces;
 
-interface CategoryInterface 
+interface FeatureInterface 
 {
-	public function getAll($root_id=0);
-
-	public function getAllDistinctRaiz();
-
-	public function getSubcategories($category);
+	public function getAll();
 
 	public function findById($id);
 
