@@ -189,10 +189,10 @@
            
         }
 
-        console.log(url);
-
+        var stat = (widget_type.type === 'image' && data.type === 'image') ? 'static' : '';
+        console.log(widget_type.type, data.type);
         $("#media").find('tbody')
-        .append(`<tr class="media-source" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
+        .append(`<tr class="media-source ${stat}" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
                 <td width="200" style="text-align:center">
                     <div class="sugested-size">
                         ${title}
@@ -336,6 +336,7 @@
         $( "#sortable" ).disableSelection();
 
         $( "#sortable" ).sortable({
+            items: 'tr:not(.static)',
             update: function( e, index) {
                 var mi_id = $(e.target).find('.id').val();
                 var list = [];

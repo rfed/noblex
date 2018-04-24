@@ -167,7 +167,6 @@
                 alert(error);
                 return false;
             }
-            return false;
 
             if($(this).data('continue')){
                 $('.widget-form').append('<input type="hidden" name="change" value="1">');
