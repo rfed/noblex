@@ -331,7 +331,7 @@
             $.ajax({
                 url: '{{ url("/panel/productos/".$producto->id."/section") }}',
                 type: 'POST',
-                data: { image: $('.image' + n).val(), title:$('.title' + n).val(), subtitle:$('#subtitle' + n).val(), description:$('.description' + n).val(), alignment:$('.alignment' + n).val() },
+                data: { position: n, image: $('.image' + n).val(), title:$('.title' + n).val(), subtitle:$('.subtitle' + n).val(), description:$('.description' + n).val(), alignment:$('.alignment' + n).val() },
                 success: function(result) {
                     toaster.success('Bloque grabado con éxito.');
                 },

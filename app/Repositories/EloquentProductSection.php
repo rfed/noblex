@@ -8,13 +8,14 @@ class EloquentProductSection
 {
 	public function store($product, $request)
 	{
-        $productSection = ProductSection::where('position', 1)->first();
+        $productSection = ProductSection::where('position', $request->position)->first();
         if (!$productSection) {
             $productSection = new ProductSection();
         }
         
         $productSection->product_id = $product;
         
+        $productSection->position = $request->position;
         $productSection->title = $request->title;
         $productSection->subtitle = $request->subtitle;
         $productSection->description = $request->description;
