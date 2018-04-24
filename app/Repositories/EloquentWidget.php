@@ -52,14 +52,33 @@ class EloquentWidget implements WidgetInterface
 		$data['active'] = @$data['active'] == 'on' ?1:0;
 		$data['features'] = @$data['features'] == 'on' ?1:0;
 		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
-		$data['home'] = $data['home'] == 'on' ?1:0;
+		$data['home'] = @$data['home'] == 'on' ?1:0;
 		
 		if(!$data['position']){
 			$last = Widget::orderBy('position', 'desc')->first();
 			$data['position'] = $last ? $last->position + 1 : 0;
 		}
+
+		$widget = Widget::create($data);
 		
-		return Widget::create($data);
+		if($widget->type == 1){
+			
+			WidgetMedia::create([
+				'widget_id' => $widget->id,
+				'type' => 'image',
+				'position' => 0
+			]);
+
+			for($i = 0; $i < 3; $i++){
+				WidgetMedia::create([
+					'widget_id' => $widget->id,
+					'type' => 'video',
+					'position' => $i + 1
+				]);
+			}
+		}
+
+		return $widget;
 	}
 
 

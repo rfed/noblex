@@ -24,6 +24,13 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			{!! Form::label('menu', 'Menu', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				{!! Form::checkbox('menu', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'home']) !!}
+			</div>
+		</div>
+
 		<!-- <div class="form-group">
 		  		 	{!! Form::label('image', 'Imagen', ['class' => 'control-label col-md-3']) !!}
 		  		 	<div class="col-md-3">

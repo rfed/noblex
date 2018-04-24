@@ -1,4 +1,4 @@
-<?php $media = $media ?>
+<?php $media = $media->first() ?>
 @if($media and $media->source)
 <section class="divider">
     <div class="container">

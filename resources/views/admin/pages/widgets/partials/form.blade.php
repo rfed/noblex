@@ -111,7 +111,7 @@
 
             {!! Form::button('Guardar y continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'button', 'class' => 'btn blue submit', 'data-continue' => 'continue']) !!}
             
-            <a href="{{ route('admin.productos.index') }}" type="button" class="btn default">Volver</a>
+            <a href="{{ route('admin.widgets.index') }}" type="button" class="btn default">Volver</a>
 
         </div>
     </div>
@@ -143,17 +143,31 @@
             console.log("Submit");
             
             var medias = $('.media-source');
+
             medias.each(function(m){
+
                 console.log($(this).val());
-                if($(this).data('type') === 'image' && ($(this).val() == null || $(this).val() == '')){
+
+                if($(this).data('type') === 'image' && ($(this).data('url') == null || $(this).data('url') == '')){
                     error = 'Complete todas las imágenes'
                 }
+                
+                if($(this).data('type') === 'video'){
+                    console.log($(this).find('.media-link').val() );
+
+                    if($(this).find('.media-link').length === 0 || $(this).find('.media-link').val() == ''){
+                        error = 'Complete todas los videos'
+                    }
+                }
+
             });
 
+        
             if(error){
                 alert(error);
                 return false;
             }
+            return false;
 
             if($(this).data('continue')){
                 $('.widget-form').append('<input type="hidden" name="change" value="1">');

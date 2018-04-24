@@ -57,7 +57,6 @@ class EloquentCategory implements CategoryInterface
             $data['menu'] = 1;
         else
             $data['menu'] = 0;
-            
 
 		Category::create($data);
 	}
@@ -86,7 +85,7 @@ class EloquentCategory implements CategoryInterface
             $data['menu'] = 1;
         else
             $data['menu'] = 0;
-            
+
         $categoria = Category::findOrFail($id);
         $categoria->update($data);
         
