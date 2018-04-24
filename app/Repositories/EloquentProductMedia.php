@@ -56,5 +56,10 @@ class EloquentProductMedia
             $productMedia->position = 1;
             $productMedia->save();
         }
-	}
+    }
+    
+    public function destroy($id){
+        $media = ProductMedia::find($id);
+        return $media->delete() ? 'OK' : '';
+    }
 }

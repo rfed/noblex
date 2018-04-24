@@ -8,6 +8,12 @@
 
 <script>
 	var baseUrl = "{{ url('panel/') }}";
+	var storageUrl = "{{ url('storage/') }}";
+	// $.ajaxSetup({
+	// 	headers: {
+	// 		'X-CSRF-TOKEN': '{{ csrf_token() }}'
+	// 	}
+	// });
 </script>
         
 <script src="{{ asset('js/app.js') }}"></script>

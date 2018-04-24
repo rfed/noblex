@@ -34,6 +34,17 @@
 		{!! Form::hidden('image', @$currentMedia['image_thumb'], ['id' => 'current_image_thumb']) !!}
 	</div>
 </div>
+
+<div class="form-group">
+ 	<label for="image" class="control-label col-md-3">Galeria (thumbnail)<br/><small>JPG/PNG 331x210px</small>
+ 		<br/><br/>
+ 		<button type="button" id="loader-galery" class="btn btn-primary">Examinar</button>
+ 	</label>
+ 	<div class="col-md-9">
+		<div id="galeria" class="dropzone">
+		</div>
+	</div>
+</div>
 <!--
   	<div class="form-group">
   		 	{!! Form::label('image_featured_background', 'Imagen fondo destacada', ['class' => 'control-label col-md-3']) !!}
@@ -260,7 +271,80 @@
 			image_thumb.emit("thumbnail", mockFile, "/storage/" + fileName);
 
 			currentFile = mockFile;
-		}	
+		}
+
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': '{{ csrf_token() }}'
+			}
+		});
+
+		var galeria = new Dropzone('#galeria', {
+			'url': 'files',
+			//'paramName': 'image',
+			'autoProcessQueue': true,
+			'addRemoveLinks': true,
+			'dictRemoveFile': 'Eliminar imagen',
+			'acceptedFiles': 'image/*',
+			'maxFiles': 10,
+			'headers': {
+				'X-CSRF-TOKEN': $("input[name='_token']").val()
+			},
+			'dictDefaultMessage': 'Haga click aquí para subir la imagen',
+			'clickable' : '#loader-galery',
+			'thumbnailMethod': 'contain',
+			init: function() {
+				myDropzone = this;
+
+				this.on("removedfile", function(e) {
+					console.log(e.id);
+					$.ajax({
+                        url: 'files/'+e.id,
+                        type: 'delete',
+                        success: function(result) {
+                            console.log(result);
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                    });
+					
+				});
+
+				this.on("sending",function(file,xhr,d){
+					console.log("manda este", d);
+					d.append("product_id", product_id)
+					d.append("type", 'image');
+					$('.dz-show').hide();
+				});
+			}
+		});
+
+		var medias = $.parseJSON('{!! !empty($producto) ? $producto->productsMedia->toJson() : "[]" !!}');
+
+		$(document).ready(function(){
+			
+			$.each(medias, function(i){
+				var mockFile = {
+					id: this.id,
+					product_id : product_id,
+					type: this.type, 
+					status: Dropzone.ADDED, 
+					url: storageUrl + "/" +this.source
+				};
+
+				// Call the default addedfile event handler
+				galeria.emit("addedfile", mockFile);
+
+				// And optionally show the thumbnail of the file:
+				galeria.emit("thumbnail", mockFile, storageUrl + "/" +this.source);
+
+				galeria.files.push(mockFile);
+				//$('.image-count').html("Agregar " + maxFiles )
+				
+				console.log(this);
+			});
+		});
 
 		/*
 		var image = new Dropzone('#images', {
