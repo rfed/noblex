@@ -281,7 +281,7 @@
 
 		var galeria = new Dropzone('#galeria', {
 			'url': 'files',
-			//'paramName': 'image',
+			'paramName': 'image',
 			'autoProcessQueue': true,
 			'addRemoveLinks': true,
 			'dictRemoveFile': 'Eliminar imagen',

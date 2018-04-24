@@ -16,10 +16,11 @@ class EloquentProductSection
         $productSection->product_id = $product;
         
         $productSection->title = $request->title;
-        $productSection->subtitle = $request->subtitle;
+        $productSection->subtitle = $request->subtitle ? $request->subtitle : '';
         $productSection->description = $request->description;
         $productSection->alignment = $request->alignment;
         $productSection->source = $request->image;
+        $productSection->position = $request->position ? $request->position : 0;
                 
         $productSection->save();
 	}

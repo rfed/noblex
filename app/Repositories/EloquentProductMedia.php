@@ -11,6 +11,8 @@ class EloquentProductMedia
 	{
 		if(request()->ajax())
         {
+
+            
             $productMedia = new ProductMedia;
             $productMedia->product_id = $product;
 
@@ -41,9 +43,9 @@ class EloquentProductMedia
 
             if(!empty(request()->file('image'))) {
                 $file = request()->file('image')->store('productos', 'public');
-
                 $productMedia->type = 'image';
                 $productMedia->source = $file;
+
             }
 
             if(!empty(request()->file('document'))) {
@@ -59,7 +61,6 @@ class EloquentProductMedia
     }
     
     public function destroy($id){
-        $media = ProductMedia::find($id);
         return $media->delete() ? 'OK' : '';
     }
 }
