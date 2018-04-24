@@ -8,21 +8,39 @@ class EloquentProductSection
 {
 	public function store($product, $request)
 	{
-        $productSection = ProductSection::where('position', 1)->first();
-        if (!$productSection) {
-            $productSection = new ProductSection();
+        $rules = array(
+            'title'        			=> 'required',
+            'subtitle'        		=> 'required',
+            'description'            => 'required',
+            'aligment'        		=> 'required'
+        );
+
+        $validator = \Validator::make($request->all(), $rules);  // Validacion
+
+        if($validator->fails())
+        {
+            return \Response::json([
+                'errorValidation'  => $validator->errors()
+            ]);
         }
         
+        if ($request->id) {
+            $productSection = ProductSection::findOrFail($request->id);
+        }else{
+            $productSection = new ProductSection();
+        }
         $productSection->product_id = $product;
         
         $productSection->title = $request->title;
-        $productSection->subtitle = $request->subtitle ? $request->subtitle : '';
+        $productSection->subtitle = $request->subtitle;
         $productSection->description = $request->description;
         $productSection->alignment = $request->alignment;
         $productSection->source = $request->image;
         $productSection->position = $request->position ? $request->position : 0;
-                
+
         $productSection->save();
+
+        return $productSection;
 	}
 
     public function upload($product, $request)
@@ -38,6 +56,11 @@ class EloquentProductSection
 
         if(!empty($request->file('image4')))
             return $request->file('image4')->store('sectionproducts', 'public');
+    }
+
+    public function destroy($id){
+        ProductSection::findorFail($id)->delete();
+        return 'OK';
     }
 
 }

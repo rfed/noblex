@@ -37,7 +37,8 @@ class ProductSectionController extends Controller
 
     public function store($product, Request $request)
     {
-        $this->section->store($product, $request);
+        
+        return $this->section->store($product, $request);
     }
 
     public function upload(Request $request, $product)
@@ -69,8 +70,8 @@ class ProductSectionController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($producto, $id)
     {
-        //
+        return $this->section->destroy($id);
     }
 }

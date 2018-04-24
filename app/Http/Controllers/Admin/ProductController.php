@@ -56,30 +56,32 @@ class ProductController extends Controller
         $producto = $this->product->findById($id);
         $categorias = $category->getAllDistinctRaiz();
 
-        $categoria = $producto->category ? $producto->category->root_id == 1 ? $producto->category : $producto->category->parent : null;
+        $categoria = $producto->category ? $producto->category->root_id == 1 ?$producto->category : $producto->category->parent : null;
 
         $subcategoria = $producto->category->root_id == 1 ? null : $producto->category;
+
+        $sections = $producto->sectionproducts->sortBy('position')->toArray();
 
         $brands = $brand->getAll();
         $productos = $this->product->getAll();
         $features = $feature->getAll();
 
-        $currentMedia = [];
-        foreach ($producto->productsMedia as $media) {
-            switch ($media->type) {
-                case 'image_featured': 
-                    $currentMedia['image_featured'] = $media->source;
-                    break;
-                case 'image_featured_background': 
-                    $currentMedia['image_featured_background'] = $media->source;
-                    break;
-                case 'image_thumb': 
-                    $currentMedia['image_thumb'] = $media->source;
-                    break;
-            }
-        }
+        // $currentMedia = [];
+        // foreach ($producto->productsMedia as $media) {
+        //     switch ($media->type) {
+        //         case 'image_featured': 
+        //             $currentMedia['image_featured'] = $media->source;
+        //             break;
+        //         case 'image_featured_background': 
+        //             $currentMedia['image_featured_background'] = $media->source;
+        //             break;
+        //         case 'image_thumb': 
+        //             $currentMedia['image_thumb'] = $media->source;
+        //             break;
+        //     }
+        // }
 
-        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia"));
+        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia", "sections"));
     }
 
 

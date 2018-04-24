@@ -1,5 +1,24 @@
 		
 	@for($i=1; $i<=4; $i++)
+
+	<?php
+
+		$currentMedia = !empty($sections) && array_key_exists($i-1, $sections) ? $sections[$i - 1] : null;
+
+	
+		switch (@$currentMedia['type']) {
+			case 'image_featured': 
+				$currentMedia['image_featured'] = $media->source;
+				break;
+			case 'image_featured_background': 
+				$currentMedia['image_featured_background'] = $media->source;
+				break;
+			case 'image_thumb': 
+				$currentMedia['image_thumb'] = $media->source;
+				break;
+		}
+	?>
+
 	<div class="portlet box blue">
 		<div class="portlet-title">
 			<div class="caption">
@@ -18,31 +37,30 @@
 				 	<div class="col-md-9">
 						<div id="image{{$i}}" class="dropzone">
 						</div>
-						{!! Form::hidden('image'.$i, @$currentMedia['image'.$i], ['id' => 'current_image'.$i, 'class' => 'image'.$i]) !!}
+						{!! Form::hidden('image'.$i, @$currentMedia['source'], ['id' => 'current_image'.$i, 'class' => 'image'.$i]) !!}
 					</div>
 				</div>
 
 			  	<div class="form-group">
 			  		 	{!! Form::label("title".$i, "Titulo", ["class" => "control-label col-md-3"]) !!}
 			  		 	<div class="col-md-9">
-						{!! Form::text("title[$i]", null, ["class" => "form-control title$i", "id" => "title[$i]", "autocomplete" => "off"]) !!}
+						{!! Form::text("title[$i]", @$currentMedia['title'], ["class" => "form-control title$i", "id" => "title[$i]", "autocomplete" => "off"]) !!}
 					</div>
 			  	</div>
 
 			  	<div class="form-group">
 			  		 	{!! Form::label("subtitle".$i, "Subtitulo", ["class" => "control-label col-md-3"]) !!}
 			  		 	<div class="col-md-9">
-						{!! Form::text("subtitle[$i]", null, ["class" => "form-control subtitle$i", "id" => "subtitle[$i]", "autocomplete" => "off"]) !!}
+						{!! Form::text("subtitle[$i]", @$currentMedia['subtitle'], ["class" => "form-control subtitle$i", "id" => "subtitle".$i, "autocomplete" => "off"]) !!}
 					</div>
 			  	</div>
 
 			  	<div class="form-group">
 			  		 	{!! Form::label("description".$i, "Descripcion", ["class" => "control-label col-md-3"]) !!}
 			  		 	<div class="col-md-9">
-						{!! Form::textarea("description[$i]", null, ["class" => "form-control description$i", "id" => "description[$i]", "autocomplete" => "off", "rows" => "4"]) !!}
+						{!! Form::textarea("description[$i]", @$currentMedia['description'], ["class" => "form-control description".$i, "id" => "description[$i]", "autocomplete" => "off", "rows" => "4"]) !!}
 					</div>
 			  	</div>
-
 			  	<div class="form-group">
 			  		 {!! Form::label("alignment".$i, "Alineación", ["class" => "control-label col-md-3"]) !!}
 			  		 <div class="col-md-9">
@@ -51,14 +69,18 @@
 			  		 		"izquierda" => "Izquierda",
 			  		 		"derecha" 	=> "Derecha",
 			  		 		"centrado" 	=> "Centrado"
-			  		 	], null, ["class" => "form-control alignment$i"]) !!}
+			  		 	], @$currentMedia['alignment'], ["class" => "form-control alignment".$i]) !!}
 					</div>
 			  	</div>
 		
 				<div class="text-center">
 					{!! Form::button("<i class='fa fa-check'></i> Grabar", ["type" => "button", "class" => "btn blue btnSaveBlock", "data-pos" => $i]) !!}
 
-					{!! Form::button("<i class='fa fa-check'></i> Borrar", ["type" => "button", "class" => "btn red btnClearBlock"]) !!}
+					{!! Form::button("<i class='fa fa-check'></i> Borrar", ["type" => "button", "class" => "btn red btnClearBlock", "data-pos" => $i]) !!}
+
+					{!! Form::hidden('position'.$i, $i, ['id' => 'position'.$i ]) !!}
+
+					{!! Form::hidden('id'.$i, @$currentMedia['id'], ['id' => 'id'.$i ]) !!}
 				</div>
 			</div>
 		</div>
@@ -327,20 +349,55 @@
 		});		
 		
 		$('.btnSaveBlock').click(function(){
+
 			var n = $(this).data('pos');
+			var data = { 
+				image: $('.image' + n).val(), 
+				title:$('.title' + n).val(), 
+				subtitle:$('#subtitle' + n).val(), 
+				description:$('.description' + n).val(), 
+				alignment:$('.alignment' + n).val(), 
+				id:$('#id' + n).val(),
+				position:$('#position' + n).val() 
+			};
             $.ajax({
                 url: '{{ url("/panel/productos/".$producto->id."/section") }}',
                 type: 'POST',
-                data: { image: $('.image' + n).val(), title:$('.title' + n).val(), subtitle:$('#subtitle' + n).val(), description:$('.description' + n).val(), alignment:$('.alignment' + n).val() },
+                data: data,
                 success: function(result) {
-                    toaster.success('Bloque grabado con éxito.');
+                    toastr.success('Bloque grabado con éxito.');
                 },
                 error: function(error){
-                    toaster.danger('No fue posible guardar el bloque.');
+                    toastr.danger('No fue posible guardar el bloque.');
                 }
             });
 
 		});
+
+		$('.btnClearBlock').click(function(){
+
+			var n = $(this).data('pos');
+			var id = $('#id' + n).val();
+			
+			$.ajax({
+				url: '{{ url("/panel/productos/".$producto->id."/section/") }}/' + id,
+				type: 'delete',
+				success: function(result) {
+					toastr.success('Bloque eliminado con éxito.');
+					$('.image' + n).val("");
+					$('.title' + n).val("");
+					$('#subtitle' + n).val("");
+					$('.description' + n).val("");
+					$('.alignment' + n).val("");
+					$('#id' + n).val("");
+					$('"position' + n).val("");
+				},
+				error: function(error){
+					toastr.danger('No fue posible eliminar el bloque.');
+				}
+			});
+
+			});
 
 	</script>
 @endpush
