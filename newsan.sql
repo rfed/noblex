@@ -342,6 +342,21 @@ CREATE TABLE `products` (
   CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+DROP TABLE IF EXISTS `sectionproducts`;
+CREATE TABLE `sectionproducts` (
+ `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `product_id` int(10) unsigned NOT NULL,
+ `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+ `subtitle` text COLLATE utf8mb4_unicode_ci,
+ `description` text COLLATE utf8mb4_unicode_ci,
+ `source` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+ `alignment` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+ `created_at` timestamp NULL DEFAULT NULL,
+ `updated_at` timestamp NULL DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ KEY `sectionproducts_product_id_foreign` (`product_id`),
+ CONSTRAINT `sectionproducts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 -- ----------------------------
 -- Records of products
 -- ----------------------------

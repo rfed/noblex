@@ -14,9 +14,9 @@ class AddFieldsToCategories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->integer('position')->unsigned();
-            $table->string('title', 200);
-            $table->string('description', 200);
+            $table->integer('position')->nullable()->unsigned();
+            $table->string('title', 200)->nullable();
+            $table->string('description', 200)->nullable();
         });
     }
 
