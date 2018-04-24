@@ -1,4 +1,10 @@
-<?php $media = $media ?>
+<?php 
+    
+    $media = $media->where('type', 'image')->first();
+    
+    $videos = $widget->media->where('type', 'video')->sortBy('position');
+
+?>
 @if($media and $media->source)
 <section class="divider">
     <div class="container">
@@ -58,6 +64,10 @@
             </div>
 
         </div>
+        @if(!empty($videos))
+            @include('front.widgets.videox3', ['media' => $videos]);
+        @endif
+
         @if($widget->show_prods && count($productos))
             @include('front.widgets.productos', $productos);
         @endif

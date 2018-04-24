@@ -79,6 +79,10 @@ Route::group([
 
 	});
 
+	Route::resource('widgets', 'Admin\WidgetController', [
+		'names' => 'admin.widgets'
+	]);
+
 	// Widgets
 	Route::delete('widgets/media/{id}', 'Admin\WidgetController@deleteMedia')->name('admin.widgets.media.delete');
 
@@ -87,9 +91,7 @@ Route::group([
 	Route::post('widgets/orden', 'Admin\WidgetController@ordenar')->name('admin.widgets.media.orden');
 	
 	
-	Route::resource('widgets', 'Admin\WidgetController', [
-		'names' => 'admin.widgets'
-	]);
+	
 
 });
 

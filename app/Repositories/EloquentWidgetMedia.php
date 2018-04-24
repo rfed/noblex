@@ -4,6 +4,7 @@ namespace Noblex\Repositories;
 
 use Illuminate\Support\Facades\Storage;
 use Noblex\WidgetMedia;
+use Noblex\Widget;
 use Noblex\Repositories\Interfaces\WidgetMediaInterface;
 
 class EloquentWidgetMedia implements WidgetMediaInterface
@@ -23,13 +24,14 @@ class EloquentWidgetMedia implements WidgetMediaInterface
                 'title'    		=> 'nullable|max:50',
                 'description'	=> 'nullable|max:100',
                 'link' 			=> 'nullable',
+                'type'          => 'nullable'
             ]);
-            
 
+            $widget = Widget::find($request->widget_id);
+            
             if(!empty($request->file('image'))) {
                 
                 $file = $request->file('image')->store('widgets', 'public');
-                $widgetMedia['type'] = 'image';
                 $widgetMedia['source'] = $file;
                 
             }
@@ -43,7 +45,7 @@ class EloquentWidgetMedia implements WidgetMediaInterface
                 $med = WidgetMedia::find($request->get('id'));
                 $med->update($widgetMedia);
             }else{
-                $widgetMedia['widget_id'] = $request->get('widget_id');
+                $widgetMedia['widget_id'] = $widget->id;
                 $med = WidgetMedia::create($widgetMedia);
             }
             
@@ -68,11 +70,10 @@ class EloquentWidgetMedia implements WidgetMediaInterface
             $data['type'] = 'image';
             $data['source'] = $file;
             
-        }else{
-            $data['type'] = 'video';
         }
 
-        $target = $data['type'] == 'image' ? array_key_exists('link_target', $data) ? $data['link_target']. "|" : '_self' : '';
+
+        $target = @$data['type'] == 'image' ? array_key_exists('link_target', $data) ? $data['link_target']. "|" : '_self' : '';
 
         $data['link'] = $link ? $target  . $data['link'] : null;
 

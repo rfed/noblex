@@ -2,10 +2,38 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/pages/widgets/dropzone/dropzone.min.css') }}">
     
     <style>
-        .dz-image img{
-            width:100%;
-            height:100%;
+
+        .dropzone{
+            width:200px;
+            height:170px;
+            overflow:hidden;
         }
+
+        .dz-size{
+            display:none;
+        }
+
+        .dz-progress{
+            display:none;
+        }
+
+        .dz-preview, .dz-image{
+            width:100% !important;
+            margin:0 !important;
+            height:120px;
+        }
+
+        .dz-image{
+            line-height: 110px;
+        }
+
+        .dz-image img{
+            vertical-align: middle;
+            max-width:157px;
+            max-height:160px;
+            display:initial !important;
+        }
+
     </style>
 @endpush
 
@@ -61,23 +89,9 @@
             $('#upload').show();
             return false;
         });
-
+        console.log(thumbs)
         var last = thumbs.length;
         var i = 0;
-
-
-        if(last == 0){
-            while (i < maxFiles) {
-                saveMedia(
-                    { widget_id: {{ $widget->id }}, title: '', source: '' },
-                        function(result) {
-                            createRow(result);
-                            last++;
-                        }
-                    )
-                i++;
-            }
-        }
 
         $('.add-media').on('click', function(e){
             e.preventDefault();
@@ -99,6 +113,7 @@
             description: $('#description'+id).val(),
             link: $('#link'+id).val(),
             link_target: $('#link_target'+id).val(),
+            type: $('#source'+id).data('type'),
             
         }
 
@@ -130,11 +145,15 @@
     function createRow(data){
         
         var title = '';
+        var thumb = '';
+        var link = '';
+        var url = '';
+        var source = '';
         var linkTarget = '_self';
-        var linkUrl =  data.link;
-
+        var linkUrl = '';
+        
         if(data.type === 'image'){
-
+            source = data.source;
             if((data.link && data.link !== '')){
                 var linkArr = data.link.split('|');
                 var linkTarget = linkArr.length > 1 ? linkArr[0] : '_self';
@@ -143,20 +162,44 @@
 
             title = `<strong>Tamaño sugerido</strong><br>
                     <span>${widget_type.size.width}px x ${widget_type.size.height}px</span> `;
+
         }else {
-            title = `<strong>Video</strong><br>
-                    <span></span> `;
+            if(data.link){
+                source = link;
+                linkUrl = data.link;
+                title = `<strong>Video</strong><br>
+                        <span></span> `;
+                
+                //https://www.youtube.com/embed/BxKCX-UvPrI
+
+                if(data.link.includes("watch?v=")){
+                    url = data.link.split('watch?v=');
+                    url = url[url.length - 1];
+                    url = "https://www.youtube.com/embed/"+ url
+                }else{
+                    url = data.link.split('/');
+                    url = url[url.length - 1];
+                    url = 'https://player.vimeo.com/video/' + url;
+                }
+
+                thumb = `<iframe src="${ url }" type="" width="160" height="110" frameborder="0" allowfullscreen="" class="iframe-class" data-html5-parameter=""></iframe>`;
+            }
+
+             
+           
         }
 
+        var stat = (widget_type.type === 'image' && data.type === 'image') ? 'static' : '';
+        console.log(widget_type.type, data.type);
         $("#media").find('tbody')
-        .append(`<tr>
+        .append(`<tr class="media-source ${stat}" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
                 <td width="200" style="text-align:center">
                     <div class="sugested-size">
                         ${title}
                     </div>
-                    <div style="width: 200px;" id="drop${data.id}" class="dropzone" data-type="{{ $widget->type }}"></div>
+                    <div style="width: 200px;" id="drop${data.id}" class="dropzone" data-type="${data.type}">${ thumb }</div>
 
-                    <input type="hidden" class="media-source" id="source${data.id}" name="media[${data.id}][source]" value="${ data.source ? data.source : '' }" data-type="${ widget_type.type }">
+                    <input type="hidden" name="media[${data.id}][source]" value="${ data.source ? data.source : '' }" data-type="${ widget_type.type }">
 
                 </td>
                 <td>
@@ -171,7 +214,7 @@
                         </select>
                         </div>
                         <div class="col-md-8">
-                        <input id="link${data.id}" type="text" name="media[${data.id}][link]" placeholder="Link" class="form-control  col-8 media_input" value="${linkUrl}">
+                        <input id="link${data.id}" type="text" name="media[${data.id}][link]" placeholder="Link" class="form-control  col-8 media_input media-link" value="${linkUrl}">
                         </div>
                     </div>
 
@@ -190,7 +233,9 @@
                 </td>
             </tr>`);
 
-            createDrop('#drop'+data.id, data);
+            if(data.type === 'image'){
+                createDrop('#drop'+data.id, data);
+            }
     }
 
     function saveMedia(data, callback){
@@ -201,7 +246,7 @@
             success: callback ? callback : function(response){
                 console.log(data);
                 console.log(response);
-                $("#source"+data).val(data.source) 
+                $("#source"+data).data('url', data.source) 
             },
             error: function(error){
                 console.log(error);
@@ -212,11 +257,11 @@
     function createDrop(el, data){
         var drop = new Dropzone(el, {
             url: '../media',  // /panel/widgets/media
-            'paramName': widget_type.mime,
+            'paramName': data.type,
             'maxFiles': 1,
             'addRemoveLinks': true,
             'dictRemoveFile': 'Eliminar',
-            'acceptedFiles': widget_type.mime+'/*',
+            'acceptedFiles': 'image/*',
             'dictDefaultMessage': 'Arrastra o haga click aquí para subir el video',
             'headers': {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -256,6 +301,7 @@
             d.append("widget_id", widget_id);
             d.append("id", data.id)
             d.append("type", data.type);
+            $('.dz-show').hide();
         });
 
         drop.on("maxfilesreached", function(file){
@@ -273,12 +319,13 @@
 
         drop.on("success", function(response) {
             var m = $.parseJSON(response.xhr.response);
-            $('#source'+m.id).val(m.source);
+            $('#source'+m.id).data('source', m.source);
             $('.dz-progress').hide();
         });
 
         drop.on("removedfile", function(e) {
-            $('#source'+e.id).val("");
+            $('#source'+e.id).data('source', '');
+            console.log($('#source'+e.id).data('source'));
         });
 
         return drop;
@@ -289,6 +336,7 @@
         $( "#sortable" ).disableSelection();
 
         $( "#sortable" ).sortable({
+            items: 'tr:not(.static)',
             update: function( e, index) {
                 var mi_id = $(e.target).find('.id').val();
                 var list = [];
