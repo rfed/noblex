@@ -3,7 +3,6 @@
 namespace Noblex\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Controllers\Front\FrontController;
 
 class ProductController extends FrontController
