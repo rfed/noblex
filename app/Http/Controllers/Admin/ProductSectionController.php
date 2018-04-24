@@ -10,9 +10,12 @@ use Noblex\Repositories\EloquentProductSection;
 
 class ProductSectionController extends Controller
 {
-    public function __construct()
+    var $section;
+
+    public function __construct(EloquentProductSection $productsection)
     {
         $this->middleware('auth');
+        $this->section = $productsection;
     }
 
 
@@ -32,11 +35,9 @@ class ProductSectionController extends Controller
     }
 
 
-    public function store($product, Request $request, EloquentProductSection $productsection)
+    public function store($product, Request $request)
     {
-        $productsection->store($product, $request);
-
-        return redirect()->route('admin.productos.index')->with('success', 'Producto agregado correctamente');
+        $this->section->store($product, $request);
     }
 
     public function upload($product, Request $request, EloquentProductSection $productsection)

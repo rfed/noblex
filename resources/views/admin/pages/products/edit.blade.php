@@ -47,6 +47,10 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="tab-pane" id="tab-bloques">
+		@include('admin.pages.products.partials.blocks')
+	</div>
 </div>
 
 {!! Form::hidden('id', $producto->id) !!}
