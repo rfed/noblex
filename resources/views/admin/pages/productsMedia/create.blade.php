@@ -66,9 +66,9 @@
 			$('.dz-progress').hide();
 		});
 
-		var featured_image_desktop = new Dropzone('#featured-image_desktop', {
+		var image_featured_background = new Dropzone('#image_featured_background', {
 			'url': '../files',
-			'paramName': 'featured_image_desktop',
+			'paramName': 'image_featured_background',
 			'autoProcessQueue': false,
 			'addRemoveLinks': true,
 			'dictRemoveFile': 'Eliminar imagen',
@@ -77,20 +77,20 @@
 			'headers': {
 				'X-CSRF-TOKEN': '{{ csrf_token() }}'
 			},
-			'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen destacada'
+			'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen destacada de fondo'
 		});
 
-		featured_image_desktop.on("sending",function(file,xhr,data){
+		image_featured_background.on("sending",function(file,xhr,data){
 		   	data.append("product_id", product_id);  // Otra forma de envio de parametros cuando dropzone hace el post al subir una imagen.
 		});
 
-		featured_image_desktop.on("addedfile", function() {
+		image_featured_background.on("addedfile", function() {
 			$('.dz-progress').hide();
 		});
 
-		var featured_image_mobile = new Dropzone('#featured-image_mobile', {
+		var image_featured = new Dropzone('#image_featured', {
 			'url': '../files',
-			'paramName': 'featured_image_mobile',
+			'paramName': 'image_featured',
 			'autoProcessQueue': false,
 			'addRemoveLinks': true,
 			'dictRemoveFile': 'Eliminar imagen',
@@ -102,11 +102,33 @@
 			'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen destacada'
 		});
 
-		featured_image_mobile.on("sending",function(file,xhr,data){
+		image_featured.on("sending",function(file,xhr,data){
 		   	data.append("product_id", product_id);  // Otra forma de envio de parametros cuando dropzone hace el post al subir una imagen.
 		});
 
-		featured_image_mobile.on("addedfile", function() {
+		image_featured.on("addedfile", function() {
+			$('.dz-progress').hide();
+		});
+
+		var image_thumb = new Dropzone('#image_thumb', {
+			'url': '../files',
+			'paramName': 'image_thumb',
+			'autoProcessQueue': false,
+			'addRemoveLinks': true,
+			'dictRemoveFile': 'Eliminar imagen',
+			'acceptedFiles': 'image/*',
+			'maxFiles': 1,
+			'headers': {
+				'X-CSRF-TOKEN': '{{ csrf_token() }}'
+			},
+			'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen thumb'
+		});
+
+		image_thumb.on("sending",function(file,xhr,data){
+		   	data.append("product_id", product_id);  // Otra forma de envio de parametros cuando dropzone hace el post al subir una imagen.
+		});
+
+		image_thumb.on("addedfile", function() {
 			$('.dz-progress').hide();
 		});
 
@@ -132,9 +154,8 @@
 			$('.dz-progress').hide();
 		});
 
-		Dropzone.autoDiscover = false;
-
-		featured_image_desktop.on('error', function(file, res) {
+	
+		image_featured_background.on('error', function(file, res) {
 			var msg;
 
 			if(res == 'You can not upload any more files.')
@@ -143,7 +164,16 @@
 			$(".dz-error-message > span").text(msg);
 		});
 
-		featured_image_mobile.on('error', function(file, res) {
+		image_featured.on('error', function(file, res) {
+			var msg;
+
+			if(res == 'You can not upload any more files.')
+				msg = 'No puedes subir mas de una imagen.'
+
+			$(".dz-error-message > span").text(msg);
+		});
+
+		image_thumb.on('error', function(file, res) {
 			var msg;
 
 			if(res == 'You can not upload any more files.')
@@ -161,10 +191,13 @@
 			$(".dz-error-message > span").text(msg);
 		});
 
+		Dropzone.autoDiscover = false;
+		
 		$("#submitFiles").on('click', function(){
 			image.processQueue();
-			featured_image_desktop.processQueue();
-			featured_image_mobile.processQueue();
+			image_featured.processQueue();
+			image_featured_background.processQueue();
+			image_thumb.processQueue();
 			documento.processQueue();
 		});
 

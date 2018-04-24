@@ -11,8 +11,7 @@
 @section('content')
 
 <ul class="nav nav-tabs">
-	<li><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-features" data-toggle="tab">Features</a></li>
+	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
 	@if($categoria->root_id !== 1)
 		<li><a href="#tab-menu" data-toggle="tab">Menu</a></li>
 		@endif
@@ -40,20 +39,6 @@
 				</div>
 			</div>
 
-		</div>
-		<div class="tab-pane" id="tab-features">
-			<div class="portlet box yellow">
-
-				<div class="portlet-title">
-					<div class="caption">
-						<i class="fa fa-plus"></i> Features disponibles
-					</div>
-				</div>
-
-				<div class="portlet-body form">
-					@include('admin.pages.categories.partials.form_features')
-				</div>
-			</div>
 		</div>
 
 		@if($categoria->root_id !== 1)

@@ -43,6 +43,18 @@ Route::group([
 		'except'	=> 'show'
 	]);
 
+	// Attributes
+	Route::resource('attributes', 'Admin\AttributeController', [
+		'names' 	=> 'admin.attributes',
+		'except'	=> 'show'
+	]);
+
+
+	// Attribute Groups
+	Route::resource('groups', 'Admin\GroupController', [
+		'names' 	=> 'admin.groups',
+		'except'	=> 'show'
+	]);
 
 	// Features
 	Route::resource('features', 'Admin\FeatureController', [
@@ -77,6 +89,9 @@ Route::group([
 
 		Route::get('{product}/section/create', 'Admin\ProductSectionController@create')->name('admin.productos.section.create');
 		Route::post('{product}/section', 'Admin\ProductSectionController@store')->name('admin.productos.section.store');
+		Route::post('{product}/sectionUpload', 'Admin\ProductSectionController@upload')->name('admin.productos.section.upload');
+		Route::post('{product}/deleteProductSectionImage', 'Admin\ProductSectionController@destroyImage')->name('admin.productos.section.destroyImage');
+		
 
 	});
 
@@ -101,6 +116,7 @@ Route::group([
 });
 
 Route::get('/', 'Front\HomeController@index')->name('home');
-Route::get('/productos', 'Front\ProductController@index')->name('productos');
 Route::get('/{slug}', 'Front\CategoryController@index')->name('categoria');
 Route::get('/{slug1}/{slug2}', 'Front\CategoryController@subcategory')->name('categoria');
+
+Route::get('/{category}/{subcategory}/{product}', 'Front\ProductController@index')->name('productos');

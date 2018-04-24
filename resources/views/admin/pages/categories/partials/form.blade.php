@@ -34,6 +34,26 @@
 			</div>
 		</div>
 
+		<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
+			{!! Form::label('feature', 'Features', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				<select name="features[]" class="selectpicker" multiple title="Seleccione los features" data-show-subtext="true" data-live-search="true" data-width="50%">
+
+					@foreach($features as $feature)
+						<option value="{{ $feature->id }}" 
+							@if( old("features") ) 
+								{{ (in_array($feature->id, old("features")) ? 'selected' : '') }}
+							@else
+								{{ (in_array($feature->id, $categoryFeatures) ? 'selected' : '') }}
+							@endif
+						>{{ $feature->name }}</option>
+					@endforeach
+
+				</select>
+				{!! $errors->first('feature', '<span class="help-block"> :message </span>') !!}
+			</div>
+		</div>
+
 		<div class="form-group">
   		 	<label for="image" class="control-label col-md-3">Imagen<br/><small>JPG/PNG 1140x433px</small>
   		 		<br/><br/>
