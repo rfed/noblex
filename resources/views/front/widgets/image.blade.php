@@ -7,6 +7,7 @@
 ?>
 @if($media and $media->source)
 <section class="divider">
+    
     <div class="container">
         <div class="row">
 
@@ -19,39 +20,41 @@
                     </a>
                 </div>
                 @endif
-
+                
                 <div class="info">
-                    
+                
                     @if($media->title && $media->title != '')
                     <div class="half_block">
                         <p class="strong"><strong>{!! $media->title !!}</strong></p>
                     </div>
                     @endif
 
-
-                    @if(!$widget->feautres)
-
+                    
+                    @if(!$widget->features)
                         @if($media->description && $media->description != '')
                         <div class="half_block">
                             <p>{!! $media->description !!}</p>
                         </div>
                         @endif
-
+                        
                     @else
+
                     <div class="full_block no_padding">
+                    
                         @if($media->description && $media->description != '')
                             <div>
                                 <p>{!! $media->description !!}</p>
                             </div>
                         @endif
+                        asdasdasd
                         <div>
                             <div class="features">
-                                <img src="assets/imgs/iconos/ultra_hd.png" alt="Ultra HD" />
-                                <img src="assets/imgs/iconos/sound.png" alt="" />
-                                <img src="assets/imgs/iconos/xmotion.png" alt="Xmotion" />
-                                <img src="assets/imgs/iconos/smart.png" alt="Smart" />
-                                <img src="assets/imgs/iconos/youtube.png" alt="YouTube" />
-                                <img src="assets/imgs/iconos/netflix.png" alt="Netflix" />
+                                <img src="{{ asset('assets/imgs/iconos/ultra_hd.png') }}" alt="Ultra HD" />
+                                <img src="{{ asset('assets/imgs/iconos/sound.png') }}" alt="" />
+                                <img src="{{ asset('assets/imgs/iconos/xmotion.png') }}" alt="Xmotion" />
+                                <img src="{{ asset('assets/imgs/iconos/smart.png') }}" alt="Smart" />
+                                <img src="{{ asset('assets/imgs/iconos/youtube.png') }}" alt="YouTube" />
+                                <img src="{{ asset('assets/imgs/iconos/netflix.png') }}" alt="Netflix" />
                             </div>
                         </div>
                     </div>

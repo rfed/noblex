@@ -14,7 +14,17 @@ class EloquentWidgetMedia implements WidgetMediaInterface
         return WidgetMedia::findOrFail($id);
     }
 
-	public function upload($request)
+	public function upload($request){
+        
+        if(!empty($request->file('file'))) {
+                
+            $file = $request->file('file')->store('widgets', 'public');
+            return ['source' => $file];
+        }
+        return '';
+    }
+
+	public function create($request)
 	{
        
 		if($request->ajax())
@@ -48,6 +58,8 @@ class EloquentWidgetMedia implements WidgetMediaInterface
 
             $widgetMedia['subtitle'] = !$request->get('subtitle') ? !$request->get('subtitle') : '';
 
+            
+
             if($request->get('id')){
                 $med = WidgetMedia::find($request->get('id'));
                 $med->update($widgetMedia);
@@ -61,7 +73,8 @@ class EloquentWidgetMedia implements WidgetMediaInterface
         }
     }
 
-    public function create($data){
+    public function insert($data){
+       
         $media = WidgetMedia::create($data);
         return $media;
     }
@@ -71,10 +84,10 @@ class EloquentWidgetMedia implements WidgetMediaInterface
         $link = array_key_exists('link', $data) && $data['link'] !== '' ? $data['link'] : null;
 
         
-        if(array_key_exists('image', $data)) {
+        if(array_key_exists('file', $data)) {
             
-            $file = $data['image']->store('widgets', 'public');
-            $data['type'] = 'image';
+            $file = $data['file']->store('widgets', 'public');
+            //$data['type'] = 'image';
             $data['source'] = $file;
             
         }

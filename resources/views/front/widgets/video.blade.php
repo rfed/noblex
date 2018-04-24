@@ -7,10 +7,18 @@
 
             <div class="big product_box_link">
                 
-                {!! !empty($media->link) ? LaravelVideoEmbed::parse($media->linkUrl(),[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '636' ]) : '' !!}
+                @if(!empty($media->source))
+                    <a href="{{ $media->linkUrl() }}">
+                        <img src="{{ asset('storage/'.$media->source) }}" />
+                    </a>
+                @else
+                    <a href="#">
+                        <img src="{!! LaravelVideoEmbed::getYoutubeThumbnail($media->linkUrl())  !!}" alt="{{ $media->title }}" />
+                    </a>
+                @endif
                 <?php /*
                 <a href="#">
-                    <img src="{!! LaravelVideoEmbed::getYoutubeThumbnail($media->linkUrl())  !!}" alt="{{ $media->title }}" />
+                    {!! !empty($media->link) ? LaravelVideoEmbed::parse($media->linkUrl(),[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '636' ]) : '' !!}
                 </a>
                 */ ?>
                         

@@ -65,14 +65,16 @@ class EloquentWidget implements WidgetInterface
 			WidgetMedia::create([
 				'widget_id' => $widget->id,
 				'type' => 'image',
-				'position' => 0
+				'position' => 0,
+				'subtitle' => ''
 			]);
 
 			for($i = 0; $i < 3; $i++){
 				WidgetMedia::create([
 					'widget_id' => $widget->id,
 					'type' => 'video',
-					'position' => $i + 1
+					'position' => $i + 1,
+					'subtitle' => ''
 				]);
 			}
 		}else{
@@ -81,7 +83,8 @@ class EloquentWidget implements WidgetInterface
 				WidgetMedia::create([
 					'widget_id' => $widget->id,
 					'type' => $type['mime'],
-					'position' => $i
+					'position' => $i,
+					'subtitle' => ''
 				]);
 			}
 		}
@@ -114,15 +117,45 @@ class EloquentWidget implements WidgetInterface
 		
 		$widget = Widget::findOrFail($id);
 		
+		
 		if($request->get('change-type')){
-			
+
 			WidgetMedia::where('widget_id', $widget->id)->delete();
 			$data['active'] = 0;
-			for($i = 0; $i < \Config::get('widgets.types')[$data['type']]['files'] ; $i++){
+			
+			if($data['type'] == 1){
 				WidgetMedia::create([
 					'widget_id' => $widget->id,
-					'position' => $i,
+					'type' => 'image',
+					'position' => 0,
+					'subtitle' => ''
 				]);
+	
+				for($i = 0; $i < 3; $i++){
+					WidgetMedia::create([
+						'widget_id' => $widget->id,
+						'type' => 'video',
+						'position' => $i + 1,
+						'subtitle' => ''
+					]);
+				}
+			}else{
+				$type = \Config::get('widgets.types')[$data['type']];
+				for($i = 0; $i < $type['files']; $i++){
+					WidgetMedia::create([
+						'widget_id' => $widget->id,
+						'type' => $type['mime'],
+						'position' => $i,
+						'subtitle' => ''
+					]);
+				}
+			}
+		}else{
+			if($request->get('media')){
+				$media = $request->get('media');
+				foreach($media as $w_id => $w_data){
+					WidgetMedia::find($w_id)->update($w_data);
+				}
 			}
 		}
 		

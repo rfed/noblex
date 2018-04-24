@@ -34,26 +34,21 @@
             @if(!empty(@$categorias) && empty(@$categoria))
             <select name="category_id" id="category-select" class="form-control">
                 
-                <optgroup label="Ninguna">
-                    <option value=""> </option>
-                </optgroup>
+                <option value=""> </option>
                 @foreach($categorias as $k => $cat)
                 
-                <?php $childs = $cat->menuChilds(); ?>
-                        <optgroup label="{{ $cat->name }}">
-                            @if(count($childs) < 1)
-                                $eq = (int)@$widget->category_id !== (int)$cat->id;
-                                <option value="{{ $cat->id }}" {{ @$widget->category_id !== $cat->id ?: 'selected' }}>{{ $cat->name}}</option>
-                            @else
-                                @foreach(@$childs as $child)
-                                <?php
+                    <?php $childs = $cat->menuChilds(); ?>
+                    $eq = (int)@$widget->category_id !== (int)$cat->id;
+                    <option value="{{ $cat->id }}" {{ @$widget->category_id !== $cat->id ?: 'selected' }}>{{ $cat->name}}</option>
 
-                                    $eq = (int)@$widget->category_id !== (int)$cat->id;
-                                ?>
-                                    <option value="{{ @$child->id }}" {{ @$widget->category_id !== $child->id ?: 'selected' }} >{{ @$child->name}}</option>
-                                @endforeach
-                            @endif
-                        </optgroup>
+                    @foreach(@$childs as $child)
+                        <?php
+
+                            $eq = (int)@$widget->category_id !== (int)$cat->id;
+                        ?>
+                            <option value="{{ @$child->id }}" {{ @$widget->category_id !== $child->id ?: 'selected' }} >{{ @$child->name}}</option>
+                    @endforeach
+
                 @endforeach
             </select>
             @else
@@ -149,17 +144,19 @@
 
         $('.submit').click(function(e){
             e.preventDefault();
-            var error = false;
+            var img_err = [];
+            var vid_err = [];
             console.log("Submit");
-            
+            $('.with-error').removeClass('with-error');
+
             var medias = $('.media-source');
 
-            medias.each(function(m){
+            medias.each(function(m, d){
 
-                console.log($(this).val());
+                console.log($(this).data('url'));
 
                 if($(this).data('type') === 'image' && ($(this).data('url') == null || $(this).data('url') == '')){
-                    error = 'Complete todas las imágenes'
+                    img_err.push({ id: d.id });
                 }
                 
                 if($(this).data('type') === 'video'){
@@ -167,15 +164,31 @@
                     console.log($(this).find('.media-link').val() );
 
                     if($(this).find('.media-link').length === 0 || $(this).find('.media-link').val() == ''){
-                        error = 'Complete todas los videos'
+                        vid_err.push({ id: d.id });
                     }
                 }
 
             });
-
+            
+            var err_txt = ''
         
-            if(error){
-                alert(error);
+            if(img_err.length > 0){
+                err_txt = img_err.length + ' imagen' + (img_err.length < 1 ?'':'es');
+            }
+            
+            if(vid_err.length > 0 && vid_err.length< 3){
+                console.log(img_err.length);
+                err_txt = img_err.length > 0 ? err_txt + ' y ' : '';
+                err_txt += vid_err.length + ' video' + (vid_err.length < 1 ? '':'s');                
+            }
+
+            if(err_txt !== ''){
+                $.each(vid_err.concat(img_err), function(e,b){
+                    console.log(b.id);
+                    $("#"+b.id).addClass('with-error');
+                });
+
+                alert('Falta completar ' + err_txt);
                 return false;
             }
 

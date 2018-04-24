@@ -58,7 +58,8 @@ class WidgetController extends Controller
 
     public function edit(Widget $widget)
     {
-        $categorias = Category::all();
+        $categorias = Category::all()->sortBy('name');
+
         $types = \Config::get('widgets.types');
 
         return view('admin.pages.widgets.edit', compact('widget', 'types', 'categorias'));
@@ -69,15 +70,7 @@ class WidgetController extends Controller
     {
         $this->widget->update($request, $id);
         
-        if($request->get('media')){
-            $media = $request->get('media');
-			foreach($media as $w_id => $w_data){
-				$this->widgetMedia->update($w_data, $w_id);
-			}
-        }
-
         if($request->get('change') || $request->get('change-type')){
-            
             return redirect()->route('admin.widgets.edit', $id);
         }
 

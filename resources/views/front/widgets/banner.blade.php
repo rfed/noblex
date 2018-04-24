@@ -6,7 +6,7 @@
         </a>
 
     </div>
-
+    
     @if($widget->show_prods && count($productos))
         @include('front.widgets.productos', $productos);
     @endif
