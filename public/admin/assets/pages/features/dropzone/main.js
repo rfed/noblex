@@ -45,9 +45,10 @@ $(function() {
 
 	});
 
+	var currentFile = '';
 	var arr_image = [];
 	var image = new Dropzone('#image', {
-		'url': '../features/featuresUpload',
+		'url': '/panel/features/featuresUpload',
 		'paramName': 'image',
 		//'autoProcessQueue': false,
 		'addRemoveLinks': true,
@@ -57,7 +58,12 @@ $(function() {
 		'headers': {
 			'X-CSRF-TOKEN': $("input[name='_token']").val()
 		},
-		'dictDefaultMessage': 'Arrastra o haga click aquí para subir la imagen',
+		'dictDefaultMessage': 'Haga click aquí para subir la imagen',
+		'clickable' : '#loader',
+		'previewTemplate': '<div class="dz-preview dz-file-preview"><img data-dz-thumbnail /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div></div>',
+		'thumbnailMethod': 'contain',
+		'thumbnailWidth': 600,
+		'thumbnailHeight': 400,
 		init: function() {
 			myDropzone = this;
 
@@ -68,34 +74,11 @@ $(function() {
 		}
 	});
 
-
-	image.on("removedfile", function(file, res) {
-		var idRemove = file.upload.uuid;
-		for(var item in arr_image)
-		{
-			if(arr_image[item].id == idRemove)
-			{
-				$.ajax({
-					url: '../features/deleteFeaturesImage',
-					type: 'POST',
-					dataType: 'json',
-					data: {
-						image: arr_image[item].image,
-						_token: $("input[name='_token']").val(),
-					}
-				})
-				.done(function(data) {
-					//console.log(data);
-				})
-				.fail(function(xhr, status, error) {
-					console.log(xhr.responseText);
-				});
-			}
-
-		}
-	});
-
 	image.on("addedfile", function(file, res) {
+		if (currentFile) {
+			this.removeFile(currentFile);
+		}
+		currentFile = file;
 		$('.dz-progress').hide();
 	});
 
@@ -107,6 +90,16 @@ $(function() {
 
 		$(".dz-error-message:last > span").text(msg);
 	});
+
+	var fileName = $('#currentImage').val();
+	if (fileName) {
+	    var mockFile = { name: fileName, size: 12345 };
+		
+		image.emit("addedfile", mockFile);
+		image.emit("thumbnail", mockFile, "/storage/" + fileName);
+
+		currentFile = mockFile;
+	}
 
 	Dropzone.autoDiscover = false;
 

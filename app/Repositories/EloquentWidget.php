@@ -46,7 +46,6 @@ class EloquentWidget implements WidgetInterface
 			'show_prods' 	=> 'nullable',
 			'features' 		=> 'nullable',
 			'position' 		=> 'nullable',
-			'home'			=> 'nullable'
 		]);
 		
 		$data['active'] = @$data['active'] == 'on' ?1:0;

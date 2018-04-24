@@ -32,7 +32,7 @@ class EloquentFeature implements FeatureInterface
 
 			$rules = array(
                 'name'        			=> 'required',
-                'description'            => 'required'
+                //'description'            => 'required'
             );
 
             $validator = Validator::make($request->all(), $rules);  // Validacion

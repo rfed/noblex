@@ -11,9 +11,19 @@ class EloquentCategory implements CategoryInterface
 {
 	public function getAll($root_id=0) 
 	{
-		return Category::where('root_id', $root_id)->orderBy('id', 'DESC')->get();
+		return Category::where('root_id', $root_id)->orderBy('position', 'ASC')->get();
 	}
 
+    public function sort($request) 
+    {
+        if($request->ajax() && $request->get('categories'))
+        {
+            foreach($request->get('categories') as $data){
+                $category = Category::findOrFail($data['id']);
+                $category->update($data);
+            }
+        }
+    }
 
     public function getAllDistinctRaiz()
     {
@@ -41,6 +51,9 @@ class EloquentCategory implements CategoryInterface
             'url'     => 'nullable',
             'root_id' => 'required',
             'feautured_product' => 'nullable',
+            'title' => 'nullable',
+            'description' => 'nullable',
+            'image' => 'nullable',
         ]);
 
         if($data['url'] == null) 
@@ -69,6 +82,9 @@ class EloquentCategory implements CategoryInterface
             'name'    => 'required',
             'url'       => 'nullable',
             'feautured_product' => 'nullable',
+            'title' => 'nullable',
+            'description' => 'nullable',
+            'image' => 'nullable'
         ]);
 
         if($data['url'] == null) 
@@ -100,8 +116,14 @@ class EloquentCategory implements CategoryInterface
                 }
             }
         }
-        
+
+        $categoria->features()->sync($request['features']);
 	}
+
+    public function upload($request) 
+    {
+        return $request->file('image')->store('categories', 'public');
+    }    
 
 
 	public function destroy($id) 

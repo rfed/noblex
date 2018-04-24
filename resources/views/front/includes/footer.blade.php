@@ -16,7 +16,7 @@
         <div class="copyright">
             <div>
                 <a href="#">
-                    <img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+                    <img src="/assets/imgs/iconos/noblex.svg" alt="Noblex" />
                 </a>
 
                 <small>2018 Copyright Noblex, todos los derechos reservados - <a href="#">Políticas de Privacidad</a></small>

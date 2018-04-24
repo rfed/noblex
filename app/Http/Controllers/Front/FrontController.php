@@ -12,6 +12,8 @@ class FrontController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    var $breadcrumbs = [];
+
     public function __construct(){
         $menu_raiz = Category::where('root_id', 0)->with('childs')->first();
         \View::share(['menu_raiz' => $menu_raiz]);

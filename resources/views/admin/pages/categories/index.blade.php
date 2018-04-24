@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="sortable">
 					
 					@foreach($categorias as $categoria)
 
@@ -52,6 +52,7 @@
 						<td>{{ $categoria->url }}</td>
 						<td>{{ $categoria->visible == '1' ? 'Si' : 'No' }}</td>
 						<td>
+							{!! Form::hidden('id', $categoria->id, array('class' => "id")) !!}
 							<div class="btn-group">
                     	        <a href="{{ route('admin.categorias.edit', $categoria->id) }}">
                                     <i class="icon-pencil"></i> Editar 
@@ -82,7 +83,46 @@
 @endsection
 
 @push('scripts')
-	<script src="{{ asset('admin/assets/global/plugins/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
+    <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('admin/assets/pages/categorias/js/main.js') }}"></script>
+
+	<script>
+	$.ajaxSetup({
+		headers: { "X-CSRF-TOKEN": '{{ csrf_token() }}' }
+	});
+
+	$( function() {
+		
+		$( "#sortable" ).disableSelection();
+
+		$( "#sortable" ).sortable({
+			update: function( e, index) {
+				var mi_id = $(e.target).find('.id').val();
+				var list = [];
+
+				$.each($("#sortable tr"), function(i, el){
+					var el_id = $(el).find('.id').val();
+					var pos = $(el).index();
+					list.push({
+						id: el_id,
+						position: pos
+					})
+					//$(el).find('td').eq(0).text(pos);
+				})
+				console.log(list);
+				$.ajax({
+					url: '/panel/categorias/orden',
+					type: 'post',
+					data: {categories:list},
+					success: function(result) {
+						console.log(result);
+					},
+					error: function(error){
+						console.log(error);
+					}
+				});
+			}
+		});
+	} );
+	</script>
 @endpush
