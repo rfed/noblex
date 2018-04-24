@@ -96,6 +96,8 @@ class EloquentFeature implements FeatureInterface
 
 	public function destroy($id) 
 	{
-		//
+		$feature = Feature::findOrFail($id);
+		$feature->delete();
+		return 'Ok';
 	}
 }
