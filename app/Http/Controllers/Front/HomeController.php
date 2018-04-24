@@ -29,9 +29,10 @@ class HomeController extends FrontController
     public function index()
     {
         $slider = $this->widgets->slider();
+
         $widgets = $this->widgets->home();
         $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
         
-        return view('front.pages.home', compact('widgets', 'breadcrumbs'));
+        return view('front.pages.home', compact('slider', 'widgets', 'breadcrumbs'));
     }
 }

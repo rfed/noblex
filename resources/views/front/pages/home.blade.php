@@ -7,6 +7,7 @@
 @section('content')
 
 @if(!empty($slider))
+
     @include('front.widgets.slider', ['widget' => $slider, 'media' => $slider->getMediaSorted()])
 @endif
 
