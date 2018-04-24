@@ -51,9 +51,15 @@ class ProductController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(EloquentCategory $category, EloquentBrand $brand, EloquentFeature $feature, $id)
     {
-        //
+        $producto = $this->product->findById($id);
+        $categorias = $category->getAllDistinctRaiz();
+        $brands = $brand->getAll();
+        $productos = $this->product->getAll();
+        $features = $feature->getAll();
+
+        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto"));
     }
 
 

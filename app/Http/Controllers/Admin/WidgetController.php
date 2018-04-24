@@ -24,7 +24,7 @@ class WidgetController extends Controller
 
     public function index()
     {
-        $widgets = $this->widget->getWidgets();
+        $widgets = $this->widget->getWidgets()->sortBy('position');
         return view('admin.pages.widgets.index', compact("widgets"));
     }
 

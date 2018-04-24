@@ -154,6 +154,7 @@ class EloquentWidget implements WidgetInterface
 			if($request->get('media')){
 				$media = $request->get('media');
 				foreach($media as $w_id => $w_data){
+					$w_data['subtitle'] = array_key_exists('subtitle') ? $w_data['subtitle'] : '';
 					WidgetMedia::find($w_id)->update($w_data);
 				}
 			}
@@ -183,6 +184,6 @@ class EloquentWidget implements WidgetInterface
 	}
 
 	public function getWidgets(){
-		return Widget::where('type', '!=', 7)->get();
+		return Widget::where('type', '!=', 7)->orderBy('position','asc')->get();
 	}
 }

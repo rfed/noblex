@@ -8,11 +8,11 @@ interface ProductInterface
 
 	public function getAllDistinctId($id);
 
-	//public function findById($id);
+	public function findById($id);
 
 	public function store($request);
 
-	//public function update($request, $id);
+	public function update($request, $id);
 
-	//public function destroy($id);
+	public function destroy($id);
 }

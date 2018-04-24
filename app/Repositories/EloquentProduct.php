@@ -44,4 +44,44 @@ class EloquentProduct implements ProductInterface
      
        	return $product->id;
 	}
+
+	public function update($request, $id)
+	{
+		$data = $request->validated();
+		$product = Product::findOrFail($id);
+
+		if($request->input('featured') == 'on')
+            $data['featured'] = 1;
+
+        if($request->input('active') == 'on')
+            $data['active'] = 1;
+
+        if($request->input('subcategory_id'))
+        	$data['category_id'] = $request->subcategory_id;
+
+        $product->update($data);
+
+        if($request->input('feature_product_id'))
+        {
+            $product->features()->attach($request->feature_product_id);
+        }
+
+        if($request->input('product_relationship_id'))
+        {
+        	$product->relatedproducts()->attach($request->product_relationship_id);
+        }
+     
+       	return $product->id;
+	}
+
+	public function destroy($id) 
+	{
+		$product = Product::findOrFail($id);
+        $product->delete();
+	}
+
+	public function findById($id) 
+	{
+        return Product::findOrFail($id);
+	}
 }

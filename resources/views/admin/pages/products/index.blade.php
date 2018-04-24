@@ -45,7 +45,7 @@
 							<td>{{ $producto->active }}</td>
 							<td>
 								<div class="btn-group">
-                    	        <a href="#">
+                    	        <a href="{{ route('admin.productos.edit', $producto->id) }}">
                                     <i class="icon-pencil"></i> Editar 
                                 </a>
                                 |
