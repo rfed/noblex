@@ -40,9 +40,9 @@ class ProductSectionController extends Controller
         $this->section->store($product, $request);
     }
 
-    public function upload($product, Request $request, EloquentProductSection $productsection)
+    public function upload(Request $request, $product)
     {
-        return $productsection->upload($product, $request);
+        return $this->section->upload($product, $request);
     }
 
     public function destroyImage($product, Request $request)
