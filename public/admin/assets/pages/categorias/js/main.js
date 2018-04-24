@@ -26,6 +26,9 @@ $(function(){
 
 	var currentFile = '';
 	var arr_image = [];
+	if($('#image').length < 1){
+		return false;
+	}
 	var image = new Dropzone('#image', {
 		'url': '/panel/categorias/categoriasUpload',
 		'paramName': 'image',

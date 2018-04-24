@@ -85,7 +85,7 @@
 @push('scripts')
     <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('admin/assets/pages/categorias/js/main.js') }}"></script>
-
+	
 	<script>
 	$.ajaxSetup({
 		headers: { "X-CSRF-TOKEN": '{{ csrf_token() }}' }
