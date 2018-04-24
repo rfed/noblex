@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Noblex\Category;
 use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Product;
+use Noblex\ProductMedia;
 
 class ProductController extends FrontController
 {
@@ -17,13 +18,20 @@ class ProductController extends FrontController
     public function index($category, $subcategory, $product)
     {
     	$category = Category::where('url', $category)->first();
-    	$product = Product::with(['productsMedia', 'sectionproducts'])->get();
+    	$product = Product::with(['productsMedia', 'sectionproducts', 'features', 'relatedproducts'])->where('sku', $product)->first();
+
+        $relatedproducts = [];
+
+        foreach($product->relatedproducts as $relatedproduct)
+        {
+            $relatedproducts = ProductMedia::with('product')
+                                            ->where('type', 'image_thumb')
+                                            ->where('product_id', $relatedproduct->id)->get();
+        }
 
     	$breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
     	$breadcrumbs[] = ['caption' => $category->name];
 
-    	dd($product);
-
-    	return view('front.pages.productos', compact("breadcrumbs", "product"));
+    	return view('front.pages.productos', compact("breadcrumbs", "product", "relatedproducts"));
     }
 }
