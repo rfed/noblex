@@ -7,6 +7,7 @@
 
         <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
 
+
             <li class="nav-item start {{ activeMenu('panel/home') }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
@@ -14,7 +15,7 @@
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
-
+                <!--
                 <ul class="sub-menu">
                     <li class="nav-item start active open">
                         <a href="#" class="nav-link ">
@@ -24,6 +25,7 @@
                         </a>
                     </li>
                 </ul>
+                -->
             </li>
             <li class="nav-item start {{ activeMenu('panel/categorias*') }}">
                 <a href="{{ route('admin.categorias.index') }}" class="nav-link nav-toggle">
@@ -59,6 +61,18 @@
                 <a href="{{ route('admin.features.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Features</span>
+                </a>
+            </li>
+            <li class="nav-item start {{ activeMenu('panel/attribute*') }}">
+                <a href="{{ route('admin.attributes.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Atributos</span>
+                </a>
+            </li>
+            <li class="nav-item start {{ activeMenu('panel/groups*') }}">
+                <a href="{{ route('admin.groups.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Grupos de Atributos</span>
                 </a>
             </li>
         </ul>

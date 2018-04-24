@@ -43,6 +43,18 @@ Route::group([
 		'except'	=> 'show'
 	]);
 
+	// Attributes
+	Route::resource('attributes', 'Admin\AttributeController', [
+		'names' 	=> 'admin.attributes',
+		'except'	=> 'show'
+	]);
+
+
+	// Attribute Groups
+	Route::resource('groups', 'Admin\GroupController', [
+		'names' 	=> 'admin.groups',
+		'except'	=> 'show'
+	]);
 
 	// Features
 	Route::resource('features', 'Admin\FeatureController', [
