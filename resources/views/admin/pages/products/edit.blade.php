@@ -35,8 +35,10 @@
 	<script src="{{ asset('admin/assets/pages/productos/js/app.js') }}"></script>
 
 	<script>
-		@if(@$subcategoria)
-			subcategorias({{ $categoria->id }}, {{ $subcategoria->id}})
+		@if(!empty($subcategoria) && !empty($categoria));
+			$(document).ready(function(){
+				subcategorias({{ $categoria->id }}, {{ $subcategoria->id}})
+			});
 		@endif
 	</script>
 @endpush

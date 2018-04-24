@@ -49,7 +49,7 @@
 		{!! Form::label('subcategory', 'Subcategoria', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 			<select name="subcategory_id" id="subcategory_id" class="form-control">
-				<option value="" @if($categoria->id === @$producto->category_id) selected @endif>Seleccione una Subcategoría</option>
+				<option value="">Seleccione una Subcategoría</option>
 			</select>
 		</div>
 	</div>
