@@ -9,42 +9,43 @@
 	<section>
 		<div class="container">
 			
+			<?php $imageBackground = ''; ?>
+			@foreach($product->productsMedia as $productMedia)
+				@if($productMedia->type == 'image_featured_background')
+					<?php $imageBackground = url("storage/".$productMedia->source); ?>
+				@endif
+			@endforeach
+
 			<!-- MOBILE -->
-			<div class="product_banner mobile">
-				<h1 class="title">LED TV Smart 65" Full UHD</h1>
-				<span class="code">DA65X6500X</span>
+			<div class="product_banner mobile" style="background:url({{ $imageBackground  }})">
+				<h1 class="title">{{ $product->name }}</h1>
+				<span class="code">{{ $product->sku }}</span>
 
 				<p class="text">Más Smart, mas diversión.</p>
 			</div>
 			<!-- END MOBILE -->
-
-			<div class="product_banner">
+			
+			
+			<div class="product_banner" style="background:url({{ $imageBackground  }})">
 				<div class="info">
-					<h1 class="title">LED TV Smart 65" Full UHD</h1>
-					<span class="code">DA65X6500X</span>
+					<h1 class="title">{{ $product->name }}</h1>
+					<span class="code">{{ $product->sku }}</span>
 
 					<p class="text">Más Smart, mas diversión.</p>
 
 					<div class="features">
-						<img src="assets/imgs/iconos/ultra_hd_white.png" alt="Ultra HD" />
-						<img src="assets/imgs/iconos/sound_white.png" alt="" />
-						<img src="assets/imgs/iconos/xmotion_white.png" alt="Xmotion" />
-						<img src="assets/imgs/iconos/smart_white.png" alt="Smart" />
-						<img src="assets/imgs/iconos/youtube_white.png" alt="YouTube" />
-						<img src="assets/imgs/iconos/netflix_white.png" alt="Netflix" />
+						@foreach($product->features as $feature)
+							<img src="{{ url("storage/$feature->image") }}" alt="{{ $feature->name }}" />
+						@endforeach
 					</div>
 				</div>
 
 				<div class="image">
-					<img src="assets/imgs/imagenes/product_5.png" alt='LED TV Smart 65" Full UHD' />
-
+					
 					<div class="features">
-						<img src="assets/imgs/iconos/ultra_hd_white.png" alt="Ultra HD" />
-						<img src="assets/imgs/iconos/sound_white.png" alt="" />
-						<img src="assets/imgs/iconos/xmotion_white.png" alt="Xmotion" />
-						<img src="assets/imgs/iconos/smart_white.png" alt="Smart" />
-						<img src="assets/imgs/iconos/youtube_white.png" alt="YouTube" />
-						<img src="assets/imgs/iconos/netflix_white.png" alt="Netflix" />
+						@foreach($product->features as $feature)
+							<img src="{{ url("storage/$feature->image") }}" alt="{{ $feature->name }}" />
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -54,7 +55,11 @@
 				<div class="section_tools">
 					<a href="#">
 						<span class="fa fa-file-alt"></span>
-						<span>Descargar Manuales de usuario</span>
+						@foreach($product->productsMedia as $productMedia)
+							@if($productMedia->type == 'document')
+								<a href="{{ $productMedia->source }}">Descargar Manuales de usuario</span>
+							@endif
+						@endforeach
 					</a>
 
 					<a href="#">
@@ -78,47 +83,27 @@
 
 			<div class="col-xs-12 col-sm-8">
 				<div class="product_view owl-carousel">
-
-					<div class="item">
-						<img src="assets/imgs/imagenes/product_1.png" alt="imagen 1" />
-					</div>
-
-					<div class="item">
-						<img src="assets/imgs/imagenes/product_2.png" alt="imagen 2" />
-					</div>
-
-					<div class="item">
-						<img src="assets/imgs/imagenes/product_3.png" alt="imagen 3" />
-					</div>
+					
+					@foreach($product->productsMedia as $image)
+						<div class="item">
+							<img src="{{ url("storage/$image->source") }}" alt='{{ $product->name }}' />
+						</div>
+					@endforeach
 
 				</div>
 			</div>
 
 
 			<div class="features_list col-xs-12 col-sm-4">
-				<div class="item">
-					<img src="assets/imgs/iconos/play_share.png" alt="Play & Share" />
-					<p><strong>Play &amp; Share</strong></p>
-					<p>Compartir contenido fácilmente a través de distintos dispositivos</p>
-				</div>
 
-				<div class="item">
-					<img src="assets/imgs/iconos/usb.png" alt="HDMI / USB / VGA" />
-					<p><strong>HDMI / USB / VGA</strong></p>
-					<p>Conectá todos tus periféricos como PCs, pendrives y consolas</p>
-				</div>
-
-				<div class="item">
-					<img src="assets/imgs/iconos/bluetooth.png" alt="Bluetooth" />
-					<p><strong>Bluetooth</strong></p>
-					<p>Conectá todos tus periféricos como PCs, pendrives y consolas</p>
-				</div>
-
-				<div class="item">
-					<img src="assets/imgs/iconos/tda.png" alt="TDA" />
-					<p><strong>TDA</strong></p>
-					<p>Sintonizador Digital Incorporado (TDA) Ginga</p>
-				</div>
+				@foreach($product->features as $feature)
+					<div class="item">
+						<img src="{{ url("storage/$feature->image") }}" alt="{{ $feature->name }}" />
+						<p><strong>{{ $feature->name }}</strong></p>
+						<p>{{ $feature->description }}</p>
+					</div>
+				@endforeach
+		
 			</div>
 
 		</div>
@@ -131,43 +116,46 @@
 	 -->
 
 	<section class="product_detail_contain container">
-		<h2>Diseño y tecnología</h2>
-		<span>Disfruta de la mejor experiencia en tu propio living.</span>
+		<!-- <h2>Diseño y tecnología</h2>
+		<span>Disfruta de la mejor experiencia en tu propio living.</span> -->
 
+		@foreach($product->sectionproducts as $sectionproduct)
+			
+			@if(!$sectionproduct->source)
+				<h2>{{ $sectionproduct->title }}</h2>
+				<span>{{ $sectionproduct->subtitle }}</span>
+			@endif
 
-		<div>
-			<img src="assets/imgs/imagenes/producto_banner.png" alt="Play & Share" />
+			@switch($sectionproduct->alignment)
+				@case('izquierda')
+					<?php $position = 'align_left'; ?>
+				@break
 
-			<div class="align_left">
-				<h2>Play &amp; Share</h2>
-				<span>Conectividad para todos tus dispositivos.</span>
+				@case('derecha')
+					<?php $position = 'align_right'; ?>
+				@break
 
-				<p>Tu Smart TV Noblex trae la aplicación Play &amp; Share, para que compartas contenido fácilmente a través de distintos dispositivos. Además, con HDMI, USB y VGA, conectá todos tus periféricos como PCs, pen drives y consolas al mejor televisor de tu casa, de manera fácil y veloz.</p>
-			</div>
-		</div>
+				@default
+					<?php $position = ''; ?>
+				@break
+			@endswitch
+			
+			@if($sectionproduct->source)
+				<div>
+					<img src="{{ url("storage/$sectionproduct->source") }}" alt="{{ $sectionproduct->title }}" />
+				
+					<div class="{{$position}}">
+						<h2>{{ $sectionproduct->title }}</h2>
+						<span>{{ $sectionproduct->subtitle }}</span>
 
+						<p>{{ $sectionproduct->description }}</p>
+					</div>
+				</div>
+			@endif
 
-		<div>
-			<img src="assets/imgs/imagenes/producto_banner_2.png" alt="Jugá a lo grande" />
-
-			<div class="align_right">
-				<h2>Jugá a lo grande</h2>
-				<span>Tasa de refresco y tiempos de respuesta mejorados</span>
-				<p>Tu Smart TV Noblex trae la aplicación Play &amp; Share, para que compartas contenido fácilmente a través de distintos dispositivos. Además, con HDMI, USB y VGA, conectá todos tus periféricos como PCs, pen drives y consolas al mejor televisor de tu casa, de manera fácil y veloz.</p>
-			</div>
-
-		</div>
-
-
-		<div>
-			<img src="assets/imgs/imagenes/producto_banner_3.png" alt="Full UHD" />
-			<h2>Full UHD</h2>
-
-			<p>Hablamos de verdadera alta resolución. 4k es la abreviatura de 4.000 píxeles (4096 x 2160 píxeles)</p>
-		</div>
+		@endforeach
 
 	</section>
-
 
 
 	<section class="divider details">
@@ -292,167 +280,32 @@
 
 			<!-- -->
 
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_1.png" alt='LED TV Smart 65" Full UHD' />
+			@foreach($relatedproducts as $relatedproduct)
 
-						<span class="feature"><span>65"</span></span>
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							
+							<img src="{{ url("storage/$relatedproduct->source") }}" alt='{{ $relatedproduct->product->name }}' />
 
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
+							<span class="feature"><span>{{ $relatedproduct->product->cucarda }}</span></span>
 
-			<!-- -->
+						</div>
 
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_2.png" alt='LED TV Smart 65" Full UHD' />
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
+						<span class="id">{{ $relatedproduct->product->sku }}</span>
+						<p class="title"><strong>{{ $relatedproduct->product->name }}</strong></p>
+						<span class="description">{{ $relatedproduct->product->description }}</span>
+					</a>
 
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
+					<label class="checkbox">
+						<input type="checkbox" value="comparar" />
+						<span>Comparar</span>
+					</label>
+					
+					<a href="#" class="btn link">Comprar</a>
+				</div>
 
-			<!-- -->
-
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
-
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
-
-			<!-- -->
-
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-
-						<span class="feature"><span>65"</span></span>
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
-
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
-
-			<!-- -->
-
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
-
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
-
-			<!-- -->
-
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
-
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
-
-			<!-- -->
-
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
-
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
-
-			<!-- -->
-
-			<div class="item">
-				<a href="#">
-					<div class="image">
-						<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-					</div>
-					<span class="id">DA65X500X</span>
-					<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-					<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-				</a>
-
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="#" class="btn link">Comprar</a>
-			</div>
+			@endforeach
 
 			<!-- -->
 
