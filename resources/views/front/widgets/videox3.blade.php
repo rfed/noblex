@@ -1,8 +1,11 @@
+@push('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fancybox-master/dist/jquery.fancybox.min.css') }}">
+@endpush
 <div class="product_links_bar">
     @foreach($media as $video)
         <div class="col-xs-12 col-sm-4">
         @if(!empty($video->source))
-            <a href="{{ $video->linkUrl() }}">
+            <a href="{{ $video->linkUrl() }}"  data-fancybox data-caption="Caption for single image">
                 <img src="{{ asset('storage/'.$video->source) }}" />
             </a>
         @else
@@ -18,3 +21,7 @@
         </div>
     @endforeach
 </div>
+
+@push('scripts')
+<script src="{{ asset('assets/fancybox-master/dist/jquery.fancybox.min.js') }}"></script>
+@endpush

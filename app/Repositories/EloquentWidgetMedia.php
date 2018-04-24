@@ -17,7 +17,6 @@ class EloquentWidgetMedia implements WidgetMediaInterface
 	public function upload($request){
         
         if(!empty($request->file('file'))) {
-                
             $file = $request->file('file')->store('widgets', 'public');
             return ['source' => $file];
         }
