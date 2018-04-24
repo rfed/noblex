@@ -389,12 +389,12 @@ CREATE TABLE `products_media` (
 -- Records of products_media
 -- ----------------------------
 BEGIN;
-INSERT INTO `products_media` VALUES (1, 1, 'productos/W9sURAEeWTKLI1pIULs8nfvTxtdlpXvW8oj7RtfY.png', 'image_desktop', 1, 1, '2018-04-21 18:38:13', '2018-04-21 18:38:13');
-INSERT INTO `products_media` VALUES (2, 1, 'productos/Qg2WzIuVUPOqRrT2h1Vy7fXvLupTwTnj2xS1pj6C.png', 'image_desktop', 0, 1, '2018-04-21 18:38:13', '2018-04-21 18:38:13');
-INSERT INTO `products_media` VALUES (3, 2, 'productos/DmJCc6SLa5WHEA1VeexpJVMepuQ9LJUdXRA2060b.png', 'image_desktop', 0, 1, '2018-04-22 01:55:28', '2018-04-22 01:55:28');
-INSERT INTO `products_media` VALUES (4, 2, 'productos/Vr5o019om3EtCi1xghI39E4jJjz15vS8BMRjOWlC.png', 'image_desktop', 1, 1, '2018-04-22 01:55:28', '2018-04-22 01:55:28');
-INSERT INTO `products_media` VALUES (5, 3, 'productos/Wnjw6eQO8oJkafEHLIzqfYMwh4hAbQQV9o4XlT28.png', 'image_desktop', 0, 1, '2018-04-22 02:10:47', '2018-04-22 02:10:47');
-INSERT INTO `products_media` VALUES (6, 3, 'productos/GBSScCGn5gsc4BcUz4PJLLbnLVQiAplKYkSJ9azF.png', 'image_desktop', 1, 1, '2018-04-22 02:10:47', '2018-04-22 02:10:47');
+INSERT INTO `products_media` VALUES (1, 1, 'productos/W9sURAEeWTKLI1pIULs8nfvTxtdlpXvW8oj7RtfY.png', 'image', 1, 1, '2018-04-21 18:38:13', '2018-04-21 18:38:13');
+INSERT INTO `products_media` VALUES (2, 1, 'productos/Qg2WzIuVUPOqRrT2h1Vy7fXvLupTwTnj2xS1pj6C.png', 'image', 0, 1, '2018-04-21 18:38:13', '2018-04-21 18:38:13');
+INSERT INTO `products_media` VALUES (3, 2, 'productos/DmJCc6SLa5WHEA1VeexpJVMepuQ9LJUdXRA2060b.png', 'image', 0, 1, '2018-04-22 01:55:28', '2018-04-22 01:55:28');
+INSERT INTO `products_media` VALUES (4, 2, 'productos/Vr5o019om3EtCi1xghI39E4jJjz15vS8BMRjOWlC.png', 'image', 1, 1, '2018-04-22 01:55:28', '2018-04-22 01:55:28');
+INSERT INTO `products_media` VALUES (5, 3, 'productos/Wnjw6eQO8oJkafEHLIzqfYMwh4hAbQQV9o4XlT28.png', 'image', 0, 1, '2018-04-22 02:10:47', '2018-04-22 02:10:47');
+INSERT INTO `products_media` VALUES (6, 3, 'productos/GBSScCGn5gsc4BcUz4PJLLbnLVQiAplKYkSJ9azF.png', 'image', 1, 1, '2018-04-22 02:10:47', '2018-04-22 02:10:47');
 COMMIT;
 
 -- ----------------------------
