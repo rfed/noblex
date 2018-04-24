@@ -70,6 +70,14 @@
 		</div>
 	</div>
 
+	<div class="form-group {{ $errors->first('tag') ? 'has-error' : '' }}">
+		{!! Form::label('tag', 'Cucarda', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-2">
+			{!! Form::text('tag', null, ['class' => 'form-control', 'id' => 'name', 'maxlength' => '3']) !!}
+			{!! $errors->first('tag', '<span class="help-block"> :message </span>') !!}
+		</div>
+	</div>
+
 	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
 		{!! Form::label('feature', 'Features', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">

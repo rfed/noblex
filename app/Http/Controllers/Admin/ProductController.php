@@ -64,7 +64,22 @@ class ProductController extends Controller
         $productos = $this->product->getAll();
         $features = $feature->getAll();
 
-        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria"));
+        $currentMedia = [];
+        foreach ($producto->productsMedia as $media) {
+            switch ($media->type) {
+                case 'image_featured': 
+                    $currentMedia['image_featured'] = $media->source;
+                    break;
+                case 'image_featured_background': 
+                    $currentMedia['image_featured_background'] = $media->source;
+                    break;
+                case 'image_thumb': 
+                    $currentMedia['image_thumb'] = $media->source;
+                    break;
+            }
+        }
+
+        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia"));
     }
 
 

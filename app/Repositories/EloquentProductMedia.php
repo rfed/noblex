@@ -15,23 +15,18 @@ class EloquentProductMedia
             $productMedia->product_id = $product;
 
             if(!empty(request()->file('image_featured'))) {
-                $file = request()->file('image_featured')->store('productos', 'public');
+                $filename = request()->file('image_featured')->getClientOriginalName();
+                $file = request()->file('image_featured')->storeAs('productos', $filename, 'public');
 
                 $productMedia->type = 'image_featured';
                 $productMedia->source = $file;
             }
 
             if(!empty(request()->file('image_featured_background'))) {
-                $file = request()->file('image_featured_background')->store('productos', 'public');
+                $filename = request()->file('image_featured_background')->getClientOriginalName();
+                $file = request()->file('image_featured_background')->storeAs('productos', $filename, 'public');
 
                 $productMedia->type = 'image_featured_background';
-                $productMedia->source = $file;
-            }
-
-            if(!empty(request()->file('image'))) {
-                $file = request()->file('image')->store('productos', 'public');
-
-                $productMedia->type = 'image';
                 $productMedia->source = $file;
             }
 
@@ -39,6 +34,15 @@ class EloquentProductMedia
                 $file = request()->file('image_thumb')->store('productos', 'public');
 
                 $productMedia->type = 'image_thumb';
+                $productMedia->source = $file;
+            }
+
+
+
+            if(!empty(request()->file('image'))) {
+                $file = request()->file('image')->store('productos', 'public');
+
+                $productMedia->type = 'image';
                 $productMedia->source = $file;
             }
 
