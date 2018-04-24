@@ -31,6 +31,12 @@
                     <span class="title">Categorias</span>
                 </a>
             </li>
+            <li class="nav-item start {{ activeMenu('panel/slider*') }}">
+                <a href="{{ route('admin.slider.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Slider</span>
+                </a>
+            </li>
             <li class="nav-item start {{ activeMenu('panel/productos*') }}">
                 <a href="{{ route('admin.productos.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>

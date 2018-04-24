@@ -9,7 +9,7 @@ use Noblex\Http\Controllers\Controller;
 use Noblex\Repositories\Interfaces\WidgetInterface;
 use Noblex\Repositories\Interfaces\WidgetMediaInterface;
 
-class WidgetController extends Controller
+class SliderController extends Controller
 {
     private $widget;
     private $widgetMedia;
@@ -24,8 +24,11 @@ class WidgetController extends Controller
 
     public function index()
     {
-        $widgets = $this->widget->getWidgets();
-        return view('admin.pages.widgets.index', compact("widgets"));
+        $widget = $this->widget->slider();
+        if(!$widget){
+            $widget = Widget::create(['type' => 7, 'home' => 1, 'active' => 0, 'position' => 0]);
+        }
+        return view('admin.pages.slider.index', compact("widget"));
     }
 
 
@@ -46,22 +49,7 @@ class WidgetController extends Controller
         
         $widget = $this->widget->store($request);
 
-        return redirect()->route('admin.widgets.edit', $widget->id);
-    }
-
-
-    public function show(Widget $widget)
-    {
-
-    }
-
-
-    public function edit(Widget $widget)
-    {
-        $categorias = Category::all();
-        $types = \Config::get('widgets.types');
-
-        return view('admin.pages.widgets.edit', compact('widget', 'types', 'categorias'));
+        return redirect()->route('admin.slider.index');
     }
 
 
@@ -76,12 +64,7 @@ class WidgetController extends Controller
 			}
         }
 
-        if($request->get('change') || $request->get('change-type')){
-            
-            return redirect()->route('admin.widgets.edit', $id);
-        }
-
-        return redirect()->route('admin.widgets.index');
+        return redirect()->route('admin.slider.index');
     }
 
 

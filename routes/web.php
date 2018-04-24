@@ -82,6 +82,10 @@ Route::group([
 		'names' => 'admin.widgets'
 	]);
 
+	Route::resource('slider', 'Admin\SliderController', [
+		'names' => 'admin.slider'
+	]);
+
 	// Widgets
 	Route::delete('widgets/media/{id}', 'Admin\WidgetController@deleteMedia')->name('admin.widgets.media.delete');
 

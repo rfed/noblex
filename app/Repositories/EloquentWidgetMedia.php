@@ -16,6 +16,7 @@ class EloquentWidgetMedia implements WidgetMediaInterface
 
 	public function upload($request)
 	{
+       
 		if($request->ajax())
         {
             
@@ -24,7 +25,9 @@ class EloquentWidgetMedia implements WidgetMediaInterface
                 'title'    		=> 'nullable|max:50',
                 'description'	=> 'nullable|max:100',
                 'link' 			=> 'nullable',
-                'type'          => 'nullable'
+                'type'          => 'nullable',
+                'subtitle'      => 'nullable',
+                'position'      => 'nullable',
             ]);
 
             $widget = Widget::find($request->widget_id);
@@ -39,7 +42,11 @@ class EloquentWidgetMedia implements WidgetMediaInterface
             if(!$request->get('position')){
                 $last = WidgetMedia::where('widget_id', $request->get('widget_id'))->orderBy('position', 'desc')->first();
                 $widgetMedia['position'] = $last ? $last->position + 1 : 0;
+            }else{
+                $widgetMedia['position'] = $request->get('position');
             }
+
+            $widgetMedia['subtitle'] = !$request->get('subtitle') ? !$request->get('subtitle') : '';
 
             if($request->get('id')){
                 $med = WidgetMedia::find($request->get('id'));

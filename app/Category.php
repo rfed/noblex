@@ -16,6 +16,10 @@ class Category extends Model
 		$this->attributes['name'] = ucfirst($name);
 	}
 
+	public function features(){
+		return $this->belongsToMany(Feature::class);
+	}
+
 	public function childs()
 	{
 		return $this->hasMany(Category::class, 'root_id', 'id');

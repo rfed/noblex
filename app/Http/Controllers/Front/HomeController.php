@@ -5,6 +5,8 @@ namespace Noblex\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Widget;
+use Noblex\Repositories\Interfaces\WidgetInterface;
+
 class HomeController extends FrontController
 {
 
@@ -13,9 +15,10 @@ class HomeController extends FrontController
      *
      * @return void
      */
-    public function __construct( )
+    public function __construct(WidgetInterface $widgets)
     {
         parent::__construct();
+        $this->widgets = $widgets;
     }
 
     /**
@@ -25,7 +28,9 @@ class HomeController extends FrontController
      */
     public function index()
     {
-        $widgets = Widget::getHome();
-        return view('front.pages.home', compact('widgets'));
+        $slider = $this->widgets->slider();
+        $widgets = $this->widgets->home();
+
+        return view('front.pages.home', compact('widgets', 'slider'));
     }
 }

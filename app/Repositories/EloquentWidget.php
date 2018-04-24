@@ -94,10 +94,9 @@ class EloquentWidget implements WidgetInterface
 	public function update($request, $id) 
 	{
 		
-		
 		$data = request()->validate([
 			'title'    		=> 'nullable|max:80',
-			'type' 			=> 'required',
+			'type' 			=> 'nullable',
             'description'	=> 'nullable|max:100',
             'active'		=> 'nullable',
             'btn_text' 		=> 'nullable',
@@ -109,11 +108,11 @@ class EloquentWidget implements WidgetInterface
 			'home'			=> 'nullable'
 		]);
 
-		$data['active'] = @$data['active'] == 'on' ?1:0;
-		$data['features'] = @$data['features'] == 'on' ?1:0;
-		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
-		$data['home'] = @$data['home'] == 'on' ?1:0;
-
+		$data['active'] = $request->get('active') == 'on' ?1:0;
+		$data['features'] = $request->get('features')== 'on' ?1:0;
+		$data['show_prods'] = $request->get('show_prods')== 'on' ?1:0;
+		$data['home'] = $request->get('home') == 'on' ?1:0;
+		
 		$widget = Widget::findOrFail($id);
 		
 		if($request->get('change-type')){
@@ -137,5 +136,21 @@ class EloquentWidget implements WidgetInterface
 	{
 		$widget = Widget::findOrFail($id);
         $widget->delete();
+	}
+
+	public function home(){
+		return Widget::where('home', 1)
+			->where('active', 1)
+			->where('type', '!=', 7)
+			->orderBy('position', 'asc')->get();
+	}
+
+	public function slider(){
+		$slider = Widget::where('type', 7)->where('home', 1)->first();
+		return $slider;
+	}
+
+	public function getWidgets(){
+		return Widget::where('type', '!=', 7)->get();
 	}
 }

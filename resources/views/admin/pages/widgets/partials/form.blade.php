@@ -1,31 +1,37 @@
 <div class="form-body">
-{!! Form::hidden('position') !!}
-<div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
-    {!! Form::label('title', 'Titulo', ['class' => 'control-label col-md-3']) !!}
-    <div class="col-md-9">
-        {!! Form::text('title', null, ['class' => 'form-control', 'id' => 'title']) !!}
-        {!! $errors->first('title', '<span class="help-block"> :message </span>') !!}
-    </div>
-</div>
+    {{-- Tipo 7 es slider, como solo se admite en home estas cosas no importan --}}
 
-<div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
-    {!! Form::label('type', 'Tipo de widget', ['class' => 'control-label col-md-3']) !!}
-    <div class="col-md-9">
-        <select name="type" id="type-select" class="form-control">
-            <option value=""> </option>
-            @foreach(\Config::get('widgets.types') as $k => $type)
-                <option value="{{ $k }}" {{ @$widget->type != $k ?: 'selected' }}>{{ $type['text'] }}</option>
-            @endforeach
-        </select>
-        {!! $errors->first('type', '<span class="help-block"> :message </span>') !!}
+@if(@$widget->type !== 7)
+    {!! Form::hidden('position') !!}
+    <div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
+        {!! Form::label('title', 'Titulo', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::text('title', null, ['class' => 'form-control', 'id' => 'title']) !!}
+            {!! $errors->first('title', '<span class="help-block"> :message </span>') !!}
+        </div>
     </div>
-</div>
-<div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
-    {!! Form::label('category_id', 'Categoria', ['class' => 'control-label col-md-3']) !!}
-    
+    <div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
+        {!! Form::label('type', 'Tipo de widget', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            <select name="type" id="type-select" class="form-control">
+                <option value=""> </option>
+                @foreach(\Config::get('widgets.types') as $k => $type)
+                    @if($k !== 7)
+                        <option value="{{ $k }}" {{ @$widget->type != $k ?: 'selected' }}>{{ $type['text'] }}</option>
+                    @endif
+                @endforeach
+            </select>
+            {!! $errors->first('type', '<span class="help-block"> :message </span>') !!}
+        </div>
+    </div>
+
+
+    <div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
+        {!! Form::label('category_id', 'Categoria', ['class' => 'control-label col-md-3']) !!}
+        
         <div class="col-md-9">
             
-            @if(!empty($categorias) and empty($categoria))
+            @if(!empty(@$categorias) && empty(@$categoria))
             <select name="category_id" id="category-select" class="form-control">
                 
                 <optgroup label="Ninguna">
@@ -51,29 +57,28 @@
                 @endforeach
             </select>
             @else
-                <?php $categoria = $categoria ? $categoria :  @$widget->category; ?>
-                {!! Form::text('category_name', $categoria->name, ['class' => 'form-control', 'id' => 'title', 'readonly' => 'true']) !!}
-                {!! Form::hidden('category_id', $categoria->id) !!}
+                <?php $categoria_id = @$categoria ? $categoria->id :  @$widget->category; ?>
+                <?php $categoria_name = @$categoria ? $categoria->name :  @$widget->category; ?>
+                {!! Form::text('category_name', $categoria_name, ['class' => 'form-control', 'id' => 'title', 'readonly' => 'true']) !!}
+                {!! Form::hidden('category_id', @$categoria_id) !!}
             @endif
             {!! $errors->first('category_id', '<span class="help-block"> :message </span>') !!}
         </div>
-</div>
-
-<div class="form-group">
-    {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
-    <div class="col-md-9">
-        {!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
     </div>
-</div>
 
-<div class="form-group">
-    {!! Form::label('home', 'En Home', ['class' => 'control-label col-md-3']) !!}
-    <div class="col-md-9">
-        {!! Form::checkbox('home', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+    <div class="form-group">
+        {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+        </div>
     </div>
-</div>
 
-@if(@$widget)
+    <div class="form-group">
+        {!! Form::label('home', 'En Home', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::checkbox('home', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+        </div>
+    </div>
 
     <div class="form-group">
         {!! Form::label('features', 'Features', ['class' => 'control-label col-md-3']) !!}
@@ -82,22 +87,27 @@
         </div>
     </div>
 
-    @if(@$widget->category)
     <div class="form-group">
         {!! Form::label('show_prods', 'Mostrar productos', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
             {!! Form::checkbox('show_prods', null, null, ['class' => 'make-switch', 'data-size' => 'show_prods', 'id' => 'active']) !!}
         </div>
     </div>
-    @else
-        {!! Form::hidden('show_prods', null) !!}
-    @endif
-    
+@else
+
+    <div class="form-group">
+        {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+        </div>
+    </div>
+
+@endif
+
+@if(@$widget)
+
     @include('admin.pages.widgets.partials.form_media')
 
-    @if(@$widget->show_prods)
-
-    @endif
 @endif
 
 
@@ -153,6 +163,7 @@
                 }
                 
                 if($(this).data('type') === 'video'){
+
                     console.log($(this).find('.media-link').val() );
 
                     if($(this).find('.media-link').length === 0 || $(this).find('.media-link').val() == ''){

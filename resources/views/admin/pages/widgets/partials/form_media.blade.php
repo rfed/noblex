@@ -49,7 +49,22 @@
             </tr>
         </thead>
 
-        <tbody id="sortable"></tbody>
+        <tbody id="sortable">
+            @if(@$widget->type === 7)
+                <tr class="last-row">
+                    <th width=""></th>
+                    <th width=""></th>
+                    <td></td>
+                    <th width="">
+                        <div class="btn-group">
+                            <a href="#" class="add-media">
+                                <i class="icon-plus"></i> Agregar 
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+            @endif
+        </tbody>
 
     </table>
 </div>
@@ -78,24 +93,28 @@
     //console.log(t);
 
     var thumbs = [];
+    <?php
+         $thumbs = $widget->getMediaSorted();
+    ?>
 
-    @foreach($widget->getMediaSorted() as $thumb)
-        thumbs.push({
-            id: {!! $thumb->id !!},
-            widget_id: {!! $thumb->widget_id !!},
-            source: '{!! $thumb->source !!}',
-            title: '{!! $thumb->title !!}',
-            subtitle: '{{ $thumb->subtitle }}',
-            description: '{!! $thumb->description !!}',
-            link: '{!! $thumb->link !!}',
-            type: '{!! $thumb->type !!}',
-            position: '{!! $thumb->position !!}',
+    @if(!empty($thumbs) and count($thumbs) > 0)
+        @foreach($thumbs as $thumb)
+            thumbs.push({
+                id: {!! $thumb->id !!},
+                widget_id: {!! $widget->id !!},
+                source: '{!! $thumb->source !!}',
+                title: '{!! $thumb->title !!}',
+                subtitle: '{{ $thumb->subtitle }}',
+                description: '{!! $thumb->description !!}',
+                link: '{!! $thumb->link !!}',
+                type: '{!! $thumb->type !!}',
+                position: '{!! $thumb->position !!}',
 
-        });   
-    @endforeach
+            });   
+        @endforeach
+    @endif
 
     console.log(thumbs);
-
     if(thumbs){
         thumbs.forEach(function(thumb, i){
             createRow(thumb);
@@ -103,6 +122,7 @@
     }
 
     Dropzone.autoDiscover = false;
+    
 
     $(document).on('ready', function(){
         
@@ -114,13 +134,28 @@
             $('#upload').show();
             return false;
         });
-        console.log(thumbs)
         var last = thumbs.length;
         var i = 0;
 
         $('.add-media').on('click', function(e){
             e.preventDefault();
+            var data = {
+                widget_id: {!! $widget->id !!},
+                source: '',
+                title: '',
+                subtitle: '',
+                description: '',
+                link: '',
+                type: 'image',
+                position: last + 1,
+
+            };
+
             
+            saveMedia(data, function(response){
+                console.log(response);
+                createRow(response);
+            })
             
             return false;
         });
@@ -139,10 +174,9 @@
             description: $('#description'+id).val(),
             link: $('#link'+id).val(),
             link_target: $('#link_target'+id).val(),
-            type: $('#source'+id).data('type')
+            type: $('#source'+id).data('type'),
+            position: $('#position'+id).data('position')
         }
-
-        console.log(data);
 
         saveMedia(data);
         return false;
@@ -154,7 +188,7 @@
         var id = $(this).data('id');
         if(id){
             $.ajax({
-                url: '../media/' + id,   // '/panel/widgets/media/' + id,
+                url: '{{ url("/panel/widgets/media") }}/' + id,   // '/panel/widgets/media/' + id,
                 type: 'DELETE',
                 success: function(result) {
                     $(self).parent().parent().parent().remove();
@@ -170,7 +204,8 @@
     });
 
     function createRow(data){
-        
+
+        console.log(data);
         var title = '';
         var thumb = '';
         var link = '';
@@ -189,7 +224,7 @@
 
             title = `<strong>Tamaño sugerido</strong><br>
                     <span>${widget_type.size.width}px x ${widget_type.size.height}px</span> `;
-            linkUrl = data.link
+            linkUrl = data.link ? data.link : '';
 
         }else {
             if(data.link){
@@ -197,9 +232,7 @@
                 linkUrl = data.link;
                 title = `<strong>Video</strong><br>
                         <span></span> `;
-                
-                //https://www.youtube.com/embed/BxKCX-UvPrI
-                console.log(data)
+
                 if(data.link.includes("watch?v=")){
                     url = data.link.split('watch?v=');
                     url = url[url.length - 1];
@@ -219,9 +252,7 @@
         var subtitle = (widget_type.type === 'video') ? `<input type="text" name="media[${data.id}][subtitle]" placeholder="Subtitulo" class="form-control media_input" id="subtitle${data.id}" value="${data.subtitle ? data.subtitle : ''}">` : '';
 
 
-        console.log(widget_type.type, data.type);
-        $("#media").find('tbody')
-        .append(`<tr class="media-source" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
+        var row = $(`<tr class="media-source" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
                 <td class="drag ${stat}"><i class="icon-list"></i></td>
                 <td width="200" style="text-align:center">
                     <div class="sugested-size">
@@ -233,7 +264,7 @@
 
                 </td>
                 <td>
-                    <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position">
+                    <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position" id="position${data.position}">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
                     ${subtitle}
                     <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control note-editor media_input">${data.description ? data.description : ''}</textarea>
@@ -250,20 +281,8 @@
                     </div>
 
                 </td>
-                
-            </tr>`);
-
-            if(data.type === 'image'){
-                createDrop('#drop'+data.id, data);
-            }
-    }
-
-    /*
-    <td width="200">
+                <td width="200">
                     <div class="btn-group">
-                        <a href="#" class="save-media" data-id="${data.id}">
-                            <i class="icon-plus"></i> Guardar 
-                        </a>
                         <a href="#" 
                             class="delete-media"
                             data-id="${ data.id }">
@@ -271,17 +290,24 @@
                         </a>
                     </div>
                 </td>
+                
+            </tr>`);
 
-                */
+            $( row ).insertBefore( $( ".last-row" ) );
+
+            console.log(row);
+
+            if(data.type === 'image'){
+                createDrop('#drop'+data.id, data);
+            }
+    }
 
     function saveMedia(data, callback){
         $.ajax({
-            url: '../media',  // /panel/widgets/media
+            url: '{{ route("admin.widgets.media.store") }}',  // /panel/widgets/media
             type: 'POST',
             data: data,
             success: callback ? callback : function(response){
-                console.log(data);
-                console.log(response);
                 $("#source"+data.id).data('url', data.source) 
             },
             error: function(error){
@@ -291,8 +317,9 @@
     }
 
     function createDrop(el, data){
+        console.log(el);
         var drop = new Dropzone(el, {
-            url: '../media',  // /panel/widgets/media
+            url: '{{ route("admin.widgets.media.store") }}',  // /panel/widgets/media
             'paramName': data.type,
             'maxFiles': 1,
             'addRemoveLinks': true,
@@ -356,7 +383,6 @@
         drop.on("success", function(response) {
             var m = $.parseJSON(response.xhr.response);
             $('#source'+m.id).data('url', m.source);
-            console.log($('#source'+m.id).data('url'));
             $('#source'+m.id).find('.source-input').val(m.source)
             
             $('.dz-progress').hide();
@@ -364,7 +390,6 @@
 
         drop.on("removedfile", function(e) {
             $('#source'+e.id).data('source', '');
-            console.log($('#source'+e.id).data('source'));
         });
 
         return drop;
@@ -376,7 +401,7 @@
             $( "#sortable" ).disableSelection();
 
             $( "#sortable" ).sortable({
-                items: '.drag:not(.static)',
+                items: '>tr',
                 update: function( e, index) {
                     var mi_id = $(e.target).find('.id').val();
                     var list = [];

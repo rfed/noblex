@@ -6,6 +6,8 @@ interface WidgetInterface
 {
 	public function getAll();
 
+	public function getWidgets();
+
 	public function findById($id);
 
 	public function store($request);
@@ -13,4 +15,8 @@ interface WidgetInterface
 	public function update($request, $id);
 
 	public function destroy($id);
+
+	public function slider();
+
+	public function home();
 }
