@@ -2,12 +2,21 @@
 
 namespace Noblex\Http\Controllers\Admin;
 
-use Noblex\AttributeGroup;
+use Noblex\Group;
 use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
+use Noblex\Repositories\Interfaces\GroupInterface;
 
-class AttributeGroupController extends Controller
+class GroupController extends Controller
 {
+    private $group;
+
+    public function __construct(GroupInterface $group)
+    {
+        $this->middleware('auth');
+        $this->group = $group;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,9 @@ class AttributeGroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = $this->group->getAll();
+
+        return view('admin.pages.groups.index', compact("groups")); 
     }
 
     /**
@@ -25,7 +36,7 @@ class AttributeGroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.groups.create');
     }
 
     /**
@@ -36,18 +47,7 @@ class AttributeGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Noblex\Attribute  $attribute
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Attribute $attribute)
-    {
-        //
+        return $this->group->store($request);
     }
 
     /**
@@ -56,9 +56,11 @@ class AttributeGroupController extends Controller
      * @param  \Noblex\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function edit(Attribute $attribute)
+    public function edit($id)
     {
-        //
+        $group = $this->group->findById($id);
+
+        return view('admin.pages.groups.edit', compact("group"));
     }
 
     /**
@@ -68,9 +70,11 @@ class AttributeGroupController extends Controller
      * @param  \Noblex\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attribute $attribute)
+    public function update(Request $request, $id)
     {
-        //
+        $this->group->update($request, $id);        
+
+        return redirect('panel/groups')->with('success', 'Grupo editado correctamente.');
     }
 
     /**
@@ -79,8 +83,10 @@ class AttributeGroupController extends Controller
      * @param  \Noblex\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attribute $attribute)
+    public function destroy($id)
     {
-        //
+        $this->group->destroy($id);
+
+        return redirect()->route('admin.groups.index')->with('danger', 'Grupo eliminado correctamente.');
     }
 }

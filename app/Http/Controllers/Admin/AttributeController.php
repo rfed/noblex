@@ -3,11 +3,21 @@
 namespace Noblex\Http\Controllers\Admin;
 
 use Noblex\Attribute;
+use Noblex\Group;
 use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
+use Noblex\Repositories\Interfaces\AttributeInterface;
 
 class AttributeController extends Controller
 {
+    private $attribute;
+
+    public function __construct(AttributeInterface $attribute)
+    {
+        $this->middleware('auth');
+        $this->attribute = $attribute;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        //
+        $attributes = $this->attribute->getAll();
+
+        return view('admin.pages.attributes.index', compact("attributes")); 
     }
 
     /**
@@ -25,7 +37,9 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        //
+        $groups = Group::orderBy('name')->get();
+        
+        return view('admin.pages.attributes.create', compact("groups"));
     }
 
     /**
@@ -36,18 +50,7 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Noblex\Attribute  $attribute
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Attribute $attribute)
-    {
-        //
+        return $this->attribute->store($request);
     }
 
     /**
@@ -56,9 +59,12 @@ class AttributeController extends Controller
      * @param  \Noblex\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function edit(Attribute $attribute)
+    public function edit($id)
     {
-        //
+        $attribute = $this->attribute->findById($id);
+        $groups = Group::orderBy('name')->get();
+
+        return view('admin.pages.attributes.edit', compact("attribute", "groups"));
     }
 
     /**
@@ -68,9 +74,11 @@ class AttributeController extends Controller
      * @param  \Noblex\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attribute $attribute)
+    public function update(Request $request, $id)
     {
-        //
+        $this->attribute->update($request, $id);        
+
+        return redirect('panel/attributes')->with('success', 'Grupo editado correctamente.');
     }
 
     /**
@@ -79,8 +87,10 @@ class AttributeController extends Controller
      * @param  \Noblex\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attribute $attribute)
+    public function destroy($id)
     {
-        //
+        $this->attribute->destroy($id);
+
+        return redirect()->route('admin.attributes.index')->with('danger', 'Grupo eliminado correctamente.');
     }
 }
