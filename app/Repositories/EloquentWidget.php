@@ -76,6 +76,15 @@ class EloquentWidget implements WidgetInterface
 					'position' => $i + 1
 				]);
 			}
+		}else{
+			$type = \Config::get('widgets.types')[$widget->type];
+			for($i = 0; $i < $type['files']; $i++){
+				WidgetMedia::create([
+					'widget_id' => $widget->id,
+					'type' => $type['mime'],
+					'position' => $i
+				]);
+			}
 		}
 
 		return $widget;
