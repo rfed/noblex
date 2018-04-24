@@ -375,7 +375,7 @@ CREATE TABLE `products_media` (
  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
  `product_id` int(10) unsigned NOT NULL,
  `source` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
- `type` enum('image_desktop','image_thumb','image_background','document') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image_desktop',
+ `type` enum('image', 'image_featured', 'image_featured_background', 'image_thumb', 'document') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image',
  `featured` tinyint(1) NOT NULL DEFAULT '0',
  `position` int(10) unsigned NOT NULL,
  `created_at` timestamp NULL DEFAULT NULL,

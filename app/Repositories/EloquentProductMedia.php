@@ -14,24 +14,31 @@ class EloquentProductMedia
             $productMedia = new ProductMedia;
             $productMedia->product_id = $product;
 
+            if(!empty(request()->file('image_featured'))) {
+                $file = request()->file('image_featured')->store('productos', 'public');
+
+                $productMedia->type = 'image_featured';
+                $productMedia->source = $file;
+            }
+
+            if(!empty(request()->file('image_featured_background'))) {
+                $file = request()->file('image_featured_background')->store('productos', 'public');
+
+                $productMedia->type = 'image_featured_background';
+                $productMedia->source = $file;
+            }
+
             if(!empty(request()->file('image'))) {
                 $file = request()->file('image')->store('productos', 'public');
 
+                $productMedia->type = 'image';
                 $productMedia->source = $file;
             }
 
-            if(!empty(request()->file('featured_image_desktop'))) {
-                $file = request()->file('featured_image_desktop')->store('productos', 'public');
+            if(!empty(request()->file('image_thumb'))) {
+                $file = request()->file('image_thumb')->store('productos', 'public');
 
-                $productMedia->featured = 1;
-                $productMedia->source = $file;
-            }
-
-            if(!empty(request()->file('featured_image_mobile'))) {
-                $file = request()->file('featured_image_mobile')->store('productos', 'public');
-
-                $productMedia->type = 'image_mobile';
-                $productMedia->featured = 1;
+                $productMedia->type = 'image_thumb';
                 $productMedia->source = $file;
             }
 
