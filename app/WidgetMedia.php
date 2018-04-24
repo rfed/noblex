@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WidgetMedia extends Model
 {
 	public $timestamps = false;
-	protected $fillable = ['widget_id', 'source', 'type', 'position', 'title', 'description', 'link'];
+	protected $fillable = ['widget_id', 'source', 'type', 'position', 'title', 'description', 'link', 'subtitle'];
 	protected $table = 'widgets_media';
 
 	public function linkUrl(){

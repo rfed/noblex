@@ -18,7 +18,9 @@
                     <div class="full_block">
                         <p class="strong"><strong>{{ $media->title }}</strong></p>
 
-                       {!! $media->description !!}
+                        <p>{{ $media->subtitle }}</p>
+
+                       <span>{{ $media->description }}</span>
                     </div>
                 </div>
             </div>

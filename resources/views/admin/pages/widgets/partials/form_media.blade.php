@@ -85,6 +85,7 @@
             widget_id: {!! $thumb->widget_id !!},
             source: '{!! $thumb->source !!}',
             title: '{!! $thumb->title !!}',
+            subtitle: '{{ $thumb->subtitle }}',
             description: '{!! $thumb->description !!}',
             link: '{!! $thumb->link !!}',
             type: '{!! $thumb->type !!}',
@@ -105,7 +106,7 @@
 
     $(document).on('ready', function(){
         
-        $('.note-editor').summernote();
+        //$('.note-editor').summernote();
 
         $('.change-video').on('click', function(e){
             e.preventDefault();
@@ -134,6 +135,7 @@
             widget_id: '{{ $widget->id }}',
             id: id,
             title: $('#title'+id).val(),
+            subtitle: $('#subtitle'+id).val(),
             description: $('#description'+id).val(),
             link: $('#link'+id).val(),
             link_target: $('#link_target'+id).val(),
@@ -213,6 +215,10 @@
         }
 
         var stat = (widget_type.type === 'image' && data.type === 'image') ? 'static' : '';
+        
+        var subtitle = (widget_type.type === 'video') ? `<input type="text" name="media[${data.id}][subtitle]" placeholder="Subtitulo" class="form-control media_input" id="subtitle${data.id}" value="${data.subtitle ? data.subtitle : ''}">` : '';
+
+
         console.log(widget_type.type, data.type);
         $("#media").find('tbody')
         .append(`<tr class="media-source" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
@@ -229,6 +235,7 @@
                 <td>
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
+                    ${subtitle}
                     <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control note-editor media_input">${data.description ? data.description : ''}</textarea>
                     <div class="row">
                         <div class="col-md-4">
