@@ -5,10 +5,12 @@
             <span class="sr-only">volver arriba</span>
         </a>
 
+        <!--
         <a href="#" class="btn_chat">
             <span class="fa fa-comment-dots"></span>
             <span class="sr-only">Chat online</span>
         </a>
+        -->
     </div>
 
     <div class="container">
