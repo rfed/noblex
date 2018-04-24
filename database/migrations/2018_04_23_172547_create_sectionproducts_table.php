@@ -16,11 +16,11 @@ class CreateSectionproductsTable extends Migration
         Schema::create('sectionproducts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->string('title');
-            $table->text('subtitle');
-            $table->text('description');
-            $table->string('source', 500);
-            $table->string('alignment');
+            $table->string('title')->nullable();
+            $table->text('subtitle')->nullable();
+            $table->text('description')->nullable();
+            $table->string('source', 500)->nullable();
+            $table->string('alignment')->nullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');

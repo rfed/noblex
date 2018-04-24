@@ -67,6 +67,7 @@ $(function() {
 		init: function() {
 			myDropzone = this;
 
+			// Esto hace un post al metodo 'sectionUplaod' y responseText es lo que devuelve el metodo, en este caso el nombre de la imagen encriptada por laravel y guardada en el storage.
 			this.on("success", function (file, responseText) {
 		        $("input[name='image']").val(responseText);
 		        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });

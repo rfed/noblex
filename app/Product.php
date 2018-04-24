@@ -7,6 +7,7 @@ use Noblex\Brand;
 use Noblex\Category;
 use Noblex\Feature;
 use Noblex\ProductMedia;
+use Noblex\ProductSection;
 use Noblex\Relatedproduct;
 
 class Product extends Model
@@ -41,5 +42,10 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function sectionproducts()
+    {
+        return $this->hasMany(ProductSection::class);
     }
 }
