@@ -391,7 +391,6 @@
                     myDrop.emit("thumbnail", mockFile, source);
 
                     myDrop.files.push(mockFile);
-                    //$('.image-count').html("Agregar " + maxFiles );
                 }
             }
         });

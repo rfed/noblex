@@ -56,13 +56,15 @@ class ProductMediaController extends Controller
     }
 
 
-    public function destroy(Request $request, ProductMedia $productMedia)
+    public function destroy($prod, $id)
     {
-        if($request->ajax())
+        if(request()->ajax())
         {
-            //$contenido = Storage::url($request->file('image'));
+            
+            //$img = Storage::url($request->file('image'));
+            $media = ProductMedia::destroy($id);
             //$request->name = request()->file('image')->store('public');
-            return $request;
+            return $media;
         }
     }
 }

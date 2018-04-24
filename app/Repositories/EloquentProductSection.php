@@ -3,7 +3,6 @@
 namespace Noblex\Repositories;
 
 use Noblex\ProductSection;
-use Noblex\Repositories\EloquentProductSection;
 
 class EloquentProductSection
 {
@@ -19,7 +18,7 @@ class EloquentProductSection
         $productSection->title = $request->title;
         $productSection->subtitle = $request->subtitle;
         $productSection->description = $request->description;
-        $productSection->alignment = $request->alignment
+        $productSection->alignment = $request->alignment;
         $productSection->source = $request->image;
                 
         $productSection->save();
