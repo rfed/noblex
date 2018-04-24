@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnHomeToWidget extends Migration
+class AddFieldSubtitleToWidgetsMedia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddColumnHomeToWidget extends Migration
      */
     public function up()
     {
-        // Schema::table('widgets', function (Blueprint $table) {
-        //     $table->boolean('home')->default(0);
-        // });
+        \Schema::table('widgets_media', function (Blueprint $table) {
+            $table->string('subtitle', 200);
+        });
     }
 
     /**

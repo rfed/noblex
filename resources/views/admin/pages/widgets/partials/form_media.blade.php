@@ -1,5 +1,6 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('admin/assets/pages/widgets/dropzone/dropzone.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/global/plugins/summernote/dist/summernote.css') }}">
     
     <style>
 
@@ -42,9 +43,9 @@
     <table id="media" class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
+                <th width=""></th>
                 <th width="">Media</th>
                 <th width="">Detalles</th>
-                <th width=""></th>
             </tr>
         </thead>
 
@@ -57,6 +58,9 @@
 @push('scripts')
 <script src="{{ asset('admin/assets/pages/widgets/dropzone/dropzone.js') }}"></script>
 <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    </script>
+<script src="{{ asset('admin/assets/global/plugins/summernote/dist/summernote.min.js') }}"></script>
+
 <script>
 
     $.ajaxSetup({
@@ -64,14 +68,33 @@
     });
 
     var widget_id = '{{ @$widget->id }}';
-    var thumbs = '{!! $widget->getMediaSorted()->toJson() !!}';
-    thumbs = thumbs ? $.parseJSON(thumbs) : null;
+    
     var types = $.parseJSON('{!! json_encode(\Config::get("widgets.types")) !!}');
 
-    
-
     var widget_type = types[{{ $widget->type }}];
-    var maxFiles = thumbs.length > 0 ? widget_type.files - thumbs.length : widget_type.files;
+    
+    //var t = '{!! $widget->getMediaSorted()->toJson() !!}';
+    //t.replace(/<br\s*\/?>/mg,"\n");
+    //console.log(t);
+
+    var thumbs = [];
+
+    @foreach($widget->getMediaSorted() as $thumb)
+        thumbs.push({
+            id: {!! $thumb->id !!},
+            widget_id: {!! $thumb->widget_id !!},
+            source: '{!! $thumb->source !!}',
+            title: '{!! $thumb->title !!}',
+            subtitle: '{{ $thumb->subtitle }}',
+            description: '{!! $thumb->description !!}',
+            link: '{!! $thumb->link !!}',
+            type: '{!! $thumb->type !!}',
+            position: '{!! $thumb->position !!}',
+
+        });   
+    @endforeach
+
+    console.log(thumbs);
 
     if(thumbs){
         thumbs.forEach(function(thumb, i){
@@ -83,6 +106,8 @@
 
     $(document).on('ready', function(){
         
+        //$('.note-editor').summernote();
+
         $('.change-video').on('click', function(e){
             e.preventDefault();
             $('#preview').hide();
@@ -107,15 +132,17 @@
         e.preventDefault();
         var id = $(this).data('id');
         var data = {
-            widget_id: {{ $widget->id }},
+            widget_id: '{{ $widget->id }}',
             id: id,
             title: $('#title'+id).val(),
+            subtitle: $('#subtitle'+id).val(),
             description: $('#description'+id).val(),
             link: $('#link'+id).val(),
             link_target: $('#link_target'+id).val(),
-            type: $('#source'+id).data('type'),
-            
+            type: $('#source'+id).data('type')
         }
+
+        console.log(data);
 
         saveMedia(data);
         return false;
@@ -162,6 +189,7 @@
 
             title = `<strong>Tamaño sugerido</strong><br>
                     <span>${widget_type.size.width}px x ${widget_type.size.height}px</span> `;
+            linkUrl = data.link
 
         }else {
             if(data.link){
@@ -171,7 +199,7 @@
                         <span></span> `;
                 
                 //https://www.youtube.com/embed/BxKCX-UvPrI
-
+                console.log(data)
                 if(data.link.includes("watch?v=")){
                     url = data.link.split('watch?v=');
                     url = url[url.length - 1];
@@ -184,28 +212,31 @@
 
                 thumb = `<iframe src="${ url }" type="" width="160" height="110" frameborder="0" allowfullscreen="" class="iframe-class" data-html5-parameter=""></iframe>`;
             }
-
-             
-           
         }
 
         var stat = (widget_type.type === 'image' && data.type === 'image') ? 'static' : '';
+        
+        var subtitle = (widget_type.type === 'video') ? `<input type="text" name="media[${data.id}][subtitle]" placeholder="Subtitulo" class="form-control media_input" id="subtitle${data.id}" value="${data.subtitle ? data.subtitle : ''}">` : '';
+
+
         console.log(widget_type.type, data.type);
         $("#media").find('tbody')
-        .append(`<tr class="media-source ${stat}" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
+        .append(`<tr class="media-source" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
+                <td class="drag ${stat}"><i class="icon-list"></i></td>
                 <td width="200" style="text-align:center">
                     <div class="sugested-size">
                         ${title}
                     </div>
                     <div style="width: 200px;" id="drop${data.id}" class="dropzone" data-type="${data.type}">${ thumb }</div>
 
-                    <input type="hidden" name="media[${data.id}][source]" value="${ data.source ? data.source : '' }" data-type="${ widget_type.type }">
+                    <input type="hidden" name="media[${data.id}][source]" value="${ data.source ? data.source : '' }" data-type="${ widget_type.type }" class="source-input">
 
                 </td>
                 <td>
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
-                    <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control media_input">${data.description ? data.description : ''}</textarea>
+                    ${subtitle}
+                    <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control note-editor media_input">${data.description ? data.description : ''}</textarea>
                     <div class="row">
                         <div class="col-md-4">
                         <select name="media[${data.id}][link_target]" class="form-control media_input" id="link_target${data.id}">
@@ -219,7 +250,16 @@
                     </div>
 
                 </td>
-                <td width="200">
+                
+            </tr>`);
+
+            if(data.type === 'image'){
+                createDrop('#drop'+data.id, data);
+            }
+    }
+
+    /*
+    <td width="200">
                     <div class="btn-group">
                         <a href="#" class="save-media" data-id="${data.id}">
                             <i class="icon-plus"></i> Guardar 
@@ -231,12 +271,8 @@
                         </a>
                     </div>
                 </td>
-            </tr>`);
 
-            if(data.type === 'image'){
-                createDrop('#drop'+data.id, data);
-            }
-    }
+                */
 
     function saveMedia(data, callback){
         $.ajax({
@@ -246,7 +282,7 @@
             success: callback ? callback : function(response){
                 console.log(data);
                 console.log(response);
-                $("#source"+data).data('url', data.source) 
+                $("#source"+data.id).data('url', data.source) 
             },
             error: function(error){
                 console.log(error);
@@ -319,7 +355,10 @@
 
         drop.on("success", function(response) {
             var m = $.parseJSON(response.xhr.response);
-            $('#source'+m.id).data('source', m.source);
+            $('#source'+m.id).data('url', m.source);
+            console.log($('#source'+m.id).data('url'));
+            $('#source'+m.id).find('.source-input').val(m.source)
+            
             $('.dz-progress').hide();
         });
 
@@ -333,31 +372,33 @@
 
     $( function() {
 			
-        $( "#sortable" ).disableSelection();
+       if(thumbs.length > 1){
+            $( "#sortable" ).disableSelection();
 
-        $( "#sortable" ).sortable({
-            items: 'tr:not(.static)',
-            update: function( e, index) {
-                var mi_id = $(e.target).find('.id').val();
-                var list = [];
+            $( "#sortable" ).sortable({
+                items: '.drag:not(.static)',
+                update: function( e, index) {
+                    var mi_id = $(e.target).find('.id').val();
+                    var list = [];
 
-                $.each($("#sortable tr"), function(i, el){
-                    var pos = $(el).index();
-                    var el_id = $(el).find('.position').val(pos);
-                })
-                // $.ajax({
-                //     url: '/panel/widgets/orden',
-                //     type: 'post',
-                //     data: {widgets:list},
-                //     success: function(result) {
-                //         console.log(result);
-                //     },
-                //     error: function(error){
-                //         console.log(error);
-                //     }
-                // });
-            }
-        });
+                    $.each($("#sortable tr"), function(i, el){
+                        var pos = $(el).index();
+                        var el_id = $(el).find('.position').val(pos);
+                    })
+                    // $.ajax({
+                    //     url: '/panel/widgets/orden',
+                    //     type: 'post',
+                    //     data: {widgets:list},
+                    //     success: function(result) {
+                    //         console.log(result);
+                    //     },
+                    //     error: function(error){
+                    //         console.log(error);
+                    //     }
+                    // });
+                }
+            });
+       }
     } );
 </script>
 @endpush
