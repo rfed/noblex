@@ -34,6 +34,7 @@ Route::group([
 		'names' => 'admin.categorias'
 	]);
 	Route::post('categorias/orden', 'Admin\CategoryController@sort');
+	Route::post('categorias/categoriasUpload', 'Admin\CategoryController@upload')->name('admin.categories.upload.store');
 
 
 	// Marcas
@@ -96,5 +97,6 @@ Route::group([
 });
 
 Route::get('/', 'Front\HomeController@index')->name('home');
-
 Route::get('/productos', 'Front\ProductController@index')->name('productos');
+Route::get('/{slug}', 'Front\CategoryController@index')->name('categoria');
+Route::get('/{slug1}/{slug2}', 'Front\CategoryController@subcategory')->name('categoria');

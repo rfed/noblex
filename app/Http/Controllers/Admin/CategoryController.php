@@ -4,6 +4,7 @@ namespace Noblex\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Noblex\Category;
+use Noblex\Feature;
 use Noblex\Http\Controllers\Controller;
 use Noblex\Repositories\Interfaces\CategoryInterface;
 
@@ -69,13 +70,21 @@ class CategoryController extends Controller
     }
 
 
+    public function upload(Request $request)
+    {
+        return $this->category->upload($request);
+    }
+
     public function edit(Request $request, $id)
     {
         $categoria = $this->category->findById($id);
         $root_id = $categoria->root_id;
         $parentCategory = Category::find($root_id);
         $products = $categoria->products->pluck('id', 'name');
-        return view('admin.pages.categories.edit', compact("categoria", "root_id", "parentCategory", "products"));
+        $features = Feature::orderBy('name')->get();
+        $categoryFeatures = $categoria->features->pluck('id')->toArray();
+
+        return view('admin.pages.categories.edit', compact("categoria", "root_id", "parentCategory", "products", "features", "categoryFeatures"));
     }
 
 

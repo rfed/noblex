@@ -1,6 +1,6 @@
 @include('front.includes.head')
 
-<body>
+<body id="{{ @$page_id }}">
 
 	@include('front.includes.menu')
 

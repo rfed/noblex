@@ -53,7 +53,9 @@ class FeatureController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $this->feature->update($request, $id);        
+
+        return redirect('panel/features')->with('success', 'Feature editado correctamente.');
     }
 
 

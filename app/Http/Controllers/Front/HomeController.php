@@ -25,7 +25,8 @@ class HomeController extends FrontController
      */
     public function index()
     {
+        $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
         $widgets = Widget::getHome();
-        return view('front.pages.home', compact('widgets'));
+        return view('front.pages.home', compact('widgets', 'breadcrumbs'));
     }
 }

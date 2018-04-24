@@ -17,6 +17,34 @@
 			</div>
 		</div>
 
+		<div class="form-group {{ $errors->first('title') ? 'has-error' : '' }}">
+			{!! Form::label('title', 'Titulo', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				{!! Form::text('title', null, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Titulo', 'autocomplete' => 'off']) !!}
+				{!! $errors->first('title', '<span class="help-block"> :message </span>') !!}
+			</div>
+		</div>
+
+		<div class="form-group description {{ $errors->first('description') ? 'has-error' : '' }}">
+			{!! Form::label('description', 'Descripción', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				{!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description', 'rows' => 3]) !!}
+				{!! $errors->first('description', '<span class="help-block"> :message </span>') !!}
+				<span class="help-block msg"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+  		 	<label for="image" class="control-label col-md-3">Imagen<br/><small>JPG/PNG 1140x433px</small>
+  		 		<br/><br/>
+  		 		<button type="button" id="loader" class="btn btn-primary">Examinar</button>
+  		 	</label>
+  		 	<div class="col-md-9">
+  	    		<div id="image" class="dropzone">
+  	    		</div>
+  	    	</div>
+  		</div>
+
 		<div class="form-group">
 			{!! Form::label('visible', 'Visible', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
@@ -31,10 +59,6 @@
 			</div>
 		</div>
 
-		<!-- <div class="form-group">
-		  		 	{!! Form::label('image', 'Imagen', ['class' => 'control-label col-md-3']) !!}
-		  		 	<div class="col-md-3">
-		  	    		<div id="image" class="dropzone"></div>
-		  	    	</div>
-		  		</div> -->
+		{!! Form::hidden('image', null, ['id' => 'currentImage']) !!}
+
 	</div>

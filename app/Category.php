@@ -9,7 +9,7 @@ use Noblex\Widget;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu', 'position'];
+    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu', 'position', 'title', 'description'];
 
 	public function setNameAttribute($name)
 	{
@@ -33,6 +33,10 @@ class Category extends Model
 	{
 		return $this->belongsTo(Product::class, 'feautured_product', 'sku');
 	}
+
+	public function features(){
+		return $this->belongsToMany(Feature::class);
+	}	
 
 	public function products()
 	{

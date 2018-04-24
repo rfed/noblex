@@ -34,4 +34,5 @@
 
 @push('scripts')
 	<script src="{{ asset('admin/assets/pages/features/dropzone/dropzone.js') }}"></script>
+	<script src="{{ asset('admin/assets/pages/features/dropzone/main.js') }}"></script>	
 @endpush

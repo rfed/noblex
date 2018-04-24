@@ -14,7 +14,7 @@
                     @foreach($menu_raiz->getChildsOrdered() as $cat)
                         @if($cat->visible)
                             <li>
-                                <a href="#" class="main-cat">{{ $cat->name }}</a>
+                                <a href="{{ url($cat->url) }}" class="main-cat">{{ $cat->name }}</a>
                                 <?php $childs = $cat->menuChilds(); ?>
                                 @if(count($childs))
 
@@ -31,7 +31,7 @@
                                                 @foreach($childs as $sub)
                                                     <ul>
                                                         <li>
-                                                            <a href="#" class="sub-cat">{{ $sub->name }}</a>
+                                                            <a href="{{ url($sub->url) }} class="sub-cat">{{ $sub->name }}</a>
                                                             <div class="cat-desc">
                                                                 @if($sub->feautured)
                                                                 <!-- CONTENIDO COLUMNA 2 -->
@@ -78,7 +78,22 @@
         <div class="block_menu_2">
 
             <!-- CUANDO EL USUARIO ESTÁ LOGUEADO -->
+            @guest
+            <div class="user">
+                <a href="#"><strong>Mi cuenta</strong></a>
 
+                <div class="submenu">
+                    <ul>
+                        <li>
+                            <a href="#">Ingresar</a>
+                        </li>
+                        <li>
+                            <a href="#">Registrarme</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            @else
             <div class="user">
                 <a href="#">Hola <strong>Juana María</strong></a>
 
@@ -93,31 +108,8 @@
                     </ul>
                 </div>
             </div>
-
+            @endif
             <!-- -->
-
-
-
-
-            <!-- CUANDO EL USUARIO NO ESTÁ LOGUEADO -->
-
-            <!-- <div class="user">
-                <a href="#"><strong>Mi cuenta</strong></a>
-
-                <div class="submenu">
-                    <ul>
-                        <li>
-                            <a href="#">Ingresar</a>
-                        </li>
-                        <li>
-                            <a href="#">Registrarme</a>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
-
-            <!-- FIN NO LOGUEADO -->
-
 
 
             <div class="search_box">
