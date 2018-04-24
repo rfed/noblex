@@ -1,5 +1,6 @@
-function subcategorias(value)
+function subcategorias(value, selected)
 {
+	console.log();
 	if(value != '')
 	{
 		$('#subcategory_id').find('option').not(':first').remove();
@@ -16,7 +17,7 @@ function subcategorias(value)
 			document.querySelector("#subcategory").style.display = 'block';
 
 			data.forEach(dato => {
-				$('<option value="'+dato.id+'">'+dato.name+'</option>').insertAfter('#subcategory_id option:first');
+				$('<option value="'+dato.id+'" '+ (selected && dato.id === selected ? 'selected' : '') + '>'+dato.name+'</option>').insertAfter('#subcategory_id option:first');
 			});
 
 		})

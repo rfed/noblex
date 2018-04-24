@@ -51,7 +51,8 @@
                                 |
                                 <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
                                 	data-id="{{ $producto->id }}"
-                                	data-name="{{ $producto->name }}">
+									data-name="{{ $producto->name }}"
+									data-url="{{ route('admin.productos.destroy', $producto->id) }}">
                                     <i class="icon-trash"></i> Eliminar 
                                 </a>
 	                            

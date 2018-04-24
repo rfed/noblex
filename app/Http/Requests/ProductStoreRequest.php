@@ -23,8 +23,9 @@ class ProductStoreRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'sku'               => 'required|max:30|unique:products,sku',
+            'sku'               => 'required_without:id|max:30|unique:products,sku,'.$this->id,
             'name'              => 'required|max:100',
             'brand_id'          => 'required',
             'category_id'       => 'required',

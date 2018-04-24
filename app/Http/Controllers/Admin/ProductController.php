@@ -55,22 +55,32 @@ class ProductController extends Controller
     {
         $producto = $this->product->findById($id);
         $categorias = $category->getAllDistinctRaiz();
+
+        $categoria = $producto->category ? $producto->category->root_id == 1 ? $producto->category : $producto->category->parent : null;
+
+        $subcategoria = $producto->category->root_id == 1 ? null : $producto->category;
+
         $brands = $brand->getAll();
         $productos = $this->product->getAll();
         $features = $feature->getAll();
 
-        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto"));
+        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria"));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ProductStoreRequest $request, $id)
     {
-        //
+        $product = $this->product->update($request, $id);
+
+        return redirect()->route('admin.productos.index');
     }
 
 
     public function destroy($id)
     {
-        //
+        $producto = $this->product->findById($id);
+        $producto->destroy($id);
+
+        return redirect()->route('admin.productos.index');
     }
 }

@@ -21,7 +21,7 @@
 							@include('admin.pages.products.partials.form')
 
 						</div>
-
+						{!! Form::hidden('id', $producto->id) !!}
 					{!! Form::close() !!}
 				<!-- END FORM-->
 				
@@ -33,4 +33,10 @@
 
 @push('scripts')
 	<script src="{{ asset('admin/assets/pages/productos/js/app.js') }}"></script>
+
+	<script>
+		@if(@$subcategoria)
+			subcategorias({{ $categoria->id }}, {{ $subcategoria->id}})
+		@endif
+	</script>
 @endpush

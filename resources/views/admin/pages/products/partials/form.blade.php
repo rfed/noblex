@@ -22,22 +22,22 @@
 				<option value="">Seleccione una marca</option>
 				
 				@foreach($brands as $brand)
-					<option value="{{ $brand->id }}" {{ old('brand_id') != $brand->id ?: 'selected' }}>{{ $brand->name }}</option>
+					<option value="{{ $brand->id }}" @if(@$producto->brand_id === $brand->id) selected @else {{ old('brand_id') != $brand->id ?: 'selected' }} @endif>{{ $brand->name }}</option>
 				@endforeach
 
 			</select>
 			{!! $errors->first('brand_id', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
-
+	
 	<div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}" id="category">
 		{!! Form::label('category', 'Categoria', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 			<select name="category_id" id="category_id" class="form-control" onchange="subcategorias(this.value);">
 				<option value="">Seleccione una categoría</option>
 				
-				@foreach($categorias as $categoria)
-					<option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
+				@foreach($categorias as $cat)
+					<option value="{{ $cat->id }}" @if(@$categoria->id == $cat->id) selected @endif>{{ $cat->name }}</option>
 				@endforeach
 
 			</select>
@@ -49,7 +49,7 @@
 		{!! Form::label('subcategory', 'Subcategoria', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 			<select name="subcategory_id" id="subcategory_id" class="form-control">
-				<option value="">Seleccione una Subcategoría</option>
+				<option value="" @if($categoria->id === @$producto->category_id) selected @endif>Seleccione una Subcategoría</option>
 			</select>
 		</div>
 	</div>
@@ -109,14 +109,14 @@
 	<div class="form-group">
 		{!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			{!! Form::checkbox('active', null, 0, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
+			{!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
 		</div>
 	</div>
 
 	<div class="form-group {{ $errors->first('featured') ? 'has-error' : '' }}">
 		{!! Form::label('featured', 'Destacado', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			{!! Form::checkbox('featured', null, 0, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'featured']) !!}
+			{!! Form::checkbox('featured', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'featured']) !!}
 			{!! $errors->first('featured', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
