@@ -61,18 +61,43 @@ class EloquentFeature implements FeatureInterface
 
 	public function upload($request) 
 	{
+		
 		return $request->file('image')->store('features', 'public');
 	}
 
 
 	public function update($request, $id) 
 	{
-		//
+		$feature = Feature::findOrFail($id);
+		$rules = array(
+			'name'        			=> 'required',
+			//'description'            => 'required'
+		);
+
+		$validator = Validator::make($request->all(), $rules);  // Validacion
+
+		if($validator->fails())
+		{
+			return \Response::json([
+				'errorValidation'  => $validator->errors()
+			]);
+		}
+
+		$data = $feature->update($request->all());
+
+		return \Response::json([
+				'data'  	=> $feature,
+				'redirect' 	=> '../features',
+				'message'	=> 'Feature agregada correctamente.'
+		]);
+
 	}
 
 
 	public function destroy($id) 
 	{
-		//
+		$feature = Feature::findOrFail($id);
+		$feature->delete();
+		return 'Ok';
 	}
 }
