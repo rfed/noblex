@@ -1,4 +1,8 @@
 
+@push('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fancybox-master/dist/jquery.fancybox.min.css') }}">
+@endpush
+
 <?php $media = $widget->media->first();?>
 <section>
 
@@ -8,13 +12,11 @@
             <div class="big product_box_link">
                 
                 @if(!empty($media->source))
-                    <a href="{{ $media->linkUrl() }}">
+                    <a href="{{ $media->linkUrl() }}" data-fancybox data-caption="Caption for single image">
                         <img src="{{ asset('storage/'.$media->source) }}" />
                     </a>
                 @else
-                    <a href="#">
-                        <img src="{!! LaravelVideoEmbed::getYoutubeThumbnail($media->linkUrl())  !!}" alt="{{ $media->title }}" />
-                    </a>
+                    {!! !empty($video->link) ? LaravelVideoEmbed::parse($video->linkUrl(),[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '213' ]) : '' !!}
                 @endif
                 <?php /*
                 <a href="#">
@@ -39,3 +41,8 @@
         @include('front.widgets.productos', $productos)
     @endif
 </section>
+
+
+@push('scripts')
+<script src="{{ asset('assets/fancybox-master/dist/jquery.fancybox.min.js') }}"></script>
+@endpush
