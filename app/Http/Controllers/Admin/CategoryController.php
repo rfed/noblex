@@ -97,4 +97,9 @@ class CategoryController extends Controller
 
         return redirect('panel/categorias/?root_id='.$categoria->root_id)->with('danger', 'Categoria eliminada correctamente.');
     }
+
+    public function sort(Request $request){
+        $this->category->sort($request);
+    }
+
 }

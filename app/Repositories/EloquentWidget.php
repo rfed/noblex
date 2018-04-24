@@ -46,13 +46,11 @@ class EloquentWidget implements WidgetInterface
 			'show_prods' 	=> 'nullable',
 			'features' 		=> 'nullable',
 			'position' 		=> 'nullable',
-			'home'			=> 'nullable'
 		]);
 		
 		$data['active'] = @$data['active'] == 'on' ?1:0;
 		$data['features'] = @$data['features'] == 'on' ?1:0;
 		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
-		$data['home'] = $data['home'] == 'on' ?1:0;
 		
 		if(!$data['position']){
 			$last = Widget::orderBy('position', 'desc')->first();
@@ -84,7 +82,6 @@ class EloquentWidget implements WidgetInterface
 		$data['active'] = @$data['active'] == 'on' ?1:0;
 		$data['features'] = @$data['features'] == 'on' ?1:0;
 		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
-		$data['home'] = @$data['home'] == 'on' ?1:0;
 
 		$widget = Widget::findOrFail($id);
 		

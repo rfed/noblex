@@ -11,9 +11,19 @@ class EloquentCategory implements CategoryInterface
 {
 	public function getAll($root_id=0) 
 	{
-		return Category::where('root_id', $root_id)->orderBy('id', 'DESC')->get();
+		return Category::where('root_id', $root_id)->orderBy('position', 'ASC')->get();
 	}
 
+    public function sort($request) 
+    {
+        if($request->ajax() && $request->get('categories'))
+        {
+            foreach($request->get('categories') as $data){
+                $category = Category::findOrFail($data['id']);
+                $category->update($data);
+            }
+        }
+    }
 
     public function getAllDistinctRaiz()
     {

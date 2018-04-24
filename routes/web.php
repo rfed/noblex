@@ -33,6 +33,7 @@ Route::group([
 	Route::resource('categorias', 'Admin\CategoryController', [
 		'names' => 'admin.categorias'
 	]);
+	Route::post('categorias/orden', 'Admin\CategoryController@sort');
 
 
 	// Marcas

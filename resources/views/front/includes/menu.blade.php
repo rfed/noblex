@@ -11,7 +11,7 @@
 
             <div class="menu">
                 <ul>
-                    @foreach($menu_raiz->childs as $cat)
+                    @foreach($menu_raiz->getChildsOrdered() as $cat)
                         @if($cat->visible)
                             <li>
                                 <a href="#" class="main-cat">{{ $cat->name }}</a>

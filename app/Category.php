@@ -9,7 +9,7 @@ use Noblex\Widget;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu'];
+    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu', 'position'];
 
 	public function setNameAttribute($name)
 	{
@@ -20,6 +20,10 @@ class Category extends Model
 	{
 		return $this->hasMany(Category::class, 'root_id', 'id');
 	}
+
+	public function getChildsOrdered(){
+        return $this->childs()->orderBy('position', 'asc')->get();
+	}	
 
 	public function menuChilds(){
 		return $this->childs->where('visible', 1)->where('menu', 1);
