@@ -9,22 +9,20 @@ class EloquentProductSection
 {
 	public function store($product, $request)
 	{
-        for($i = 1; $i<=4; $i++)
-        {
-            if($request->title[$i])
-            {
-                $productSection = new ProductSection;
-                $productSection->product_id = $product;
-
-                $productSection->title = $request->title[$i];
-                $productSection->subtitle = $request->subtitle[$i];
-                $productSection->description = $request->description[$i];
-                $productSection->alignment = $request->alignment[$i];
-                $productSection->source = $request->image[$i];
-                
-                $productSection->save();
-            }
+        $productSection = ProductSection::where('position', 1)->first();
+        if (!$productSection) {
+            $productSection = new ProductSection();
         }
+        
+        $productSection->product_id = $product;
+        
+        $productSection->title = $request->title;
+        $productSection->subtitle = $request->subtitle;
+        $productSection->description = $request->description;
+        $productSection->alignment = $request->alignment
+        $productSection->source = $request->image;
+                
+        $productSection->save();
 	}
 
     public function upload($product, $request)
