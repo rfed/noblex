@@ -77,6 +77,12 @@ Route::group([
 		'prefix' => 'productos'
 	], function() { 
 
+		Route::post('atributos', 'Admin\ProductController@atributos')->name('admin.productos.atributos');
+
+		Route::post('atributos/delete', 'Admin\ProductController@deleteAtributo')->name('admin.productos.atributos.delete');
+
+		Route::post('atributos/add', 'Admin\ProductController@addAtributos')->name('admin.productos.atributos.agregar');
+
 		Route::get('{product}/files/create', 'Admin\ProductMediaController@create')->name('admin.productos.files.create');
 		
 		Route::post('{product}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');

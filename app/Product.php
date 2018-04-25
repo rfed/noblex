@@ -4,6 +4,7 @@ namespace Noblex;
 
 use Illuminate\Database\Eloquent\Model;
 use Noblex\Brand;
+use Noblex\Attribute;
 use Noblex\Category;
 use Noblex\Feature;
 use Noblex\ProductMedia;
@@ -52,5 +53,27 @@ class Product extends Model
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'attribute_category_product', 'product_id', 'attribute_id');
+    }
+
+    public function attributesAll()
+    {
+        return $this->belongsToMany(Attribute::class, 'attribute_category_product', 'product_id', 'attribute_id')->withPivot('value');
+    }
+
+    public function attributesWithGroup()
+    {
+        $atts = $this->attributes()->whereNotNull('attributegroup_id')->orderBy('attributegroup_id', 'asc')->withPivot('value','id')->get();
+        $_arr = [];
+        foreach($atts as $k => $att){
+            $_arr[$att->group->id]['group'] = $att->group;
+            $_arr[$att->group->id]['attributes'][] = $att;
+        }
+
+        return $_arr;
+    }
+
+    public function attributesWithoutGroup()
+    {
+        return $this->attributes()->select()->whereNull('attributegroup_id')->orderBy('attributegroup_id', 'asc')->withPivot('value','id')->get();
     }
 }

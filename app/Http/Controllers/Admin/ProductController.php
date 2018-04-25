@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Requests\ProductStoreRequest;
 use Noblex\Product;
+use Noblex\Attribute;
+use Noblex\Group;
 use Noblex\ProductMedia;
 use Noblex\Repositories\EloquentBrand;
 use Noblex\Repositories\EloquentCategory;
@@ -16,13 +18,13 @@ use Noblex\Repositories\Interfaces\AttributeInterface;
 class ProductController extends Controller
 {
     private $product;
-    private $atribute;
+    private $attribute;
 
-    public function __construct(ProductInterface $product, AttributeInterface $atribute)
+    public function __construct(ProductInterface $product, AttributeInterface $attribute)
     {
         $this->middleware('auth');
         $this->product = $product;
-        $this->atribute = $atribute;
+        $this->attribute = $attribute;
     }
 
 
@@ -68,24 +70,28 @@ class ProductController extends Controller
         $productos = $this->product->getAll();
         $features = $feature->getAll();
 
-        $attributes = $this->atribute->getAll();
+        $attributes = Attribute::whereNull('attributegroup_id')->whereNotIn('id', $producto->attributes->pluck('id'))->get();
+        
+        $groups = Attribute::DifferentbyGroup($producto->attributes->pluck('id'));
 
-        // $currentMedia = [];
-        // foreach ($producto->productsMedia as $media) {
-        //     switch ($media->type) {
-        //         case 'image_featured': 
-        //             $currentMedia['image_featured'] = $media->source;
-        //             break;
-        //         case 'image_featured_background': 
-        //             $currentMedia['image_featured_background'] = $media->source;
-        //             break;
-        //         case 'image_thumb': 
-        //             $currentMedia['image_thumb'] = $media->source;
-        //             break;
-        //     }
-        // }
+        $currentMedia = [];
+        foreach ($producto->productsMedia as $media) {
+            switch ($media->type) {
+                case 'image_featured': 
+                    $currentMedia['image_featured'] = $media->source;
+                    break;
+                case 'image_featured_background': 
+                    $currentMedia['image_featured_background'] = $media->source;
+                    break;
+                case 'image_thumb': 
+                    $currentMedia['image_thumb'] = $media->source;
+                    break;
+            }
+        }
 
-        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia", "sections", "attributes"));
+        $tab = request()->get('tab') ? request()->get('tab') : '';
+
+        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia", "sections", "attributes", "groups","tab"));
     }
 
 
@@ -103,5 +109,46 @@ class ProductController extends Controller
         $producto->destroy($id);
 
         return redirect()->route('admin.productos.index');
+    }
+
+    public function atributos(Request $request){
+        if($request->get('attributes')){
+            $product = Product::findOrFail($request->product_id);
+            $arr = [];
+            foreach($request->get('attributes') as $k => $att){
+                echo $att['id']."<br>";
+                \DB::table('attribute_category_product')
+                ->where('id', $att['id'])
+                ->update(['value' => $att['value']]);
+
+            }
+        }
+    }
+
+    public function deleteAtributo(Request $request){
+        
+        //$producto = $this->product->findById($request->producto_id);
+        //$producto->attributes()->detach($request->attribute_id);
+        \DB::table('attribute_category_product')
+        ->where('id', $request->attribute_id)
+        ->delete();
+
+        return response()->json(['status' => 'success']);
+    }
+
+    public function addAtributos(Request $request){
+        $producto = $this->product->findById($request->producto_id);
+        $attribute = Attribute::find($request->attribute_id);
+        $producto->attributes()->attach($attribute);
+        $attribute = $producto->attributes()->where('attribute_id',$request->attribute_id)->first();
+        if($request->ajax()){
+            return response()->json([
+                'group' => $attribute->group,
+                'attribute' => $attribute,
+                'view' => view('admin.pages.products.partials.attribute')->with(['attribute' => $attribute, 'value' => ''])->render()
+            ]);
+        }else{
+            return redirect('panel/productos/'.$producto->id.'/edit#attributes');
+        }
     }
 }

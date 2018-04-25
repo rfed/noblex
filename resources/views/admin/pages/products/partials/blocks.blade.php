@@ -5,18 +5,6 @@
 
 		$currentMedia = !empty($sections) && array_key_exists($i-1, $sections) ? $sections[$i - 1] : null;
 
-	
-		switch (@$currentMedia['type']) {
-			case 'image_featured': 
-				$currentMedia['image_featured'] = $media->source;
-				break;
-			case 'image_featured_background': 
-				$currentMedia['image_featured_background'] = $media->source;
-				break;
-			case 'image_thumb': 
-				$currentMedia['image_thumb'] = $media->source;
-				break;
-		}
 	?>
 
 	<div class="portlet box blue">

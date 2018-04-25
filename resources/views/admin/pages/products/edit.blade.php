@@ -5,19 +5,18 @@
 @endpush
 
 @section('content')
-
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-imagenes" data-toggle="tab">Imagenes</a></li>
-	<li><a href="#tab-bloques" data-toggle="tab">Bloques</a></li>
-	<li><a href="#tab-attributes" data-toggle="tab">Atributos</a></li>
+	<li class="{{ empty($tab) ? 'active' : '' }}"><a href="#tab-general" data-toggle="tab">General</a></li>
+	<li class="{{ !empty($tab) && $tab == "imagenes" ? 'active' : '' }}"><a href="#tab-imagenes" data-toggle="tab">Imagenes</a></li>
+	<li class="{{ !empty($tab) && $tab == "bloques" ? 'active' : '' }}"><a href="#tab-bloques" data-toggle="tab">Bloques</a></li>
+	<li class="{{ !empty($tab) && $tab == "attributes" ? 'active' : '' }}"><a href="#tab-attributes" data-toggle="tab">Atributos</a></li>
 </ul>
 
 {!! Form::model($producto, ['route' => ['admin.productos.update', $producto->id], 'class' => 'form-horizontal form-row-seperated', 'method' => 'PUT']) !!}
 
 <div class="tab-content">
 	
-	<div class="tab-pane" id="tab-general">
+	<div class="tab-pane {{ (empty($tab) || $tab == "") ? 'active' : '' }}" id="tab-general">
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -33,7 +32,7 @@
 		</div>
 	</div>
 
-	<div class="tab-pane" id="tab-imagenes">
+	<div class="tab-pane {{ (!empty($tab) && $tab == "imagenes") ? 'active' : '' }}" id="tab-imagenes">
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -49,11 +48,11 @@
 		</div>
 	</div>
 
-	<div class="tab-pane" id="tab-bloques">
+	<div class="tab-pane {{ (!empty($tab) && $tab == "bloques") ? 'active' : '' }}" id="tab-bloques">
 		@include('admin.pages.products.partials.blocks')
 	</div>
 
-	<div class="tab-pane active" id="tab-attributes">
+	<div class="tab-pane {{ (!empty($tab) && $tab == "attributes") ? 'active' : '' }}" id="tab-attributes">
 		@include('admin.pages.products.partials.attributes')
 	</div>
 </div>

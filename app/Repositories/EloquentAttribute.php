@@ -26,7 +26,6 @@ class EloquentAttribute implements AttributeInterface
 	{
 		$rules = array(
 			'name'					=> 'required',
-			'attributegroup_id'		=> 'required',
 		);
 
 		$validator = Validator::make($request->all(), $rules);  // Validacion
