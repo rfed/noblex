@@ -15,5 +15,7 @@
 	<!-- GOOGLE CAPTCHA -->
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 
+	<script type='text/javascript' src="https://s3.amazonaws.com/static.conversalab.com/bots/public/salesforcechat/conversalabWebchatSalesforceLauncher.js"></script>
+
 	@stack('styles')
 </head>

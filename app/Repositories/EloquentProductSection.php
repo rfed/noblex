@@ -31,6 +31,7 @@ class EloquentProductSection
         }
         $productSection->product_id = $product;
         
+        $productSection->position = $request->position;
         $productSection->title = $request->title;
         $productSection->subtitle = $request->subtitle;
         $productSection->description = $request->description;
