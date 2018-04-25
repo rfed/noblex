@@ -15,7 +15,7 @@
             <p class="title"><strong>{{ $producto->thumb->source }}</strong></p>
             <span class="description">{{ str_limit($producto->description, $limit = 100 , $end = '...') }}</span>
 
-            <button class="btn link">Comprar</button>
+            <button class="btn link" data-etailingcode="{{ $product->sku }}" data-etailingname="{{ $product->sku }}" data-etailingcat="{{ $product->category->name }}" onclick="etailing_btn_comprar(this);" class="btn link staggered-animation btn-responsive" data-os-animation-delay="1s">Comprar</button>            
         </a>
     </div>
     @endforeach
