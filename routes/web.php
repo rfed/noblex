@@ -80,8 +80,12 @@ Route::group([
 		Route::get('{product}/files/create', 'Admin\ProductMediaController@create')->name('admin.productos.files.create');
 		
 		Route::post('{product}/files', 'Admin\ProductMediaController@store')->name('admin.productos.files.store');
+		
+		Route::post('{product}/files/ordenar', 'Admin\ProductMediaController@ordenar')->name('admin.productos.section.ordenar');
 
 		Route::delete('{product}/files/{id}', 'Admin\ProductMediaController@destroy')->name('admin.productos.files.destroy');
+
+
 	});
 
 	// Productos modulo seccion
@@ -93,7 +97,6 @@ Route::group([
 
 		Route::post('{product}/section', 'Admin\ProductSectionController@store')->name('admin.productos.section.store');
 		
-		Route::post('{product}/section/ordenar', 'Admin\ProductSectionController@ordenar')->name('admin.productos.section.ordenar');
 
 		Route::delete('{product}/section/{id}', 'Admin\ProductSectionController@destroy')->name('admin.productos.section.destroy');
 		

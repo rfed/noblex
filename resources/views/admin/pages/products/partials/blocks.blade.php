@@ -58,7 +58,7 @@
 			  	<div class="form-group">
 			  		 	{!! Form::label("description".$i, "Descripcion", ["class" => "control-label col-md-3"]) !!}
 			  		 	<div class="col-md-9">
-						{!! Form::textarea("description[$i]", @$currentMedia['description'], ["class" => "form-control description".$i, "id" => "description[$i]", "autocomplete" => "off", "rows" => "4"]) !!}
+						{!! Form::textarea("section_description[$i]", @$currentMedia['description'], ["class" => "form-control description".$i, "id" => "description[$i]", "autocomplete" => "off", "rows" => "4"]) !!}
 					</div>
 			  	</div>
 			  	<div class="form-group">

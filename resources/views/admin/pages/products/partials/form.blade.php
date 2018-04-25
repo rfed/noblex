@@ -81,17 +81,9 @@
 	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
 		{!! Form::label('feature', 'Features', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			<select name="feature_product_id[]" class="selectpicker" multiple title="Seleccione los features" data-show-subtext="true" data-live-search="true" data-width="50%">
 
-				@foreach($features as $feature)
-					<option value="{{ $feature->id }}" 
-						@if( old("feature_product_id") ) 
-							{{ (in_array($feature->id, old("feature_product_id")) ? 'selected' : '') }}
-						@endif
-					>{{ $feature->name }}</option>
-				@endforeach
+			{!! Form::select("feature_product_id[]", $features->pluck('name', 'id') , $producto->features->pluck('id'), ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los features", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
 
-			</select>
 			{!! $errors->first('feature', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
@@ -99,17 +91,9 @@
 	<div class="form-group">
 		{!! Form::label('relatedproducts', 'Productos relacionados', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			<select name="product_relationship_id[]" class="selectpicker" multiple title="Seleccione los productos relacionados" data-show-subtext="true" data-live-search="true" data-width="50%">
 
-				@foreach($productos as $product)
-					<option value="{{ $product->id }}"
-						@if( old("product_relationship_id") ) 
-							{{ (in_array($product->id, old("product_relationship_id")) ? 'selected' : '') }}
-						@endif
-						>{{ $product->name }}</option>
-				@endforeach
-
-			</select>
+			{!! Form::select("product_relationship_id[]", $productos->pluck('name', 'id') , $producto->relatedproducts->pluck('id'), ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los productos relacionados", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
+				
 			{!! $errors->first('relatedproducts', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>

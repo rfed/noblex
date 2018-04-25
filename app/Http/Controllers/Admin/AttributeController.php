@@ -50,7 +50,11 @@ class AttributeController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->attribute->store($request);
+        $err = $this->attribute->store($request);
+        if($err){
+            return redirect('panel/attributes/create')->withErrors($err);
+        }
+        return redirect()->route('admin.attributes.index');
     }
 
     /**

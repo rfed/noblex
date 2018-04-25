@@ -16,7 +16,7 @@ class Product extends Model
 
     public function productsMedia()
     {
-    	return $this->hasMany(ProductMedia::class);
+    	return $this->hasMany(ProductMedia::class)->orderBy('position', 'asc');
     }
 
     public function featuredImg()

@@ -14,10 +14,12 @@
 			<div class="portlet-body form">
 
 				<!-- BEGIN FORM-->
-				<form action="" method="POST" id="formCreate" class="form-horizontal form-row-seperated" enctype="multipart/form-data">
+				{!! Form::open(['route' => 'admin.attributes.store', 'class' => 'form-horizontal form-row-seperated']) !!}
 					
 					@include('admin.pages.attributes.partials.form')
 
+
+				{!! Form::close() !!}
 				</form> 
 
 			

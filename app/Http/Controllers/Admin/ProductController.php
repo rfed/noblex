@@ -11,16 +11,18 @@ use Noblex\Repositories\EloquentBrand;
 use Noblex\Repositories\EloquentCategory;
 use Noblex\Repositories\EloquentFeature;
 use Noblex\Repositories\Interfaces\ProductInterface;
-
+use Noblex\Repositories\Interfaces\AttributeInterface;
 
 class ProductController extends Controller
 {
     private $product;
+    private $atribute;
 
-    public function __construct(ProductInterface $product)
+    public function __construct(ProductInterface $product, AttributeInterface $atribute)
     {
         $this->middleware('auth');
         $this->product = $product;
+        $this->atribute = $atribute;
     }
 
 
@@ -65,6 +67,10 @@ class ProductController extends Controller
         $brands = $brand->getAll();
         $productos = $this->product->getAll();
         $features = $feature->getAll();
+
+        $atributes = $this->atribute->getAll();
+
+        dd($atributes);
 
         // $currentMedia = [];
         // foreach ($producto->productsMedia as $media) {
