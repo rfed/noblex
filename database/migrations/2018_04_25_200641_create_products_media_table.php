@@ -17,8 +17,7 @@ class CreateProductsMediaTable extends Migration {
 			$table->increments('id');
 			$table->integer('product_id')->unsigned()->index('products_media_product_id_foreign');
 			$table->string('source', 500);
-			$table->enum('type', array('image','document','image_featured','image_featured_background','image_thumb'))->default('image');
-			$table->boolean('featured')->default(0);
+			$table->enum('type', array('image','image_featured','image_featured_background','image_thumb'))->default('image');
 			$table->integer('position')->unsigned();
 			$table->timestamps();
 		});
