@@ -87,6 +87,7 @@
 @push('scripts')
 	<script src="{{ asset('admin/assets/pages/productos/dropzone/dropzone.js') }}"></script>
 	
+    <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 	<script>	
 		
 		var arr_image = [];
@@ -293,8 +294,9 @@
 			'dictDefaultMessage': 'Haga click aquí para subir la imagen',
 			'clickable' : '#loader-galery',
 			'thumbnailMethod': 'contain',
+			'thumbnailWidth': 120,
+			'thumbnailHeight': 120,
 			init: function() {
-				myDropzone = this;
 
 				this.on("removedfile", function(e) {
 					console.log(e.id);
@@ -309,6 +311,13 @@
                         }
                     });
 					
+				});
+
+				this.on("success", function(file, response) {
+					//file = response;
+					console.log($.parseJSON(file.xhr.response));
+					file.previewElement.id = $.parseJSON(file.xhr.response).id;
+					$(".dz-image img").last().attr('id', file.previewElement.id);
 				});
 
 				this.on("sending",function(file,xhr,d){
@@ -330,19 +339,51 @@
 					product_id : product_id,
 					type: this.type, 
 					status: Dropzone.ADDED, 
-					url: storageUrl + "/" +this.source
+					url: storageUrl + "/" +this.source,
+					
 				};
+
 
 				// Call the default addedfile event handler
 				galeria.emit("addedfile", mockFile);
 
 				// And optionally show the thumbnail of the file:
 				galeria.emit("thumbnail", mockFile, storageUrl + "/" +this.source);
-
-				galeria.files.push(mockFile);
-				//$('.image-count').html("Agregar " + maxFiles )
 				
-				console.log(this);
+				galeria.files.push(mockFile);
+
+				var tmp = galeria.files[galeria.files.length - 1];
+				tmp.previewElement.id = this.id;  
+
+			});
+
+			$( "#sortable" ).disableSelection();
+
+			$( "#galeria" ).sortable({
+				items: '.dz-image-preview',
+				update: function( e, index) {
+					var mi_id = $(e.target).find('.id').val();
+					var list = [];
+
+					$.each($(this).find(".dz-image-preview"), function(i, el){
+						var pos = $(this).index();
+						var id = $(this).attr('id');
+						console.log(id, pos);
+						list.push({ id:id, position:pos });
+						//var el_id = $(this.).find('.position').val(pos);
+					})
+					$.ajax({
+					    url: '/panel/productos/section/' + product_id + '/ordenar',
+					    type: 'post',
+					    data: { sections:list },
+					    success: function(result) {
+					        console.log(result);
+					    },
+					    error: function(error){
+					        console.log(error);
+					    }
+					});
+				}
 			});
 		});
 

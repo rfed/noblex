@@ -32,9 +32,9 @@ class ProductMediaController extends Controller
 
     public function store($product, EloquentProductMedia $productMedia)
     {    
-        $productMedia->store($product);
+        return $productMedia->store($product);
     
-        return redirect()->route('admin.productos.section.create', $product);
+        //return redirect()->route('admin.productos.section.create', $product);
     }
 
 

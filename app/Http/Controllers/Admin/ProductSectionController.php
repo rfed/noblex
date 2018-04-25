@@ -74,4 +74,9 @@ class ProductSectionController extends Controller
     {
         return $this->section->destroy($id);
     }
+
+    public function ordenar(Request $request, $product)
+    {
+        return $this->section->ordenar($request);
+    }
 }

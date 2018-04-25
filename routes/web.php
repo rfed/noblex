@@ -92,8 +92,11 @@ Route::group([
 		Route::get('{product}/section/create', 'Admin\ProductSectionController@create')->name('admin.productos.section.create');
 
 		Route::post('{product}/section', 'Admin\ProductSectionController@store')->name('admin.productos.section.store');
+		
+		Route::post('{product}/section/ordenar', 'Admin\ProductSectionController@ordenar')->name('admin.productos.section.ordenar');
 
 		Route::delete('{product}/section/{id}', 'Admin\ProductSectionController@destroy')->name('admin.productos.section.destroy');
+		
 
 		Route::post('{product}/sectionUpload', 'Admin\ProductSectionController@upload')->name('admin.productos.section.upload');
 

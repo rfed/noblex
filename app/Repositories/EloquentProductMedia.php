@@ -56,7 +56,8 @@ class EloquentProductMedia
             }
 
             $productMedia->position = 1;
-            return $productMedia->save();
+            $productMedia->save();
+            return $productMedia;
         }
     }
     
