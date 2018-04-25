@@ -50,7 +50,7 @@
 			<div class="item">
 				<a href="{{ url($parentCategory->url.'/'.$category->url.'/'.$product->sku) }}">
 					<div class="image">
-						<img src="{{ asset('storage/'.$product->thumb->source) }}" alt="{{ $product->name }}"" />
+						<img src="{{ asset('storage/'.($product->thumb ? $product->thumb->source : 'no-foto.png')) }}" alt="{{ $product->name }}"" />
 
 						@if ($product->tag)
 						<span class="feature"><span>{{ $product->tag }}</span></span>
