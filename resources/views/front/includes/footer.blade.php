@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="links chat">
-                    <a href="#">
+                    <a href="#" class="triggerChat">
                         <span>Chat online</span>
                         <span class="fa fa-comment-dots"></span>
                     </a>

@@ -47,6 +47,7 @@
                             </div>
                         @endif
                         
+                        <!--
                         <div>
                             <div class="features">
                                 <img src="{{ asset('assets/imgs/iconos/ultra_hd.png') }}" alt="Ultra HD" />
@@ -57,6 +58,7 @@
                                 <img src="{{ asset('assets/imgs/iconos/netflix.png') }}" alt="Netflix" />
                             </div>
                         </div>
+                        -->
                     </div>
                     @endif
 

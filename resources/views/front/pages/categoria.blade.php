@@ -67,7 +67,7 @@
 			<div class="item">
 				<a href="{{ url($category->url.'/'.$cat->url.'/'.$product->sku) }}">
 					<div class="image">
-						<img src="{{ asset('storage/'.$product->thumb) }}" alt="{{ $product->name }}"" />
+						<img src="{{ asset('storage/'.$product->thumb->source) }}" alt="{{ $product->name }}"" />
 
 						@if ($product->tag)
 						<span class="feature"><span>{{ $product->tag }}</span></span>
@@ -83,7 +83,8 @@
 					<span>Comparar</span>
 				</label>
 				
-				<a href="#" class="btn link" data-sku="{{ $product->sku }}">Comprar</a>
+				<a href="javascript:void(0)" data-etailingcode="{{ $product->sku }}" data-etailingname="{{ $product->sku }}" data-etailingcat="{{ $product->category->name }}" onclick="etailing_btn_comprar(this);" class="btn link staggered-animation btn-responsive" data-os-animation-delay="1s">Comprar</a>
+
 			</div>
 			@endforeach
 			<!-- -->

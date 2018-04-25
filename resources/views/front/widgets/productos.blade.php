@@ -12,7 +12,7 @@
                 <span class="feature"><span>65"</span></span>
             </div>
             <span class="id">{{ $producto->name }}</span>
-            <p class="title"><strong>{{ $producto->short_description }}</strong></p>
+            <p class="title"><strong>{{ $producto->thumb->source }}</strong></p>
             <span class="description">{{ str_limit($producto->description, $limit = 100 , $end = '...') }}</span>
 
             <button class="btn link">Comprar</button>

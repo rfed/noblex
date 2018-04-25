@@ -31,19 +31,14 @@
                                                 @foreach($childs as $sub)
                                                     <ul>
                                                         <li>
-                                                            <a href="{{ url($sub->url) }} class="sub-cat">{{ $sub->name }}</a>
+                                                            <a href="{{ url($sub->url) }}" class="sub-cat">{{ $sub->name }}</a>
                                                             <div class="cat-desc">
                                                                 @if($sub->feautured)
                                                                 <!-- CONTENIDO COLUMNA 2 -->
                                                                 <a href="#">
                                                                     <p class="title"><strong>Último lanzamiento</strong></p>
                                                                     <p>{{ $sub->feautured->name }} <strong>{{ $sub->feautured->short_description }}</strong></p>
-                                                                    <?php
-                                                                        $img = $sub->feautured->productsMedia->where('featured', 1)->first();
-                                                                    ?>
-                                                                    @if($img)
-                                                                    <img src="{{ asset('storage/'.$img->source) }}" alt="{{ $sub->feautured->name }}" />
-                                                                    @endif
+                                                                    <img src="{{ asset('storage/'.$sub->feautured->thumb->source) }}" alt="{{ $sub->feautured->name }}" />
                                                                 </a>
                                                                 @endif
                                                                 <!-- FIN CONTENIDO COLUMNA 2 -->

@@ -17,6 +17,11 @@ ConversalabWebchatSalesforceLauncher.init({
 });
 
 
+$('.triggerChat').click(function(e){
+	e.preventDefault();
+	$('#ConversalabWebchat').trigger('click');
+});
+
 $('.carousel_product_box_link.owl-carousel').owlCarousel({
 	items: 1,
 	loop: true,

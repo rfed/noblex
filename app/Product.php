@@ -25,6 +25,11 @@ class Product extends Model
         return $this->hasMany(ProductMedia::class)->where('type', 'image')->orderBy('position', 'asc');        
     }
 
+    public function thumb()
+    {
+        return $this->hasOne(ProductMedia::class)->where('type', 'image_thumb');
+    }
+
     public function featuredImg()
     {
     	return $this->hasOne(ProductMedia::class)->where('featured', 1);

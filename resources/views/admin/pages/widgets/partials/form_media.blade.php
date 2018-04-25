@@ -62,15 +62,15 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                @if(@$widget->type === 7)
                 <td>
-                    @if(@$widget->type === 7)
                     <div class="btn-group">
                         <a href="#" class="add-media">
                             <i class="icon-plus"></i> Agregar 
                         </a>
                     </div>
-                    @endif
                 </td>
+                @endif
             </tr>
             
         </tbody>
@@ -314,7 +314,7 @@
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position" id="position${data.position}">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
                     ${subtitle}
-                    <textarea id="description${data.id}" name="media[${data.id}][description]" placeholder="Descripcion" class="form-control note-editor media_input">${data.description ? data.description : ''}</textarea>
+                    <input type="text" id="description${data.id}" name="media[${data.id}][description]" placeholder="Descripcion" class="form-control note-editor media_input" value="${data.description ? data.description : ''}" />
                     <div class="row">
                         
                         ${targetSel}

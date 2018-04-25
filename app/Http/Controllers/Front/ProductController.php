@@ -21,10 +21,10 @@ class ProductController extends FrontController
 
     	$product = Product::with(['productsMedia', 'sectionproducts', 'features', 'relatedproducts'])->where('sku', $product)->first();
 
-        //$category = Category::where('url', $category)->first();
-        $category = Category::find($product->category_id)->first();
+        //$category = Category::where('url', $category)->first();        
+        $category = Category::where('id', $product->category_id)->first();
         if ($category->root_id > 1) {
-            $parentCategory = Category::find($category->root_id)->first();
+            $parentCategory = Category::where('id', $category->root_id)->first();
         }
         else {
             $parentCategory = FALSE;

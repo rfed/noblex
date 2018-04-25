@@ -71,14 +71,14 @@
 						@endif
 					@endforeach
 
-					<a href="#">
+					<a href="#" class="triggerChat">
 						<span class="fa fa-wrench"></span>
 						<span>Soporte</span>
 					</a>
 				</div>
 
 				<div class="buy_btn">
-					<a href="#" class="btn link">Comprar</a>
+					<a href="javascript:void(0)" data-etailingcode="{{ $product->sku }}" data-etailingname="{{ $product->sku }}" data-etailingcat="{{ $product->category->name }}" onclick="etailing_btn_comprar(this);" class="btn link staggered-animation btn-responsive" data-os-animation-delay="1s">Comprar</a>
 				</div>
 			</div>
 
