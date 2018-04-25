@@ -59,18 +59,6 @@ class EloquentProductSection
             return $request->file('image4')->store('sectionproducts', 'public');
     }
 
-    public function ordenar($request){
-
-        if(!empty($request->sections)){
-            foreach($request->sections as $section){
-                ProductSection::findorFail($section['id'])->update(['position' => $section['position']]);
-            }
-        }
-        
-        return [];
-
-    }
-
     public function destroy($id){
         ProductSection::findorFail($id)->delete();
         return 'OK';

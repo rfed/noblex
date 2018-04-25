@@ -364,18 +364,18 @@
 				update: function( e, index) {
 					var mi_id = $(e.target).find('.id').val();
 					var list = [];
-
+					
 					$.each($(this).find(".dz-image-preview"), function(i, el){
-						var pos = $(this).index();
+						var pos = i;
 						var id = $(this).attr('id');
 						console.log(id, pos);
 						list.push({ id:id, position:pos });
 						//var el_id = $(this.).find('.position').val(pos);
 					})
 					$.ajax({
-					    url: '/panel/productos/section/' + product_id + '/ordenar',
+					    url: '/panel/productos/' + product_id + '/files/ordenar',
 					    type: 'post',
-					    data: { sections:list },
+					    data: { media:list },
 					    success: function(result) {
 					        console.log(result);
 					    },

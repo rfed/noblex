@@ -2,6 +2,7 @@
 
 namespace Noblex\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
 use Noblex\ProductMedia;
 use Noblex\Repositories\EloquentProduct;
@@ -66,5 +67,21 @@ class ProductMediaController extends Controller
             //$request->name = request()->file('image')->store('public');
             return $media;
         }
+    }
+
+
+    public function ordenar(Request $request){
+
+        if(!empty($request->media)){
+            foreach($request->media as $pos => $med){
+                
+                $media = ProductMedia::findorFail($med['id']);
+                $media->position = $pos;
+                $media->save();
+            }
+        }
+        
+        return [];
+
     }
 }
