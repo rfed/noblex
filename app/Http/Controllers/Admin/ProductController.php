@@ -51,7 +51,7 @@ class ProductController extends Controller
     {
         $product = $this->product->store($request);
 
-        return redirect()->route('admin.productos.files.create', $product);
+        return redirect()->route('admin.productos.edit', $product);
     }
 
 

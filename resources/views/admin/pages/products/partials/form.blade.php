@@ -130,7 +130,7 @@
 
 	<div class="form-actions">
 		<div class="row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="col-md-12 text-center">
 				{!! Form::button('Continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'submit', 'class' => 'btn blue']) !!}
 				
 				<a href="{{ route('admin.productos.index') }}" type="button" class="btn default">Volver</a>

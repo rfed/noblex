@@ -7,7 +7,7 @@
 
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-plus"></i> Agregar Producto
+					<i class="fa fa-plus"></i> Agregar producto nuevo
 				</div>
 			</div>
 
@@ -17,6 +17,10 @@
 					{!! Form::open(['route' => 'admin.productos.store', 'class' => 'form-horizontal']) !!}
 
 						<div class="form-body">
+
+							<div class="note note-info">
+			                    <p> Complete las propiedades del producto y grabe para habilitar las solapas de imagenes, bloques y atributos. </p>
+			                </div>
 						
 							@include('admin.pages.products.partials.form')
 
