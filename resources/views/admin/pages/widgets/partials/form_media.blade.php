@@ -275,7 +275,7 @@
             `;
 
         }else {
-            title = `<strong>Thumbnail</strong><br>
+            title = `<strong>Thumbnail video (380x213px)</strong><br>
                     <span></span> `;
             if(typeof data.link === "string"){
                 linkUrl = data.link;

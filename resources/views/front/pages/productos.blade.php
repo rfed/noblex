@@ -173,104 +173,34 @@
 			</div>
 
 			<div class="table">
+				@foreach($product->attributesWithGroup() as $group)
 				<div class="section">
 					<div class="head">
-						<p><strong>Pantalla</strong></p>
+						<p><strong>{{ $group['group']->name }}</strong></p>
 					</div>
+					@foreach($group['attributes'] as $k => $attribute)
 					<div>
-						<p>Resolución</p>
-						<p><strong>4K2K 3840 x 2160 px</strong></p>
+						<p>{{ $attribute->name }}</p>
+						<p><strong>{{ $attribute->pivot->value }}</strong></p>
 					</div>
-					<div>
-						<p>Tasa de refresco</p>
-						<p><strong>60hz</strong></p>
-					</div>
-					<div>
-						<p>Tiempo derespuesta</p>
-						<p><strong>8ms</strong></p>
-					</div>
-					<div>
-						<p>Contraste</p>
-						<p><strong>4000:1</strong></p>
-					</div>
+					@endforeach
 				</div>
+				@endforeach
 
-
+		        <?php $sinagrupar = $product->attributesWithoutGroup() ?>
+		        
+		        @if(!empty($sinagrupar) and count($sinagrupar) > 0)
 				<div class="section">
-					<div class="head">
-						<p><strong>Aplicaciones</strong></p>
-					</div>
+					@foreach($sinagrupar as $attribute)
 					<div>
-						<p>Disponibles</p>
-						<p>Netflix, YouTube, Browser, Clarovideo, Telefe, América TV, Qubit, Personal Video, La Nación, Infobae, Atma en tu cocina, Redbull TV y muchas más disponibles.</p>
+						<p>{{ $attribute->name }}</p>
+						<p><strong>{{ $attribute->pivot->value }}</strong></p>
 					</div>
+					@endforeach
 				</div>
-
-
-				<div class="section">
-					<div class="head">
-						<p><strong>Conectividad</strong></p>
-					</div>
-					<div>
-						<p>Puertos</p>
-						<p><strong>HDMI x 4 - USB x 3</strong></p>
-					</div>
-					<div>
-						<p>Bluetooth</p>
-						<p><strong>Sí</strong></p>
-					</div>
-				</div>
-
-
-				<div class="section">
-					<div class="head">
-						<p><strong>Adicionales</strong></p>
-					</div>
-					<div>
-						<p>play &amp; Share</p>
-						<p><strong>Sí</strong></p>
-					</div>
-					<div>
-						<p>Sintonizador Digital TDA</p>
-						<p><strong>Ginga integrado</strong></p>
-					</div>
-					<div>
-						<p>Sintonizador Digital TDA</p>
-						<p><strong>Ginga integrado</strong></p>
-					</div>
-				</div>
-
-
-				<div class="section">
-					<div class="head">
-						<p><strong>Audio</strong></p>
-					</div>
-					<div>
-						<p>Salida de Audio</p>
-						<p><strong>Optica</strong></p>
-					</div>
-					<div>
-						<p>Potencia de parlantes</p>
-						<p><strong>Sí</strong></p>
-					</div>
-				</div>
-
-				
-				<div class="section">
-					<div class="head">
-						<p><strong>Otros</strong></p>
-					</div>
-					<div>
-						<p>Play &amp; Share</p>
-						<p><strong>Sí</strong></p>
-					</div>
-					<div>
-						<p>sintonizador Digital TDA</p>
-						<p><strong>No</strong></p>
-					</div>
-				</div>
-
+				@endif
 			</div>
+
 		</div>
 	</section>
 

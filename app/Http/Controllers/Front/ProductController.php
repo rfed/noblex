@@ -19,8 +19,16 @@ class ProductController extends FrontController
     {
         $page_id = 'producto';
 
-    	$category = Category::where('url', $category)->first();
     	$product = Product::with(['productsMedia', 'sectionproducts', 'features', 'relatedproducts'])->where('sku', $product)->first();
+
+        //$category = Category::where('url', $category)->first();
+        $category = Category::find($product->category_id)->first();
+        if ($category->root_id > 1) {
+            $parentCategory = Category::find($category->root_id)->first();
+        }
+        else {
+            $parentCategory = FALSE;
+        }
 
         $relatedproducts = [];
 
@@ -32,6 +40,9 @@ class ProductController extends FrontController
         }
 
     	$breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
+        if ($parentCategory) {
+            $breadcrumbs[] = ['caption' => $parentCategory->name, 'link' => $parentCategory->url];
+        }
     	$breadcrumbs[] = ['caption' => $category->name];
 
     	return view('front.pages.productos', compact("breadcrumbs", "product", "relatedproducts", "page_id"));

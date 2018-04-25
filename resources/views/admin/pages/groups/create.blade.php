@@ -16,7 +16,7 @@
 				<!-- BEGIN FORM-->
 				<form action="" method="POST" id="formCreate" class="form-horizontal form-row-seperated" enctype="multipart/form-data">
 					
-					@include('admin.pages.attributeGroups.partials.form')
+					@include('admin.pages.groups.partials.form')
 
 				</form> 
 
@@ -28,5 +28,5 @@
 @endsection
 
 @push('scripts')
-	<script src="{{ asset('admin/assets/pages/attributeGroups/js/main.js') }}"></script>	
+	<script src="{{ asset('admin/assets/pages/groups/js/main.js') }}"></script>	
 @endpush

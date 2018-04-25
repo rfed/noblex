@@ -46,7 +46,7 @@
                                 <p>{!! $media->description !!}</p>
                             </div>
                         @endif
-                        asdasdasd
+                        
                         <div>
                             <div class="features">
                                 <img src="{{ asset('assets/imgs/iconos/ultra_hd.png') }}" alt="Ultra HD" />

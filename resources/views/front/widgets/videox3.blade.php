@@ -11,6 +11,7 @@
         @else
             {!! !empty($video->link) ? LaravelVideoEmbed::parse($video->linkUrl(),[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '213' ]) : '' !!}
         @endif
+        </div>
     @endforeach
 </div>
 

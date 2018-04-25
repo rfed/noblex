@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="col-md-12">
 
-			<table id="features" width="100%" class="table table-striped table-bordered table-hover">
+			<table id="attributes" width="100%" class="table table-striped table-bordered table-hover">
 				
 				<thead>
 					<tr>

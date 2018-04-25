@@ -15,9 +15,11 @@
 	@if($categoria->root_id !== 1)
 		<li><a href="#tab-menu" data-toggle="tab">Menu</a></li>
 		@endif
+	<!--
 	<li><a href="#tab-atributos" data-toggle="tab">Atributos</a></li>
 	<li><a href="#tab-atributos-valores" data-toggle="tab">Atributos (Valores)</a></li>
 	<li><a href="#tab-home" data-toggle="tab">Home</a></li>
+	-->
 </ul>
 <!-- BEGIN FORM-->
 {!! Form::model($categoria, ['route' => ['admin.categorias.update', $categoria->id], 'class' => 'form-horizontal form-row-seperated', 'method' => 'PUT']) !!}
@@ -60,6 +62,7 @@
 		</div>
 		@endif
 
+		<!--
 		<div class="tab-pane" id="tab-atributos">
 			@include('admin.pages.categories.partials.form_attributes')
 		</div>
@@ -82,6 +85,7 @@
 				</div>
 			</div>
 		</div>
+		-->
 		<div class="form-actions">
 			<div class="row">
 				<div class="col-md-offset-3 col-md-9">

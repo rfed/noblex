@@ -15,10 +15,10 @@
         <div class="col-md-9">
             <select name="type" id="type-select" class="form-control">
                 <option value=""> </option>
-                <option value="1">Imagen promocional + 3 videos</option>
-                <option value="2">Banner</option>
-                <option value="3">Imagen promocional con video</option>
-                <option value="5">Promobox x2</option>
+                <option value="1" {{ isset($widget) && $widget->type == 1 ? 'selected' : '' }}>Imagen promocional + 3 videos</option>
+                <option value="2" {{ isset($widget) && $widget->type == 2 ? 'selected' : '' }}>Banner</option>
+                <option value="3" {{ isset($widget) && $widget->type == 3 ? 'selected' : '' }}>Imagen promocional con video</option>
+                <option value="5" {{ isset($widget) && $widget->type == 5 ? 'selected' : '' }}>Promobox x2</option>
                 
                 <?php
 
@@ -92,14 +92,12 @@
         </div>
     </div>
 @else
-
     <div class="form-group">
         {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
             {!! Form::checkbox('active', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
         </div>
     </div>
-
 @endif
 
 @if(@$widget)
@@ -113,12 +111,13 @@
 
 <div class="form-actions">
     <div class="row">
-        <div class="col-md-offset-3 col-md-9">
+        <div class="col-md-12 text-center">
 
             {!! Form::button('Guardar <i class="fa fa-angle-double-right"></i>', ['type' => 'submit', 'class' => 'btn blue submit']) !!}
 
+            <!--
             {!! Form::button('Guardar y continuar <i class="fa fa-angle-double-right"></i>', ['type' => 'button', 'class' => 'btn blue submit', 'data-continue' => 'continue']) !!}
-            
+            -->
             <a href="{{ route('admin.widgets.index') }}" type="button" class="btn default">Volver</a>
 
         </div>

@@ -69,7 +69,9 @@
 					<div class="image">
 						<img src="{{ asset('storage/'.$product->thumb) }}" alt="{{ $product->name }}"" />
 
-						<!--<span class="feature"><span>65"</span></span>-->
+						@if ($product->tag)
+						<span class="feature"><span>{{ $product->tag }}</span></span>
+						@endif
 					</div>
 					<span class="id">{{ $product->sku }}</span>
 					<p class="title"><strong>{{ $product->name }}</strong></p>

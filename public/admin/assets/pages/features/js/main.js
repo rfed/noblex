@@ -1,19 +1,17 @@
 $(function(){
 
-	/*
 	$("#features").dataTable({
 		"paginate": true,
 		"searching": true,
 		"ordering": true,
 		"order": [],
 		"info": false,
-		"iDisplayLength": 5,
-		"aLengthMenu": [[5, 10, 25], [5, 10, 25]],
+		"iDisplayLength": 25,
+		"aLengthMenu": [[25, 50, 100], [25, 50, 100]],
 		"language": {
 			"url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
 		},
 	});
-	*/
 
 	$(document).on('click', '#modal' ,function() {
 		var id = $(this).data('id');

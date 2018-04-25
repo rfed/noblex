@@ -4,7 +4,7 @@
 
         <div class="block_menu_1">
             <div class="logo">
-                <a href="#">
+                <a href="{{ url('') }}">
                     <img src="{{ asset('assets/imgs/iconos/noblex.svg') }}" alt="Noblex" />
                 </a>
             </div>

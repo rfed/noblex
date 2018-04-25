@@ -49,7 +49,7 @@ class EloquentGroup implements GroupInterface
 
             return \Response::json([
                     'data'  	=> $data,
-                    'redirect' 	=> '../Group',
+                    'redirect' 	=> '../groups',
                     'message'	=> 'Grupo de atributos agregado correctamente.'
             ]);
 

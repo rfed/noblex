@@ -43,7 +43,6 @@ class WidgetController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $widget = $this->widget->store($request);
 
         return redirect()->route('admin.widgets.edit', $widget->id);

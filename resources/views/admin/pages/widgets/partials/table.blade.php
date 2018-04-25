@@ -34,7 +34,7 @@
 				<tbody id="sortable">
 
 					@foreach($widgets as $widget)
-					
+						@if ($widget->type != 7)
 						<tr>
 							<td>{{ $widget->position }}</td>
 							<td>{{ $widget->title }}</td>
@@ -57,7 +57,7 @@
 								</div>
 	                    	</td>
 						</tr>
-
+						@endif
 					@endforeach
 
 				</tbody>
