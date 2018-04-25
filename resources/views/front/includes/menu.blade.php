@@ -38,7 +38,7 @@
                                                                 <a href="#">
                                                                     <p class="title"><strong>Último lanzamiento</strong></p>
                                                                     <p>{{ $sub->feautured->name }} <strong>{{ $sub->feautured->short_description }}</strong></p>
-                                                                    <img src="{{ asset('storage/'.($sub->featured->thumb ? $sub->feautured->thumb->source : 'no-foto.png')) }}" alt="{{ $sub->feautured->name }}" />
+                                                                    <img src="{{ asset('storage/'.(isset($sub->featured) && $sub->featured->thumb ? $sub->feautured->thumb->source : 'no-foto.png')) }}" alt="{{ $sub->feautured->name }}" />
                                                                 </a>
                                                                 @endif
                                                                 <!-- FIN CONTENIDO COLUMNA 2 -->
