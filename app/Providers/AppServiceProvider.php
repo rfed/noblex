@@ -4,6 +4,7 @@ namespace Noblex\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Noblex\Repositories\EloquentUser;
 use Noblex\Repositories\EloquentBrand;
 use Noblex\Repositories\EloquentCategory;
 use Noblex\Repositories\EloquentWidget;
@@ -12,6 +13,7 @@ use Noblex\Repositories\EloquentFeature;
 use Noblex\Repositories\EloquentProduct;
 use Noblex\Repositories\EloquentGroup;
 use Noblex\Repositories\EloquentAttribute;
+use Noblex\Repositories\Interfaces\UserInterface;
 use Noblex\Repositories\Interfaces\BrandInterface;
 use Noblex\Repositories\Interfaces\CategoryInterface;
 use Noblex\Repositories\Interfaces\FeatureInterface;
@@ -31,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        $this->app->bind(
+            UserInterface::class, 
+            EloquentUser::class
+        );
 
         $this->app->bind(
             CategoryInterface::class, 

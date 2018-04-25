@@ -1,5 +1,4 @@
 @push('styles')
-    <link href="{{ asset('admin/assets/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/global/css/plugins.min.css') }}" rel="stylesheet" />
 @endpush
@@ -23,12 +22,12 @@
 				
 				<thead>
 					<tr>
-						<th width="10"></th>
+						<th width="10">Pos.</th>
 						<th width="300">Titulo</th>
 						<th width="200">Tipo</th>
 						<th width="100">Categoria</th>
 						<th width="40">Activo</th>
-						<th width="140"></th>	
+						<th width="200">Opciones</th>	
 					</tr>
 				</thead>
 
@@ -70,8 +69,6 @@
     
 
 @push('scripts')
-	<script src="{{ asset('admin/assets/global/plugins/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/widgets/js/main.js') }}"></script>
 

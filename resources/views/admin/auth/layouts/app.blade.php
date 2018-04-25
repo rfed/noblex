@@ -23,8 +23,8 @@
 
      <!-- BEGIN LOGO -->
     <div class="logo">
-        <a href="index.html">
-            <img src="{{ asset('admin/assets/pages/img/logo-big.png') }}" alt="" /> 
+        <a href="/">
+            <img src="{{ asset('admin/assets/layouts/img/logo.png') }}" alt="Grupo Newsan" style="width:300px;" /> 
         </a>
     </div>
     <!-- END LOGO -->

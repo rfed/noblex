@@ -6,7 +6,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="{{ route('admin.home') }}">
-                <img src="{{ asset('admin/assets/layouts/img/logo.png') }}" alt="logo" class="logo-default" />
+                <img src="{{ asset('assets/imgs/iconos/noblex.png') }}" alt="logo" class="logo-default" />
             </a>
 
             <div class="menu-toggler sidebar-toggler">

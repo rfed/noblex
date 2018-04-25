@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         $product = $this->product->store($request);
 
-        return redirect()->route('admin.productos.files.create', $product);
+        return redirect()->route('admin.productos.edit', $product);
     }
 
 
@@ -70,22 +70,20 @@ class ProductController extends Controller
 
         $atributes = $this->atribute->getAll();
 
-        dd($atributes);
-
-        // $currentMedia = [];
-        // foreach ($producto->productsMedia as $media) {
-        //     switch ($media->type) {
-        //         case 'image_featured': 
-        //             $currentMedia['image_featured'] = $media->source;
-        //             break;
-        //         case 'image_featured_background': 
-        //             $currentMedia['image_featured_background'] = $media->source;
-        //             break;
-        //         case 'image_thumb': 
-        //             $currentMedia['image_thumb'] = $media->source;
-        //             break;
-        //     }
-        // }
+        $currentMedia = [];
+        foreach ($producto->productsMedia as $media) {
+            switch ($media->type) {
+                case 'image_featured': 
+                    $currentMedia['image_featured'] = $media->source;
+                    break;
+                case 'image_featured_background': 
+                    $currentMedia['image_featured_background'] = $media->source;
+                    break;
+                case 'image_thumb': 
+                    $currentMedia['image_thumb'] = $media->source;
+                    break;
+            }
+        }
 
         return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia", "sections"));
     }

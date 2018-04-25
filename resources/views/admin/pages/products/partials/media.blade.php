@@ -36,7 +36,7 @@
 </div>
 
 <div class="form-group">
- 	<label for="image" class="control-label col-md-3">Galeria (thumbnail)<br/><small>JPG/PNG 331x210px</small>
+ 	<label for="image" class="control-label col-md-3">Galeria de fotos<br/><small>JPG/PNG 550x345px</small>
  		<br/><br/>
  		<button type="button" id="loader-galery" class="btn btn-primary">Examinar</button>
  	</label>
@@ -329,7 +329,7 @@
 			}
 		});
 
-		var medias = $.parseJSON('{!! !empty($producto) ? $producto->productsMedia->toJson() : "[]" !!}');
+		var medias = $.parseJSON('{!! !empty($producto) ? $producto->productsGallery->toJson() : "[]" !!}');
 
 		$(document).ready(function(){
 			

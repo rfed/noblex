@@ -37,6 +37,12 @@ Route::group([
 	Route::post('categorias/categoriasUpload', 'Admin\CategoryController@upload')->name('admin.categories.upload.store');
 
 
+	// Usuarios
+	Route::resource('users', 'Admin\UserController', [
+		'names' 	=> 'admin.users',
+		'except'	=> 'show'
+	]);
+
 	// Marcas
 	Route::resource('marcas', 'Admin\BrandController', [
 		'names' 	=> 'admin.brands',

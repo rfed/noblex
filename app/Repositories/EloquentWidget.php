@@ -51,7 +51,6 @@ class EloquentWidget implements WidgetInterface
 		$data['active'] = @$data['active'] == 'on' ?1:0;
 		$data['features'] = @$data['features'] == 'on' ?1:0;
 		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
-		$data['home'] = @$data['home'] == 'on' ?1:0;
 		
 		if(!$data['position']){
 			$last = Widget::orderBy('position', 'desc')->first();
@@ -107,13 +106,11 @@ class EloquentWidget implements WidgetInterface
 			'show_prods' 	=> 'nullable',
 			'features' 		=> 'nullable',
 			'position' 		=> 'nullable',
-			'home'			=> 'nullable'
 		]);
 
 		$data['active'] = $request->get('active') == 'on' ?1:0;
 		$data['features'] = $request->get('features')== 'on' ?1:0;
 		$data['show_prods'] = $request->get('show_prods')== 'on' ?1:0;
-		$data['home'] = $request->get('home') == 'on' ?1:0;
 		
 		$widget = Widget::findOrFail($id);
 		
@@ -172,9 +169,7 @@ class EloquentWidget implements WidgetInterface
 	}
 
 	public function home(){
-		return Widget::where('home', 1)
-			->where('active', 1)
-			->where('type', '!=', 7)
+		return Widget::where('active', 1)
 			->orderBy('position', 'asc')->get();
 	}
 
@@ -184,6 +179,6 @@ class EloquentWidget implements WidgetInterface
 	}
 
 	public function getWidgets(){
-		return Widget::where('type', '!=', 7)->orderBy('position','asc')->get();
+		return Widget::orderBy('position','asc')->get();
 	}
 }

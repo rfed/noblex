@@ -6,8 +6,8 @@ $(function(){
 		"ordering": true,
 		"order": [],
 		"info": false,
-		"iDisplayLength": 5,
-		"aLengthMenu": [[5, 10, 25], [5, 10, 25]],
+		"iDisplayLength": 25,
+		"aLengthMenu": [[25, 50, 100], [25, 50, 100]],
 		"columnDefs": [
 			{ "width": "30%", "targets": 0 },
 			{ "width": "15%", "targets": 1 },

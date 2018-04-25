@@ -15,6 +15,8 @@
 		</div>
 	</div>
 	
+	{!! Form::hidden('brand_id', 1) !!}
+	<!--
 	<div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
 		{!! Form::label('brand', 'Marca', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
@@ -29,6 +31,7 @@
 			{!! $errors->first('brand_id', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
+	-->
 	
 	<div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}" id="category">
 		{!! Form::label('category', 'Categoria', ['class' => 'control-label col-md-3']) !!}
@@ -79,10 +82,20 @@
 	</div>
 
 	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
+		{!! Form::label('feature', 'Features destacados', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-9">
+
+			{!! Form::select("feature_product_id[]", $features->pluck('name', 'id') , isset($producto) ? $producto->features->pluck('id') : null, ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los features", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
+
+			{!! $errors->first('feature', '<span class="help-block"> :message </span>') !!}
+		</div>
+	</div>
+
+	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
 		{!! Form::label('feature', 'Features', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 
-			{!! Form::select("feature_product_id[]", $features->pluck('name', 'id') , $producto->features->pluck('id'), ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los features", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
+			{!! Form::select("feature_product_id[]", $features->pluck('name', 'id') , isset($producto) ? $producto->features->pluck('id') : null, ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los features", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
 
 			{!! $errors->first('feature', '<span class="help-block"> :message </span>') !!}
 		</div>
@@ -92,7 +105,7 @@
 		{!! Form::label('relatedproducts', 'Productos relacionados', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 
-			{!! Form::select("product_relationship_id[]", $productos->pluck('name', 'id') , $producto->relatedproducts->pluck('id'), ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los productos relacionados", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
+			{!! Form::select("product_relationship_id[]", $productos->pluck('name', 'id') , isset($producto) ? $producto->relatedproducts->pluck('id') : null, ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los productos relacionados", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
 				
 			{!! $errors->first('relatedproducts', '<span class="help-block"> :message </span>') !!}
 		</div>
@@ -105,6 +118,7 @@
 		</div>
 	</div>
 
+	<!--
 	<div class="form-group {{ $errors->first('featured') ? 'has-error' : '' }}">
 		{!! Form::label('featured', 'Destacado', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
@@ -112,6 +126,7 @@
 			{!! $errors->first('featured', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
+	-->
 
 	<div class="form-actions">
 		<div class="row">

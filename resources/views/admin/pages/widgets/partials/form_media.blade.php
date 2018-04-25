@@ -263,8 +263,8 @@
             targetSel = `
             <div class="col-md-4">
                 <select name="media[${data.id}][link_target]" class="form-control media_input" id="link_target${data.id}">
-                    <option ${ linkTarget === '_self' ? 'selected' : '' } value="_self">_self</option>
-                    <option ${ linkTarget === '_blank' ? 'selected' : '' }  value="_blank">_blank</option>
+                    <option ${ linkTarget === '_self' ? 'selected' : '' } value="_self">Misma ventana</option>
+                    <option ${ linkTarget === '_blank' ? 'selected' : '' }  value="_blank">Ventana nueva</option>
                 </select>
             </div>
             `;
@@ -309,14 +309,13 @@
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position" id="position${data.position}">
                     <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
                     ${subtitle}
-                    <textarea id="description${data.id}" name="media[${data.id}][description]" class="form-control note-editor media_input">${data.description ? data.description : ''}</textarea>
+                    <textarea id="description${data.id}" name="media[${data.id}][description]" placeholder="Descripcion" class="form-control note-editor media_input">${data.description ? data.description : ''}</textarea>
                     <div class="row">
                         
                         ${targetSel}
 
                         <div class="${targetSel ? 'col-md-8' : 'col-md-12'}">
                             <input id="link${data.id}" type="text" name="media[${data.id}][link]" placeholder="Link" class="form-control  col-8 media_input media-link" value="${linkUrl}">
-                            <a href="${linkUrl}" target="_blank">${linkUrl}</a>
                         </div>
                     </div>
 
