@@ -68,9 +68,7 @@ class ProductController extends Controller
         $productos = $this->product->getAll();
         $features = $feature->getAll();
 
-        $atributes = $this->atribute->getAll();
-
-        dd($atributes);
+        $attributes = $this->atribute->getAll();
 
         // $currentMedia = [];
         // foreach ($producto->productsMedia as $media) {
@@ -87,7 +85,7 @@ class ProductController extends Controller
         //     }
         // }
 
-        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia", "sections"));
+        return view('admin.pages.products.edit', compact("categorias", "brands", "productos", "features", "producto", "categoria", "subcategoria", "currentMedia", "sections", "attributes"));
     }
 
 

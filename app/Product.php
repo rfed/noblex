@@ -48,4 +48,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductSection::class);
     }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'attribute_category_product', 'product_id', 'attribute_id');
+    }
 }
