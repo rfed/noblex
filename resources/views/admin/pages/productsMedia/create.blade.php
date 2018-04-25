@@ -131,29 +131,6 @@
 		image_thumb.on("addedfile", function() {
 			$('.dz-progress').hide();
 		});
-
-		var documento = new Dropzone('#document', {
-			'url': '../files',
-			'paramName': 'document',
-			'autoProcessQueue': false,
-			'addRemoveLinks': true,
-			'dictRemoveFile': 'Eliminar documento',
-			'acceptedFiles': 'application/pdf',
-			'maxFiles': 1,
-			'headers': {
-				'X-CSRF-TOKEN': '{{ csrf_token() }}'
-			},
-			'dictDefaultMessage': 'Arrastra o haga click aquí para subir el documento'
-		});
-
-		documento.on("sending",function(file,xhr,data){
-		   	data.append("product_id", product_id);  // Otra forma de envio de parametros cuando dropzone hace el post al subir una imagen.
-		});
-
-		documento.on("addedfile", function() {
-			$('.dz-progress').hide();
-		});
-
 	
 		image_featured_background.on('error', function(file, res) {
 			var msg;
@@ -182,15 +159,6 @@
 			$(".dz-error-message > span").text(msg);
 		});
 
-		documento.on('error', function(file, res) {
-			var msg;
-
-			if(res == 'You can not upload any more files.')
-				msg = 'No puedes subir mas de un archivo.'
-
-			$(".dz-error-message > span").text(msg);
-		});
-
 		Dropzone.autoDiscover = false;
 		
 		$("#submitFiles").on('click', function(){
@@ -198,7 +166,6 @@
 			image_featured.processQueue();
 			image_featured_background.processQueue();
 			image_thumb.processQueue();
-			documento.processQueue();
 		});
 
 	</script>
