@@ -157,100 +157,24 @@
     <div class="menu">
         <div class="container">
 
-
-            <!-- LA CLASE "open" ABRE EL MENÚ -->
-
             <ul>
-                <li>
-                    <a href="#">Smartphone</a>
-                </li>
-                <li>
-                    <a href="#">Smartwatch</a>
-
-                    <ul>
-                        <li>
-                            <a href="#">Smart 4k</a>
-                        </li>
-                        <li>
-                            <a href="#">Smart</a>
-                        </li>
-                        <li>
-                            <a href="#">LED</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">E-reader</a>
-
-                    <ul>
-                        <li>
-                            <a href="#">Adorables</a>
-                        </li>
-                        <li>
-                            <a href="#">Auriculares</a>
-                        </li>
-                        <li>
-                            <a href="#">Hogar</a>
-                        </li>
-                        <li>
-                            <a href="#">Portatil</a>
-                        </li>
-                        <li>
-                            <a href="#">Auto</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Audio</a>
-
-                    <ul>
-                        <li>
-                            <a href="#">Adorables</a>
-                        </li>
-                        <li>
-                            <a href="#">Auriculares</a>
-                        </li>
-                        <li>
-                            <a href="#">Hogar</a>
-                        </li>
-                        <li>
-                            <a href="#">Portatil</a>
-                        </li>
-                        <li>
-                            <a href="#">Auto</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">TV</a>
-                </li>
-                <li>
-                    <a href="#">Tablets</a>
-                </li>
-                <li>
-                    <a href="#">Aires Acondicionados</a>
-                </li>
-                <li>
-                    <a href="#">Otros</a>
-
-                    <ul>
-                        <li>
-                            <a href="#">Adorables</a>
-                        </li>
-                        <li>
-                            <a href="#">Auriculares</a>
-                        </li>
-                        <li>
-                            <a href="#">Hogar</a>
-                        </li>
-                        <li>
-                            <a href="#">Portatil</a>
-                        </li>
-                        <li>
-                            <a href="#">Auto</a>
-                        </li>
-                    </ul>
-                </li>
+                @foreach($menu_raiz->getChildsOrdered() as $cat)
+                    @if($cat->visible)
+                    <?php $childs = $cat->menuChilds(); ?>
+                    <li>
+                        <a href="{{ count($childs) ? '#' : url($cat->url) }}">{{ $cat->name }}</a>
+                        @if(count($childs))                    
+                        <ul>
+                            @foreach($childs as $sub)
+                            <li>
+                                <a href="{{ url($sub->url) }}" class="sub-cat">{{ $sub->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
+                    @endif
+                @endforeach
             </ul>
 
             
