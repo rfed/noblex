@@ -15,6 +15,8 @@
 	@if($categoria->root_id !== 1)
 		<li><a href="#tab-menu" data-toggle="tab">Menu</a></li>
 		@endif
+	<li><a href="#tab-atributos" data-toggle="tab">Atributos</a></li>
+	<li><a href="#tab-atributos-valores" data-toggle="tab">Atributos (Valores)</a></li>
 	<li><a href="#tab-home" data-toggle="tab">Home</a></li>
 </ul>
 <!-- BEGIN FORM-->
@@ -56,8 +58,16 @@
 				</div>
 			</div>
 		</div>
-
 		@endif
+
+		<div class="tab-pane" id="tab-atributos">
+			@include('admin.pages.categories.partials.form_attributes')
+		</div>
+
+		<div class="tab-pane" id="tab-atributos-valores">
+			@include('admin.pages.categories.partials.form_attributes_values')
+		</div>
+
 		<div class="tab-pane" id="tab-home">
 			<div class="portlet box yellow">
 
@@ -73,19 +83,19 @@
 			</div>
 		</div>
 		<div class="form-actions">
-		<div class="row">
-			<div class="col-md-offset-3 col-md-9">
-				@isset($categoria)
-					{!! Form::button('<i class="fa fa-check"></i> Editar', ['type' => 'submit', 'class' => 'btn yellow', 'id' => 'submitFile']) !!}
-				@else
-					{!! Form::button('<i class="fa fa-check"></i> Agregar', ['type' => 'submit', 'class' => 'btn blue', 'id' => 'submitFile']) !!}
-				@endisset
+			<div class="row">
+				<div class="col-md-offset-3 col-md-9">
+					@isset($categoria)
+						{!! Form::button('<i class="fa fa-check"></i> Editar', ['type' => 'submit', 'class' => 'btn yellow', 'id' => 'submitFile']) !!}
+					@else
+						{!! Form::button('<i class="fa fa-check"></i> Agregar', ['type' => 'submit', 'class' => 'btn blue', 'id' => 'submitFile']) !!}
+					@endisset
 
-				<a href="{{ route('admin.categorias.index') }}" type="button" class="btn default">Volver</a>
+					<a href="{{ route('admin.categorias.index') }}" type="button" class="btn default">Volver</a>
 
+				</div>
 			</div>
-		</div>
-    </div>
+    	</div>
 	</div>
 {!! Form::close() !!}
 @endsection
