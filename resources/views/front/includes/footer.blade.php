@@ -57,35 +57,15 @@
         <div class="access_list clearfix">
             <div class="column col-xs-6 col-sm-3">
                 <div class="links">
-                    <a href="#"><strong>Productos</strong></a>
+                    <a href="{{ url('') }}"><strong>Productos</strong></a>
                     <ul>
-                        <li>
-                            <a href="#">Smartwatch</a>
-                        </li>
-                        <li>
-                            <a href="#">Productos AFA</a>
-                        </li>
-                        <li>
-                            <a href="#">Action Cam</a>
-                        </li>
-                        <li>
-                            <a href="#">Telefonía</a>
-                        </li>
-                        <li>
-                            <a href="#">TV</a>
-                        </li>
-                        <li>
-                            <a href="#">Computación</a>
-                        </li>
-                        <li>
-                            <a href="#">Tablet</a>
-                        </li>
-                        <li>
-                            <a href="#">Audio</a>
-                        </li>
-                        <li>
-                            <a href="#">Aire Acondicionado</a>
-                        </li>
+                        @foreach($menu_raiz->getChildsOrdered() as $cat)
+                            @if($cat->visible)
+                            <li>
+                                <a href="{{ url($cat->url) }}">{{ $cat->name }}</a>
+                            </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -189,13 +169,13 @@
 
             <div>
                 <a href="http://www.newsan.com.ar/es/home/" target="_blank">
-                    <img src="assets/imgs/iconos/newsan.png" alt="Newsan" />
+                    <img src="/assets/imgs/iconos/newsan.png" alt="Newsan" />
                 </a>
             </div>
 
             <div>
                 <a href="https://www.id4you.com.ar" target="_blank">
-                    <img src="assets/imgs/iconos/id4you.svg" alt="Diseño y desarrollo WEB by ID4YOU" />
+                    <img src="/assets/imgs/iconos/id4you.svg" alt="Diseño y desarrollo WEB by ID4YOU" />
                 </a>
             </div>
 

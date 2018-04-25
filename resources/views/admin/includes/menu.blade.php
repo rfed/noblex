@@ -34,6 +34,12 @@
                     <span class="title">Marcas</span>
                 </a>
             </li>
+            <li class="nav-item start {{ activeMenu('panel/users*') }}">
+                <a href="{{ route('admin.users.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Usuarios</span>
+                </a>
+            </li>
             <li class="nav-item start {{ activeMenu('panel/inicio') }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>

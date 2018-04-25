@@ -43,7 +43,7 @@ class WidgetController extends Controller
 
     public function store(Request $request)
     {
-        
+        dd($request->all());
         $widget = $this->widget->store($request);
 
         return redirect()->route('admin.widgets.edit', $widget->id);
@@ -52,14 +52,14 @@ class WidgetController extends Controller
 
     public function show(Widget $widget)
     {
-
+        
     }
 
 
     public function edit(Widget $widget)
     {
         $categorias = Category::all()->sortBy('name');
-
+       
         $types = \Config::get('widgets.types');
 
         return view('admin.pages.widgets.edit', compact('widget', 'types', 'categorias'));
@@ -68,6 +68,7 @@ class WidgetController extends Controller
 
     public function update(Request $request, $id)
     {
+        
         $this->widget->update($request, $id);
         
         if($request->get('change') || $request->get('change-type')){

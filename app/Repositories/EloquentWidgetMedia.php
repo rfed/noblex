@@ -20,7 +20,8 @@ class EloquentWidgetMedia implements WidgetMediaInterface
             $file = $request->file('file')->store('widgets', 'public');
             return ['source' => $file];
         }
-        return '';
+
+        return $this->insert($request->all());
     }
 
 	public function create($request)

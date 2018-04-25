@@ -11,7 +11,7 @@ class EloquentFeature implements FeatureInterface
 
 	public function getAll()
 	{
-		return Feature::all();
+		return Feature::orderBy('name')->get();
 	}
 
 

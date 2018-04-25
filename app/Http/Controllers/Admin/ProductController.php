@@ -116,13 +116,13 @@ class ProductController extends Controller
             $product = Product::findOrFail($request->product_id);
             $arr = [];
             foreach($request->get('attributes') as $k => $att){
-                echo $att['id']."<br>";
                 \DB::table('attribute_category_product')
                 ->where('id', $att['id'])
                 ->update(['value' => $att['value']]);
 
             }
         }
+        return response()->json(['success' => true]);
     }
 
     public function deleteAtributo(Request $request){

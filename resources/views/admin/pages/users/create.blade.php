@@ -7,16 +7,16 @@
 
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-plus"></i> Actualizar Widget
+					<i class="fa fa-plus"></i> Agregar usuario
 				</div>
 			</div>
 
 			<div class="portlet-body form">
 
 				<!-- BEGIN FORM-->
-				{!! Form::model($widget, ['route' => ['admin.widgets.update', $widget->id], 'class' => 'form-horizontal form-row-seperated widget-form', 'method' => 'PUT']) !!}
+				{!! Form::open(['route' => 'admin.users.store', 'class' => 'form-horizontal form-row-seperated']) !!}
 
-					@include('admin.pages.widgets.partials.form')
+					@include('admin.pages.users.partials.form')
 					
 				{!! Form::close() !!}
 				<!-- END FORM-->
@@ -26,6 +26,3 @@
 	</div>
 
 @endsection
-
-@push('scripts')
-@endpush

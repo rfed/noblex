@@ -15,11 +15,21 @@
         <div class="col-md-9">
             <select name="type" id="type-select" class="form-control">
                 <option value=""> </option>
+                <option value="1">Imagen promocional + 3 videos</option>
+                <option value="2">Banner</option>
+                <option value="3">Imagen promocional con video</option>
+                <option value="5">Promobox x2</option>
+                
+                <?php
+
+                /*
+
                 @foreach(\Config::get('widgets.types') as $k => $type)
                     @if($k !== 7)
                         <option value="{{ $k }}" {{ @$widget->type != $k ?: 'selected' }}>{{ $type['text'] }}</option>
                     @endif
-                @endforeach
+                @endforeach*/
+                ?>
             </select>
             {!! $errors->first('type', '<span class="help-block"> :message </span>') !!}
         </div>
@@ -69,23 +79,16 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('home', 'En Home', ['class' => 'control-label col-md-3']) !!}
-        <div class="col-md-9">
-            {!! Form::checkbox('home', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
-        </div>
-    </div>
-
-    <div class="form-group">
-        {!! Form::label('features', 'Features', ['class' => 'control-label col-md-3']) !!}
+        {!! Form::label('features', 'Incluir features de categoría', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
             {!! Form::checkbox('features', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
         </div>
     </div>
 
     <div class="form-group">
-        {!! Form::label('show_prods', 'Mostrar productos', ['class' => 'control-label col-md-3']) !!}
+        {!! Form::label('show_prods', 'Mostrar productos de cat.', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
-            {!! Form::checkbox('show_prods', null, null, ['class' => 'make-switch', 'data-size' => 'show_prods', 'id' => 'active']) !!}
+            {!! Form::checkbox('show_prods', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
         </div>
     </div>
 @else
@@ -124,6 +127,7 @@
 </div>	
 
 @push('scripts')
+
 <script>
     $(document).on('ready', function(){
 

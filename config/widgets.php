@@ -4,7 +4,7 @@ return [
     'types' => [
         1 => [
             'type' => 'image',
-            'text' => 'Imagen grande y texto',
+            'text' => 'Imagen promocional + 3 videos',
             'files' => 4,
             'mime' => 'image',
             'size' => [
@@ -24,7 +24,7 @@ return [
         ],
         3 => [
             'type' => 'video',
-            'text' => 'Video',
+            'text' => 'Imagen promocional con video',
             'files' => 1,
             'mime' => 'video',
             'size' => [
@@ -44,7 +44,7 @@ return [
         ],
         5 => [
             'type' => 'box2',
-            'text' => 'Box x 2',
+            'text' => 'Promobox x2',
             'files' => 2,
             'mime' => 'image',
             'size' => '380x25',
@@ -75,6 +75,7 @@ return [
                 'height' => 432,
             ]
         ],
+        
     ]
 
 ];

@@ -9,15 +9,23 @@
 	<section>
 		<div class="container">
 			
-			<?php $imageBackground = ''; ?>
+			<?php $imageBackground = ''; $galeria = FALSE; ?>
 			@foreach($product->productsMedia as $productMedia)
 				@if($productMedia->type == 'image_featured_background')
 					<?php $imageBackground = url("storage/".$productMedia->source); ?>
 				@endif
+
+				@if ($productMedia->type == 'image_featured')
+					<?php $imageFeatured = url("storage/".$productMedia->source); ?>
+				@endif
+
+				@if ($productMedia->type == 'image')
+					<?php $galeria = TRUE; ?>
+				@endif
 			@endforeach
 
 			<!-- MOBILE -->
-			<div class="product_banner mobile" style="background:url({{ $imageBackground  }})">
+			<div class="product_banner mobile" style="background-image:url({{ $imageBackground  }})">
 				<h1 class="title">{{ $product->name }}</h1>
 				<span class="code">{{ $product->sku }}</span>
 
@@ -26,7 +34,7 @@
 			<!-- END MOBILE -->
 			
 			
-			<div class="product_banner" style="background:url({{ $imageBackground  }})">
+			<div class="product_banner" style="background-image:url({{ $imageBackground  }})">
 				<div class="info">
 					<h1 class="title">{{ $product->name }}</h1>
 					<span class="code">{{ $product->sku }}</span>
@@ -41,7 +49,8 @@
 				</div>
 
 				<div class="image">
-					
+					<img src="{{ $imageFeatured }}" alt="{{ $product->name }}">
+
 					<div class="features">
 						@foreach($product->features as $feature)
 							<img src="{{ url("storage/$feature->image") }}" alt="{{ $feature->name }}" />
@@ -53,14 +62,14 @@
 
 			<div class="tools_content">
 				<div class="section_tools">
-					<a href="#">
-						<span class="fa fa-file-alt"></span>
-						@foreach($product->productsMedia as $productMedia)
-							@if($productMedia->type == 'document')
-								<a href="{{ $productMedia->source }}">Descargar Manuales de usuario</span>
-							@endif
-						@endforeach
-					</a>
+					@foreach($product->productsMedia as $productMedia)
+						@if($productMedia->type == 'document')
+							<a href="{{ $productMedia->source }}">
+								<span class="fa fa-file-alt"></span>
+								<span>Descargar Manual de usuario</span>
+							</a>
+						@endif
+					@endforeach
 
 					<a href="#">
 						<span class="fa fa-wrench"></span>
@@ -77,7 +86,7 @@
 	</section>
 
 
-
+	@if ($galeria)
 	<section class="container">
 		<div class="row">
 
@@ -85,9 +94,11 @@
 				<div class="product_view owl-carousel">
 					
 					@foreach($product->productsMedia as $image)
-						<div class="item">
-							<img src="{{ url("storage/$image->source") }}" alt='{{ $product->name }}' />
-						</div>
+						@if($image->type == 'image')
+							<div class="item">
+								<img src="{{ url("storage/$image->source") }}" alt='{{ $product->name }}' />
+							</div>
+						@endif
 					@endforeach
 
 				</div>
@@ -108,13 +119,8 @@
 
 		</div>
 	</section>
-
-	<!--
-		h2 -> titulo
-		span -> bajada
-		p -> texto descriptivo
-	 -->
-
+	@endif
+	
 	<section class="product_detail_contain container">
 		<!-- <h2>Diseño y tecnología</h2>
 		<span>Disfruta de la mejor experiencia en tu propio living.</span> -->
@@ -269,7 +275,7 @@
 	</section>
 
 
-
+	@if (count($relatedproducts))
 	<section class="divider related_products">
 
 		<div class="container">
@@ -311,13 +317,13 @@
 
 		</div>
 	</section>
-
+	@endif
 
 	<section class="divider">
 		<div class="container">
 
 			<a href="#">
-				<img src="assets/imgs/imagenes/banner_4.png" alt="Vamos Argentina - NOBLEX proveedor Oficial de la Selección Argentina" />
+				<img src="/assets/imgs/imagenes/banner_4.png" alt="Vamos Argentina - NOBLEX proveedor Oficial de la Selección Argentina" />
 			</a>
 
 		</div>

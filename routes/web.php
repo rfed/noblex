@@ -37,6 +37,12 @@ Route::group([
 	Route::post('categorias/categoriasUpload', 'Admin\CategoryController@upload')->name('admin.categories.upload.store');
 
 
+	// Usuarios
+	Route::resource('users', 'Admin\UserController', [
+		'names' 	=> 'admin.users',
+		'except'	=> 'show'
+	]);
+
 	// Marcas
 	Route::resource('marcas', 'Admin\BrandController', [
 		'names' 	=> 'admin.brands',
@@ -114,24 +120,21 @@ Route::group([
 
 	});
 
-	Route::resource('widgets', 'Admin\WidgetController', [
-		'names' => 'admin.widgets'
-	]);
-
-	Route::resource('slider', 'Admin\SliderController', [
-		'names' => 'admin.slider'
-	]);
-
 	// Widgets
 	Route::delete('widgets/media/{id}', 'Admin\WidgetController@deleteMedia')->name('admin.widgets.media.delete');
 
 	Route::post('widgets/media', 'Admin\WidgetController@createMedia')->name('admin.widgets.media.store');
 
-	Route::post('widgets/orden', 'Admin\WidgetController@ordenar')->name('admin.widgets.media.orden');
-	
-	
-	
+	Route::resource('widgets', 'Admin\WidgetController', [
+		'names' => 'admin.widgets'
+	]);
 
+	Route::post('widgets/orden', 'Admin\WidgetController@ordenar')->name('admin.widgets.media.orden');
+
+	Route::resource('slider', 'Admin\SliderController', [
+		'names' => 'admin.slider'
+	]);	
+	
 });
 
 Route::get('/', 'Front\HomeController@index')->name('home');
