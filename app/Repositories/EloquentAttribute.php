@@ -24,39 +24,26 @@ class EloquentAttribute implements AttributeInterface
 
 	public function store($request) 
 	{
-		if($request->ajax())
-        {
-        	/*$data = $request->validate([
-				'name'			=> 'required',
-				'description'	=> 'required'
-			]);*/
+		$rules = array(
+			'name'					=> 'required',
+			'attributegroup_id'		=> 'required',
+		);
 
-			$rules = array(
-                'name'        			=> 'required',
-                //'description'            => 'required'
-            );
+		$validator = Validator::make($request->all(), $rules);  // Validacion
 
-            $validator = Validator::make($request->all(), $rules);  // Validacion
+		if($validator->fails())
+		{
+			
+			return $validator->errors();
+		}
 
-            if($validator->fails())
-            {
-            	return \Response::json([
-                    'errorValidation'  => $validator->errors()
-                ]);
-            }
+		$data = Attribute::create($request->all());
 
-            $data = Attribute::create($request->all());
-
-            return \Response::json([
-                    'data'  	=> $data,
-                    'redirect' 	=> '../attributes',
-                    'message'	=> 'Atributo agregado correctamente.'
-            ]);
-
-
-        }
-
-        //return redirect()->route('admin.features.index')->with('success', 'Feature agregada correctamente.');
+		// return \Response::json([
+		// 		'data'  	=> $data,
+		// 		'redirect' 	=> '../attributes',
+		// 		'message'	=> 'Atributo agregado correctamente.'
+		// ]);
 
 	}
 
