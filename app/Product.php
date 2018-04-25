@@ -13,7 +13,7 @@ use Noblex\Relatedproduct;
 
 class Product extends Model
 {	
-    protected $fillable = ["sku", "name", "brand_id", "category_id", "short_description", "description", "tag", "featured", "active"];
+    protected $fillable = ["sku", "name", "brand_id", "category_id", "short_description", "description", "tag", "manual","featured", "active"];
 
     public function productsMedia()
     {

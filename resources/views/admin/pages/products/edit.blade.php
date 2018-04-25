@@ -12,7 +12,7 @@
 	<li class="{{ !empty($tab) && $tab == "attributes" ? 'active' : '' }}"><a href="#tab-attributes" data-toggle="tab">Atributos</a></li>
 </ul>
 
-{!! Form::model($producto, ['route' => ['admin.productos.update', $producto->id], 'class' => 'form-horizontal form-row-seperated', 'method' => 'PUT']) !!}
+{!! Form::model($producto, ['route' => ['admin.productos.update', $producto->id], 'class' => 'form-horizontal form-row-seperated', 'enctype' => 'multipart/form-data', 'method' => 'PUT']) !!}
 
 <div class="tab-content">
 	

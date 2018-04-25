@@ -355,6 +355,7 @@ CREATE TABLE `products` (
   `category_id` int(10) unsigned NOT NULL,
   `short_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `manual` varchar(500) COLLATE utf8mb4_unicode_ci,
   `featured` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -371,9 +372,9 @@ CREATE TABLE `products` (
 -- Records of products
 -- ----------------------------
 BEGIN;
-INSERT INTO `products` VALUES (1, 'asdasdas', 'DA65X6500X', NULL, 3, 14, 'LED TV Smart 65\" Full UHD', 'asdasdasdasd', 1, 1, '2018-04-21 18:37:23', '2018-04-21 18:37:23');
-INSERT INTO `products` VALUES (2, '1s2f35g', 'Tv Noblex 32\'', 0x4E4557, 1, 14, 'Aliquam erat volutpat.', 'Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth', 0, 1, '2018-04-22 01:54:47', '2018-04-25 13:22:05');
-INSERT INTO `products` VALUES (3, 'sslaefg', 'Otro producto', NULL, 2, 14, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis vel dolor non pellentesque. Vestibulum ac diam eget enim scelerisque cursus at ut turpis. Ut non blandit nulla. Vivamus viverra rutrum bibendum. Maecenas a augue in nisl gravida pretium vehicula sit amet neque. Ut convallis risus justo, et tincidunt ipsum tincidunt non. Fusce hendrerit volutpat sapien vel pulvinar. Sed neque augue, sagittis quis mi at, sagittis condimentum neque.', 1, 1, '2018-04-22 02:10:04', '2018-04-22 02:10:04');
+INSERT INTO `products` VALUES (1, 'asdasdas', 'DA65X6500X', NULL, 3, 14, 'LED TV Smart 65\" Full UHD', 'asdasdasdasd', NULL, 1, 1, '2018-04-21 18:37:23', '2018-04-21 18:37:23');
+INSERT INTO `products` VALUES (2, '1s2f35g', 'Tv Noblex 32\'', 0x4E4557, 1, 14, 'Aliquam erat volutpat.', 'Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth', NULL,  0, 1, '2018-04-22 01:54:47', '2018-04-25 13:22:05');
+INSERT INTO `products` VALUES (3, 'sslaefg', 'Otro producto', NULL, 2, 14, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis vel dolor non pellentesque. Vestibulum ac diam eget enim scelerisque cursus at ut turpis. Ut non blandit nulla. Vivamus viverra rutrum bibendum. Maecenas a augue in nisl gravida pretium vehicula sit amet neque. Ut convallis risus justo, et tincidunt ipsum tincidunt non. Fusce hendrerit volutpat sapien vel pulvinar. Sed neque augue, sagittis quis mi at, sagittis condimentum neque.', NULL, 1, 1, '2018-04-22 02:10:04', '2018-04-22 02:10:04');
 COMMIT;
 
 -- ----------------------------
@@ -384,8 +385,7 @@ CREATE TABLE `products_media` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(10) unsigned NOT NULL,
   `source` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` enum('image','document','image_featured','image_featured_background','image_thumb') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image',
-  `featured` tinyint(1) NOT NULL DEFAULT '0',
+  `type` enum('image','image_featured','image_featured_background','image_thumb') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'image',
   `position` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -398,12 +398,12 @@ CREATE TABLE `products_media` (
 -- Records of products_media
 -- ----------------------------
 BEGIN;
-INSERT INTO `products_media` VALUES (17, 2, 'productos/destacada.png', 'image_featured', 0, 1, '2018-04-25 03:09:01', '2018-04-25 03:09:01');
-INSERT INTO `products_media` VALUES (18, 2, 'productos/bg_2.png', 'image_featured_background', 0, 1, '2018-04-25 03:09:18', '2018-04-25 03:09:18');
-INSERT INTO `products_media` VALUES (19, 2, 'productos/J75cBPI1aXT3HzJEG41Opb6kJfKkAf4b1TFmNJdl.png', 'image', 0, 1, '2018-04-25 03:14:58', '2018-04-25 03:14:58');
-INSERT INTO `products_media` VALUES (20, 2, 'productos/FMX1g5yzPrV4MDRCGALL2Up9jS4OLFO3DQzcJnIJ.png', 'image', 0, 1, '2018-04-25 04:06:00', '2018-04-25 04:06:00');
-INSERT INTO `products_media` VALUES (21, 2, 'productos/cXWGEVIUNLWQXLzO3hYgvOGPqx1AqFJHgZQnXEwH.png', 'image', 0, 1, '2018-04-25 04:06:08', '2018-04-25 04:06:08');
-INSERT INTO `products_media` VALUES (22, 2, 'productos/CWbFcnd4SVsIp9Lvan4EwJQc0x4V4NJaV3HHvnbp.png', 'image_thumb', 0, 1, '2018-04-25 04:06:15', '2018-04-25 04:06:15');
+INSERT INTO `products_media` VALUES (17, 2, 'productos/destacada.png', 'image_featured', 1, '2018-04-25 03:09:01', '2018-04-25 03:09:01');
+INSERT INTO `products_media` VALUES (18, 2, 'productos/bg_2.png', 'image_featured_background', 1, '2018-04-25 03:09:18', '2018-04-25 03:09:18');
+INSERT INTO `products_media` VALUES (19, 2, 'productos/J75cBPI1aXT3HzJEG41Opb6kJfKkAf4b1TFmNJdl.png', 'image', 1, '2018-04-25 03:14:58', '2018-04-25 03:14:58');
+INSERT INTO `products_media` VALUES (20, 2, 'productos/FMX1g5yzPrV4MDRCGALL2Up9jS4OLFO3DQzcJnIJ.png', 'image', 1, '2018-04-25 04:06:00', '2018-04-25 04:06:00');
+INSERT INTO `products_media` VALUES (21, 2, 'productos/cXWGEVIUNLWQXLzO3hYgvOGPqx1AqFJHgZQnXEwH.png', 'image', 1, '2018-04-25 04:06:08', '2018-04-25 04:06:08');
+INSERT INTO `products_media` VALUES (22, 2, 'productos/CWbFcnd4SVsIp9Lvan4EwJQc0x4V4NJaV3HHvnbp.png', 'image_thumb', 1, '2018-04-25 04:06:15', '2018-04-25 04:06:15');
 COMMIT;
 
 -- ----------------------------

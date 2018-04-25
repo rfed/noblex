@@ -62,14 +62,12 @@
 
 			<div class="tools_content">
 				<div class="section_tools">
-					@foreach($product->productsMedia as $productMedia)
-						@if($productMedia->type == 'document')
-							<a href="{{ $productMedia->source }}">
-								<span class="fa fa-file-alt"></span>
-								<span>Descargar Manual de usuario</span>
-							</a>
-						@endif
-					@endforeach
+					@if($product->manual)
+						<a href='{{ url("storage/$product->manual") }}' download>
+							<span class="fa fa-file-alt"></span>
+							<span>Descargar Manual de usuario</span>
+						</a>
+					@endif
 
 					<a href="#" class="triggerChat">
 						<span class="fa fa-wrench"></span>
