@@ -57,8 +57,9 @@ class CategoryController extends Controller
         else {
             $parentCategory = $this->category->findById($root_id);
         }
+        $features = Feature::orderBy('name')->get();
 
-        return view('admin.pages.categories.create', compact("root_id", "parentCategory", "products"));
+        return view('admin.pages.categories.create', compact("root_id", "parentCategory", "products", "features"));
     }
 
 

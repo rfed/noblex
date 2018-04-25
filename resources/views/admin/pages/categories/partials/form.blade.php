@@ -44,7 +44,7 @@
 							@if( old("features") ) 
 								{{ (in_array($feature->id, old("features")) ? 'selected' : '') }}
 							@else
-								{{ (in_array($feature->id, $categoryFeatures) ? 'selected' : '') }}
+								{{ isset($categoryFeatures) && (in_array($feature->id, $categoryFeatures) ? 'selected' : '') }}
 							@endif
 						>{{ $feature->name }}</option>
 					@endforeach
