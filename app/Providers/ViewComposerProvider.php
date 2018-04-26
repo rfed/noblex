@@ -17,7 +17,7 @@ class ViewComposerProvider extends ServiceProvider
         view()->composer('errors::404', function($view)
         {
             $view->with([
-                'latestCategories' => Category::where('root_id', '!=', 0)
+                'randomCategories' => Category::where('root_id', '!=', 0)
                                             ->inRandomOrder()
                                             ->limit(3)
                                             ->get()

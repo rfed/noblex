@@ -14,11 +14,11 @@
 			<p><strong>Tal vez te pueda interesar:</strong></p>
 			
 			<!-- Variable pasada desde app/Providers/ViewComposerProvider -->
-			@foreach($latestCategories as $latesCategory) 
+			@foreach($randomCategories as $randomCategory) 
 
 				<div class="item col-xs-12 col-sm-4">
-					<a href="{{ url($latesCategory->url) }}">
-						<img src="{{ url("storage/$latesCategory->image") }}" alt="{{ $latesCategory->name }}" />
+					<a href="{{ url($randomCategory->url) }}">
+						<img src="{{ url("storage/$randomCategory->image") }}" alt="{{ $randomCategory->name }}" />
 					</a>
 				</div>
 
