@@ -39,7 +39,7 @@
 					<h1 class="title">{{ $product->name }}</h1>
 					<span class="code">{{ $product->sku }}</span>
 
-					<p class="text">Más Smart, mas diversión.</p>
+					<p class="text">{{ $product->short_description }}</p>
 
 					<div class="features">
 						@foreach($product->features as $feature)
@@ -209,7 +209,7 @@
 	<section class="divider related_products">
 
 		<div class="container">
-			<p><strong>Más productos</strong> en la misma categoría</p>
+			<p><strong>Más productos</strong> @if (!$fixedrelated) en la misma categoría @else relacionados @endif</p>
 		</div>
 
 		<div class="product_list_carousel owl-carousel">
@@ -219,18 +219,20 @@
 			@foreach($relatedproducts as $relatedproduct)
 
 				<div class="item">
-					<a href="#">
+					<a href="{{ url($relatedproduct->category->parent->url.'/'.$relatedproduct->category->url.'/'.$relatedproduct->sku) }}">
 						<div class="image">
 							
-							<img src="{{ url("storage/$relatedproduct->source") }}" alt='{{ $relatedproduct->product->name }}' />
+							<img src="{{ url("storage/$relatedproduct->thumb->source") }}" alt='{{ $relatedproduct->name }}' />
 
-							<span class="feature"><span>{{ $relatedproduct->product->cucarda }}</span></span>
+							@if ($relatedproduct->tag)
+							<span class="feature"><span>{{ $relatedproduct->tag }}</span></span>
+							@endif
 
 						</div>
 
-						<span class="id">{{ $relatedproduct->product->sku }}</span>
-						<p class="title"><strong>{{ $relatedproduct->product->name }}</strong></p>
-						<span class="description">{{ $relatedproduct->product->description }}</span>
+						<span class="id">{{ $relatedproduct->sku }}</span>
+						<p class="title"><strong>{{ $relatedproduct->name }}</strong></p>
+						<span class="description">{{ $relatedproduct->description }}</span>
 					</a>
 
 					<label class="checkbox">
@@ -238,7 +240,7 @@
 						<span>Comparar</span>
 					</label>
 					
-					<a href="#" class="btn link">Comprar</a>
+					<a href="#" class="btn link" data-etailingcode="{{ $relatedproduct->sku }}" data-etailingname="{{ $relatedproduct->sku }}" data-etailingcat="{{ $relatedproduct->category->name }}" onclick="etailing_btn_comprar(this);" class="btn link staggered-animation btn-responsive" data-os-animation-delay="1s">Comprar</a>
 				</div>
 
 			@endforeach

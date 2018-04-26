@@ -30,13 +30,13 @@ class ProductController extends FrontController
             $parentCategory = FALSE;
         }
 
-        $relatedproducts = [];
-
-        foreach($product->relatedproducts as $relatedproduct)
-        {
-            $relatedproducts = ProductMedia::with('product')
-                                            ->where('type', 'image_thumb')
-                                            ->where('product_id', $relatedproduct->id)->get();
+        if (count($product->relatedproducts)) {
+            $relatedproducts = $product->relatedproducts;
+            $fixedrelated = TRUE;
+        }
+        else {
+            $relatedproducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->get();
+            $fixedrelated = FALSE;
         }
 
     	$breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
@@ -45,6 +45,6 @@ class ProductController extends FrontController
         }
     	$breadcrumbs[] = ['caption' => $category->name];
 
-    	return view('front.pages.productos', compact("breadcrumbs", "product", "relatedproducts", "page_id"));
+    	return view('front.pages.productos', compact("breadcrumbs", "product", "relatedproducts", "page_id", "fixedrelated"));
     }
 }

@@ -35,7 +35,7 @@
                                                             <div class="cat-desc">
                                                                 @if($sub->feautured)
                                                                 <!-- CONTENIDO COLUMNA 2 -->
-                                                                <a href="#">
+                                                                <a href="{{ url($sub->feautured->category->parent->url.'/'.$sub->feautured->category->url.'/'.$sub->feautured->sku) }}">
                                                                     <p class="title"><strong>Último lanzamiento</strong></p>
                                                                     <p>{{ $sub->feautured->name }} <strong>{{ $sub->feautured->short_description }}</strong></p>
                                                                     <img src="{{ asset('storage/'.(isset($sub->featured) && $sub->featured->thumb ? $sub->feautured->thumb->source : 'no-foto.png')) }}" alt="{{ $sub->feautured->name }}" />

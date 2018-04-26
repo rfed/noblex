@@ -34,12 +34,18 @@ class EloquentProduct implements ProductInterface
 
         if($request->input('feature_product_id'))
         {
-            $product->features()->attach($request->feature_product_id);
+            $product->features()->sync($request->feature_product_id);
+        }
+        else {
+        	$product->features()->detach();
         }
 
         if($request->input('product_relationship_id'))
         {
-        	$product->relatedproducts()->attach($request->product_relationship_id);
+        	$product->relatedproducts()->sync($request->product_relationship_id);
+        }
+        else {
+        	$product->relatedproducts()->detach();
         }
      
        	return $product->id;
@@ -61,10 +67,16 @@ class EloquentProduct implements ProductInterface
         {
             $product->features()->sync($request->feature_product_id);
         }
+        else {
+        	$product->features()->detach();
+        }
 
         if($request->input('product_relationship_id'))
         {
         	$product->relatedproducts()->sync($request->product_relationship_id);
+        }
+        else {
+        	$product->relatedproducts()->detach();
         }
      
        	return $product->id;

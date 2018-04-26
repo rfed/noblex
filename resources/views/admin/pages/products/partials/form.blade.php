@@ -118,7 +118,6 @@
 		</div>
 	</div>
 
-	<!--
 	<div class="form-group {{ $errors->first('featured') ? 'has-error' : '' }}">
 		{!! Form::label('featured', 'Destacado', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
@@ -126,7 +125,6 @@
 			{!! $errors->first('featured', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
-	-->
 
 	<div class="form-actions">
 		<div class="row">

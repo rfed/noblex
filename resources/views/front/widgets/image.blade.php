@@ -4,6 +4,13 @@
     
     $videos = $widget->media->where('type', 'video')->sortBy('position');
 
+    if ($widget->category) {
+        $features = $widget->category->features;
+    }
+    else {
+        $features = FALSE;
+    }
+
 ?>
 @if($media and $media->source)
 <section class="divider">
@@ -47,18 +54,15 @@
                             </div>
                         @endif
                         
-                        <!--
+                        @if ($features)
                         <div>
                             <div class="features">
-                                <img src="{{ asset('assets/imgs/iconos/ultra_hd.png') }}" alt="Ultra HD" />
-                                <img src="{{ asset('assets/imgs/iconos/sound.png') }}" alt="" />
-                                <img src="{{ asset('assets/imgs/iconos/xmotion.png') }}" alt="Xmotion" />
-                                <img src="{{ asset('assets/imgs/iconos/smart.png') }}" alt="Smart" />
-                                <img src="{{ asset('assets/imgs/iconos/youtube.png') }}" alt="YouTube" />
-                                <img src="{{ asset('assets/imgs/iconos/netflix.png') }}" alt="Netflix" />
+                                @foreach ($features as $feature)
+                                <img src="{{ asset('storage/'.$feature->image) }}" alt="{{ $feature->name }}" />
+                                @endforeach
                             </div>
                         </div>
-                        -->
+                        @endif
                     </div>
                     @endif
 
@@ -74,11 +78,11 @@
 
         </div>
         @if(!empty($videos))
-            @include('front.widgets.videox3', ['media' => $videos]);
+            @include('front.widgets.videox3', ['media' => $videos])
         @endif
 
         @if($widget->show_prods && count($productos))
-            @include('front.widgets.productos', $productos);
+            @include('front.widgets.productos', $productos)
         @endif
     </div>
     
