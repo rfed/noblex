@@ -154,6 +154,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Noblex\Providers\ViewComposerProvider::class,
         Noblex\Providers\AppServiceProvider::class,
         Noblex\Providers\AuthServiceProvider::class,
         // Noblex\Providers\BroadcastServiceProvider::class,

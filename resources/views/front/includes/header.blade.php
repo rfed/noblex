@@ -4,7 +4,7 @@
         <div class="section_info">
 
             <!-- BREADCRUMB DESKTOP -->
-
+            @isset($breadcrumbs)
             <div class="breadcrumb">
                 <p>
                     @foreach ($breadcrumbs as $breadcrumb)
@@ -16,6 +16,7 @@
                     @endforeach
                 </p>
             </div>
+            @endisset
 
             <!-- FIN BREADCRUMB DESKTOP -->
 
@@ -38,6 +39,7 @@
 
 <!-- BREADCRUMB MOBILE -->
 
+@isset($breadcrumbs)
 <div class="section_info mobile container">
     <div class="breadcrumb">
         <p>
@@ -51,5 +53,6 @@
         </p>
     </div>
 </div>
+@endisset
 
 <!-- FIN BREADCRUMB MOBILE -->

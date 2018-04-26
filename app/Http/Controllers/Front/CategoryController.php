@@ -16,19 +16,19 @@ class CategoryController extends FrontController
     
     public function index($slug)
     {
-    	$category = Category::where('url', $slug)->first();
+    	$category = Category::where('url', $slug)->firstOrFail();
     	$page_id = 'categoria';
 
     	$breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
     	$breadcrumbs[] = ['caption' => $category->name, 'link' => $category->url];
 
-    	return view('front.pages.categoria', compact('category', 'page_id', 'breadcrumbs'));
+    	return view('front.pages.categoria', compact('category', 'page_id', 'breadcrumbs')); 
     }
 
     public function subcategory($slug1, $slug2)
     {
-    	$parentCategory = Category::where('url', $slug1)->first();
-    	$category = Category::where('url', $slug2)->first();
+    	$parentCategory = Category::where('url', $slug1)->firstOrFail();
+    	$category = Category::where('url', $slug2)->firstOrFail();
     	
     	$page_id = 'categoria';
 
@@ -37,4 +37,5 @@ class CategoryController extends FrontController
     	$breadcrumbs[] = ['caption' => $category->name, 'link' => $category->url];
 
     	return view('front.pages.categoria_individual', compact('category', 'parentCategory', 'page_id', 'breadcrumbs'));
+        
     }}
