@@ -90,6 +90,13 @@
 		width: 40%
 	}
 
+
+	table.dataTable thead th.descripcion {
+		width: 400px !important;
+		min-width: 400px !important
+	}
+
+
 }
 
 
@@ -286,16 +293,62 @@
 		padding-right: 15px
 	}
 
-
 	#institucional .institucional_info .item {
 		width: 50%
 	}
 
-	/*#institucional .text_block {
-		
-	}*/
+	#institucional .text_block > div {
+		width: 100% !important
+	}
+
+	#institucional .text_block > div + div {
+		margin: 0;
+		margin-top: 20px
+	}
 
 
+
+	#contacto .form {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40px;
+		margin-bottom: 40px
+	}
+
+	#contacto .form .submit_block .g-recaptcha {
+		width: 100%
+	}
+
+	#contacto .form .submit_block .btn {
+		float: none
+	}
+
+
+	#contacto .content .phone {
+		height: 270px
+	}
+
+	#contacto .content .phone p {
+		font-size: 50px !important;
+		line-height:  55px
+	}
+
+	#contacto .content .phone span {
+		letter-spacing: 11px;
+		margin-right: -5px
+	}
+	
+
+
+	#comparador table tr th,
+	#comparador table tr td {
+		min-width: 200px;
+		max-width: initial;
+		max-width: auto
+	}
+
+
+	
 }
 
 
@@ -499,6 +552,7 @@
 		display: none
 	}	
 
+
 	.pagination .pages a.next span.fa,
 	.pagination .pages a.next span.fas,
 	.pagination .pages a.next span.far,
@@ -510,6 +564,23 @@
 		display: inline-block;
 		font-size: 20px;
 		padding: 7px 0
+	}
+
+
+
+	.dataTables_wrapper .dataTables_info {
+		font-size: 15px
+	}
+
+	.dataTables_wrapper .dtr-details li {
+		max-width: initial;
+		border-bottom: 1px solid #efefef !important;
+		margin-right: 0;
+		display: block
+	}
+
+	.dataTables_wrapper .dtr-details li:last-child {
+		border: none !important
 	}
 
 
@@ -533,19 +604,29 @@
 		width: 100%
 	}
 
-	#registro .section_title {
+	#registro .section_title + p {
+		font-size: 19px
+	}
+
+	.section_title {
 		font-size: 25px
 	}
 
 	#registro .section_title + p {
-		font-size: 19px;
-		line-height: 25px
+		font-size: 16px;
+		line-height: 21px
+	}
+
+
+	body.template .content p,
+	#legales .content p {
+		font-size: 15px
 	}
 
 
 
 	.form .g-recaptcha {
-		width: 100%;
+		width: 100% !important;
 		transform: scale(0.8);
 		transform-origin: top left;
 		display: inline-block;
@@ -557,6 +638,41 @@
 		float: none
 	}
 
+
+
+	#institucional .section_title {
+		font-size: 25px
+	}
+
+	#institucional .section_text {
+		font-size: 17px;
+		line-height: 23px
+	}
+
+	#institucional .institucional_info .item {
+		width: 100%
+	}
+
+
+	
+	#contacto .content .phone p {
+		font-size: 60px
+	}
+
+
+	.dataTables_wrapper .dataTables_length,
+	.dataTables_wrapper .dataTables_filter {
+		font-size: 20px
+	}
+
+	.dataTables_wrapper .dataTables_filter .input_wrap:before {
+		font-size: 18px
+	}
+
+	table.dataTable th,
+	table.dataTable td {
+		min-width: 200px !important
+	}
 	
 }
 
