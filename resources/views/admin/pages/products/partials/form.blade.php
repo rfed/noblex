@@ -121,9 +121,9 @@
 	<div class="form-group">
 		{!! Form::label('manual', 'Manual PDF', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			@if($producto->manual)
+			@isset($producto->manual)
 				<a href='{{ url("storage/$producto->manual") }}'>Ver Manual de Usuario</a>
-			@endif
+			@endisset
 			{!! Form::file('manual', ['class' => 'form-control', 'accept' => '.pdf']) !!}
 			<!-- <input type="file" name="manual" class="form-control" accept=".pdf"> -->
 		</div>

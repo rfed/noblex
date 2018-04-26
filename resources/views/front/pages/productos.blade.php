@@ -6,24 +6,29 @@
 
 @section('content')
 
+	@php
+		$imageBackground = ''; 
+		$imageFeatured = '';
+		$galeria = FALSE;
+	@endphp
+
+	@foreach($product->productsMedia as $productMedia)
+		@if($productMedia->type == 'image_featured_background')
+			<?php $imageBackground = url("storage/".$productMedia->source); ?>
+		@endif
+
+		@if($productMedia->type == 'image_featured')
+			<?php $imageFeatured = url("storage/".$productMedia->source); ?>
+		@endif
+
+		@if ($productMedia->type == 'image')
+			<?php $galeria = TRUE; ?>
+		@endif
+	@endforeach
+
 	<section>
 		<div class="container">
 			
-			<?php $imageBackground = ''; $galeria = FALSE; ?>
-			@foreach($product->productsMedia as $productMedia)
-				@if($productMedia->type == 'image_featured_background')
-					<?php $imageBackground = url("storage/".$productMedia->source); ?>
-				@endif
-
-				@if ($productMedia->type == 'image_featured')
-					<?php $imageFeatured = url("storage/".$productMedia->source); ?>
-				@endif
-
-				@if ($productMedia->type == 'image')
-					<?php $galeria = TRUE; ?>
-				@endif
-			@endforeach
-
 			<!-- MOBILE -->
 			<div class="product_banner mobile" style="background-image:url({{ $imageBackground  }})">
 				<h1 class="title">{{ $product->name }}</h1>
@@ -185,7 +190,7 @@
 				</div>
 				@endforeach
 
-		        <?php $sinagrupar = $product->attributesWithoutGroup() ?>
+		        <?php $sinagrupar = $product->attributesWithoutGroup() ;?>
 		        
 		        @if(!empty($sinagrupar) and count($sinagrupar) > 0)
 				<div class="section">
