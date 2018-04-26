@@ -14,7 +14,7 @@
 			<div class="portlet-body form">
 
 				<!-- BEGIN FORM-->
-					{!! Form::open(['route' => 'admin.productos.store', 'class' => 'form-horizontal']) !!}
+					{!! Form::open(['route' => 'admin.productos.store', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
 
 						<div class="form-body">
 

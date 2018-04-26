@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration {
 			$table->integer('category_id')->unsigned()->index('products_category_id_foreign');
 			$table->text('short_description', 65535);
 			$table->text('description', 65535);
+			$table->string('manual', 500)->nullable();
 			$table->boolean('featured')->default(0);
 			$table->boolean('active')->default(0);
 			$table->timestamps();

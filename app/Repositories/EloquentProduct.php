@@ -2,6 +2,7 @@
 
 namespace Noblex\Repositories;
 
+use Illuminate\Support\Facades\Storage;
 use Noblex\Product;
 use Noblex\Repositories\Interfaces\ProductInterface;
 
@@ -29,6 +30,10 @@ class EloquentProduct implements ProductInterface
 
         if($request->input('subcategory_id'))
         	$data['category_id'] = $request->subcategory_id;
+
+        if($request->file('manual'))
+        	$data['manual'] = $request->file('manual')->store('productos', 'public');
+
 
         $product = Product::create($data);
 
@@ -60,7 +65,13 @@ class EloquentProduct implements ProductInterface
 		$data['featured'] = $request->input('featured') == 'on' ? 1 :0;
 		$data['active'] = $request->input('active') == 'on' ? 1 :0;
 		$data['category_id'] = $request->input('subcategory_id') ? $request->subcategory_id : $request->input('category_id');
-		$data['tag'] = $request->input('tag') ?  $request->input('tag') : '';		
+		$data['tag'] = $request->input('tag') ?  $request->input('tag') : '';
+
+		if($request->file('manual')) {
+			Storage::disk('public')->delete($product->manual);
+        	$data['manual'] = $request->file('manual')->store('productos', 'public');
+		}
+
         $product->update($data);
 
         if($request->input('feature_product_id'))

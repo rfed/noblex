@@ -118,6 +118,17 @@
 		</div>
 	</div>
 
+	<div class="form-group">
+		{!! Form::label('manual', 'Manual PDF', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-9">
+			@isset($producto->manual)
+				<a href='{{ url("storage/$producto->manual") }}'>Ver Manual de Usuario</a>
+			@endisset
+			{!! Form::file('manual', ['class' => 'form-control', 'accept' => '.pdf']) !!}
+			<!-- <input type="file" name="manual" class="form-control" accept=".pdf"> -->
+		</div>
+	</div>
+
 	<div class="form-group {{ $errors->first('featured') ? 'has-error' : '' }}">
 		{!! Form::label('featured', 'Destacado', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">

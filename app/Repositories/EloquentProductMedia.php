@@ -48,13 +48,6 @@ class EloquentProductMedia
 
             }
 
-            if(!empty(request()->file('document'))) {
-                $file = request()->file('document')->store('productos', 'public');
-
-                $productMedia->type = 'document';
-                $productMedia->source = $file;
-            }
-
             $productMedia->position = 1;
             $productMedia->save();
             return $productMedia;
