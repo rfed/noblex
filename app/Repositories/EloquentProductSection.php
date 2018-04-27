@@ -2,6 +2,7 @@
 
 namespace Noblex\Repositories;
 
+use Illuminate\Support\Facades\Storage;
 use Noblex\ProductSection;
 
 class EloquentProductSection
@@ -12,7 +13,7 @@ class EloquentProductSection
             'title'        			=> 'required',
             'subtitle'        		=> 'required',
             'description'            => 'required',
-            'aligment'        		=> 'required'
+            'alignment'        		=> 'required'
         );
 
         $validator = \Validator::make($request->all(), $rules);  // Validacion
@@ -23,15 +24,15 @@ class EloquentProductSection
                 'errorValidation'  => $validator->errors()
             ]);
         }
-        
+
         if ($request->id) {
             $productSection = ProductSection::findOrFail($request->id);
         }else{
             $productSection = new ProductSection();
         }
+
         $productSection->product_id = $product;
         
-        $productSection->position = $request->position;
         $productSection->title = $request->title;
         $productSection->subtitle = $request->subtitle;
         $productSection->description = $request->description;
@@ -39,7 +40,7 @@ class EloquentProductSection
         $productSection->source = $request->image;
         $productSection->position = $request->position ? $request->position : 0;
 
-        $productSection->save();
+        $datos = $productSection->save();
 
         return $productSection;
 	}
@@ -59,9 +60,13 @@ class EloquentProductSection
             return $request->file('image4')->store('sectionproducts', 'public');
     }
 
-    public function destroy($id){
-        ProductSection::findorFail($id)->delete();
-        return 'OK';
+    public function destroy($id, $request){
+        Storage::disk('public')->delete($request->image);
+        $product = ProductSection::where('product_id', $id)
+                                    ->where('title', $request->title)
+                                    ->first();
+        $product->destroy($product->id);
+        return 'ok';    
     }
 
 }

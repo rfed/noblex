@@ -61,7 +61,6 @@ class EloquentProduct implements ProductInterface
 		$data = $request->validate($request->rules());
 		$product = Product::findOrFail($id);
 
-		
 		$data['featured'] = $request->input('featured') == 'on' ? 1 :0;
 		$data['active'] = $request->input('active') == 'on' ? 1 :0;
 		$data['category_id'] = $request->input('subcategory_id') ? $request->subcategory_id : $request->input('category_id');

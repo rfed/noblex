@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/selectric/selectric.css">
 	<link rel="stylesheet" href="assets/font-awesome/css/fontawesome-all.min.css">
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/media-queries.css">
@@ -15,7 +16,7 @@
 	<!-- GOOGLE CAPTCHA -->
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
-<body id="categoria">
+<body id="contacto">
 
 	<header class="header">
 
@@ -240,7 +241,7 @@
 						</ul>
 					</li>
 					<li>
-						<a href="#">Audio</a>
+						<a href="#">E-reader</a>
 
 						<ul>
 							<li>
@@ -261,7 +262,7 @@
 						</ul>
 					</li>
 					<li>
-						<a href="#">Aires</a>
+						<a href="#">Audio</a>
 
 						<ul>
 							<li>
@@ -286,6 +287,9 @@
 					</li>
 					<li>
 						<a href="#">Tablets</a>
+					</li>
+					<li>
+						<a href="#">Aires Acondicionados</a>
 					</li>
 					<li>
 						<a href="#">Otros</a>
@@ -354,7 +358,7 @@
 	<!-- FIN MENÚ MOBILE -->
 
 
-	
+
 	<main>
 
 		<div class="main_head">
@@ -366,27 +370,26 @@
 
 					<div class="breadcrumb">
 						<p>
-							<a href="#">Home</a> > <a href="#">TV</a> > <span>Todas las tecnologías</span>
+							<a href="#">Home</a> > <span>Contacto</span>
 						</p>
 					</div>
 
 					<!-- FIN BREADCRUMB DESKTOP -->
 
 
-					<div class="tags">
+					<!-- <div class="tags">
 						<a href="#">Smart 4K</a>
 						<a href="#">Smart</a>
 						<a href="#">LED</a>
-					</div>
+					</div> -->
 				</div>
 
-
-				<div class="section_tools">
+				<!-- <div class="section_tools">
 					<a href="#" class="compare_btn">
 						<span class="fas fa-external-link-alt"></span>
 						<span>Comparar seleccionados</span>
 					</a>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
@@ -397,7 +400,7 @@
 		<div class="section_info mobile container">
 			<div class="breadcrumb">
 				<p>
-					<a href="#">Home</a> > <a href="#">TV</a> > <span>Todas las tecnologías</span>
+					<a href="#">Home</a> > <span>Contacto</span>
 				</p>
 			</div>
 		</div>
@@ -406,238 +409,79 @@
 
 
 
+		<div class="container">
+			<h1 class="section_title">Contacto</h1>
 
-		<!-- CATEGORÍA -->
+			<div class="content row">
+				<div class="col-xs-12 col-sm-6">
+					<div class="phone">
 
-		<section class="divider">
-			<div class="container">
-				<div class="row">
-
-					<div class="item product_box_link">
-						<div class="image">
-							<a href="#">
-								<h1><img src="assets/imgs/imagenes/categoria_1.png" alt="Mucho más que un televisor" /></h1>
+						<div>
+							<i class="fa fa-phone-volume"></i>
+							<a href="tel:08104446976">
+								<p>0.810<br /> 444.6976</p>
+								<span>NWSN</span>
 							</a>
 						</div>
 
-						<div class="info">
-							<div class="half_block">
-								<h2 class="strong sizefix"><strong>Mucho más que un televisor</strong></h2>
-							</div>
-
-							<div class="full_block no_padding">
-								<div>
-									<p>Experimentá la emoción de ver imágenes en la mejor definición y resolución. Accedé a lo mejor de Internet.</p>
-								</div>
-								<div>
-									<div class="features">
-										<img src="assets/imgs/iconos/ultra_hd.png" alt="Ultra HD" />
-										<img src="assets/imgs/iconos/sound.png" alt="" />
-										<img src="assets/imgs/iconos/xmotion.png" alt="Xmotion" />
-										<img src="assets/imgs/iconos/smart.png" alt="Smart" />
-										<img src="assets/imgs/iconos/youtube.png" alt="YouTube" />
-										<img src="assets/imgs/iconos/netflix.png" alt="Netflix" />
-									</div>
-								</div>
-							</div>
-
-							<div class="link_block">
-								<a href="#" class="btn link">Ver todos</a>
-							</div>
-						</div>
 					</div>
+				</div>
 
+				<div class="col-xs-12 col-sm-6">
+					<form class="form">
+						<p class="title">Escribinos un mensaje:</p>
+
+						<label class="error">
+							<input type="text" placeholder="* Nombre" />
+
+							<span class="msg_error">Debés completar este campo</span>
+						</label>
+
+						<label>
+							<input type="text" placeholder="Apellido" />
+						</label>
+
+						<label>
+							<input type="text" placeholder="* Email" />
+						</label>
+
+						<label class="error">
+							<select>
+								<option disabled selected>* Asunto</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+							</select>
+
+							<span class="msg_error">Debés completar este campo</span>
+						</label>
+
+						<label>
+							<textarea placeholder="* Mensaje" rows="5"></textarea>
+						</label>
+
+						<div class="submit_block">
+
+							<!-- CONTENIDO POR DEFECTO -->
+
+								<!-- CAPTCHA V2: CAMBIAR LA data-sitekey -->
+								<div class="g-recaptcha" data-sitekey="6LflNj0UAAAAAANcGQiFKTufw6BtjghDFRYblqO0"></div>
+
+								<input type="submit" value="Enviar" class="btn link" />
+
+
+
+
+							<!-- MENSAJE ÉXITO: -->
+								<!-- <p class="exito">Tu mensaje se envió correctamente.</p> -->
+						</div>
+
+					</form>
 				</div>
 			</div>
-
-
-
-			<div class="padding_top product_list_carousel owl-carousel">
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_1.png" alt='LED TV Smart 65" Full UHD' />
-
-							<span class="feature"><span>65"</span></span>
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_2.png" alt='LED TV Smart 65" Full UHD' />
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-
-							<span class="feature"><span>65"</span></span>
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-				<div class="item">
-					<a href="#">
-						<div class="image">
-							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
-						</div>
-						<span class="id">DA65X500X</span>
-						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
-						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
-					</a>
-
-					<label class="checkbox">
-						<input type="checkbox" value="comparar" />
-						<span>Comparar</span>
-					</label>
-					
-					<a href="#" class="btn link">Comprar</a>
-				</div>
-
-				<!-- -->
-
-			</div>
-
-		</section>
-
-
-		<section class="divider">
-			<div class="container">
-
-				<a href="#">
-					<img src="assets/imgs/imagenes/banner_4.png" alt="Vamos Argentina - NOBLEX proveedor Oficial de la Selección Argentina" />
-				</a>
-
-			</div>
-		</section>
-
+		</div>
 
 	</main>
-
 
 
 	<footer>
@@ -848,6 +692,7 @@
 
 
 	<script src="assets/jquery/jquery-1.12.3.min.js"></script>
+	<script src="assets/selectric/jquery.selectric.js"></script>
 	<script src="assets/owl-carousel/owl.carousel.min.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/js/main.js"></script>

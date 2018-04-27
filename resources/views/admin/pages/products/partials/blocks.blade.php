@@ -81,8 +81,11 @@
 	
 	<script>	
 		
-		var arr_image = [];
 		var product_id = {{$producto->id}};
+		var idfile1 = {};
+		var idfile2 = {};
+		var idfile3 = {};
+		var idfile4 = {};
 
 		// IMAGEN 1 //
 
@@ -109,7 +112,7 @@
 
 				this.on("success", function (file, responseText) {
 					$("#current_image1").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+			        idfile1 = {'id' : file.upload.uuid, 'image' : responseText};
 			    });
 			}
 		});
@@ -145,6 +148,32 @@
 			currentFile = mockFile;
 		}
 
+		image1.on("removedfile", function(file, res) {
+
+			if(idfile1.image)
+				var image = idfile1.image;
+			else
+				var image = $("input[name='image1']").val();
+			
+			$.ajax({
+				url: 'deleteProductSectionImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				//console.log(data);
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+				$("input[name='image[1]']").val('');
+			});
+		
+		});
+
 		// IMAGEN 2 //
 
 		var current_image2 = '';
@@ -170,7 +199,7 @@
 
 				this.on("success", function (file, responseText) {
 					$("#current_image2").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+			        idfile2 = {'id' : file.upload.uuid, 'image' : responseText};
 			    });
 			}
 		});
@@ -206,6 +235,32 @@
 			currentFile = mockFile;
 		}
 
+		image2.on("removedfile", function(file, res) {
+
+			if(idfile2.image)
+				var image = idfile2.image;
+			else
+				var image = $("input[name='image2']").val();
+			
+			$.ajax({
+				url: 'deleteProductSectionImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				//console.log(data);
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+				$("input[name='image[2]']").val('');
+			});
+		
+		});
+
 		// IMAGEN 3 //
 
 		var current_image3 = '';
@@ -231,7 +286,7 @@
 
 				this.on("success", function (file, responseText) {
 					$("#current_image3").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+			        idfile3 = {'id' : file.upload.uuid, 'image' : responseText};
 			    });
 			}
 		});
@@ -267,6 +322,32 @@
 			currentFile = mockFile;
 		}
 
+		image3.on("removedfile", function(file, res) {
+
+			if(idfile3.image)
+				var image = idfile3.image;
+			else
+				var image = $("input[name='image3']").val();
+			
+			$.ajax({
+				url: 'deleteProductSectionImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				//console.log(data);
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+				$("input[name='image[3]']").val('');
+			});
+		
+		});
+
 		// IMAGEN 4 //
 
 		var current_image4 = '';
@@ -292,7 +373,7 @@
 
 				this.on("success", function (file, responseText) {
 					$("#current_image4").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+			        idfile4 = {'id' : file.upload.uuid, 'image' : responseText};
 			    });
 			}
 		});
@@ -328,13 +409,39 @@
 			currentFile = mockFile;
 		}
 
+		image4.on("removedfile", function(file, res) {
+
+			if(idfile4.image)
+				var image = idfile4.image;
+			else
+				var image = $("input[name='image4']").val();
+			
+			$.ajax({
+				url: 'deleteProductSectionImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				//console.log(data);
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+				$("input[name='image[4]']").val('');
+			});
+		
+		});
+
 		Dropzone.autoDiscover = false;
 		
 		$.ajaxSetup({
 			headers: {
 				'X-CSRF-TOKEN': '{{ csrf_token() }}'
 			}
-		});		
+		});	
 		
 		$('.btnSaveBlock').click(function(){
 
@@ -352,12 +459,13 @@
                 url: '{{ url("/panel/productos/".$producto->id."/section") }}',
                 type: 'POST',
                 data: data,
-                success: function(result) {
-                    toastr.success('Bloque grabado con éxito.');
-                },
-                error: function(error){
-                    toastr.danger('No fue posible guardar el bloque.');
-                }
+            })
+            .done(function(data) {
+                toastr.success('Bloque grabado con éxito.');
+            }).
+            fail(function(xhr, status, error){
+            	console.log(xhr.responseText);
+                toastr.error('No fue posible guardar el bloque.');
             });
 
 		});
@@ -366,22 +474,31 @@
 
 			var n = $(this).data('pos');
 			var id = $('#id' + n).val();
+			var image = $('.image' + n).val();
+			var title = $('.title' + n).val();
 			
 			$.ajax({
 				url: '{{ url("/panel/productos/".$producto->id."/section/") }}/' + id,
 				type: 'delete',
+				data: {
+					id: id,
+					image: image,
+					title: title,
+					token: $('input[name="_token"]').val(),
+				},
 				success: function(result) {
-					toastr.success('Bloque eliminado con éxito.');
+					console.log(result);
+					toastr.success('Bloque eliminado con éxito.');					
 					$('.image' + n).val("");
 					$('.title' + n).val("");
 					$('#subtitle' + n).val("");
 					$('.description' + n).val("");
 					$('.alignment' + n).val("");
 					$('#id' + n).val("");
-					$('"position' + n).val("");
+					$('position' + n).val("");
 				},
 				error: function(error){
-					toastr.danger('No fue posible eliminar el bloque.');
+					toastr.error('No fue posible eliminar el bloque.');
 				}
 			});
 

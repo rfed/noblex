@@ -18,8 +18,9 @@ class ProductController extends FrontController
     public function index($category, $subcategory, $product)
     {
         $page_id = 'producto';
-
-    	$product = Product::with(['productsMedia', 'sectionproducts', 'features', 'relatedproducts'])->where('sku', $product)->first();
+        
+    	$product = Product::with(['productsMedia', 'sectionproducts', 'features', 'relatedproducts'])
+                            ->where('sku', $product)->firstOrFail();
 
         //$category = Category::where('url', $category)->first();        
         $category = Category::where('id', $product->category_id)->first();
@@ -46,5 +47,6 @@ class ProductController extends FrontController
     	$breadcrumbs[] = ['caption' => $category->name];
 
     	return view('front.pages.productos', compact("breadcrumbs", "product", "relatedproducts", "page_id", "fixedrelated"));
+    
     }
 }

@@ -19,26 +19,9 @@ class ProductSectionController extends Controller
     }
 
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create($product, EloquentProduct $productos)
-    {
-        $productos = $productos->getAll();
-        if($productos->pluck('id')->contains($product))
-            return view('admin.pages.sectionproducts.create', compact("product"));
-
-        return redirect()->route('admin.productos.index');
-    }
-
-
     public function store($product, Request $request)
     {
-        
-        return $this->section->store($product, $request);
+        $this->section->store($product, $request);
     }
 
     public function upload(Request $request, $product)
@@ -51,27 +34,8 @@ class ProductSectionController extends Controller
         Storage::disk('public')->delete($request->image);  
     }
 
-
-    public function show($id)
+    public function destroy($id, Request $request)
     {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($producto, $id)
-    {
-        return $this->section->destroy($id);
+        return $this->section->destroy($id, $request);
     }
 }

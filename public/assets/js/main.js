@@ -9,18 +9,13 @@ function fixed_tools(){
 }
 
 
-ConversalabWebchatSalesforceLauncher.init({
-    secret: "MtjRZ8hTfiI.cwA._OI.D49ZfY5a9FEDQgT6g7nB2grhtxCdzmAwBtDh3_yTNsw",
-    botName: "Asistente Virtual Noblex",
-    botAvatar: "http://static.conversalab.com.s3.amazonaws.com/bots/public/newsan/images/noblexChatIcon.png",
-    mainColor: "#000000"
-});
+if( $('select').length ){
+	$('select').selectric();
+}
 
 
-$('.triggerChat').click(function(e){
-	e.preventDefault();
-	$('#ConversalabWebchat').trigger('click');
-});
+
+
 
 $('.carousel_product_box_link.owl-carousel').owlCarousel({
 	items: 1,
@@ -174,12 +169,17 @@ $('#producto .btn.show_hide').click(function(){
 
 
 
+
+
 $(document).scroll(function(){
 	fixed_tools();
 });
 
 $(document).ready(function(){
 	fixed_tools();
+
+
+
 
 
 	$.each( $('.menu_mobile .menu li'), function(i, v){
@@ -190,3 +190,23 @@ $(document).ready(function(){
 	});
 
 });
+
+
+
+if( $('#download_list').length ){
+
+	$('#download_list').DataTable({
+		responsive: true,
+		dom: 'fl<"table_wrapper"t>ip',
+		language: {
+			searchPlaceholder: 'ej: 32LC841HT',
+			search: 'Buscar por número de modelo:',
+			lengthMenu: 'Todos los archivos',
+			info: 'Mostrando _START_ de _END_ archivos',
+			paginate: {
+				previous: 'Anterior',
+				next: 'Siguiente'
+			}
+		},
+	})
+}

@@ -105,8 +105,6 @@ Route::group([
 		'prefix' => 'productos'
 	], function() { 
 
-		Route::get('{product}/section/create', 'Admin\ProductSectionController@create')->name('admin.productos.section.create');
-
 		Route::post('{product}/section', 'Admin\ProductSectionController@store')->name('admin.productos.section.store');
 		
 
