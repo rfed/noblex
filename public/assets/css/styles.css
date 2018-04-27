@@ -20,6 +20,10 @@ img {
 	border-top: 1px solid #eaebf2
 }
 
+.divider.promobox + .divider.promobox {
+	padding-top:0; border-top:0;
+}
+
 .divider.only_padding {
 	border: none
 }
@@ -1210,7 +1214,7 @@ footer .access_list .networks_list p strong {
 
 .main_head .section_tools,
 .main_head .section_info {
-	width: 30%;
+	width: 40%;
 	display: inline-block;
 	vertical-align: middle
 }
@@ -1221,7 +1225,7 @@ footer .access_list .networks_list p strong {
 }
 
 .main_head .section_info {
-	width: 70%
+	width: 60%
 }
 
 .section_info.mobile {

@@ -73,7 +73,7 @@
 
             <div class="column col-xs-6 col-sm-4">
                 <div class="links">
-                    <a href="#"><strong>Soporte</strong></a>
+                    <a href="#" class="triggerChat"><strong>Atención al cliente</strong></a>
 
                     <ul>
                         <li>

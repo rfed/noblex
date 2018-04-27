@@ -25,6 +25,15 @@
         </div>
 
         <div class="section_tools">
+            <a href="#">
+                <span class="fa fa-file-alt"></span>
+                <span>Manuales de usuario</span>
+            </a>
+
+            <a href="#" class="triggerChat">
+                <span class="fa fa-wrench"></span>
+                <span>Atención al cliente</span>
+            </a>
             <!--
             <a href="#" class="compare_btn">
                 <span class="fas fa-external-link-alt"></span>

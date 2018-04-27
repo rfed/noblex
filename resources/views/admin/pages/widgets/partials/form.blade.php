@@ -35,8 +35,10 @@
         </div>
     </div>
 
+    <?php $widgets = \Config::get('widgets.types'); ?>
 
-    <div class="form-group {{ $errors->first('brand_id') ? 'has-error' : '' }}">
+    @if (in_array('category', $widgets[$widget->type]['features']))
+    <div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}">
         {!! Form::label('category_id', 'Categoria', ['class' => 'control-label col-md-3']) !!}
         
         <div class="col-md-9">
@@ -70,6 +72,7 @@
             {!! $errors->first('category_id', '<span class="help-block"> :message </span>') !!}
         </div>
     </div>
+    @endif
 
     <div class="form-group">
         {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}
@@ -85,12 +88,14 @@
         </div>
     </div>
 
+    @if (in_array('products', $widgets[$widget->type]['features']))
     <div class="form-group">
         {!! Form::label('show_prods', 'Mostrar productos de cat.', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
             {!! Form::checkbox('show_prods', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
         </div>
     </div>
+    @endif
 @else
     <div class="form-group">
         {!! Form::label('active', 'Activo', ['class' => 'control-label col-md-3']) !!}

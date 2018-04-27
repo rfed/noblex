@@ -10,7 +10,8 @@ return [
             'size' => [
                 'width' => 1140,
                 'height' => 432,
-            ]
+            ],
+            'features' => ['category']
         ],
         2 => [
             'type' => 'banner',
@@ -20,7 +21,8 @@ return [
             'size' => [
                 'width' => 1140,
                 'height' => 225,
-            ]
+            ],
+            'features' => []
         ],
         3 => [
             'type' => 'video',
@@ -30,7 +32,8 @@ return [
             'size' => [
                 'width' => 1140,
                 'height' => 636,
-            ]
+            ],
+            'features' => ['category', 'products']
         ],
         4 => [
             'type' => 'videox3',
@@ -40,7 +43,8 @@ return [
             'size' => [
                 'width' => 380,
                 'height' => 213,
-            ]
+            ],
+            'features' => ['category']
         ],
         5 => [
             'type' => 'box2',
@@ -51,7 +55,8 @@ return [
             'size' => [
                 'width' => 555,
                 'height' => 310,
-            ]
+            ],
+            'features' => []
         ],
         6 => [
             'type' => 'box4',
@@ -62,7 +67,8 @@ return [
             'size' => [
                 'width' => 555,
                 'height' => 310,
-            ]
+            ],
+            'features' => []
         ],
         7 => [
             'type' => 'slider',
@@ -73,7 +79,8 @@ return [
             'size' => [
                 'width' => 1140,
                 'height' => 432,
-            ]
+            ],
+            'features' => []
         ],
         
     ]
