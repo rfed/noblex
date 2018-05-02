@@ -53,7 +53,7 @@ class CategoryController extends FrontController
         }
         $breadcrumbs[] = ['caption' => $category->name, 'link' => $category->url];
 
-        $products = Product::where('category_id', $category->id)->paginate(12);
+        $products = Product::where('category_id', $category->id)->where('active', 1)->paginate(12);
 
         return view('front.pages.categoria_individual', compact('category', 'parentCategory', 'page_id', 'breadcrumbs', 'products'));
     }

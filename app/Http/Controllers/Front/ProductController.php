@@ -36,7 +36,7 @@ class ProductController extends FrontController
             $fixedrelated = TRUE;
         }
         else {
-            $relatedproducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->get();
+            $relatedproducts = Product::where('category_id', $product->category_id)->where('active', 1)->where('id', '!=', $product->id)->get();
             $fixedrelated = FALSE;
         }
 

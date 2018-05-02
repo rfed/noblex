@@ -62,9 +62,8 @@
 							<span class="id">{{ $product->sku }}</span>
 							<p class="title"><strong>{{ $product->name }}</strong></p>
 							<span class="description">{{ $product->description }}</span>
-
-							<button class="btn link">Ver producto</button>
 						</a>
+						<button class="btn link" data-etailingcode="{{ $product->sku }}" data-etailingname="{{ $product->sku }}" data-etailingcat="{{ $product->category->name }}" onclick="etailing_btn_comprar(this);" class="btn link staggered-animation btn-responsive" data-os-animation-delay="1s">Comprar</button>
 					</div>
 
 				</div>

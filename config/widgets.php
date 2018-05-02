@@ -12,9 +12,9 @@ return [
                 'height' => 432,
             ],
             'features' => ['category'],
-            'has_title' => false,
+            'has_title' => true,
             'has_subtitle' => false,
-            'has_description' => false
+            'has_description' => true
         ],
         2 => [
             'type' => 'banner',

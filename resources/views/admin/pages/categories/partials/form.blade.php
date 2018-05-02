@@ -86,8 +86,8 @@
 			{!! Form::label('banner_target', 'Destino del enlace', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
 				<select name="banner_target" class="selectpicker" title="Seleccione el tipo de destino" data-show-subtext="true" data-live-search="true" data-width="50%">
-					<option value="_self" {{ $categoria && $categoria->banner_target == '_self' ? 'selected' : '' }}>Misma ventana</option>
-					<option value="_blank" {{ $categoria && $categoria->banner_target == '_blank' ? 'selected' : '' }}>Ventana nueva</option>
+					<option value="_self" {{ isset($categoria) && $categoria->banner_target == '_self' ? 'selected' : '' }}>Misma ventana</option>
+					<option value="_blank" {{ isset($categoria) && $categoria->banner_target == '_blank' ? 'selected' : '' }}>Ventana nueva</option>
 				</select>
 				{!! $errors->first('banner_target', '<span class="help-block"> :message </span>') !!}
 			</div>

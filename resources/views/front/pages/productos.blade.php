@@ -34,7 +34,7 @@
 				<h1 class="title">{{ $product->name }}</h1>
 				<span class="code">{{ $product->sku }}</span>
 
-				<p class="text">Más Smart, mas diversión.</p>
+				<p class="text">{{ $product->short_description }}</p>
 			</div>
 			<!-- END MOBILE -->
 			
@@ -129,11 +129,6 @@
 		<span>Disfruta de la mejor experiencia en tu propio living.</span> -->
 
 		@foreach($product->sectionproducts as $sectionproduct)
-			
-			@if(!$sectionproduct->source)
-				<h2>{{ $sectionproduct->title }}</h2>
-				<span>{{ $sectionproduct->subtitle }}</span>
-			@endif
 
 			@switch($sectionproduct->alignment)
 				@case('izquierda')
@@ -148,6 +143,13 @@
 					<?php $position = ''; ?>
 				@break
 			@endswitch
+			
+			@if(!$sectionproduct->source)
+			<div class="{{$position}}">
+				<h2>{{ $sectionproduct->title }}</h2>
+				<span>{{ $sectionproduct->subtitle }}</span>
+			</div>
+			@endif
 			
 			@if($sectionproduct->source)
 				<div>
@@ -226,7 +228,7 @@
 					<a href="{{ url($relatedproduct->category->parent->url.'/'.$relatedproduct->category->url.'/'.$relatedproduct->sku) }}">
 						<div class="image">
 							
-							<img src="{{ url("storage/$relatedproduct->thumb->source") }}" alt='{{ $relatedproduct->name }}' />
+							<img src="{{ asset('storage/'.($relatedproduct->thumb ? $relatedproduct->thumb->source : 'no-foto.png')) }}" alt="{{ $relatedproduct->name }}"" />
 
 							@if ($relatedproduct->tag)
 							<span class="feature"><span>{{ $relatedproduct->tag }}</span></span>

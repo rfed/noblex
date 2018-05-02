@@ -127,8 +127,6 @@
         @endforeach
     @endif
 
-    console.log("Tumbs cargadas");
-    console.log(thumbs);
     if(thumbs){
         thumbs.forEach(function(thumb, i){
             createRow(thumb);
@@ -296,7 +294,7 @@
 
         var stat = (widget_type.type === 'image' && data.type === 'image') ? 'static' : '';
         
-        var subtitle_field = (widget_type.has_subtitle) ? `<input type="text" name="media[${data.id}][subtitle]" placeholder="Subtitulo" class="form-control media_input" id="subtitle${data.id}" value="${data.subtitle ? data.subtitle : ''}">` : '';
+        var subtitle_field = '';
 
         var title_field = (widget_type.has_title) ? `<input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">` : '';
 
