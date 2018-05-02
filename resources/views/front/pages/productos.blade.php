@@ -255,15 +255,20 @@
 	</section>
 	@endif
 
+	@if ($product->category->banner)
 	<section class="divider">
 		<div class="container">
 
-			<a href="#">
-				<img src="/assets/imgs/imagenes/banner_4.png" alt="Vamos Argentina - NOBLEX proveedor Oficial de la Selección Argentina" />
+			@if ($product->category->banner_link)
+			<a href="{{ $product->category->banner_link }}" target="{{ $product->category->banner_target }}">
+				<img src="{{ asset('storage/'.$product->category->banner) }}" />
 			</a>
-
+			@else
+				<img src="{{ asset('storage/'.$product->category->banner) }}" />
+			@endif
 		</div>
 	</section>
+	@endif
 
 </main>
 

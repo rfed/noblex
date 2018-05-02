@@ -54,10 +54,12 @@
 						<td>
 							{!! Form::hidden('id', $categoria->id, array('class' => "id")) !!}
 							<div class="btn-group">
+								@if ($root_id == 1)
                     	        <a href="{{ url('panel/categorias/?root_id='.$categoria->id) }}">
                                     <i class="icon-pencil"></i> Ver Subcategorías 
                                 </a>
                                 |
+                                @endif
                     	        <a href="{{ route('admin.categorias.edit', $categoria->id) }}">
                                     <i class="icon-pencil"></i> Editar 
                                 </a>

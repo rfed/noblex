@@ -9,7 +9,7 @@ use Noblex\Widget;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu', 'position', 'title', 'description'];
+    protected $fillable = ['name', 'url', 'root_id', 'image' ,'visible', 'feautured_product', 'menu', 'position', 'title', 'description', 'banner', 'banner_link', 'banner_target'];
 
 	public function setNameAttribute($name)
 	{

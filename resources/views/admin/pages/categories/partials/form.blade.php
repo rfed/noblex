@@ -66,6 +66,33 @@
   		</div>
 
 		<div class="form-group">
+  		 	<label for="banner" class="control-label col-md-3">Banner<br/><small>JPG/PNG 1140x265px</small>
+  		 		<br/><br/>
+  		 		<button type="button" id="loader_banner" class="btn btn-primary">Examinar</button>
+  		 	</label>
+  		 	<div class="col-md-9">
+  	    		<div id="banner" class="dropzone">
+  	    		</div>
+  	    	</div>
+  		</div>
+		<div class="form-group {{ $errors->first('banner_link') ? 'has-error' : '' }}">
+			{!! Form::label('banner_link', 'Enlace del banner', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				{!! Form::text('banner_link', null, ['class' => 'form-control', 'id' => 'banner_link', 'placeholder' => 'Enlace del banner', 'autocomplete' => 'off']) !!}
+				{!! $errors->first('banner_link', '<span class="help-block"> :message </span>') !!}
+			</div>
+		</div>
+		<div class="form-group {{ $errors->first('banner_target') ? 'has-error' : '' }}">
+			{!! Form::label('banner_target', 'Destino del enlace', ['class' => 'control-label col-md-3']) !!}
+			<div class="col-md-9">
+				<select name="banner_target" class="selectpicker" title="Seleccione el tipo de destino" data-show-subtext="true" data-live-search="true" data-width="50%">
+					<option value="_self" {{ $categoria && $categoria->banner_target == '_self' ? 'selected' : '' }}>Misma ventana</option>
+					<option value="_blank" {{ $categoria && $categoria->banner_target == '_blank' ? 'selected' : '' }}>Ventana nueva</option>
+				</select>
+				{!! $errors->first('banner_target', '<span class="help-block"> :message </span>') !!}
+			</div>
+		</div>
+		<div class="form-group">
 			{!! Form::label('visible', 'Visible', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
 				{!! Form::checkbox('visible', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'visible']) !!}
@@ -80,5 +107,6 @@
 		</div>
 
 		{!! Form::hidden('image', null, ['id' => 'currentImage']) !!}
+		{!! Form::hidden('banner', null, ['id' => 'currentImage_banner']) !!}
 
 	</div>

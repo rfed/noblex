@@ -90,16 +90,20 @@
 	</section>
 	<!-- FIN CATEGORÍA -->
 
-
+	@if ($category->banner)
 	<section class="divider">
 		<div class="container">
 
-			<a href="#">
-				<img src="/assets/imgs/imagenes/banner_4.png" alt="Vamos Argentina - NOBLEX proveedor Oficial de la Selección Argentina" />
+			@if ($category->banner_link)
+			<a href="{{ $category->banner_link }}" target="{{ $category->banner_target }}">
+				<img src="{{ asset('storage/'.$category->banner) }}" />
 			</a>
-
+			@else
+				<img src="{{ asset('storage/'.$category->banner) }}" />
+			@endif
 		</div>
 	</section>
+	@endif
 
 </main>
 

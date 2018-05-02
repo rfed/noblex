@@ -54,6 +54,9 @@ class EloquentCategory implements CategoryInterface
             'title' => 'nullable',
             'description' => 'nullable',
             'image' => 'nullable',
+            'banner' => 'nullable',
+            'banner_link' => 'nullable',
+            'banner_target' => 'nullable',
         ]);
 
         if($data['url'] == null) 
@@ -84,7 +87,10 @@ class EloquentCategory implements CategoryInterface
             'feautured_product' => 'nullable',
             'title' => 'nullable',
             'description' => 'nullable',
-            'image' => 'nullable'
+            'image' => 'nullable',
+            'banner' => 'nullable',
+            'banner_link' => 'nullable',
+            'banner_target' => 'nullable',
         ]);
 
         if($data['url'] == null) 
@@ -122,7 +128,12 @@ class EloquentCategory implements CategoryInterface
 
     public function upload($request) 
     {
-        return $request->file('image')->store('categories', 'public');
+        if(!empty(request()->file('image'))) {
+            return $request->file('image')->store('categories', 'public');
+        }
+        if(!empty(request()->file('banner'))) {
+            return $request->file('banner')->store('categories', 'public');
+        }
     }    
 
 
