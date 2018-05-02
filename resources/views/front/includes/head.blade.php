@@ -18,5 +18,13 @@
 	<script type='text/javascript' src="https://s3.amazonaws.com/static.conversalab.com/bots/public/salesforcechat/conversalabWebchatSalesforceLauncher.js"></script>
 	<script src="//assets.etailing-la.com/newsan/noblex/js/init.js"></script>
 
+	<meta property="og:title" content="Noblex">
+	<meta property="og:site_name" content="Noblex">
+	<meta property="og:url" content="{{ url() }}">
+	<meta property="og:description" content="">
+	<meta property="fb:app_id" content="221366011964601">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="{{ asset('assets/imgs/iconos/share-web.png }}">
+
 	@stack('styles')
 </head>
