@@ -2,7 +2,7 @@
 
     @foreach($productos as $producto)
     <div class="item">
-        <a href="{{ url($producto->category->parent->url.'/'.$producto->category->url.'/'.$producto->sku) }}">
+        <a href="{{ url($producto->category->url.'/'.$producto->sku) }}">
             <div class="image">
                 <img src="{{ asset('storage/'.($producto->thumb ? $producto->thumb->source : 'no-foto.png')) }}" alt='{{ $producto->name }}' />
 

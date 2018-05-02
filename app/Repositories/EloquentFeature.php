@@ -62,7 +62,13 @@ class EloquentFeature implements FeatureInterface
 	public function upload($request) 
 	{
 		
-		return $request->file('image')->store('features', 'public');
+		if(!empty(request()->file('image_featured'))) {
+			return $request->file('image_featured')->store('features', 'public');
+		}
+
+		if(!empty(request()->file('image'))) {
+			return $request->file('image')->store('features', 'public');
+		}
 	}
 
 

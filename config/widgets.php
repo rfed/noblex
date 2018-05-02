@@ -11,7 +11,10 @@ return [
                 'width' => 1140,
                 'height' => 432,
             ],
-            'features' => ['category']
+            'features' => ['category'],
+            'has_title' => false,
+            'has_subtitle' => false,
+            'has_description' => false
         ],
         2 => [
             'type' => 'banner',
@@ -22,7 +25,10 @@ return [
                 'width' => 1140,
                 'height' => 225,
             ],
-            'features' => []
+            'features' => [],
+            'has_title' => false,
+            'has_subtitle' => false,
+            'has_description' => false
         ],
         3 => [
             'type' => 'video',
@@ -33,7 +39,10 @@ return [
                 'width' => 1140,
                 'height' => 636,
             ],
-            'features' => ['category', 'products']
+            'features' => ['category', 'products'],
+            'has_title' => true,
+            'has_subtitle' => true,
+            'has_description' => true
         ],
         4 => [
             'type' => 'videox3',
@@ -44,19 +53,25 @@ return [
                 'width' => 380,
                 'height' => 213,
             ],
-            'features' => ['category']
+            'features' => ['category'],
+            'has_title' => false,
+            'has_subtitle' => false,
+            'has_description' => false
         ],
         5 => [
-            'type' => 'box2',
-            'text' => 'Promobox x2',
-            'files' => 2,
+            'type' => 'box',
+            'text' => 'Promobox',
+            'files' => 1,
             'mime' => 'image',
             'size' => '380x25',
             'size' => [
                 'width' => 555,
                 'height' => 310,
             ],
-            'features' => []
+            'features' => ['category'],
+            'has_title' => false,
+            'has_subtitle' => false,
+            'has_description' => false
         ],
         6 => [
             'type' => 'box4',
@@ -68,7 +83,10 @@ return [
                 'width' => 555,
                 'height' => 310,
             ],
-            'features' => []
+            'features' => [],
+            'has_title' => false,
+            'has_subtitle' => false,
+            'has_description' => false
         ],
         7 => [
             'type' => 'slider',
@@ -80,9 +98,25 @@ return [
                 'width' => 1140,
                 'height' => 432,
             ],
-            'features' => []
+            'features' => [],
+            'has_title' => true,
+            'has_subtitle' => false,
+            'has_description' => true
         ],
-        
+        8 => [
+            'type' => 'category',
+            'text' => 'Categoria destacada',
+            'files' => 1,
+            'mime' => 'image',
+            'size' => [
+                'width' => 1140,
+                'height' => 432,
+            ],
+            'features' => ['category', 'features'],
+            'has_title' => true,
+            'has_subtitle' => true,
+            'has_description' => false
+        ],        
     ]
 
 ];

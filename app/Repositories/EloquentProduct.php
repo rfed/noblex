@@ -34,7 +34,9 @@ class EloquentProduct implements ProductInterface
         if($request->file('manual'))
         	$data['manual'] = $request->file('manual')->store('productos', 'public');
 
-
+        $data['tag'] = $request->input('tag') ?  $request->input('tag') : '';
+        $data['url'] = $request->input('url');
+        
         $product = Product::create($data);
 
         if($request->input('feature_product_id'))
@@ -65,6 +67,7 @@ class EloquentProduct implements ProductInterface
 		$data['active'] = $request->input('active') == 'on' ? 1 :0;
 		$data['category_id'] = $request->input('subcategory_id') ? $request->subcategory_id : $request->input('category_id');
 		$data['tag'] = $request->input('tag') ?  $request->input('tag') : '';
+        $data['url'] = $request->input('url');
 
 		if($request->file('manual')) {
 			Storage::disk('public')->delete($product->manual);

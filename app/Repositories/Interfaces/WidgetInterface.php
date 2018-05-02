@@ -19,4 +19,6 @@ interface WidgetInterface
 	public function slider();
 
 	public function home();
+
+	public function promoboxes();
 }

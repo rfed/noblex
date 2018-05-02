@@ -14,6 +14,14 @@
 			{!! $errors->first('name', '<span class="help-block"> :message </span>') !!}
 		</div>
 	</div>
+
+	<div class="form-group {{ $errors->first('url') ? 'has-error' : '' }}">
+		{!! Form::label('url', 'Slug', ['class' => 'control-label col-md-3']) !!}
+		<div class="col-md-9">
+			{!! Form::text('url', null, ['class' => 'form-control', 'id' => 'url', 'autocomplete' => 'off']) !!}
+			{!! $errors->first('url', '<span class="help-block"> :message </span>') !!}
+		</div>
+	</div>
 	
 	{!! Form::hidden('brand_id', 1) !!}
 	<!--
@@ -58,7 +66,7 @@
 	</div>
 
 	<div class="form-group {{ $errors->first('short_description') ? 'has-error' : '' }}">
-		{!! Form::label('short_description', 'Descripción corta', ['class' => 'control-label col-md-3']) !!}
+		{!! Form::label('short_description', 'Subtítulo', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 			{!! Form::text('short_description', null, ['class' => 'form-control', 'id' => 'short_description', 'autocomplete' => 'off']) !!}
 			{!! $errors->first('short_description', '<span class="help-block"> :message </span>') !!}
@@ -82,7 +90,7 @@
 	</div>
 
 	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
-		{!! Form::label('feature', 'Features destacados', ['class' => 'control-label col-md-3']) !!}
+		{!! Form::label('feature', 'Features promocional', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 
 			{!! Form::select("feature_product_id[]", $features->pluck('name', 'id') , isset($producto) ? $producto->features->pluck('id') : null, ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los features", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
@@ -92,7 +100,7 @@
 	</div>
 
 	<div class="form-group {{ $errors->first('features') ? 'has-error' : '' }}">
-		{!! Form::label('feature', 'Features', ['class' => 'control-label col-md-3']) !!}
+		{!! Form::label('feature', 'Más features', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
 
 			{!! Form::select("feature_product_id[]", $features->pluck('name', 'id') , isset($producto) ? $producto->features->pluck('id') : null, ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione los features", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
@@ -121,10 +129,10 @@
 	<div class="form-group">
 		{!! Form::label('manual', 'Manual PDF', ['class' => 'control-label col-md-3']) !!}
 		<div class="col-md-9">
-			@isset($producto->manual)
-				<a href='{{ url("storage/$producto->manual") }}'>Ver Manual de Usuario</a>
-			@endisset
 			{!! Form::file('manual', ['class' => 'form-control', 'accept' => '.pdf']) !!}
+			@isset($producto->manual)
+				<small><a href='{{ url("storage/$producto->manual") }}' target='_blank'>Ver archivo cargado</a></small>
+			@endisset
 			<!-- <input type="file" name="manual" class="form-control" accept=".pdf"> -->
 		</div>
 	</div>

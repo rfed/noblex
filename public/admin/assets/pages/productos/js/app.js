@@ -1,6 +1,5 @@
 function subcategorias(value, selected)
 {
-	console.log();
 	if(value != '')
 	{
 		$('#subcategory_id').find('option').not(':first').remove();
@@ -14,11 +13,16 @@ function subcategorias(value, selected)
 		.done(function(data) {
 			//console.log(data);
 
-			document.querySelector("#subcategory").style.display = 'block';
+			if (data.length > 0) {
+				document.querySelector("#subcategory").style.display = 'block';
 
-			data.forEach(dato => {
-				$('<option value="'+dato.id+'" '+ (selected && dato.id === selected ? 'selected' : '') + '>'+dato.name+'</option>').insertAfter('#subcategory_id option:first');
-			});
+				data.forEach(dato => {
+					$('<option value="'+dato.id+'" '+ (selected && dato.id === selected ? 'selected' : '') + '>'+dato.name+'</option>').insertAfter('#subcategory_id option:first');
+				});
+			}
+			else {
+				document.querySelector("#subcategory").style.display = 'none';
+			}
 
 		})
 		.fail(function(xhr, status, error) {

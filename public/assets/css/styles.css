@@ -1387,7 +1387,7 @@ footer .access_list .networks_list p strong {
 
 .main_head .section_tools,
 .main_head .section_info {
-	width: 40%;
+	width: 30%;
 	display: inline-block;
 	vertical-align: middle
 }
@@ -1398,7 +1398,7 @@ footer .access_list .networks_list p strong {
 }
 
 .main_head .section_info {
-	width: 60%
+	width: 70%
 }
 
 .section_info.mobile {
@@ -1759,7 +1759,7 @@ footer .access_list .networks_list p strong {
 .product_list_carousel .item .image .feature > span {
 	font-family: 'Core Sans DS 55';
 	color: white;
-	font-size: 19px;
+	font-size: 16px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -1980,7 +1980,8 @@ footer .access_list .networks_list p strong {
 
 .product_banner .info .features > img {
 	margin-right: 20px;
-	margin-bottom: 15px
+	margin-bottom: 15px;
+	max-height:50px;
 }
 
 .product_banner .image {
@@ -3162,4 +3163,30 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 #comparador .table_content {
 	width: 100%;
 	overflow: auto
+}
+
+#categoria .product_list { margin-top:30px; }
+
+.product_list .item .image .feature {
+	border-radius: 100%;
+	background: url('../imgs/iconos/bg.png') center center no-repeat;
+	background-size: cover;
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	top: -10px;
+	right: -10px
+}
+
+.product_list .item .image .feature > span {
+	font-family: 'Core Sans DS 55';
+	color: white;
+	font-size: 19px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 }

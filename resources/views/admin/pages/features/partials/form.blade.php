@@ -18,9 +18,19 @@
 			</div>
 		</div>
 	
+		<div class="form-group">
+  		 	<label for="image_featured" class="control-label col-md-3">Icono ilustrativo blanco para destaques<br/><small>PNG transparente de 50px de alto</small>
+  		 		<br/><br/>
+  		 		<button type="button" id="loader_featured" class="btn btn-primary">Examinar</button>
+  		 	</label>
+  		 	<div class="col-md-9">
+  	    		<div id="image_featured" class="dropzone">
+  	    		</div>
+  	    	</div>
+  		</div>	
 
 		<div class="form-group">
-  		 	<label for="image" class="control-label col-md-3">Icono ilustrativo<br/><small>PNG transparente de 50px de alto</small>
+  		 	<label for="image" class="control-label col-md-3">Icono ilustrativo negro<br/><small>PNG transparente de 60px de alto</small>
   		 		<br/><br/>
   		 		<button type="button" id="loader" class="btn btn-primary">Examinar</button>
   		 	</label>
@@ -32,6 +42,7 @@
 	
 		<!-- <input type="hidden" name="image"/> -->
 		{!! Form::hidden('image', null, ['id' => 'currentImage']) !!}
+		{!! Form::hidden('image_featured', null, ['id' => 'currentImage_featured']) !!}
 
 	</div>
 

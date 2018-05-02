@@ -49,6 +49,7 @@ class EloquentWidget implements WidgetInterface
 		]);
 		
 		$data['active'] = @$data['active'] == 'on' ?1:0;
+		$data['home'] = @$data['home'] == 'on' ?1:0;
 		$data['features'] = @$data['features'] == 'on' ?1:0;
 		$data['show_prods'] = @$data['show_prods'] == 'on' ?1:0;
 		
@@ -109,6 +110,7 @@ class EloquentWidget implements WidgetInterface
 		]);
 
 		$data['active'] = $request->get('active') == 'on' ?1:0;
+		$data['home'] = $request->get('home') == 'on' ?1:0;
 		$data['features'] = $request->get('features')== 'on' ?1:0;
 		$data['show_prods'] = $request->get('show_prods')== 'on' ?1:0;
 		
@@ -166,6 +168,11 @@ class EloquentWidget implements WidgetInterface
 	{
 		$widget = Widget::findOrFail($id);
         $widget->delete();
+	}
+
+	public function promoboxes(){
+		return Widget::where('active', 1)->where('type', 5)
+			->orderBy('position', 'asc')->get();
 	}
 
 	public function home(){

@@ -24,7 +24,7 @@ class WidgetController extends Controller
 
     public function index()
     {
-        $widgets = $this->widget->getWidgets()->sortBy('position');
+        $widgets = $this->widget->getWidgets()->where('type', '!=', 7)->sortBy('position');
         return view('admin.pages.widgets.index', compact("widgets"));
     }
 
@@ -35,7 +35,7 @@ class WidgetController extends Controller
         if($request->get('cat')){
             $categoria = Category::find($request->get('cat'));
         }
-        $categorias = Category::all();
+        $categorias = Category::where('root_id', 1)->orderBy('name')->get();
         $types = \Config::get('widgets.types');
         return view('admin.pages.widgets.create', compact('types', 'categorias', 'categoria'));
     }
@@ -57,8 +57,7 @@ class WidgetController extends Controller
 
     public function edit(Widget $widget)
     {
-        $categorias = Category::all()->sortBy('name');
-       
+        $categorias = Category::where('root_id', 1)->orderBy('name')->get();
         $types = \Config::get('widgets.types');
 
         return view('admin.pages.widgets.edit', compact('widget', 'types', 'categorias'));

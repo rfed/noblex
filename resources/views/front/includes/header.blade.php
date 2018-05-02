@@ -28,7 +28,7 @@
         <div class="section_tools">
             <a href="#">
                 <span class="fa fa-file-alt"></span>
-                <span>Manuales de usuario</span>
+                <span>Manuales</span>
             </a>
 
             <a href="#" class="triggerChat">

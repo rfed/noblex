@@ -32,38 +32,42 @@
 				</thead>
 
 				<tbody id="sortable">
+					@if (count($widgets))
+						@foreach($widgets as $widget)
+							@if ($widget->type != 7)
+							<tr>
+								<td>{{ $widget->position }}</td>
+								<td>{{ $widget->title }}</td>
+								<td>{{ \Config::get("widgets.types")[$widget->type]["text"] }}</td>
+								<td>@if($widget->category)<a href="{{ route('admin.categorias.edit', $widget->category_id) }}" >{{ $widget->category->name }}</a>@endif</td>
+								<td>{{ $widget->active ? 'Si' : 'No' }}</td>
+								<td>
+									{!! Form::hidden('id', $widget->id, array('class' => "id")) !!}
+									<div class="btn-group">
+										<a href="{{ route('admin.widgets.edit', $widget->id) }}">
+											<i class="icon-pencil"></i> Editar 
+										</a>
+										|
 
-					@foreach($widgets as $widget)
-						@if ($widget->type != 7)
-						<tr>
-							<td>{{ $widget->position }}</td>
-							<td>{{ $widget->title }}</td>
-							<td>{{ \Config::get("widgets.types")[$widget->type]["text"] }}</td>
-							<td>@if($widget->category)<a href="{{ route('admin.categorias.edit', $widget->category_id) }}" >{{ $widget->category->name }}</a>@endif</td>
-							<td>{{ $widget->active ? 'Si' : 'No' }}</td>
-							<td>
-								{!! Form::hidden('id', $widget->id, array('class' => "id")) !!}
-								<div class="btn-group">
-									<a href="{{ route('admin.widgets.edit', $widget->id) }}">
-										<i class="icon-pencil"></i> Editar 
-									</a>
-									|
-
-									<a href="#" class="delete-widget"
-									data-id="{{ $widget->id }}">
-										<i class="icon-trash"></i> Eliminar 
-									</a>
-									
-								</div>
-	                    	</td>
-						</tr>
-						@endif
-					@endforeach
+										<a href="#" class="delete-widget"
+										data-id="{{ $widget->id }}">
+											<i class="icon-trash"></i> Eliminar 
+										</a>
+										
+									</div>
+		                    	</td>
+							</tr>
+							@endif
+						@endforeach
+					@else
+					<tr>
+						<th colspan="6"><div class="alert alert-warning">Aún no has creado ningún widget.</div></th>
+					</tr>
+					@endif
 
 				</tbody>
 
 			</table>
-
 		</div>
 	</div>
     

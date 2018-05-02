@@ -127,12 +127,14 @@ class ProductController extends Controller
 
     public function deleteAtributo(Request $request){
         
-        //$producto = $this->product->findById($request->producto_id);
-        //$producto->attributes()->detach($request->attribute_id);
+        $producto = $this->product->findById($request->producto_id);
+        $producto->attributes()->detach($request->attribute_id);
+        /*
         \DB::table('attribute_category_product')
-        ->where('id', $request->attribute_id)
+        ->where('attribute_id', $request->attribute_id)
+        ->where('product_id', $request->product_id)
         ->delete();
-
+        */
         return response()->json(['status' => 'success']);
     }
 

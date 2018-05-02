@@ -6,10 +6,10 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="{{ route('admin.home') }}">
-                <img src="{{ asset('assets/imgs/iconos/noblex.png') }}" alt="logo" class="logo-default" />
+                <img src="{{ asset('assets/imgs/iconos/noblex_blanco.png') }}" alt="logo" class="logo-default img-responsive" />
             </a>
 
-            <div class="menu-toggler sidebar-toggler">
+            <div class="menu-toggler sidebar-toggler hidden">
                 <span></span>
             </div>
 

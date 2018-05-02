@@ -15,7 +15,7 @@ class ProductController extends FrontController
         parent::__construct();
     }
     
-    public function index($category, $subcategory, $product)
+    public function index($category, $product)
     {
         $page_id = 'producto';
         
@@ -44,7 +44,8 @@ class ProductController extends FrontController
         if ($parentCategory) {
             $breadcrumbs[] = ['caption' => $parentCategory->name, 'link' => $parentCategory->url];
         }
-    	$breadcrumbs[] = ['caption' => $category->name];
+    	$breadcrumbs[] = ['caption' => $category->name, 'link' => $category->url];
+        $breadcrumbs[] = ['caption' => $product->name];
 
     	return view('front.pages.productos', compact("breadcrumbs", "product", "relatedproducts", "page_id", "fixedrelated"));
     

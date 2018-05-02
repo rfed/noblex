@@ -260,7 +260,7 @@
             }
 
 
-            title = `<strong>Tamaño sugerido</strong><br>
+            title = `<strong>Imagen</strong><br>
                     <span>${widget_type.size.width}px x ${widget_type.size.height}px</span> `;
                      
             linkUrl = data.link ? data.link : '';
@@ -296,7 +296,11 @@
 
         var stat = (widget_type.type === 'image' && data.type === 'image') ? 'static' : '';
         
-        var subtitle = (widget_type.type === 'video') ? `<input type="text" name="media[${data.id}][subtitle]" placeholder="Subtitulo" class="form-control media_input" id="subtitle${data.id}" value="${data.subtitle ? data.subtitle : ''}">` : '';
+        var subtitle_field = (widget_type.has_subtitle) ? `<input type="text" name="media[${data.id}][subtitle]" placeholder="Subtitulo" class="form-control media_input" id="subtitle${data.id}" value="${data.subtitle ? data.subtitle : ''}">` : '';
+
+        var title_field = (widget_type.has_title) ? `<input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">` : '';
+
+        var description_field = (widget_type.has_description) ? `<input type="text" id="description${data.id}" name="media[${data.id}][description]" placeholder="Descripcion" class="form-control note-editor media_input" value="${data.description ? data.description : ''}" />` : '';
 
         var row = $(`<tr class="media-source" data-url="${source}" id="source${data.id}" data-type="${ data.type }">
                 <td class="drag ${stat}"><i class="icon-list"></i></td>
@@ -312,9 +316,9 @@
                 <td>
                     <p><strong>${ data.type == 'image' ? 'Imagen' : 'Video' }</strong></p>
                     <input type="hidden" name="media[${data.id}][position]" value="${data.position ? data.position : 0}" class="position" id="position${data.position}">
-                    <input type="text" name="media[${data.id}][title]" placeholder="Titulo" class="form-control media_input" id="title${data.id}" value="${data.title ? data.title : ''}">
-                    ${subtitle}
-                    <input type="text" id="description${data.id}" name="media[${data.id}][description]" placeholder="Descripcion" class="form-control note-editor media_input" value="${data.description ? data.description : ''}" />
+                    ${title_field}
+                    ${subtitle_field}
+                    ${description_field}
                     <div class="row">
                         
                         ${targetSel}
@@ -325,15 +329,6 @@
                     </div>
 
                 </td>
-                ${ type_id == 1 || type_id == 7 ? `<td width="200">
-                    <div class="btn-group">
-                        <a href="#" 
-                            class="delete-media"
-                            data-id="${ data.id }">
-                            <i class="icon-trash"></i> Quitar 
-                        </a>
-                    </div>
-                </td>` : '' }
                 
             </tr>`);
 

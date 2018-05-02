@@ -30,7 +30,7 @@
 		<div class="container">
 			
 			<!-- MOBILE -->
-			<div class="product_banner mobile" style="background-image:url({{ $imageBackground  }})">
+			<div class="product_banner mobile">
 				<h1 class="title">{{ $product->name }}</h1>
 				<span class="code">{{ $product->sku }}</span>
 
@@ -48,7 +48,7 @@
 
 					<div class="features">
 						@foreach($product->features as $feature)
-							<img src="{{ url("storage/$feature->image") }}" alt="{{ $feature->name }}" />
+							<img src="{{ url("storage/$feature->image_featured") }}" alt="{{ $feature->name }}" />
 						@endforeach
 					</div>
 				</div>
@@ -167,6 +167,7 @@
 	</section>
 
 
+	@if (count($product->attributesWithGroup()) > 0 || count($product->attributesWithoutGroup()) > 0)
 	<section class="divider details">
 		<div class="container">
 
@@ -206,7 +207,7 @@
 
 		</div>
 	</section>
-
+	@endif
 
 	@if (count($relatedproducts))
 	<section class="divider related_products">

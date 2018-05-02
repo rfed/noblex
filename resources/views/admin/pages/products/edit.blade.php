@@ -65,7 +65,16 @@
 @push('scripts')
 	<script src="{{ asset('admin/assets/pages/productos/js/app.js') }}"></script>
 
+	<script src="{{ asset('admin/assets/pages/categorias/js/jquery.stringtoslug.min.js') }}"></script>
+	<script src="{{ asset('admin/assets/pages/categorias/js/speakingurl.min.js') }}"></script>
+
 	<script>
+		$(function() {
+			$("#name").stringToSlug({
+				getPut: '#url'
+			});
+		});
+
 		@if(!empty($subcategoria) && !empty($categoria));
 			$(document).ready(function(){
 				subcategorias({{ $categoria->id }}, {{ $subcategoria->id}})

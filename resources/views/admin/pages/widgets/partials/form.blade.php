@@ -4,7 +4,7 @@
 @if(@$widget->type !== 7)
     {!! Form::hidden('position') !!}
     <div class="form-group {{ $errors->first('sku') ? 'has-error' : '' }}">
-        {!! Form::label('title', 'Titulo', ['class' => 'control-label col-md-3']) !!}
+        {!! Form::label('title', 'Descripción', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
             {!! Form::text('title', null, ['class' => 'form-control', 'id' => 'title']) !!}
             {!! $errors->first('title', '<span class="help-block"> :message </span>') !!}
@@ -16,9 +16,10 @@
             <select name="type" id="type-select" class="form-control">
                 <option value=""> </option>
                 <option value="1" {{ isset($widget) && $widget->type == 1 ? 'selected' : '' }}>Imagen promocional + 3 videos</option>
-                <option value="2" {{ isset($widget) && $widget->type == 2 ? 'selected' : '' }}>Banner</option>
+                <option value="8" {{ isset($widget) && $widget->type == 8 ? 'selected' : '' }}>Categoria destacada</option>
                 <option value="3" {{ isset($widget) && $widget->type == 3 ? 'selected' : '' }}>Imagen promocional con video</option>
-                <option value="5" {{ isset($widget) && $widget->type == 5 ? 'selected' : '' }}>Promobox x2</option>
+                <option value="5" {{ isset($widget) && $widget->type == 5 ? 'selected' : '' }}>Promobox</option>
+                <option value="2" {{ isset($widget) && $widget->type == 2 ? 'selected' : '' }}>Banner</option>
                 
                 <?php
 
@@ -37,7 +38,7 @@
 
     <?php $widgets = \Config::get('widgets.types'); ?>
 
-    @if (in_array('category', $widgets[$widget->type]['features']))
+    @if (isset($widget) && in_array('category', $widgets[$widget->type]['features']))
     <div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}">
         {!! Form::label('category_id', 'Categoria', ['class' => 'control-label col-md-3']) !!}
         
@@ -49,7 +50,8 @@
                 <option value=""> </option>
                 @foreach($categorias as $k => $cat)
                 
-                    <?php $childs = $cat->menuChilds(); ?>
+                    <?php $childs = $cat->childs; ?>
+
                     $eq = (int)@$widget->category_id !== (int)$cat->id;
                     <option value="{{ $cat->id }}" {{ @$widget->category_id !== $cat->id ?: 'selected' }}>{{ $cat->name}}</option>
 
@@ -58,7 +60,7 @@
 
                             $eq = (int)@$widget->category_id !== (int)$cat->id;
                         ?>
-                            <option value="{{ @$child->id }}" {{ @$widget->category_id !== $child->id ?: 'selected' }} >{{ @$child->name}}</option>
+                            <option value="{{ @$child->id }}" {{ @$widget->category_id !== $child->id ?: 'selected' }} >--- {{ @$child->name}}</option>
                     @endforeach
 
                 @endforeach
@@ -82,13 +84,22 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('home', 'Predeterminado', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::checkbox('home', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'home']) !!}
+        </div>
+    </div>
+
+    @if (isset($widget) && in_array('features', $widgets[$widget->type]['features']))
+    <div class="form-group">
         {!! Form::label('features', 'Incluir features de categoría', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">
             {!! Form::checkbox('features', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'active']) !!}
         </div>
     </div>
+    @endif
 
-    @if (in_array('products', $widgets[$widget->type]['features']))
+    @if (isset($widget) && in_array('products', $widgets[$widget->type]['features']))
     <div class="form-group">
         {!! Form::label('show_prods', 'Mostrar productos de cat.', ['class' => 'control-label col-md-3']) !!}
         <div class="col-md-9">

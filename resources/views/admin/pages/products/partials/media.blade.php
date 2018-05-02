@@ -1,6 +1,6 @@
 	
 <div class="form-group">
- 	<label for="image" class="control-label col-md-3">Imagen destacada<br/><small>JPG/PNG 1328x946px</small>
+ 	<label for="image" class="control-label col-md-3">Imagen promocional<br/><small>JPG/PNG 1328x946px</small>
  		<br/><br/>
  		<button type="button" id="loader-image_featured" class="btn btn-primary">Examinar</button>
  	</label>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="form-group">
- 	<label for="image" class="control-label col-md-3">Trama de fondo de imagen destacada<br/><small>JPG/PNG 1058x401px</small>
+ 	<label for="image" class="control-label col-md-3">Imagen back promocional<br/><small>JPG/PNG 1058x401px</small>
  		<br/><br/>
  		<button type="button" id="loader-image_featured_background" class="btn btn-primary">Examinar</button>
  	</label>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="form-group">
- 	<label for="image" class="control-label col-md-3">Imagen de portada para listados (thumbnail)<br/><small>JPG/PNG 331x210px</small>
+ 	<label for="image" class="control-label col-md-3">Imagen de preview<br/><small>JPG/PNG 331x210px</small>
  		<br/><br/>
  		<button type="button" id="loader-image_thumb" class="btn btn-primary">Examinar</button>
  	</label>

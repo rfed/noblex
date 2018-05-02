@@ -33,7 +33,7 @@
 						<th>Nombre</th>
 						<th>URL</th>
 						<th>Visible</th>
-						<th width="200">Opciones</th>
+						<th width="330">Opciones</th>
 					</tr>
 				</thead>
 
@@ -54,6 +54,10 @@
 						<td>
 							{!! Form::hidden('id', $categoria->id, array('class' => "id")) !!}
 							<div class="btn-group">
+                    	        <a href="{{ url('panel/categorias/?root_id='.$categoria->id) }}">
+                                    <i class="icon-pencil"></i> Ver Subcategorías 
+                                </a>
+                                |
                     	        <a href="{{ route('admin.categorias.edit', $categoria->id) }}">
                                     <i class="icon-pencil"></i> Editar 
                                 </a>

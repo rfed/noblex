@@ -43,33 +43,46 @@
 		</div>
 
 		@if (count($category->products))
-		<div class="padding_top product_list_carousel owl-carousel">
+		<div class="product_list container">
 
-			<!-- -->
-			@foreach ($category->products as $product)
-			<div class="item">
-				<a href="{{ url($parentCategory->url.'/'.$category->url.'/'.$product->sku) }}">
-					<div class="image">
-						<img src="{{ asset('storage/'.($product->thumb ? $product->thumb->source : 'no-foto.png')) }}" alt="{{ $product->name }}"" />
+			<div class="row">
 
-						@if ($product->tag)
-						<span class="feature"><span>{{ $product->tag }}</span></span>
-						@endif
+				@foreach ($products as $product)
+				<div class="col-xs-6 col-md-3">
+
+					<div class="item">
+						<a href="{{ url($category->url.'/'.$product->sku) }}">
+							<div class="image">
+								<img src="{{ asset('storage/'.($product->thumb ? $product->thumb->source : 'no-foto.png')) }}" alt="{{ $product->name }}"" />
+
+								@if ($product->tag)
+								<span class="feature"><span>{{ $product->tag }}</span></span>
+								@endif
+							</div>
+							<span class="id">{{ $product->sku }}</span>
+							<p class="title"><strong>{{ $product->name }}</strong></p>
+							<span class="description">{{ $product->description }}</span>
+
+							<button class="btn link">Ver producto</button>
+						</a>
 					</div>
-					<span class="id">{{ $product->sku }}</span>
-					<p class="title"><strong>{{ $product->name }}</strong></p>
-					<span class="description">{{ $product->description }}</span>
-				</a>
 
-				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
-					<span>Comparar</span>
-				</label>
-				
-				<a href="javascript:void(0)" data-etailingcode="{{ $product->sku }}" data-etailingname="{{ $product->sku }}" data-etailingcat="{{ $product->category->name }}" onclick="etailing_btn_comprar(this);" class="btn link staggered-animation btn-responsive" data-os-animation-delay="1s">Comprar</a>
+				</div>
+				@endforeach
+
 			</div>
-			@endforeach
-			<!-- -->
+
+			@if ($products->lastPage() > 1)
+			<div class="pagination">
+				<div class="showing">
+					<span>Mostrando {{ $products->perPage() }} de {{ $products->total() }} resultados</span>
+				</div>
+
+				<div class="pages">
+					{{ $products->links('front.includes.pager') }}
+				</div>
+			</div>
+			@endif
 
 		</div>
 		@endif

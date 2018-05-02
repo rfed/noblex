@@ -51,7 +51,7 @@
 						</div>
 
 						<div class="link_block">
-							<a href="{{ url($category->url.'/'.$cat->url) }}" class="btn link">Ver todos</a>
+							<a href="{{ url($cat->url) }}" class="btn link">Ver todos</a>
 						</div>
 					</div>
 				</div>
@@ -65,7 +65,7 @@
 			<!-- -->
 			@foreach ($cat->products as $product)
 			<div class="item">
-				<a href="{{ url($category->url.'/'.$cat->url.'/'.$product->sku) }}">
+				<a href="{{ url($cat->url.'/'.$product->sku) }}">
 					<div class="image">
 						<img src="{{ asset('storage/'.($product->thumb ? $product->thumb->source : 'no-foto.png')) }}" alt="{{ $product->name }}"" />
 
