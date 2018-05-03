@@ -1066,8 +1066,8 @@ footer .copyright > .networks_list li a:hover {
 .fixed_tools {
 	display: none;
 	position: fixed;
-	right: 60px;
-	bottom: 60px;
+	right: 17px;
+	bottom: 85px;
 	z-index: 1
 }
 

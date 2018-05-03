@@ -210,3 +210,16 @@ if( $('#download_list').length ){
 		},
 	})
 }
+
+
+ConversalabWebchatSalesforceLauncher.init({
+
+    secret: "MtjRZ8hTfiI.cwA._OI.D49ZfY5a9FEDQgT6g7nB2grhtxCdzmAwBtDh3_yTNsw",
+
+    botName: "Asistente Virtual Noblex",
+
+    botAvatar: "http://static.conversalab.com.s3.amazonaws.com/bots/public/newsan/images/noblexChatIcon.png",
+
+    mainColor: "#000000",
+
+})
