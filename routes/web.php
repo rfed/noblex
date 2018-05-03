@@ -135,8 +135,12 @@ Route::group([
 	
 });
 
-Route::get('/', 'Front\HomeController@index')->name('home');
-Route::get('/{slug}', 'Front\CategoryController@index')->name('categoria');
-Route::get('/{slug1}/{slug2}', 'Front\CategoryController@subcategory')->name('categoria');
 
+Route::get('/', 'Front\HomeController@index')->name('home');
+
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!contacto$).*$')->name('categoria');
 Route::get('/{category}/{subcategory}/{product}', 'Front\ProductController@index')->name('productos');
+
+// Contacto
+Route::get('/contacto', 'Front\ContactoController@index')->name('contacto');
+Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store');

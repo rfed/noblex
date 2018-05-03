@@ -186,6 +186,7 @@
 
 
 <script src="{{ asset('assets/jquery/jquery-1.12.3.min.js') }}"></script>
+<script src="{{ asset('assets/selectric/jquery.selectric.js') }}"></script>
 <script src="{{ asset('assets/owl-carousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>

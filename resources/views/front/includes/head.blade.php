@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/owl-carousel/owl.carousel.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/selectric/selectric.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/font-awesome/css/fontawesome-all.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/media-queries.css') }}">
