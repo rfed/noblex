@@ -80,32 +80,38 @@
                 <div class="submenu">
                     <ul>
                         <li>
-                            <a href="#">Ingresar</a>
+                            <a href="{{ route('login') }}">Ingresar</a>
                         </li>
                         <li>
-                            <a href="#">Registrarme</a>
+                            <a href="{{ route('register') }}">Registrarme</a>
                         </li>
                     </ul>
                 </div>
             </div>
             @else
             <div class="user">
-                <a href="#">Hola <strong>Juana María</strong></a>
+                <a href="#">Hola <strong>{{ Auth::user()->name }}</strong></a>
 
                 <div class="submenu">
                     <ul>
                         <li>
-                            <a href="#">Preferencias</a>
+                            <a href="#">Perfil</a>
                         </li>
                         <li>
-                            <a href="#">Salir de la cuenta</a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Salir de la cuenta
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
             </div>
             @endif
             <!-- -->
-
 
             <div class="search_box">
                 <form>
