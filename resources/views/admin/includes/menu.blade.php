@@ -102,6 +102,12 @@
                     <span class="title">Productos</span>
                 </a>
             </li>
+            <li class="nav-item start {{ activeMenu('panel/newsletter*') }}">
+                <a href="{{ route('admin.newsletter.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Newsletter</span>
+                </a>
+            </li>
 
         </ul>
         <!-- END SIDEBAR MENU -->
