@@ -27,7 +27,7 @@
 					<tr>
 						<td>{{ $newsletter->name }}</td>
 						<td>{{ $newsletter->email }}</td>
-						<td>{{ $newsletter->created_at->format('d-m-Y') }}</td>
+						<td>{{ $newsletter->created_at->format('d-m-Y H:i:s') }}</td>
 					</tr>
 
 					@endforeach
