@@ -120,18 +120,17 @@
                 <form action="{{ route('newsletter.store') }}" method="POST" id="formNewsletter">
                     @csrf
 
-                    <div>
+                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}" >
                         <input type="text" name="name" id="name" placeholder="Nombre"  autocomplete="off" value="{{ old('name') }}" />
-                        {!! $errors->first('name', '<span style="color:red"> :message </span>') !!}
                     </div>
+                    {!! $errors->first('name', '<span style="color:red"> :message </span>') !!}
 
-                    <div>
+                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}">
                         <input type="email" name="email" id="email" placeholder="Correo electrónico" autocomplete="off" value="{{ old('email') }}"  />
-                        {!! $errors->first('email', '<span style="color:red"> :message </span>') !!}
                     </div>
+                    {!! $errors->first('email', '<span style="color:red"> :message </span>') !!}
                     
-                    {!! $errors->first('g-recaptcha-response') ? '<span style="color:red">El Captcha es requerido</span>' : '' !!}
-
+                
                     <div class="submit_block">
 
                         <!-- https://github.com/anhskohbo/no-captcha -->
@@ -139,6 +138,9 @@
 
                         <input type="submit" id="submit" class="btn link" value="Enviar" />
                     </div>
+
+                    <div class="clearfix"></div>
+                    {!! $errors->first('g-recaptcha-response') ? '<span style="color:red">El Captcha es requerido</span>' : '' !!}
 
                 </form>
 

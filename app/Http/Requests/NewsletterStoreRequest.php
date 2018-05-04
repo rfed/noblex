@@ -8,6 +8,9 @@ class NewsletterStoreRequest extends FormRequest
 {
     /*public $validator = null;*/
 
+    // Redireccionar a la url si falla la validacion.
+    protected $redirect = '#newsletter';
+
     /**
      * Determine if the user is authorized to make this request.
      *
