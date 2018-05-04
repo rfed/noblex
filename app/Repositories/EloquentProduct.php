@@ -18,6 +18,13 @@ class EloquentProduct implements ProductInterface
 		return Product::where('id', '!=', $id)->get();
 	}
 
+    public function getAllWithManualAndActive()
+    {
+        return Product::whereNotNull('manual')
+                        ->where('active', 1)
+                        ->get();
+    }
+
 	public function store($request)
 	{
 		$data = $request->validated();

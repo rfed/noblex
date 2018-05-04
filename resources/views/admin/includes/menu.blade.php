@@ -108,6 +108,12 @@
                     <span class="title">Newsletter</span>
                 </a>
             </li>
+            <li class="nav-item start {{ activeMenu('panel/manuales*') }}">
+                <a href="{{ route('admin.manuales.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Manuales</span>
+                </a>
+            </li>
 
         </ul>
         <!-- END SIDEBAR MENU -->

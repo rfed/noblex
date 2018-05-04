@@ -35,6 +35,13 @@ class ProductController extends Controller
         return view('admin.pages.products.index', compact("productos"));
     }
 
+    public function listProductsWithManual()
+    {
+        $productos = $this->product->getAllWithManualAndActive();
+
+        return view('admin.pages.manuales.index', compact("productos"));
+    }
+
 
     public function create(EloquentCategory $category, EloquentBrand $brand, EloquentFeature $feature)
     {

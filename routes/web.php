@@ -127,7 +127,7 @@ Route::group([
 	]);	
 
 	Route::get('newsletter', 'NewsletterController@index')->name('admin.newsletter.index');
-	
+	Route::get('manuales', 'Admin\ProductController@listProductsWithManual')->name('admin.manuales.index');
 });
 
 
