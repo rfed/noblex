@@ -127,7 +127,6 @@ Route::group([
 	]);	
 
 	Route::get('newsletter', 'NewsletterController@index')->name('admin.newsletter.index');
-	Route::get('manuales', 'Admin\ProductController@listProductsWithManual')->name('admin.manuales.index');
 });
 
 
@@ -137,8 +136,9 @@ Route::get('/', 'Front\HomeController@index')->name('home');
 
 Route::post('/', 'NewsletterController@store')->name('newsletter.store');
 
+
 Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
-Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto|descargas$).*$')->name('categoria');
 
 Route::middleware('guest')->group(function(){
 
@@ -161,4 +161,7 @@ Route::middleware('guest')->group(function(){
 // Contacto
 Route::get('/contacto', 'Front\ContactoController@index')->name('contacto');
 Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store');
+
+// Descargas
+Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
 
