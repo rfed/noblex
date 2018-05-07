@@ -5,9 +5,9 @@ namespace Noblex\Http\Controllers\Front\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Noblex\Customer;
 use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Repositories\EloquentCategory;
-use Noblex\User;
 
 class RegisterController extends FrontController
 {
@@ -89,7 +89,7 @@ class RegisterController extends FrontController
         $name = $data['firstname'].' '.$data['lastname'];
         $birth = $data['year'].'-'.$data['month'].'-'.$data['day'];
 
-        $user = User::create([
+        $customer = Customer::create([
             'name'      => $name,
             'email'     => $data['email'],
             'password'  => Hash::make($data['password']),
@@ -97,8 +97,8 @@ class RegisterController extends FrontController
             'birth'     => $birth
         ]);
 
-        $user->categories()->attach($data['category_id']);
+        $customer->categories()->attach($data['category_id']);
 
-        return $user;
+        return $customer;
     }
 }

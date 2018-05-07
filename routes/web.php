@@ -11,7 +11,7 @@ Route::group([
 ], function() {
 
 	// Authentication Routes...
-	Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('login');
+	Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 	Route::post('/', 'Admin\Auth\LoginController@login');
 	Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 
@@ -140,23 +140,22 @@ Route::post('/', 'NewsletterController@store')->name('newsletter.store');
 Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto|descargas$).*$')->name('categoria');
 
-Route::middleware('guest')->group(function(){
 
-	// Authentication Routes...
-	Route::get('/login', 'Front\Auth\LoginController@showLoginForm')->name('login');
-	Route::post('/login', 'Front\Auth\LoginController@login');
-	Route::post('logout', 'Front\Auth\LoginController@logout')->name('logout');
+// Authentication Routes...
+Route::get('/login', 'Front\Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Front\Auth\LoginController@login');
+Route::post('logout', 'Front\Auth\LoginController@logout')->name('logout');
 
-	// Registration Routes...
-	Route::get('register', 'Front\Auth\RegisterController@showRegistrationForm')->name('register');
-	Route::post('register', 'Front\Auth\RegisterController@register');
+// Registration Routes...
+Route::get('register', 'Front\Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Front\Auth\RegisterController@register');
 
-	// Password Reset Routes...
-	Route::get('password/reset', 'Front\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-	Route::post('password/email', 'Front\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-	Route::get('password/reset/{token}', 'Front\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-	Route::post('password/reset', 'Front\Auth\ResetPasswordController@reset');
-});
+// Password Reset Routes...
+Route::get('password/reset', 'Front\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Front\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Front\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Front\Auth\ResetPasswordController@reset');
+
 
 // Contacto
 Route::get('/contacto', 'Front\ContactoController@index')->name('contacto');

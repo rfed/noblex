@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Noblex\Category;
 use Noblex\Notifications\ResetPasswordNotification;
 
-class User extends Authenticatable
+class Customer extends Authenticatable
 {
     use Notifiable;
 
@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'gender', 'birth'
+        'name', 'email', 'password', 'gender', 'birth',
     ];
 
     /**
@@ -29,8 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function sendPasswordResetNotification($token)
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_customer');
+    }
+
+    /*public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
-    }
+    }*/
 }
