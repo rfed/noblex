@@ -16,8 +16,10 @@ class ContactoController extends FrontController
     {
         $page_id = 'contacto';
         $subjects = Subject::all();
+        $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
+        $breadcrumbs[] = ['caption' => 'Contacto', 'link' => ''];
 
-        return view('front.pages.contacto', compact("page_id", "subjects"));
+        return view('front.pages.contacto', compact("page_id", "subjects", "breadcrumbs"));
     }
 
 

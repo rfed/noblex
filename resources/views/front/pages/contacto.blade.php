@@ -1,5 +1,9 @@
 @extends('front.layouts.app')
 
+@section('includes.admin.breadcrumbs')
+	{{ Breadcrumbs::render('home') }}
+@endsection
+
 @section('content')
 
 <div class="container">
