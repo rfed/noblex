@@ -73,7 +73,7 @@
         <div class="block_menu_2">
 
             <!-- CUANDO EL USUARIO ESTÁ LOGUEADO -->
-            @guest
+            @if(!Auth::guard('customer')->check())
             <div class="user">
                 <a href="#"><strong>Mi cuenta</strong></a>
 
@@ -88,9 +88,9 @@
                     </ul>
                 </div>
             </div>
-            @else
+            @elseif(Auth::guard('customer')->check())
             <div class="user">
-                <a href="#">Hola <strong>{{ Auth::user()->name }}</strong></a>
+                <a href="#">Hola <strong>{{ Auth::guard('customer')->user()->name }}</strong></a>
 
                 <div class="submenu">
                     <ul>

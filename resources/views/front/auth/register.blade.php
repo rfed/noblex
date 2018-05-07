@@ -91,7 +91,7 @@
             <!-- https://github.com/anhskohbo/no-captcha -->
             {!! NoCaptcha::display() !!}
 
-            <input type="submit" value="Registrarme" id="submit" class="btn link" />
+            <input type="submit" value="Registrarme" id="submitRegistro" class="btn link" />
         </div>
 
         {!! $errors->first('g-recaptcha-response') ? '<span class="msg_error">El Captcha es requerido</span>' : '' !!}
