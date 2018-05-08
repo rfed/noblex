@@ -9,6 +9,11 @@ use Noblex\Newsletter;
 
 class NewsletterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'store']);
+    }
+
     public function index()
     {
         $newsletters = Newsletter::all();
