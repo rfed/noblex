@@ -460,6 +460,8 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` enum('male','female') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birth` date COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -470,7 +472,7 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES (1, 'admin', 'fede@lavacoders.com', '$2y$10$Pup2A1i5.76RvVWICdSE4.W2r/LBTyXqDsEQGtYHMJDyuBUkVoVk2', 'sUdTRHdtjd3fkHglCh0nwagUawBTJf7wttgs2lqiuW7XnLCxNGcjokBpaism', '2018-04-20 18:38:56', '2018-04-20 18:38:56');
+INSERT INTO `users` VALUES (1, 'admin', 'fede@lavacoders.com', '$2y$10$Pup2A1i5.76RvVWICdSE4.W2r/LBTyXqDsEQGtYHMJDyuBUkVoVk2', 'sUdTRHdtjd3fkHglCh0nwagUawBTJf7wttgs2lqiuW7XnLCxNGcjokBpaism', NULL, NULL, '2018-04-20 18:38:56', '2018-04-20 18:38:56');
 COMMIT;
 
 -- ----------------------------

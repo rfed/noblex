@@ -15,11 +15,6 @@ Route::group([
 	Route::post('/', 'Admin\Auth\LoginController@login');
 	Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 
-	/*// Registration Routes...  (Lo tengo que usar mas adelante.)
-	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-	Route::post('register', 'Auth\RegisterController@register');*/
-
-
 	// Password Reset Routes...
 	Route::get('password/reset', 'Admin\Auth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 	Route::post('password/email', 'Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
@@ -97,7 +92,6 @@ Route::group([
 
 		Route::delete('{product}/files/{id}', 'Admin\ProductMediaController@destroy')->name('admin.productos.files.destroy');
 
-
 	});
 
 	// Productos modulo seccion
@@ -115,7 +109,6 @@ Route::group([
 
 		Route::post('{product}/deleteProductSectionImage', 'Admin\ProductSectionController@destroyImage')->name('admin.productos.section.destroyImage');
 		
-
 	});
 
 	// Widgets
@@ -132,9 +125,41 @@ Route::group([
 	Route::resource('slider', 'Admin\SliderController', [
 		'names' => 'admin.slider'
 	]);	
+
+	Route::get('newsletter', 'NewsletterController@index')->name('admin.newsletter.index');
 	
 });
 
+
+/********** FRONTEND **********/
+
 Route::get('/', 'Front\HomeController@index')->name('home');
-Route::get('/{slug}', 'Front\CategoryController@index')->name('categoria');
+
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
 Route::get('/{slug1}/{slug2}', 'Front\ProductController@index')->name('producto');
+
+Route::post('/', 'NewsletterController@store')->name('newsletter.store');
+
+
+Route::middleware('guest')->group(function(){
+
+	// Authentication Routes...
+	Route::get('/login', 'Front\Auth\LoginController@showLoginForm')->name('login');
+	Route::post('/login', 'Front\Auth\LoginController@login');
+	Route::post('logout', 'Front\Auth\LoginController@logout')->name('logout');
+
+	// Registration Routes...
+	Route::get('register', 'Front\Auth\RegisterController@showRegistrationForm')->name('register');
+	Route::post('register', 'Front\Auth\RegisterController@register');
+
+	// Password Reset Routes...
+	Route::get('password/reset', 'Front\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+	Route::post('password/email', 'Front\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	Route::get('password/reset/{token}', 'Front\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+	Route::post('password/reset', 'Front\Auth\ResetPasswordController@reset');
+});
+
+// Contacto
+Route::get('/contacto', 'Front\ContactoController@index')->name('contacto');
+Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store');
+

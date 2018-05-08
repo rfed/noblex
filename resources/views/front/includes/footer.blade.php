@@ -110,24 +110,38 @@
             </div>
 
 
-            <div class="column newsletter col-xs-12 col-sm-5">
+            <div class="column newsletter col-xs-12 col-sm-5" id="newsletter">
 
                 <p><strong>Newsletter <span class="fa fa-envelope-open"></span></strong></p>
                 <span>Suscribite y enterate de los lanzamiento y las últimas novedades.</span>
+                
+                {!! Session::has('success') ? '<p class="exito">'.Session::get('success').'</p>' : '' !!}
 
-                <form>
-                    <div>
-                        <input type="text" placeholder="Nombre" />
+                <form action="{{ route('newsletter.store') }}" method="POST" id="formNewsletter">
+                    @csrf
+
+                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}" >
+                        <input type="text" name="name" id="name" placeholder="Nombre"  autocomplete="off" value="{{ old('name') }}" />
                     </div>
-                    <div>
-                        <input type="text" placeholder="Correo electrónico" />
+                    {!! $errors->first('name', '<span style="color:red"> :message </span>') !!}
+
+                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}">
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" autocomplete="off" value="{{ old('email') }}"  />
                     </div>
+                    {!! $errors->first('email', '<span style="color:red"> :message </span>') !!}
+                    
+                
                     <div class="submit_block">
-                        <!-- CAPTCHA V2: CAMBIAR LA data-sitekey -->
-                        <div class="g-recaptcha" data-sitekey="6LflNj0UAAAAAANcGQiFKTufw6BtjghDFRYblqO0"></div>
 
-                        <input type="submit" class="btn link" value="Enviar" />
+                        <!-- https://github.com/anhskohbo/no-captcha -->
+                        {!! NoCaptcha::display() !!}
+
+                        <input type="submit" id="submit" class="btn link" value="Enviar" />
                     </div>
+
+                    <div class="clearfix"></div>
+                    {!! $errors->first('g-recaptcha-response') ? '<span style="color:red">El Captcha es requerido</span>' : '' !!}
+
                 </form>
 
             </div>
@@ -186,6 +200,7 @@
 
 
 <script src="{{ asset('assets/jquery/jquery-1.12.3.min.js') }}"></script>
+<script src="{{ asset('assets/selectric/jquery.selectric.js') }}"></script>
 <script src="{{ asset('assets/owl-carousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -193,4 +208,5 @@
 <script src="{{ asset('assets/js/css3-mediaqueries.js') }}"></script>
 <script src="{{ asset('assets/js/html5shiv.js') }}"></script>
 <script src="{{ asset('assets/js/respond.js') }}"></script>
+<script src="{{ asset('pages/newsletter/js/app.js') }}"></script>
 @stack('scripts')
