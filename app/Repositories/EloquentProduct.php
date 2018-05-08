@@ -3,6 +3,7 @@
 namespace Noblex\Repositories;
 
 use Illuminate\Support\Facades\Storage;
+use Noblex\Category;
 use Noblex\Product;
 use Noblex\Repositories\Interfaces\ProductInterface;
 
@@ -17,6 +18,14 @@ class EloquentProduct implements ProductInterface
 	{
 		return Product::where('id', '!=', $id)->get();
 	}
+
+    public function getAllWithManualAndActive()
+    {
+        return Product::with('category:id,name')
+                        ->whereNotNull('manual')
+                        ->where('active', 1)
+                        ->get();
+    }
 
 	public function store($request)
 	{

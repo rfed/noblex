@@ -9,7 +9,6 @@ use Noblex\Repositories\Interfaces\WidgetInterface;
 
 class HomeController extends FrontController
 {
-
     /**
      * Create a new controller instance.
      *
