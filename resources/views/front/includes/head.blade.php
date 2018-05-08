@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/font-awesome/css/fontawesome-all.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/media-queries.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
 
 	<!-- GOOGLE CAPTCHA -->
 	<script src='https://www.google.com/recaptcha/api.js'></script>

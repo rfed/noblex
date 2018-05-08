@@ -2,52 +2,57 @@
 
 namespace Noblex\Http\Controllers\Front\Auth;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Noblex\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Noblex\Category;
+use Noblex\Http\Controllers\Front\FrontController;
 
-class LoginController extends Controller
+class LoginController extends FrontController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        parent::__construct();
+        $this->middleware('guest:customer')->except('logout');
     }
 
     public function showLoginForm()
     {
-        return view('front.auth.login');
+        $page_id = 'login';
+        $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
+        $breadcrumbs[] = ['caption' => 'Login'];
+
+        return view('front.auth.login', compact("page_id", "breadcrumbs"));
     }
 
-    protected function validateLogin(Request $request)
+    public function login(Request $request)
     {
+        // Validate the form data
         $this->validate($request, [
-            $this->username() => 'required|email|string',
-            'password' => 'required|string',
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
         ]);
+
+        // Attempt to log the user in
+        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            // if successful, then redirect to their intended location
+            return redirect()->route('home');
+        }
+
+        // if unsuccessful, then redirect back to the login with the form data
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    public function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
+    }
+
+    public function logout()
+    {
+        Auth::guard('customer')->logout();
+        return redirect('/');
     }
 }

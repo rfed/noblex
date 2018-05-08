@@ -137,8 +137,8 @@ Route::get('/', 'Front\HomeController@index')->name('home');
 Route::post('/', 'NewsletterController@store')->name('newsletter.store');
 
 
-Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
-Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto|descargas$).*$')->name('categoria');
+/*Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto|descargas$).*$')->name('categoria');*/
 
 
 // Authentication Routes...
@@ -156,6 +156,10 @@ Route::post('password/email', 'Front\Auth\ForgotPasswordController@sendResetLink
 Route::get('password/reset/{token}', 'Front\Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Front\Auth\ResetPasswordController@reset');
 
+// Perfil
+Route::get('mi_perfil/{customer}', 'Front\PerfilController@edit')->name('perfil.edit');
+Route::put('mi_perfil/{customer}', 'Front\PerfilController@update')->name('perfil.update');
+
 
 // Contacto
 Route::get('/contacto', 'Front\ContactoController@index')->name('contacto');
@@ -163,4 +167,7 @@ Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store
 
 // Descargas
 Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
+
+Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!panel$).*$')->name('categoria');
 

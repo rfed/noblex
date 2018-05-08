@@ -1,47 +1,30 @@
-@extends('layouts.app')
+@extends('front.layouts.app')
 
 @section('content')
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <h1 class="section_title">Recuperar clave</h1>
+    <p>Ingresá tu email para recuperar tu clave.</p>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <form action="{{ route('password.email') }}" method="POST" class="form" id="formPasswordReset">
+        @csrf
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+        <label {{ $errors->first('email') ? 'class=error' : '' }}>
+            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+            {!! $errors->first('email', '<span class="msg_error"> :message </span>') !!}
+        </label>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+        <div class="submit_block">
+            {!! Session('status') ? '<p class="exito">Te enviamos un mail, revisá tu bandeja de entrada o SPAM.</p>' : '' !!}
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <input type="submit" value="Enviar" id="submitPasswordReset" class="btn link" />
         </div>
-    </div>
+
+    </form>
 </div>
+
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('pages/password_reset/js/app.js') }}"></script>
+@endpush

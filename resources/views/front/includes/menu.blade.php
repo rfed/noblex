@@ -88,14 +88,14 @@
                     </ul>
                 </div>
             </div>
-            @elseif(Auth::guard('customer')->check())
+            @else
             <div class="user">
-                <a href="#">Hola <strong>{{ Auth::guard('customer')->user()->name }}</strong></a>
+                <a href="#">Hola <strong>{{ Auth::guard('customer')->user()->firstname }}</strong></a>
 
                 <div class="submenu">
                     <ul>
                         <li>
-                            <a href="#">Perfil</a>
+                            <a href="{{ route('perfil.edit', Auth::guard('customer')->user()->id) }}">Perfil</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();

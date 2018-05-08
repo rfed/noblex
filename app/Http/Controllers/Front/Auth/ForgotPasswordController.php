@@ -2,10 +2,12 @@
 
 namespace Noblex\Http\Controllers\Front\Auth;
 
-use Noblex\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Noblex\Http\Controllers\Controller;
+use Noblex\Http\Controllers\Front\FrontController;
+use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends FrontController
 {
     /*
     |--------------------------------------------------------------------------
@@ -25,13 +27,23 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
-    /*public function __construct()
+    public function __construct()
     {
-        $this->middleware('guest');
-    }*/
+        parent::__construct();
+        $this->middleware('guest:customer');
+    }
 
     public function showLinkRequestForm()
     {
-        return view('front.auth.passwords.email');
+        $page_id = 'recuperar_clave';
+        $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
+        $breadcrumbs[] = ['caption' => 'Recuperar Clave'];
+
+        return view('front.auth.passwords.email', compact("page_id", "breadcrumbs"));
+    }
+
+    // customers -> config/auth.php passwords.
+    public function broker() {
+        return Password::broker('customers');
     }
 }
