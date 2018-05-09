@@ -168,5 +168,5 @@ Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store
 // Descargas
 Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
 
-Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
+Route::get('/{subcategory}/{product}', 'Front\ProductController@index')->name('productos');
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!panel$).*$')->name('categoria');
