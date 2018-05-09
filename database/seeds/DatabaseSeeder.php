@@ -14,11 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
         	UsersTableSeeder::class,
         	CategoriesTableSeeder::class,
-        	//BrandsTableSeeder::class,
-            //AttributeGroupsTableSeeder::class,
-            //AttributesTableSeeder::class,
-            /*AttributeCategoriesTableSeeder::class,*/
-            //FeaturesTableSeeder::class
+        	SubjectsTableSeeder::class,
+            EmailsSubjectsTableSeeder::class,
         ]);
     }
 }

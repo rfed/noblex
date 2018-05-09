@@ -6,6 +6,8 @@ interface ProductInterface
 {
 	public function getAll();
 
+	public function getAllWithManualAndActive();
+
 	public function getAllDistinctId($id);
 
 	public function findById($id);
