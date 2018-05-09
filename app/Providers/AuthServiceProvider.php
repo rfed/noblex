@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Noblex\Model' => 'Noblex\Policies\ModelPolicy',
+        'Noblex\Customer' => 'Noblex\Policies\PerfilPolicy',
     ];
 
     /**

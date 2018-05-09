@@ -37,3 +37,15 @@
     </form>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(function(){
+            $('#formEmail').submit(function() {
+                $('#submit-email').prop('disabled', true);
+                $('#submit-email').attr('value', 'Enviando...');
+            });
+        });
+    </script>
+@endpush
+

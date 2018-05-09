@@ -23,6 +23,16 @@ class ViewComposerProvider extends ServiceProvider
                                             ->get()
             ]);
         });
+
+        view()->composer('errors::403', function($view)
+        {
+            $view->with([
+                'randomCategories' => Category::where('root_id', '!=', 0)
+                                            ->inRandomOrder()
+                                            ->limit(3)
+                                            ->get()
+            ]);
+        });
     }
 
     /**
