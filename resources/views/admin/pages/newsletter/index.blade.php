@@ -27,7 +27,7 @@
 					<tr>
 						<td>{{ $newsletter->name }}</td>
 						<td>{{ $newsletter->email }}</td>
-						<td>{{ $newsletter->created_at->format('d-m-Y') }}</td>
+						<td>{{ $newsletter->created_at->format('d-m-Y H:i:s') }}</td>
 					</tr>
 
 					@endforeach
@@ -44,5 +44,4 @@
 @push('scripts')
 	<script src="{{ asset('admin/assets/global/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
-    <script src="{{ asset('admin/assets/pages/newsletter/js/main.js') }}"></script>
 @endpush

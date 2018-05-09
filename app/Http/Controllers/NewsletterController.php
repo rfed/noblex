@@ -3,12 +3,18 @@
 namespace Noblex\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Requests\NewsletterStoreRequest;
 use Noblex\Newsletter;
 
 class NewsletterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'store']);
+    }
+
     public function index()
     {
         $newsletters = Newsletter::all();
@@ -19,16 +25,21 @@ class NewsletterController extends Controller
 
     public function store(NewsletterStoreRequest $request)
     {
-        $data = $request->validated();
-
-        /*if(isset($request->validator) && $request->validator->fails()) 
+        if(request()->ajax())
         {
-            return $request->validator->messages();
-        }*/
+            $data = $request->validated();
 
-        Newsletter::create($data);
+            if(isset($request->validator) && $request->validator->fails()) 
+            {
+                return response()->json([
+                    'error' => $request->validator->messages()
+                ]);
+            }
 
-        return redirect('#newsletter')->with('success', 'Te has inscripto correctamente!');
+            $newsletter = Newsletter::create($data);            
+
+            return $newsletter;
+        }
     }
 
 }

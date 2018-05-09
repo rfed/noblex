@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class NewsletterStoreRequest extends FormRequest
 {
-    /*public $validator = null;*/
+    public $validator = null;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,15 @@ class NewsletterStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|max:100',
-            'email'                 => 'required|max:200|email|unique:newsletters,email',
-            'g-recaptcha-response'  => 'required|captcha'
+            'name'        => 'required|max:100',
+            'email'       => 'required|max:200|email|unique:newsletters,email',
+            'captcha'     => 'required'
         ];
     }
 
-    /*protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         $this->validator = $validator;
-    }*/
+    }
 }
