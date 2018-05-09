@@ -135,7 +135,7 @@ Route::group([
 
 Route::get('/', 'Front\HomeController@index')->name('home');
 
-Route::post('/', 'NewsletterController@store')->name('newsletter.store');
+Route::post('/newsletter', 'NewsletterController@store')->name('newsletter.store');
 
 Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');

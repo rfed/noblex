@@ -115,32 +115,30 @@
                 <p><strong>Newsletter <span class="fa fa-envelope-open"></span></strong></p>
                 <span>Suscribite y enterate de los lanzamiento y las últimas novedades.</span>
                 
-                {!! Session::has('success') ? '<p class="exito">'.Session::get('success').'</p>' : '' !!}
+                <p class="exito" style="display:none"></p>
 
-                <form action="{{ route('newsletter.store') }}" method="POST" id="formNewsletter">
+                <ul class="msgError" style="display: none"></ul>
+
+                <form action="" method="POST" id="formNewsletter">
                     @csrf
 
-                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}" >
-                        <input type="text" name="name" id="name" placeholder="Nombre"  autocomplete="off" value="{{ old('name') }}" />
+                    <div>
+                        <input type="text" name="name" id="name" placeholder="Nombre"  autocomplete="off" />
                     </div>
-                    {!! $errors->first('name', '<span style="color:red"> :message </span>') !!}
-
-                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}">
-                        <input type="email" name="email" id="email" placeholder="Correo electrónico" autocomplete="off" value="{{ old('email') }}"  />
-                    </div>
-                    {!! $errors->first('email', '<span style="color:red"> :message </span>') !!}
                     
+                    <div>
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" autocomplete="off" />
+                    </div>
                 
                     <div class="submit_block">
 
                         <!-- https://github.com/anhskohbo/no-captcha -->
                         {!! NoCaptcha::display() !!}
 
-                        <input type="submit" id="submit" class="btn link" value="Enviar" />
+                        <input type="button" id="submit-newsletter" class="btn link" value="Enviar" onclick="submitNewsletter()" />
                     </div>
 
                     <div class="clearfix"></div>
-                    {!! $errors->first('g-recaptcha-response') ? '<span style="color:red">El Captcha es requerido</span>' : '' !!}
 
                 </form>
 
