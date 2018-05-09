@@ -7,6 +7,7 @@ use Noblex\Customer;
 use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Http\Requests\PerfilUpdateRequest;
 use Noblex\Repositories\EloquentCategory;
+use Noblex\User;
 
 class PerfilController extends FrontController
 {
@@ -19,6 +20,9 @@ class PerfilController extends FrontController
 
     public function edit(EloquentCategory $category, Customer $customer)
     {
+        // Policies/PerfilPolicy
+        $this->authorize('view', $customer);
+
         $page_id = 'mi_cuenta';
         $categories = $category->getAllDistinctRaiz();
         $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
@@ -30,6 +34,8 @@ class PerfilController extends FrontController
     
     public function update(PerfilUpdateRequest $request, Customer $customer)
     {
+        $this->authorize('update', $customer);
+
         $data = $request->validated();
 
         $data['birth'] = $data['year'].'-'.$data['month'].'-'.$data['day'];

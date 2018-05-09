@@ -38,6 +38,8 @@
 
     <script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    @stack('scripts')
         
 </body>
 
