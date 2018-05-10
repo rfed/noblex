@@ -26,7 +26,7 @@
         </div>
 
         <div class="section_tools">
-            <a href="#">
+            <a href="{{ url('descargas') }}">
                 <span class="fa fa-file-alt"></span>
                 <span>Manuales</span>
             </a>

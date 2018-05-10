@@ -3,9 +3,9 @@
 namespace Noblex;
 
 use Illuminate\Database\Eloquent\Model;
+use Noblex\Customer;
 use Noblex\InfoInteres;
 use Noblex\Product;
-use Noblex\User;
 use Noblex\Widget;
 
 class Category extends Model
@@ -58,8 +58,8 @@ class Category extends Model
 		return $this->hasMany(Widget::class);
 	}
 
-	public function users()
+	public function customers()
     {
-        return $this->belongsToMany(User::class, 'category_user');
+        return $this->belongsToMany(Customer::class, 'category_customer');
     }
 }

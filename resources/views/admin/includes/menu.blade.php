@@ -108,7 +108,34 @@
                     <span class="title">Newsletter</span>
                 </a>
             </li>
-
+            <li class="nav-item start {{ activeMenu('panel/stories') }}">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-home"></i>
+                    <span class="title">Novedades</span>
+                    <span class="selected"></span>
+                    <span class="arrow open"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start {{ activeMenu('panel/stories*') }}">
+                        <a href="{{ route('admin.stories.index') }}" class="nav-link nav-toggle">
+                            <i class="icon-list"></i>
+                            <span class="title">Novedades</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start {{ activeMenu('panel/tags*') }}">
+                        <a href="{{ route('admin.tags.index') }}" class="nav-link nav-toggle">
+                            <i class="icon-list"></i>
+                            <span class="title">Etiquetas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start {{ activeMenu('panel/themes*') }}">
+                        <a href="{{ route('admin.themes.index') }}" class="nav-link nav-toggle">
+                            <i class="icon-list"></i>
+                            <span class="title">Categorías</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>            
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

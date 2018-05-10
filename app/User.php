@@ -29,11 +29,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class, 'category_user');
-    }
-
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

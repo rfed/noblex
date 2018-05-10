@@ -2,12 +2,14 @@
 
 namespace Noblex\Http\Controllers\Front\Auth;
 
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Noblex\Customer;
 use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Repositories\EloquentCategory;
-use Noblex\User;
 
 class RegisterController extends FrontController
 {
@@ -25,28 +27,24 @@ class RegisterController extends FrontController
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    /*public function __construct()
+    public function __construct()
     {
-        $this->middleware('guest');
-    }*/
+        parent::__construct();
+        $this->middleware('guest:customer');
+    }
 
     public function showRegistrationForm(EloquentCategory $category)
     {
         $page_id = 'registro';
         $categories = $category->getAllDistinctRaiz();
+        $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
+        $breadcrumbs[] = ['caption' => 'Registro'];
 
-        return view('front.auth.register', compact("page_id", "categories"));
+        return view('front.auth.register', compact("page_id", "categories", "breadcrumbs"));
     }
 
     /**
@@ -58,9 +56,9 @@ class RegisterController extends FrontController
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'firstname'     => 'required|string|max:255',
-            'lastname'      => 'required|string|max:255',
-            'email'         => 'required|string|email|max:255|unique:users,email',
+            'firstname'     => 'required|string|max:100',
+            'lastname'      => 'required|string|max:100',
+            'email'         => 'required|string|email|max:191|unique:customers,email',
             'password'      => 'required|string|min:6|confirmed',
             'gender'        => 'required|in:male,female',
             'day'           => 'required|date_format:d',
@@ -86,19 +84,31 @@ class RegisterController extends FrontController
      */
     protected function create(array $data)
     {
-        $name = $data['firstname'].' '.$data['lastname'];
         $birth = $data['year'].'-'.$data['month'].'-'.$data['day'];
 
-        $user = User::create([
-            'name'      => $name,
+        $customer = Customer::create([
+            'firstname' => $data['firstname'],
+            'lastname'  => $data['lastname'],
             'email'     => $data['email'],
             'password'  => Hash::make($data['password']),
             'gender'    => $data['gender'],
             'birth'     => $birth
         ]);
 
-        $user->categories()->attach($data['category_id']);
+        $customer->categories()->attach($data['category_id']);
 
-        return $user;
+        return $customer;
+    }
+
+    // Sobreescribo este metodo para redireccionar al usuario una vez registrado al login, ya que el metodo create debe retornar el usuario.
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return redirect()->route('login')->with('success', 'Gracias por registrarte');
     }
 }

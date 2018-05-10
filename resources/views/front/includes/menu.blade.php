@@ -73,9 +73,9 @@
         <div class="block_menu_2">
 
             <!-- CUANDO EL USUARIO ESTÁ LOGUEADO -->
-            @guest
+            @if(!Auth::guard('customer')->check())
             <div class="user">
-                <a href="#"><strong>Mi cuenta</strong></a>
+                <a href="{{ route('login') }}"><strong>Mi cuenta</strong></a>
 
                 <div class="submenu">
                     <ul>
@@ -90,12 +90,12 @@
             </div>
             @else
             <div class="user">
-                <a href="#">Hola <strong>{{ Auth::user()->name }}</strong></a>
+                <a href="{{ route('perfil.edit') }}">Hola <strong>{{ Auth::guard('customer')->user()->firstname }}</strong></a>
 
                 <div class="submenu">
                     <ul>
                         <li>
-                            <a href="#">Perfil</a>
+                            <a href="{{ route('perfil.edit') }}">Perfil</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -202,26 +202,52 @@
         </div>
     </div>
 
+    @if(!Auth::guard('customer')->check())
     <div class="user">
         <div class="container">
-
             <ul>
                 <li>
                     <a href="#"><strong>Mi cuenta</strong></a>
                     
                     <ul>
                         <li>
-                            <a href="#">Ingresar</a>
+                            <a href="{{ route('login') }}">Ingresar</a>
                         </li>
                         <li>
-                            <a href="#">Registrarme</a>
+                            <a href="{{ route('register') }}">Registrarme</a>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
+    @else
+    <div class="user">
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="{{ route('perfil.edit') }}">Hola <strong>{{ Auth::guard('customer')->user()->firstname }}</strong></a>
 
+                    <ul>
+                        <li>
+                            <a href="{{ route('perfil.edit') }}">Perfil</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Salir de la cuenta
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    @endif
 </div>
 
 <!-- FIN MENÚ MOBILE -->

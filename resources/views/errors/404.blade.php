@@ -2,12 +2,14 @@
 
 @section('content')
 
-<div class="content container">
-	<h1>Error 404</h1>
-	
-	<p>La página que buscás no existe o ya no se encuentra disponible.</p>
+<div class="content container" id="erorr_404">
+	<div style="text-align:center;">
+		<h1>Error 404</h1>
+		
+		<p>La página que buscás no existe o ya no se encuentra disponible.</p>
 
-	<a href="{{ route('home') }}" class="btn link">Ir a Home</a>
+		<a href="{{ route('home') }}" class="btn link">Ir a Home</a>
+	</div>
 	
 	<div class="row">
 		<div class="related_links">

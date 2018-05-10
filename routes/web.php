@@ -11,7 +11,7 @@ Route::group([
 ], function() {
 
 	// Authentication Routes...
-	Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('login');
+	Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 	Route::post('/', 'Admin\Auth\LoginController@login');
 	Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 
@@ -127,7 +127,24 @@ Route::group([
 	]);	
 
 	Route::get('newsletter', 'NewsletterController@index')->name('admin.newsletter.index');
-	
+
+	// Novedades
+	Route::resource('stories', 'Admin\StoryController', [
+		'names' 	=> 'admin.stories',
+		'except'	=> 'show'
+	]);
+
+	// Categorias de novedades
+	Route::resource('themes', 'Admin\ThemeController', [
+		'names' 	=> 'admin.themes',
+		'except'	=> 'show'
+	]);
+
+	// Tags
+	Route::resource('tags', 'Admin\TagController', [
+		'names' 	=> 'admin.tags',
+		'except'	=> 'show'
+	]);
 });
 
 
@@ -135,31 +152,44 @@ Route::group([
 
 Route::get('/', 'Front\HomeController@index')->name('home');
 
-Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
-Route::get('/{slug1}/{slug2}', 'Front\ProductController@index')->name('producto');
-
-Route::post('/', 'NewsletterController@store')->name('newsletter.store');
+Route::get('/{subcategory}/{product}', 'Front\ProductController@index')->name('productos');
+//Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!panel$).*$')->name('categoria');
 
 
-Route::middleware('guest')->group(function(){
+Route::post('/newsletter', 'NewsletterController@store')->name('newsletter.store');
 
-	// Authentication Routes...
-	Route::get('/login', 'Front\Auth\LoginController@showLoginForm')->name('login');
-	Route::post('/login', 'Front\Auth\LoginController@login');
-	Route::post('logout', 'Front\Auth\LoginController@logout')->name('logout');
 
-	// Registration Routes...
-	Route::get('register', 'Front\Auth\RegisterController@showRegistrationForm')->name('register');
-	Route::post('register', 'Front\Auth\RegisterController@register');
+/*Route::get('/{category}/{subcategory?}/{product}', 'Front\ProductController@index')->name('productos');
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto|descargas$).*$')->name('categoria');*/
 
-	// Password Reset Routes...
-	Route::get('password/reset', 'Front\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-	Route::post('password/email', 'Front\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-	Route::get('password/reset/{token}', 'Front\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-	Route::post('password/reset', 'Front\Auth\ResetPasswordController@reset');
-});
+
+// Authentication Routes...
+Route::get('/login', 'Front\Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Front\Auth\LoginController@login');
+Route::post('logout', 'Front\Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('register', 'Front\Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Front\Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Front\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Front\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Front\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Front\Auth\ResetPasswordController@reset');
+
+// Perfil
+Route::get('/perfil', 'Front\PerfilController@edit')->name('perfil.edit');
+Route::put('/perfil', 'Front\PerfilController@update')->name('perfil.update');
+
 
 // Contacto
 Route::get('/contacto', 'Front\ContactoController@index')->name('contacto');
 Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store');
+
+// Descargas
+Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
+
+Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
+
 

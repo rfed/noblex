@@ -1,6 +1,6 @@
 $(function(){
 	$('#formRegistro').submit(function() {
-		$('#submit').prop('disabled', true);
-		$('#submit').attr('value', 'Registrando...');
+		$('#submitRegistro').prop('disabled', true);
+		$('#submitRegistro').attr('value', 'Registrando...');
 	});
 });

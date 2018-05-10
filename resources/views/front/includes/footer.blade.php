@@ -17,7 +17,7 @@
 
         <div class="copyright">
             <div>
-                <a href="#">
+                <a href="{{ url('') }}">
                     <img src="/assets/imgs/iconos/noblex.svg" alt="Noblex" />
                 </a>
 
@@ -27,25 +27,25 @@
             <div class="networks_list hidden-xs hidden-sm">
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="https://www.facebook.com/NoblexArgentina/" target="_blank">
                             <span class="fab fa-facebook"></span>
                             <span class="sr-only">Facebook</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://twitter.com/noblexar" target="_blank">
                             <span class="fab fa-twitter"></span>
                             <span class="sr-only">twitter</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.instagram.com/noblexar/" target="_blank">
                             <span class="fab fa-instagram"></span>
                             <span class="sr-only">Instagram</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.youtube.com/user/NoblexArgentina" target="_blank">
                             <span class="fab fa-youtube"></span>
                             <span class="sr-only">YouTube</span>
                         </a>
@@ -77,7 +77,7 @@
 
                     <ul>
                         <li>
-                            <a href="#">Centro de Descarga</a>
+                            <a href="{{ url('descargas') }}">Centro de Descarga</a>
                         </li>
                     </ul>
                 </div>
@@ -90,7 +90,7 @@
                             <a href="#">Acerca de Noblex</a>
                         </li>
                         <li>
-                            <a href="#">Contacto</a>
+                            <a href="{{ url('contacto') }}">Contacto</a>
                         </li>
                         <li>
                             <a href="#">Ventas Corporativas</a>
@@ -115,32 +115,30 @@
                 <p><strong>Newsletter <span class="fa fa-envelope-open"></span></strong></p>
                 <span>Suscribite y enterate de los lanzamiento y las últimas novedades.</span>
                 
-                {!! Session::has('success') ? '<p class="exito">'.Session::get('success').'</p>' : '' !!}
+                <p class="exito" style="display:none"></p>
 
-                <form action="{{ route('newsletter.store') }}" method="POST" id="formNewsletter">
+                <ul class="msgError" style="display: none"></ul>
+
+                <form action="" method="POST" id="formNewsletter">
                     @csrf
 
-                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}" >
-                        <input type="text" name="name" id="name" placeholder="Nombre"  autocomplete="off" value="{{ old('name') }}" />
+                    <div>
+                        <input type="text" name="name" id="name" placeholder="Nombre"  autocomplete="off" />
                     </div>
-                    {!! $errors->first('name', '<span style="color:red"> :message </span>') !!}
-
-                    <div style="{{ $errors->first('name') ? 'border:1px solid red' : ''}}">
-                        <input type="email" name="email" id="email" placeholder="Correo electrónico" autocomplete="off" value="{{ old('email') }}"  />
-                    </div>
-                    {!! $errors->first('email', '<span style="color:red"> :message </span>') !!}
                     
+                    <div>
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" autocomplete="off" />
+                    </div>
                 
                     <div class="submit_block">
 
                         <!-- https://github.com/anhskohbo/no-captcha -->
                         {!! NoCaptcha::display() !!}
 
-                        <input type="submit" id="submit" class="btn link" value="Enviar" />
+                        <input type="button" id="submit-newsletter" class="btn link" value="Enviar" onclick="submitNewsletter()" />
                     </div>
 
                     <div class="clearfix"></div>
-                    {!! $errors->first('g-recaptcha-response') ? '<span style="color:red">El Captcha es requerido</span>' : '' !!}
 
                 </form>
 
@@ -150,25 +148,25 @@
                 <p><strong>Seguinos</strong></p>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="https://www.facebook.com/NoblexArgentina/" target="_blank">
                             <span class="fab fa-facebook"></span>
                             <span class="sr-only">Facebook</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://twitter.com/noblexar" target="_blank">
                             <span class="fab fa-twitter"></span>
                             <span class="sr-only">twitter</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.instagram.com/noblexar/" target="_blank">
                             <span class="fab fa-instagram"></span>
                             <span class="sr-only">Instagram</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.youtube.com/user/NoblexArgentina" target="_blank">
                             <span class="fab fa-youtube"></span>
                             <span class="sr-only">YouTube</span>
                         </a>

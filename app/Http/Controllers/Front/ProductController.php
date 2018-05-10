@@ -15,7 +15,7 @@ class ProductController extends FrontController
         parent::__construct();
     }
     
-    public function index($category, $product)
+    public function index($subcategory, $product)
     {
         $page_id = 'producto';
         
