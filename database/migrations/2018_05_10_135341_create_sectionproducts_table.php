@@ -20,7 +20,7 @@ class CreateSectionproductsTable extends Migration {
 			$table->string('title', 191);
 			$table->text('subtitle', 65535);
 			$table->text('description', 65535);
-			$table->string('source', 500);
+			$table->string('source', 500)->nullable();
 			$table->string('alignment', 191);
 			$table->timestamps();
 		});

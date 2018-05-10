@@ -26,6 +26,9 @@ class CreateCategoriesTable extends Migration {
 			$table->integer('position')->nullable();
 			$table->binary('title', 200)->nullable();
 			$table->string('description', 200)->nullable();
+			$table->string('banner', 191)->nullable();
+			$table->string('banner_link')->nullable();
+			$table->string('banner_target', 20)->nullable();
 		});
 	}
 

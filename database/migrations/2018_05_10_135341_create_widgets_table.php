@@ -26,6 +26,7 @@ class CreateWidgetsTable extends Migration {
 			$table->boolean('show_prods')->default(0);
 			$table->boolean('features')->default(0);
 			$table->boolean('home')->default(0);
+			$table->text('metadata', 65535)->nullable();
 		});
 	}
 

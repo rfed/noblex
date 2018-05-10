@@ -17,14 +17,15 @@ class CreateProductsTable extends Migration {
 			$table->increments('id');
 			$table->string('sku', 30)->index('products_sku_unique');
 			$table->string('name', 100);
+			$table->binary('url', 200)->nullable();
 			$table->binary('tag', 3)->nullable();
 			$table->integer('brand_id')->unsigned()->index('products_brand_id_foreign');
 			$table->integer('category_id')->unsigned()->index('products_category_id_foreign');
 			$table->text('short_description', 65535);
 			$table->text('description', 65535);
-			$table->string('manual', 500)->nullable();
 			$table->boolean('featured')->default(0);
 			$table->boolean('active')->default(0);
+			$table->binary('manual')->nullable();
 			$table->timestamps();
 		});
 	}
