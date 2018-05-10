@@ -127,6 +127,10 @@ Route::group([
 	]);	
 
 	Route::get('newsletter', 'NewsletterController@index')->name('admin.newsletter.index');
+
+
+	//Contacto
+	Route::get('contactos', 'Admin\ContactoController@index')->name('admin.contactos.index');
 });
 
 

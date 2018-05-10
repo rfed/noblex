@@ -108,6 +108,12 @@
                     <span class="title">Newsletter</span>
                 </a>
             </li>
+            <li class="nav-item start {{ activeMenu('panel/contactos*') }}">
+                <a href="{{ route('admin.contactos.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Contactos</span>
+                </a>
+            </li>
             
         </ul>
         <!-- END SIDEBAR MENU -->
