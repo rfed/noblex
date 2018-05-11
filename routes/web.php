@@ -131,6 +131,12 @@ Route::group([
 
 	//Contacto
 	Route::get('contactos', 'Admin\ContactoController@index')->name('admin.contactos.index');
+
+	//Asuntos
+	Route::resource('subjects', 'Admin\SubjectController', [
+		'names' 	=> 'admin.subjects',
+		'except'	=> 'show'
+	]);
 });
 
 
