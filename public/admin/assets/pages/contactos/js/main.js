@@ -1,6 +1,6 @@
 $(function(){
 
-	$("#newsletter").dataTable({
+	$("#contacto").dataTable({
 		dom: "<'row'<'col-sm-6'l><'col-sm-3 text-center'B><'col-sm-3'f>>" +
 			"<'row'<'col-sm-12'tr>>" +
 			"<'row'<'col-sm-5'i><'col-sm-7'p>>", 
@@ -22,9 +22,9 @@ $(function(){
         ],
         "columnDefs": [
 			{ "width": "15%", "targets": 0 },
-			{ "width": "20%", "targets": 1 },
+			{ "width": "15%", "targets": 1 },
 			{ "width": "25%", "targets": 2 },
-			{ "width": "40%", "targets": 3 }
+			{ "width": "45%", "targets": 3 }
 		],
 		"paginate": true,
 		"searching": true,
