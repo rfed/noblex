@@ -16,7 +16,7 @@ class ContactoController extends Controller
 
     public function index()
     {
-        $contactos = Contact::all();
+        $contactos = Contact::with('subject')->get();
 
         return view('admin.pages.contactos.index', compact("contactos"));
     }

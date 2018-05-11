@@ -28,7 +28,7 @@
 					<tr>
 						<td>{{ $contacto->firstname.' '.$contacto->lastname }}</td>
 						<td>{{ $contacto->email }}</td>
-						<td>{{ $contacto->subjects->title }}</td>
+						<td>{{ $contacto->subject->title }}</td>
 						<td>{{ $contacto->message }}</td>
 					</tr>
 
