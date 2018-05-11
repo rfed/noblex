@@ -131,6 +131,9 @@ Route::group([
 
 	//Contacto
 	Route::get('contactos', 'Admin\ContactoController@index')->name('admin.contactos.index');
+
+	//Customers
+	Route::get('customers', 'Admin\CustomerController@index')->name('admin.customers.index');
 });
 
 
