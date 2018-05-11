@@ -27,7 +27,7 @@ class EloquentStory implements StoryInterface
             'subtitle' => 'required',
             'content' => 'required',
             'image' => 'nullable',
-            'theme_id' => 'required'
+            'theme_id' => 'required',
             //'date' => 'required'
         ]);
 
@@ -41,7 +41,11 @@ class EloquentStory implements StoryInterface
         else
             $data['visible'] = 0;
         
-		Story::create($data);
+        $story = Story::create($data);
+
+        if($request->input('story_tag')){
+            $story->tags()->attach($request->story_tag);
+        }
 	}
 
 
@@ -70,14 +74,16 @@ class EloquentStory implements StoryInterface
         
         $story = Story::findOrFail($id);
         $story->update($data);
-        
-        //$categoria->features()->sync($request['features']);
-	}
+
+        if($request->input('story_tag')){
+            $story->tags()->sync($request->story_tag);
+        }
+    }
 
     public function upload($request) 
     {
         if(!empty(request()->file('image'))) {
-            return $request->file('image')->store('categories', 'public');
+            return $request->file('image')->store('stories', 'public');
         }
     }    
 

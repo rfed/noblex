@@ -134,6 +134,8 @@ Route::group([
 		'except'	=> 'show'
 	]);
 
+	Route::post('stories/storiesUpload', 'Admin\StoryController@upload')->name('admin.stories.upload.store');
+
 	// Categorias de novedades
 	Route::resource('themes', 'Admin\ThemeController', [
 		'names' 	=> 'admin.themes',

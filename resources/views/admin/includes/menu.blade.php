@@ -108,7 +108,7 @@
                     <span class="title">Newsletter</span>
                 </a>
             </li>
-            <li class="nav-item start {{ activeMenu('panel/stories') }}">
+            <li class="nav-item start {{ activeMenu('panel/stories') ? activeMenu('panel/stories') : (activeMenu('panel/tags') ? activeMenu('panel/tags') : (activeMenu('panel/themes*') ? activeMenu('panel/themes*') : '')) }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Novedades</span>

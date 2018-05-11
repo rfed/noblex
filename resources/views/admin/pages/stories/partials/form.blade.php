@@ -36,11 +36,11 @@
 		<div class="form-group {{ $errors->first('theme_id') ? 'has-error' : '' }}" id="category">
 			{!! Form::label('theme', 'Categoria', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
-				<select name="theme_id" id="theme_id" class="form-control" onchange="subcategorias(this.value);">
+				<select name="theme_id" id="theme_id" class="form-control">
 					<option value="">Seleccione una categoría</option>
 					
 					@foreach($themes as $cat)
-						<option value="{{ $cat->id }}" @if(@$theme->id == $cat->id) selected @endif>{{ $cat->name }}</option>
+						<option value="{{ $cat->id }}" @if(@$story->theme_id == $cat->id) selected @endif>{{ $cat->name }}</option>
 					@endforeach
 
 				</select>
@@ -57,6 +57,15 @@
   	    		<div id="image" class="dropzone">
   	    		</div>
   	    	</div>
+  		</div>
+
+  		<div class="form-group">
+  			{!! Form::label('tag', 'Etiquetas', ['class' => 'control-label col-md-3']) !!}
+  			<div class="col-md-9">
+				{!! Form::select("story_tag[]", $tags->pluck('name', 'id'), isset($story) ? $story->tags->pluck('id') : null, ["class" => "selectpicker", "multiple" => "true" , "title"=>"Seleccione las etiquetas", "data-show-subtext"=>"true", "data-live-search"=>"true", "data-width"=>"50%"]) !!}
+
+			{!! $errors->first('story_tag', '<span class="help-block"> :message </span>') !!}
+  			</div>
   		</div>
 
 		<div class="form-group">

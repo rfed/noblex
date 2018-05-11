@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('styles')
-	<link rel="stylesheet" href="{{ asset('admin/assets/pages/features/dropzone/dropzone.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('admin/assets/pages/stories/dropzone/dropzone.min.css') }}">
 @endpush
 
 @section('content')
@@ -54,7 +54,7 @@
 	<script src="{{ asset('admin/assets/pages/stories/js/jquery.stringtoslug.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/stories/js/speakingurl.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/stories/dropzone/dropzone.js') }}"></script>	
-    <script src="{{ asset('admin/assets/pages/stories/js/main.js') }}"></script>
+    <script src="{{ asset('admin/assets/pages/stories/js/app.js') }}"></script>
 
 	<script>
 		$(function() {

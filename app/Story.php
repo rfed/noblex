@@ -7,10 +7,10 @@ use Noblex\Story;
 
 class Story extends Model
 {
-    protected $fillable = ['title', 'url', 'subtitle', 'content', 'image', 'visible', 'category_id'];
+    protected $fillable = ['title', 'url', 'subtitle', 'content', 'theme_id' ,'image', 'visible'];
 
     public function tags()
     {
-    	return $this->hasMany(Tag::class);
+    	return $this->belongsToMany(Tag::class);
     }
 }

@@ -70,5 +70,5 @@
 @push('scripts')
 	<script src="{{ asset('admin/assets/global/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
-    <script src="{{ asset('admin/assets/pages/marcas/js/main.js') }}"></script>
+    <script src="{{ asset('admin/assets/pages/themes/js/main.js') }}"></script>
 @endpush

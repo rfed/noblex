@@ -33,20 +33,20 @@
 
 				<tbody>
 					
-					@foreach($tags as $brand)
+					@foreach($tags as $tag)
 
 					<tr>
-						<td>{{ $brand->name }}</td>
+						<td>{{ $tag->name }}</td>
 						<td>
 							<div class="btn-group">
-                    	        <a href="{{ route('admin.tags.edit', $brand->id) }}">
+                    	        <a href="{{ route('admin.tags.edit', $tag->id) }}">
                                     <i class="icon-pencil"></i> Editar 
                                 </a>
                                 |
                                 <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
-                                	data-id="{{ $brand->id }}"
-                                	data-name="{{ $brand->name }}"
-                                	data-url="{{ route('admin.tags.destroy', $brand->id) }}">
+                                	data-id="{{ $tag->id }}"
+                                	data-name="{{ $tag->name }}"
+                                	data-url="{{ route('admin.tags.destroy', $tag->id) }}">
                                     <i class="icon-trash"></i> Eliminar 
                                 </a>
 	                            
