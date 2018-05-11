@@ -114,10 +114,12 @@
             <!-- -->
 
             <div class="search_box">
-                <form>
+                <form action="{{ route('busqueda.store') }}" method="POST">
+                    @csrf
+
                     <div class="search_input">
                         <div>
-                            <input type="text" placeholder="Buscar producto" />
+                            <input type="text" name="buscar" placeholder="Buscar producto" autocomplete="off" />
                         </div>
                     </div>
 
