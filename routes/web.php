@@ -205,6 +205,11 @@ Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store
 // Descargas
 Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
 
+// Busquedas
+Route::get('/busqueda', 'Front\BusquedaController@index')->name('busqueda.index');
+Route::get('/autocomplete', 'Front\BusquedaController@autocomplete')->name('autocomplete');
+
+
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
 
 
