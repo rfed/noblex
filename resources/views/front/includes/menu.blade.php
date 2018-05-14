@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('assets/jquery/jquery-ui/jquery-ui.min.css') }}">
+
 <header class="header">
 
     <div class="container">
@@ -118,25 +120,16 @@
 
                     <div class="search_input">
                         <div>
-                            <input type="text" name="buscar" placeholder="Buscar producto" autocomplete="off" />
+                            <input type="text" name="buscar" id="buscar" placeholder="Buscar producto" autocomplete="off" />
                         </div>
                     </div>
 
                     <!-- RESULTADOS -->
                     <div class="results">
-                        <ul>
-                            <li>
-                                <a href="#">Resultado predictivo</a>
-                            </li>
-                            <li>
-                                <a href="#">Resultado predictivo</a>
-                            </li>
-                            <li>
-                                <a href="#">Resultado predictivo</a>
-                            </li>
-                            <li>
-                                <a href="#">Resultado predictivo</a>
-                            </li>
+                        <ul id="resultados">
+                            <!-- <li>
+                                <a href="#"></a>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- FIN RESULTADOS -->
@@ -266,7 +259,38 @@
             $(".sub-cat").on('mouseenter', function(e){
                 $('.cat-desc').hide();
                 $(this).next('.cat-desc').show();
+            });
+
+            $("#buscar").on('keyup', function(){
+                let value = $(this).val();
+
+                $.ajax({
+                    url: '/autocomplete',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {data: value},
+                })
+                .done(function(data) {
+
+                    $('#resultados').empty();
+
+                    for(let item in data)
+                    {
+                        $('#resultados').append('<li><a href="'+data[item].url+'">'+data[item].name+'</a></li>');
+                    }
+
+                    if(data.length == 0)
+                    {
+                        $('#resultados').append('<li><a>No hay resultados</a></li>');
+                    }
+                    
+                })
+                .fail(function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                });
+                
             })
+
         })
     </script>
 @endpush

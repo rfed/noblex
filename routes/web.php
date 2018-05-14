@@ -194,6 +194,7 @@ Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.ind
 
 // Busquedas
 Route::get('/busqueda', 'Front\BusquedaController@index')->name('busqueda.index');
+Route::get('/autocomplete', 'Front\BusquedaController@autocomplete')->name('autocomplete');
 
 
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');

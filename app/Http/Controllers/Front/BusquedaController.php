@@ -3,6 +3,7 @@
 namespace Noblex\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Noblex\Category;
 use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Controllers\Front\FrontController;
@@ -37,5 +38,22 @@ class BusquedaController extends FrontController
         }
 
         return view('front.pages.busqueda', compact("page_id", "breadcrumbs", "productos", "request"));
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Product::with('category:id,url')->where("name", "LIKE", "%".$request->data."%")->get();
+
+        $results = [];
+        foreach ($data as $dato)
+        {
+            $results[] = [
+                'id'    => $dato->id, 
+                'name'  => $dato->name,
+                'url'   => '/'.$dato->category->url.'/'.$dato->sku
+            ];
+        }
+
+        return response()->json($results);
     }
 }
