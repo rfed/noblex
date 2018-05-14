@@ -261,34 +261,46 @@
                 $(this).next('.cat-desc').show();
             });
 
+            $('.results').hide();
+
             $("#buscar").on('keyup', function(){
                 let value = $(this).val();
 
-                $.ajax({
-                    url: '/autocomplete',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {data: value},
-                })
-                .done(function(data) {
+                $('#resultados').empty();
 
-                    $('#resultados').empty();
+                if(value.length > 2)
+                {
+                    $('.results').show();
 
-                    for(let item in data)
-                    {
-                        $('#resultados').append('<li><a href="'+data[item].url+'">'+data[item].name+'</a></li>');
-                    }
+                    $.ajax({
+                        url: '/autocomplete',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {data: value},
+                    })
+                    .done(function(data) {
 
-                    if(data.length == 0)
-                    {
-                        $('#resultados').append('<li><a>No hay resultados</a></li>');
-                    }
+                        for(let item in data)
+                        {
+                            $('#resultados').append('<li><a href="'+data[item].url+'">'+data[item].name+'</a></li>');
+                        }
+
+                        if(data.length == 0)
+                        {
+                            $('#resultados').append('<li><a>No hay resultados</a></li>');
+                        }
+                        
+                    })
+                    .fail(function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    });
                     
-                })
-                .fail(function(xhr, status, error) {
-                    console.log(xhr.responseText);
-                });
-                
+                }
+                else
+                {
+                    $('.results').hide();
+                }
+
             })
 
         })
