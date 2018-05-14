@@ -9,8 +9,7 @@
 
 		<p>Por favor, revisá si escribiste correctamente, o intentá nuevamente con otros términos:</p>
 
-		<form action="{{ route('busqueda.store') }}" method="POST">
-			@csrf
+		<form action="{{ route('busqueda.index') }}" method="GET">
 
 			<div class="input_group search">
 

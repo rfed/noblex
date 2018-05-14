@@ -193,7 +193,8 @@ Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store
 Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
 
 // Busquedas
-Route::post('/busqueda', 'Front\BusquedaController@store')->name('busqueda.store');
+Route::get('/busqueda', 'Front\BusquedaController@index')->name('busqueda.index');
+
 
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
 

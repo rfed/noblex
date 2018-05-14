@@ -114,8 +114,7 @@
             <!-- -->
 
             <div class="search_box">
-                <form action="{{ route('busqueda.store') }}" method="POST">
-                    @csrf
+                <form action="{{ route('busqueda.index') }}" method="GET">
 
                     <div class="search_input">
                         <div>

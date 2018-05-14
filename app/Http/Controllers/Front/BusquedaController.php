@@ -15,15 +15,15 @@ class BusquedaController extends FrontController
 		parent::__construct();
 	}
 
-    public function store(Request $request)
-    {
+    public function index(Request $request)
+    {    	
         $page_id = 'resultados';
         $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
         $breadcrumbs[] = ['caption' => 'Resultados de búsqueda', 'link' => ''];
 
         $productos = Product::with(['category:id,url', 'thumb:product_id,source'])
         					->where('name', 'LIKE', '%'.$request->buscar.'%')
-        					->get();
+        					->paginate(8);
 
         if($productos->isEmpty())
         {

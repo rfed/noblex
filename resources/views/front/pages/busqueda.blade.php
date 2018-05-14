@@ -42,23 +42,36 @@
 
 	<div class="pagination">
 		<div class="showing">
-			<span>Mostrando 30 de 157 resultados</span>
+			<span>Mostrando {{ $productos->count() }} de {{ $productos->total() }} resultados</span>
 		</div>
 		
 		<div class="pages">
-			<a href="#" class="prev">
+			@if ($productos->onFirstPage())
+		        <li class="disabled"><span>&laquo;</span></li>
+		    @else
+			<a href="{{ request()->url().'?buscar='.$request->buscar.'&page='.($productos->currentPage() - 1) }}" class="prev">
 				<span>Anterior</span>
 				<span class="fa fa-angle-left"></span>
 			</a>
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<a href="#" class="current">3</a>
-			<a href="#">4</a>
-			<a href="#">5</a>
-			<a href="#" class="next">
-				<span>Siguiente</span>
-				<span class="fa fa-angle-right"></span>
-			</a>
+			@endif
+			
+			@for($i=1; $i <= $productos->lastPage(); $i++)
+				@if($productos->currentPage() != $i)
+					<a href="{{ request()->url().'?buscar='.$request->buscar.'&page='.$i }}">{{ $i }}</a>
+				@else
+					<a class="current">{{ $i }}</a>
+				@endif
+			@endfor
+			
+			@if ($productos->hasMorePages())
+		        <a href="{{ request()->url().'?buscar='.$request->buscar.'&page='.($productos->currentPage() + 1) }}" class="next">
+					<span>Siguiente</span>
+					<span class="fa fa-angle-right"></span>
+				</a>
+		    @else
+				<li class="disabled"><span>&raquo;</span></li>
+			@endif
+
 		</div>
 	</div>
 
