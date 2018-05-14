@@ -40,6 +40,7 @@ class EloquentWidget implements WidgetInterface
 			'type' 			=> 'required',
             'description'	=> 'nullable|max:100',
             'active'		=> 'nullable',
+            'always'		=> 'nullable',
             'btn_text' 		=> 'nullable',
             'url' 			=> 'nullable',
             'category_id' 	=> 'nullable',
@@ -48,6 +49,7 @@ class EloquentWidget implements WidgetInterface
 			'position' 		=> 'nullable',
 		]);
 		
+		$data['always'] = @$data['always'] == 'on' ?1:0;
 		$data['active'] = @$data['active'] == 'on' ?1:0;
 		$data['home'] = @$data['home'] == 'on' ?1:0;
 		$data['features'] = @$data['features'] == 'on' ?1:0;
@@ -101,6 +103,7 @@ class EloquentWidget implements WidgetInterface
 			'type' 			=> 'nullable',
             'description'	=> 'nullable|max:100',
             'active'		=> 'nullable',
+            'always'		=> 'nullable',
             'btn_text' 		=> 'nullable',
             'url' 			=> 'nullable',
             'category_id' 	=> 'nullable',
@@ -109,6 +112,7 @@ class EloquentWidget implements WidgetInterface
 			'position' 		=> 'nullable',
 		]);
 
+		$data['always'] = @$data['always'] == 'on' ?1:0;
 		$data['active'] = $request->get('active') == 'on' ?1:0;
 		$data['home'] = $request->get('home') == 'on' ?1:0;
 		$data['features'] = $request->get('features')== 'on' ?1:0;

@@ -90,6 +90,14 @@
         </div>
     </div>
 
+    <div class="form-group">
+        {!! Form::label('always', 'Siempre visible', ['class' => 'control-label col-md-3']) !!}
+        <div class="col-md-9">
+            {!! Form::checkbox('always', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'always']) !!}
+        </div>
+    </div>
+
+
     @if (isset($widget) && in_array('features', $widgets[$widget->type]['features']))
     <div class="form-group">
         {!! Form::label('features', 'Incluir features de categoría', ['class' => 'control-label col-md-3']) !!}
