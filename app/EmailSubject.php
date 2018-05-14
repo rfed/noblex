@@ -11,6 +11,8 @@ class EmailSubject extends Model
     protected $primaryKey  = ['subject_id', 'email'];
     public $incrementing = false;
 
+	protected $fillable = ['subject_id', 'email'];
+	
     public function subjects()
     {
     	return $this->belongsTo(Subject::class);

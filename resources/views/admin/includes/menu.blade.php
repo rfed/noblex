@@ -62,7 +62,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ activeMenu('panel/config') }}">
+            <li class="nav-item start {{ activeMenu('panel/features*') ? activeMenu('panel/features*') : (activeMenu('panel/attribute*') ? activeMenu('panel/attribute*') : (activeMenu('panel/groups*') ? activeMenu('panel/groups*') : activeMenu('panel/subjects*')))  }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Configuracion</span>
@@ -86,6 +86,12 @@
                         <a href="{{ route('admin.groups.index') }}" class="nav-link nav-toggle">
                             <i class="icon-list"></i>
                             <span class="title">Grupos de Atributos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start {{ activeMenu('panel/subjects*') }}">
+                        <a href="{{ route('admin.subjects.index') }}" class="nav-link nav-toggle">
+                            <i class="icon-list"></i>
+                            <span class="title">Asuntos</span>
                         </a>
                     </li>
                 </ul>

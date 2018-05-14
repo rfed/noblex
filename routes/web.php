@@ -154,6 +154,12 @@ Route::group([
 	//Customers
 	Route::get('customers', 'Admin\CustomerController@index')->name('admin.customers.index');
 
+	//Asuntos
+	Route::resource('subjects', 'Admin\SubjectController', [
+		'names' 	=> 'admin.subjects',
+		'except'	=> 'show'
+	]);
+
 });
 
 
