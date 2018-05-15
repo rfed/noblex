@@ -31,14 +31,18 @@ class CategoryController extends FrontController
         else {
             //Verify if slug matches a page
             $page = Page::where('url', $slug)->where('visible', 1)->first();
-            $page_id = $page->template->reference;
             if ($page) {
+                $page_id = $page->template->reference;
                 return view('front.pages.template', compact('page', 'page_id'));
             }
             else {
+                $randomCategories = Category::where('root_id', '!=', 0)
+                                            ->inRandomOrder()
+                                            ->limit(3)
+                                            ->get();
 
                 //404
-                $data = [];
+                $data = ['randomCategories' => $randomCategories];
                 return response()->view('errors.404', $data, 404);
 
             }
