@@ -21,7 +21,7 @@ class FrontController extends BaseController
         $pages = Page::where('visible', 1)->where('footer', 1)->get();
 
         session_start();
-        $comparador = $_SESSION['comparador'];
+        $comparador = isset($_SESSION['comparador']) $_SESSION['comparador'] : [];
 
         \View::share(['menu_raiz' => $menu_raiz, 'pages' => $pages, 'comparador' => $comparador]);
     }
