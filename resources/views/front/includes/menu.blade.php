@@ -1,3 +1,11 @@
+<div class="popup">
+    <div class="content">
+        <p></p>
+
+        <a href="javascript:void(0)" class="btn link">Aceptar</a>
+    </div>
+</div>
+
 <header class="header">
 
     <div class="container">

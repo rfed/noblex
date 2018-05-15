@@ -86,17 +86,16 @@
                     <a href="#"><strong>Mas información</strong></a>
 
                     <ul>
+                        @foreach ($pages as $page)
                         <li>
-                            <a href="#">Acerca de Noblex</a>
+                            <a href="{{ $page->url }}">{{ $page->title }}</a>
                         </li>
+                        @endforeach
                         <li>
                             <a href="{{ url('contacto') }}">Contacto</a>
                         </li>
                         <li>
-                            <a href="#">Ventas Corporativas</a>
-                        </li>
-                        <li>
-                            <a href="#">Legales</a>
+                            <a href="{{ url('contacto') }}">Ventas Corporativas</a>
                         </li>
                     </ul>
                 </div>

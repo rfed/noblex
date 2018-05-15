@@ -16,6 +16,7 @@ use Noblex\Repositories\EloquentAttribute;
 use Noblex\Repositories\EloquentTag;
 use Noblex\Repositories\EloquentTheme;
 use Noblex\Repositories\EloquentStory;
+use Noblex\Repositories\EloquentPage;
 use Noblex\Repositories\Interfaces\UserInterface;
 use Noblex\Repositories\Interfaces\BrandInterface;
 use Noblex\Repositories\Interfaces\CategoryInterface;
@@ -28,6 +29,7 @@ use Noblex\Repositories\Interfaces\AttributeInterface;
 use Noblex\Repositories\Interfaces\TagInterface;
 use Noblex\Repositories\Interfaces\ThemeInterface;
 use Noblex\Repositories\Interfaces\StoryInterface;
+use Noblex\Repositories\Interfaces\PageInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -98,6 +100,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             StoryInterface::class,
             EloquentStory::class
+        );
+
+        $this->app->bind(
+            PageInterface::class,
+            EloquentPage::class
         );
     }
 

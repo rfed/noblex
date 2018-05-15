@@ -212,6 +212,36 @@ if( $('#download_list').length ){
 }
 
 
+$('.popup a').click(function(){
+    $(this).parents('.popup').fadeOut();
+});
+
+
+$('.btnComparar').click(function(){
+	var me = $(this);
+	$.post('/comparador/handle', {item:$(this).data('item')}, function(response){
+		if (response.comparar) {
+			$('.compare_btn').show();
+		}
+		else {
+			$('.compare_btn').hide();
+		}
+
+		if (response.error) {
+			$(me).attr('checked', false);
+			$('.popup .content p').text(response.error);
+			$('.popup').fadeIn();
+		}
+	});
+});
+
+$('.remove_item').click(function(e){
+	e.preventDefault();
+	$.post('/comparador/handle', {item:$(this).data('item')}, function(response){
+		location.reload();
+	});	
+});
+
 ConversalabWebchatSalesforceLauncher.init({
 
     secret: "MtjRZ8hTfiI.cwA._OI.D49ZfY5a9FEDQgT6g7nB2grhtxCdzmAwBtDh3_yTNsw",

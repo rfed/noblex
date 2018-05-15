@@ -145,6 +145,14 @@ Route::group([
 		'names' 	=> 'admin.tags',
 		'except'	=> 'show'
 	]);
+
+	// Paginas
+	Route::resource('pages', 'Admin\PageController', [
+		'names' 	=> 'admin.pages',
+		'except'	=> 'show'
+	]);	
+	Route::post('pages/upload', 'Admin\PageController@upload');
+
 });
 
 
@@ -190,6 +198,8 @@ Route::post('/contacto', 'Front\ContactoController@store')->name('contacto.store
 // Descargas
 Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.index');
 
+//Comparador
+Route::post('/comparador/handle', 'Front\ComparadorController@handle');
+Route::get('/comparador', 'Front\ComparadorController@index');
+
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');
-
-

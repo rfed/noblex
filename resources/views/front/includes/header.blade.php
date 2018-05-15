@@ -35,12 +35,11 @@
                 <span class="fa fa-wrench"></span>
                 <span>Atención al cliente</span>
             </a>
-            <!--
-            <a href="#" class="compare_btn">
+            
+            <a href="{{ url('comparador') }}" class="compare_btn" style="{{ count($comparador)>1 ? '' : 'display:none;' }}">
                 <span class="fas fa-external-link-alt"></span>
-                <span>Comparar seleccionados</span>
+                <span>Comparar</span>
             </a>
-            -->
         </div>
 
     </div>

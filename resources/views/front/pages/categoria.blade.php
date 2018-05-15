@@ -27,7 +27,7 @@
 
 				<div class="item product_box_link">
 					<div class="image">
-						<a href="{{ url($category->url.'/'.$cat->url) }}">
+						<a href="{{ url($cat->url) }}">
 							<img src="{{ asset('storage/'.$cat->image) }}" alt="{{ $cat->title }}" />
 						</a>
 					</div>
@@ -79,7 +79,7 @@
 				</a>
 
 				<label class="checkbox">
-					<input type="checkbox" value="comparar" />
+					<input type="checkbox" value="comparar" class="btnComparar" data-item="{{ $product->id }}" {{ isset($comparador[$product->sku]) ? 'checked' : '' }}>
 					<span>Comparar</span>
 				</label>
 				

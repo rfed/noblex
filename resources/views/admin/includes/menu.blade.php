@@ -136,6 +136,12 @@
                     </li>
                 </ul>
             </li>            
+            <li class="nav-item start {{ activeMenu('panel/pages*') }}">
+                <a href="{{ route('admin.pages.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Páginas de Contenido</span>
+                </a>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

@@ -7,6 +7,7 @@ use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Controllers\Front\FrontController;
 use Noblex\Category;
 use Noblex\Product;
+use Noblex\Page;
 
 class CategoryController extends FrontController
 {
@@ -17,7 +18,7 @@ class CategoryController extends FrontController
     
     public function index($slug)
     {
-        $category = Category::where('url', $slug)->firstOrFail();
+        $category = Category::where('url', $slug)->first();
 
         if ($category) {
             if ($category->root_id == 1 && count($category->childs)>0) {
@@ -28,8 +29,19 @@ class CategoryController extends FrontController
             }
         }
         else {
-            $data = [];
-            return response()->view('errors.404', $data, 404);
+            //Verify if slug matches a page
+            $page = Page::where('url', $slug)->where('visible', 1)->first();
+            $page_id = $page->template->reference;
+            if ($page) {
+                return view('front.pages.template', compact('page', 'page_id'));
+            }
+            else {
+
+                //404
+                $data = [];
+                return response()->view('errors.404', $data, 404);
+
+            }
         }
     }
 
