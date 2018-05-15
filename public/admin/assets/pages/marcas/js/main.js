@@ -1,6 +1,6 @@
 $(function(){
 
-	$("#marcas").dataTable({
+	$("#brands").dataTable({
 		"paginate": true,
 		"searching": true,
 		"ordering": true,

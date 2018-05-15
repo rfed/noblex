@@ -62,7 +62,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ activeMenu('panel/config') }}">
+            <li class="nav-item start {{ activeMenu('panel/features*') ? activeMenu('panel/features*') : (activeMenu('panel/attribute*') ? activeMenu('panel/attribute*') : (activeMenu('panel/groups*') ? activeMenu('panel/groups*') : activeMenu('panel/subjects*')))  }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Configuracion</span>
@@ -88,6 +88,12 @@
                             <span class="title">Grupos de Atributos</span>
                         </a>
                     </li>
+                    <li class="nav-item start {{ activeMenu('panel/subjects*') }}">
+                        <a href="{{ route('admin.subjects.index') }}" class="nav-link nav-toggle">
+                            <i class="icon-list"></i>
+                            <span class="title">Asuntos</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item start {{ activeMenu('panel/categorias*') }}">
@@ -108,7 +114,7 @@
                     <span class="title">Newsletter</span>
                 </a>
             </li>
-            <li class="nav-item start {{ activeMenu('panel/stories') }}">
+            <li class="nav-item start {{ activeMenu('panel/stories') ? activeMenu('panel/stories') : (activeMenu('panel/tags') ? activeMenu('panel/tags') : (activeMenu('panel/themes*') ? activeMenu('panel/themes*') : '')) }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Novedades</span>
@@ -136,12 +142,28 @@
                     </li>
                 </ul>
             </li>            
+<<<<<<< HEAD
             <li class="nav-item start {{ activeMenu('panel/pages*') }}">
                 <a href="{{ route('admin.pages.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Páginas de Contenido</span>
                 </a>
             </li>
+=======
+            <li class="nav-item start {{ activeMenu('panel/contactos*') }}">
+                <a href="{{ route('admin.contactos.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Contactos</span>
+                </a>
+            </li>
+            <li class="nav-item start {{ activeMenu('panel/customers*') }}">
+                <a href="{{ route('admin.customers.index') }}" class="nav-link nav-toggle">
+                    <i class="icon-list"></i>
+                    <span class="title">Clientes</span>
+                </a>
+            </li>
+            
+>>>>>>> 64d552650793de5999f0a7c596746723078d8973
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

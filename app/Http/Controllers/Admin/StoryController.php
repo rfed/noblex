@@ -3,10 +3,11 @@
 namespace Noblex\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Noblex\Theme;
-use Noblex\Tag;
 use Noblex\Http\Controllers\Controller;
+use Noblex\Repositories\EloquentTag;
 use Noblex\Repositories\Interfaces\StoryInterface;
+use Noblex\Tag;
+use Noblex\Theme;
 
 class StoryController extends Controller
 {
@@ -32,11 +33,12 @@ class StoryController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function create(Request $request, EloquentTag $tag)
     {
         $themes = Theme::orderBy('name')->get();
+        $tags = $tag->getAll();
 
-        return view('admin.pages.stories.create', compact("themes"));
+        return view('admin.pages.stories.create', compact("themes", "tags"));
     }
 
 
@@ -53,14 +55,15 @@ class StoryController extends Controller
         return $this->story->upload($request);
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request, $id, EloquentTag $tag)
     {
         $story = $this->story->findById($id);
 
         $themes = Theme::orderBy('name')->get();
+        $tags = $tag->getAll();
         //$categoryFeatures = $categoria->features->pluck('id')->toArray();
 
-        return view('admin.pages.stories.edit', compact("story", "themes"));
+        return view('admin.pages.stories.edit', compact("story", "themes", "tags"));
     }
 
 

@@ -134,6 +134,8 @@ Route::group([
 		'except'	=> 'show'
 	]);
 
+	Route::post('stories/storiesUpload', 'Admin\StoryController@upload')->name('admin.stories.upload.store');
+
 	// Categorias de novedades
 	Route::resource('themes', 'Admin\ThemeController', [
 		'names' 	=> 'admin.themes',
@@ -152,6 +154,18 @@ Route::group([
 		'except'	=> 'show'
 	]);	
 	Route::post('pages/upload', 'Admin\PageController@upload');
+
+	//Contacto
+	Route::get('contactos', 'Admin\ContactoController@index')->name('admin.contactos.index');
+
+	//Customers
+	Route::get('customers', 'Admin\CustomerController@index')->name('admin.customers.index');
+
+	//Asuntos
+	Route::resource('subjects', 'Admin\SubjectController', [
+		'names' 	=> 'admin.subjects',
+		'except'	=> 'show'
+	]);
 
 });
 
@@ -201,5 +215,10 @@ Route::get('/descargas', 'Front\DescargasController@index')->name('descargas.ind
 //Comparador
 Route::post('/comparador/handle', 'Front\ComparadorController@handle');
 Route::get('/comparador', 'Front\ComparadorController@index');
+
+// Busquedas
+Route::get('/busqueda', 'Front\BusquedaController@index')->name('busqueda.index');
+Route::get('/autocomplete', 'Front\BusquedaController@autocomplete')->name('autocomplete');
+
 
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');

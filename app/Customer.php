@@ -12,6 +12,7 @@ class Customer extends Authenticatable
     use Notifiable;
 
     protected $guard = 'customer';
+    protected $dates = ['birth'];
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +36,16 @@ class Customer extends Authenticatable
     {
         return $this->belongsToMany(Category::class, 'category_customer');
     }
+
+
+    public function getGenderAttribute()
+    {
+        if($this->attributes['gender'] == 'male')
+            return $this->attributes['gender'] = 'Masculino';
+        else
+            return $this->attributes['gender'] = 'Femenino';
+    }
+
 
     public function sendPasswordResetNotification($token)
     {

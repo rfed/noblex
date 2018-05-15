@@ -17,7 +17,8 @@ class Widget extends Model
         'category_id', 
         'position', 
         'type', 
-        'active', 
+        'active',
+        'always', 
         'show_prods', 
         'features',
         'home'
