@@ -6,7 +6,7 @@
 
 	<div class="section_head">
 		<h1>Resultados de búsqueda: {{ $request->buscar }}</h1>
-		<p><strong>Se encontraron {{ $productos->count() }} resultados</strong></p>
+		<p><strong>{{ $productos->count()>1 ? ('Se encontraron '.$productos->count().' resultados') : ('Se encontró 1 resultado') }}</strong></p>
 	</div>
 
 
@@ -19,7 +19,7 @@
 		<div class="col-xs-6 col-md-3">
 
 			<div class="item">
-				<a href="#">
+				<a href="{{ $producto->category->url}}/{{$producto->sku}}">
 					<div class="image">
 						<img src="{{ asset("storage/".$producto->thumb['source']) }}" alt='{{ $producto->name }}' />
 					</div>
@@ -42,7 +42,7 @@
 
 	<div class="pagination">
 		<div class="showing">
-			<span>Mostrando {{ $productos->count() }} de {{ $productos->total() }} resultados</span>
+			<span>Mostrando {{ $productos->count() }} de {{ $productos->total() }} resultado/s</span>
 		</div>
 		
 		<div class="pages">

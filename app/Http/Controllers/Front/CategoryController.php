@@ -36,7 +36,7 @@ class CategoryController extends FrontController
                 return view('front.pages.template', compact('page', 'page_id'));
             }
             else {
-                $randomCategories = Category::where('root_id', '!=', 0)
+                $randomCategories = Category::where('root_id', 1)
                                             ->inRandomOrder()
                                             ->limit(3)
                                             ->get();

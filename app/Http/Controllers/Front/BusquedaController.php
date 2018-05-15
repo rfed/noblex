@@ -29,7 +29,7 @@ class BusquedaController extends FrontController
         if($productos->isEmpty())
         {
         	$page_id = 'sin_resultados';
-        	$randomCategories = Category::where('root_id', '!=', 0)
+        	$randomCategories = Category::where('root_id', 1)
                                             ->inRandomOrder()
                                             ->limit(3)
                                             ->get();
