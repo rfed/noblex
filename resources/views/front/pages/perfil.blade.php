@@ -25,12 +25,12 @@
             <span>*Sexo</span>
 
             <label class="radio">
-                <input type="radio" name="gender" value="female" {{ $customer->gender == 'female' ? 'checked' : '' }}/>
+                <input type="radio" name="gender" value="F" {{ $customer->gender == 'F' ? 'checked' : '' }}/>
                 <span>Mujer</span>
             </label>
 
             <label class="radio">
-                <input type="radio" name="gender" value="male" {{ $customer->gender == 'male' ? 'checked' : '' }}/>
+                <input type="radio" name="gender" value="M" {{ $customer->gender == 'M' ? 'checked' : '' }}/>
                 <span>Hombre</span>
             </label>
 
@@ -38,7 +38,7 @@
         </div>
 
         @php
-            $date = $customer->birth;
+            $date = date('Y-m-d', strtotime($customer->birth));
             $date_explode = explode('-', $date);
             $year = $date_explode[0];
             $month = $date_explode[1];

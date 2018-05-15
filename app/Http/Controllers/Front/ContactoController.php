@@ -19,7 +19,14 @@ class ContactoController extends FrontController
         $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
         $breadcrumbs[] = ['caption' => 'Contacto', 'link' => ''];
 
-        return view('front.pages.contacto', compact("page_id", "subjects", "breadcrumbs"));
+        if (isset($_GET['corporate'])) {
+            $corporate = TRUE;
+        }
+        else {
+            $corporate = FALSE;
+        }
+
+        return view('front.pages.contacto', compact("page_id", "subjects", "breadcrumbs", "corporate"));
     }
 
 

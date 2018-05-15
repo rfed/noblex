@@ -44,6 +44,7 @@
                     	        <a href="{{ route('admin.subjects.edit', $subject->id) }}">
                                     <i class="icon-pencil"></i> Editar 
                                 </a>
+                                @if ($subject->id > 2)
                                 |
                                 <a href="#" data-target='#modal-delete' data-toggle='modal' id="modal" 
                                 	data-id="{{ $subject->id }}"
@@ -51,7 +52,7 @@
                                 	data-url="{{ route('admin.subjects.destroy', $subject->id) }}">
                                     <i class="icon-trash"></i> Eliminar 
                                 </a>
-	                            
+	                            @endif
                         	</div>
                     	</td>
 					</tr>

@@ -15,19 +15,9 @@
                     <span class="selected"></span>
                     <span class="arrow open"></span>
                 </a>
-                <!--
-                <ul class="sub-menu">
-                    <li class="nav-item start active open">
-                        <a href="#" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Dashboard 1</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                </ul>
-                -->
             </li>
 
+            @if (\Auth::user()->admin)
             <li class="nav-item start {{ activeMenu('panel/marcas*') }}">
                 <a href="{{ route('admin.brands.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
@@ -40,6 +30,8 @@
                     <span class="title">Usuarios</span>
                 </a>
             </li>
+            @endif
+
             <li class="nav-item start {{ activeMenu('panel/inicio') }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
@@ -142,14 +134,12 @@
                     </li>
                 </ul>
             </li>            
-<<<<<<< HEAD
             <li class="nav-item start {{ activeMenu('panel/pages*') }}">
                 <a href="{{ route('admin.pages.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
                     <span class="title">Páginas de Contenido</span>
                 </a>
             </li>
-=======
             <li class="nav-item start {{ activeMenu('panel/contactos*') }}">
                 <a href="{{ route('admin.contactos.index') }}" class="nav-link nav-toggle">
                     <i class="icon-list"></i>
@@ -161,9 +151,7 @@
                     <i class="icon-list"></i>
                     <span class="title">Clientes</span>
                 </a>
-            </li>
-            
->>>>>>> 64d552650793de5999f0a7c596746723078d8973
+            </li>            
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

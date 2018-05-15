@@ -28,7 +28,7 @@ class PerfilUpdateRequest extends FormRequest
             'lastname'      => 'required|string|max:100',
             'email'         => 'required|string|email|max:191|unique:customers,email,'.$this->customer_id,
             'password'      => 'nullable|string|min:6|confirmed',
-            'gender'        => 'required|in:male,female',
+            'gender'        => 'required|in:M,F',
             'day'           => 'required|date_format:d',
             'month'         => 'required|date_format:m',
             'year'          => 'required|date_format:Y',

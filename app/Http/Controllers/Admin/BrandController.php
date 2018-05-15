@@ -19,6 +19,10 @@ class BrandController extends Controller
 
     public function index()
     {
+        if (!\Auth::user()->admin) {
+            return redirect('/panel');
+        }
+
         $brands = $this->brand->getAll();
 
         return view('admin.pages.brands.index', compact("brands")); 

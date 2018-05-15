@@ -33,6 +33,16 @@
 			</div>
 		</div>
 
+		@if (isset($user) && $user->id == 1)
+		{!! Form::hidden('admin', 1) !!}
+		@else
+	    <div class="form-group">
+	        {!! Form::label('admin', 'Super Administrador', ['class' => 'control-label col-md-3']) !!}
+	        <div class="col-md-9">
+	            {!! Form::checkbox('admin', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'admin']) !!}
+	        </div>
+	    </div>
+	    @endif
 	</div>
 
 	<div class="form-actions">

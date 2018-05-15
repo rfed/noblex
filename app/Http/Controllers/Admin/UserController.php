@@ -19,6 +19,10 @@ class UserController extends Controller
 
     public function index()
     {
+        if (!\Auth::user()->admin) {
+            return redirect('/panel');
+        }
+
         $users = $this->user->getAll();
 
         return view('admin.pages.users.index', compact("users")); 

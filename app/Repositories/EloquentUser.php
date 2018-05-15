@@ -27,8 +27,16 @@ class EloquentUser implements UserInterface
 			'name'	=> 'required',
 			'email' => 'required|unique:users,email',
 			'password' => 'required',
-			'password2'=> 'required|same:password'
+			'password2'=> 'required|same:password',
+			'admin' => 'nullable'
 		]);
+
+		if (isset($data['admin']) && $data['admin'] != 1) {
+			$data['admin'] = @$data['admin'] == 'on' ?1:0;
+		}
+		else {
+			$data['admin'] = 0;
+		}
 
 		$data['password'] = Hash::make($data['password']);
 
@@ -42,8 +50,16 @@ class EloquentUser implements UserInterface
 			'name'	=> 'required',
 			'email' => 'required|unique:users,email,'.$id.'|email',
 			'password' => 'required',
-			'password2'=> 'required|same:password'
+			'password2'=> 'required|same:password',
+			'admin' => 'nullable'
 		]);
+
+		if (isset($data['admin']) && $data['admin'] != 1) {
+			$data['admin'] = @$data['admin'] == 'on' ?1:0;
+		}
+		else {
+			$data['admin'] = 0;
+		}
 
 		$data['password'] = Hash::make($data['password']);
 

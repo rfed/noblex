@@ -180,8 +180,33 @@ class EloquentWidget implements WidgetInterface
 	}
 
 	public function home(){
-		return Widget::where('active', 1)
-			->orderBy('position', 'asc')->get();
+		$customer = \Auth::guard('customer')->user();
+		if ($customer) {
+			foreach ($customer->categories as $category) {
+				$ids[] = $category->id;
+			}
+
+			$widgets = Widget::where('type', '!=', 5)
+				->where('active', 1)
+				->whereRaw('(category_id in ('.implode(',', $ids).') or always=1)')
+				->orderBy('position', 'asc')->get();
+
+			if (!count($widgets)) {
+				return Widget::where('type', '!=', 5)
+					->where('active', 1)
+					->where('home', 1)
+					->orderBy('position', 'asc')->get();				
+			}
+			else {
+				return $widgets;
+			}
+		}
+		else {
+			return Widget::where('type', '!=', 5)
+				->where('active', 1)
+				->where('home', 1)
+				->orderBy('position', 'asc')->get();
+		}
 	}
 
 	public function slider(){

@@ -1022,7 +1022,8 @@ footer .copyright > .networks_list li a:hover {
 	color: white;
 	background-color: transparent;
 	border: none;
-	border-bottom: 2px solid #665d97
+	border-bottom: 2px solid #665d97;
+	outline: none;
 }
 
 .search_box .results {

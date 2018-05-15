@@ -77,6 +77,7 @@ $('.search_box .search_btn').click(function(){
 
 
 
+/*
 $('.search_box .search_input input').on('focus change input', function(){
 	let elem = $(this).parents('.search_input').next('.results');
 
@@ -94,8 +95,7 @@ $('.search_box .search_input input').on('focus change input', function(){
 		}
 	}
 });
-
-
+*/
 
 
 

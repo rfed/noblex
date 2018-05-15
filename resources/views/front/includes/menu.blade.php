@@ -278,8 +278,6 @@
 
                 if(value.length > 2)
                 {
-                    $('.results').show();
-
                     $.ajax({
                         url: '/autocomplete',
                         type: 'GET',
@@ -287,17 +285,18 @@
                         data: {data: value},
                     })
                     .done(function(data) {
-
-                        for(let item in data)
-                        {
-                            $('#resultados').append('<li><a href="'+data[item].url+'">'+data[item].name+'</a></li>');
-                        }
-
-                        if(data.length == 0)
-                        {
-                            $('#resultados').append('<li><a>No hay resultados</a></li>');
-                        }
-                        
+                        if (data.length > 0) {
+                            $('.results').show();
+                            $('#resultados').empty();
+                            
+                            for(let item in data)
+                            {
+                                $('#resultados').append('<li><a href="'+data[item].url+'">'+data[item].name+'</a></li>');
+                            }
+                        } 
+                        else {
+                            $('.results').hide();
+                        }                       
                     })
                     .fail(function(xhr, status, error) {
                         console.log(xhr.responseText);

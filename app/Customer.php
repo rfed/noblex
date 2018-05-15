@@ -40,10 +40,10 @@ class Customer extends Authenticatable
 
     public function getGenderAttribute()
     {
-        if($this->attributes['gender'] == 'male')
-            return $this->attributes['gender'] = 'Masculino';
+        if($this->attributes['gender'] == 'M')
+            return $this->attributes['gender'] = 'M';
         else
-            return $this->attributes['gender'] = 'Femenino';
+            return $this->attributes['gender'] = 'F';
     }
 
 

@@ -95,7 +95,7 @@
                             <a href="{{ url('contacto') }}">Contacto</a>
                         </li>
                         <li>
-                            <a href="{{ url('contacto') }}">Ventas Corporativas</a>
+                            <a href="{{ url('contacto?corporate') }}">Ventas Corporativas</a>
                         </li>
                     </ul>
                 </div>

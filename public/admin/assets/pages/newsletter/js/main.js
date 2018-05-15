@@ -8,14 +8,23 @@ $(function(){
 	        {
 	        	extend: 'excel',
 	        	text: 'Exportar Excel',
-	        	title: 'Newsletter',
+	        	className: 'btn btn-success btn-sm',
+	        	title: 'Contactos',
 	        	exportOptions: {
 	                modifier: {
 	                    page: 'current'
 	                },
 	            },
+	            init: function(api, node, config) {
+			       $(node).removeClass('dt-button')
+			    },
 	        }
         ],
+        "columnDefs": [
+			{ "width": "35%", "targets": 0 },
+			{ "width": "35%", "targets": 1 },
+			{ "width": "30%", "targets": 2 }
+		],
 		"paginate": true,
 		"searching": true,
 		"ordering": true,

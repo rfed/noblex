@@ -51,7 +51,7 @@
 						<option disabled selected>* Asunto</option>
 						
 						@foreach($subjects as $subject)
-							<option value="{{ $subject->id }}" {{ collect(old('subject_id'))->contains($subject->id) ? 'selected' : '' }}>
+							<option value="{{ $subject->id }}" {{ collect(old('subject_id'))->contains($subject->id) ? 'selected' : ($corporate && $subject->id == 2 ? 'selected' : '') }}>
 								{{ $subject->title }}</option>
 						@endforeach
 

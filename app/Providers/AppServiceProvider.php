@@ -18,7 +18,6 @@ use Noblex\Repositories\EloquentSubject;
 use Noblex\Repositories\EloquentUser;
 use Noblex\Repositories\EloquentWidget;
 use Noblex\Repositories\EloquentWidgetMedia;
-use Noblex\Repositories\Interfaces\UserInterface;
 use Noblex\Repositories\Interfaces\AttributeInterface;
 use Noblex\Repositories\Interfaces\BrandInterface;
 use Noblex\Repositories\Interfaces\CategoryInterface;
@@ -106,13 +105,13 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-<<<<<<< HEAD
             PageInterface::class,
             EloquentPage::class
-=======
+        );
+
+        $this->app->bind(        
             SubjectInterface::class,
             EloquentSubject::class
->>>>>>> 64d552650793de5999f0a7c596746723078d8973
         );
     }
 
