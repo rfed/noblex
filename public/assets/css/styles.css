@@ -1386,6 +1386,9 @@ footer .access_list .networks_list p strong {
 	padding-bottom: 15px
 }
 
+#institucional .main_head .section_tools,
+#legales .main_head .section_tools { display:none; }
+
 .main_head .section_tools,
 .main_head .section_info {
 	width: 40%;
