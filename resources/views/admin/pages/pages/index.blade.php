@@ -22,7 +22,7 @@
 				<thead>
 					<tr>
 						<th>Titulo</th>
-						<th>Visible</th>
+						<th>Activo</th>
 						<th width="330">Opciones</th>
 					</tr>
 				</thead>
@@ -72,5 +72,39 @@
 	$.ajaxSetup({
 		headers: { "X-CSRF-TOKEN": '{{ csrf_token() }}' }
 	});
+
+	$( function() {
+		
+		$( "#sortable" ).disableSelection();
+
+		$( "#sortable" ).sortable({
+			update: function( e, index) {
+				var mi_id = $(e.target).find('.id').val();
+				var list = [];
+
+				$.each($("#sortable tr"), function(i, el){
+					var el_id = $(el).find('.id').val();
+					var pos = $(el).index();
+					list.push({
+						id: el_id,
+						position: pos
+					})
+					//$(el).find('td').eq(0).text(pos);
+				})
+				
+				$.ajax({
+					url: '/panel/pages/orden',
+					type: 'post',
+					data: {pages:list},
+					success: function(result) {
+						console.log(result);
+					},
+					error: function(error){
+						console.log(error);
+					}
+				});
+			}
+		});
+	} );
 	</script>
 @endpush

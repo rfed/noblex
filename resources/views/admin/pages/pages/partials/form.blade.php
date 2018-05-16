@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('visible', 'Visible', ['class' => 'control-label col-md-3']) !!}
+			{!! Form::label('visible', 'Activo', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
 				{!! Form::checkbox('visible', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'visible']) !!}
 			</div>

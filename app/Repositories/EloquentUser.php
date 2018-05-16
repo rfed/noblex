@@ -25,7 +25,7 @@ class EloquentUser implements UserInterface
 	{
 		$data = $request->validate([
 			'name'	=> 'required',
-			'email' => 'required|unique:users,email',
+			'email' => 'required|email|unique:users,email',
 			'password' => 'required',
 			'password2'=> 'required|same:password',
 			'admin' => 'nullable'

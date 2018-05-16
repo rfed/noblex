@@ -1,4 +1,4 @@
-<div class="modal fade" id="widget-delete" tabindex="-1" role="dialog" aria-labelledby="widget-delete" aria-hidden="true">
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="modal-delete" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,13 +13,12 @@
       </div>
 
       <div class="modal-footer">
-        <form action="#" method="POST" id="widget-form-delete">
+        <form action="" method="POST" id="form-delete">
 
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
             @csrf
             {{ method_field('DELETE') }}
-            {{ action_field('asdasd') }}
 
             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</button>
 

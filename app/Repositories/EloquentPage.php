@@ -7,9 +7,20 @@ use Noblex\Repositories\Interfaces\PageInterface;
 
 class EloquentPage implements PageInterface
 {
+    public function sort($request) 
+    {
+        if($request->ajax() && $request->get('pages'))
+        {
+            foreach($request->get('pages') as $data){
+                $page = Page::findOrFail($data['id']);
+                $page->update($data);
+            }
+        }
+    }
+
 	public function getAll() 
 	{
-		return Page::orderBy('title', 'DESC')->get();
+		return Page::orderBy('position', 'ASC')->get();
 	}
 
 	public function findById($id) 

@@ -97,9 +97,6 @@
     
     var type_id = '{{ @$widget->type }}';
     var widget_type = types[type_id];
-
-    console.log(widget_type);
-
     
     //var t = '{!! $widget->getMediaSorted()->toJson() !!}';
     //t.replace(/<br\s*\/?>/mg,"\n");
@@ -197,10 +194,7 @@
     $(document).on('click', '.delete-media', function(e){
         e.preventDefault();
         var self = this;
-        var id = $(this).data('id');
-        console.log(type_id);
-
-        
+        var id = $(this).data('id');        
 
         if(type_id == 1){
             clearMedia(id);
@@ -212,7 +206,7 @@
                 url: '{{ url("/panel/widgets/media") }}/' + id,   // '/panel/widgets/media/' + id,
                 type: 'DELETE',
                 success: function(result) {
-                    $(self).parent().parent().parent().remove();
+                    $(self).parent().parent().remove();
                 },
                 error: function(error){
                     console.log(error);
@@ -327,7 +321,11 @@
                     </div>
 
                 </td>
-                
+                ` + (type_id == 7 ? `
+                <td>
+                    <a href="#" data-id="${data.id}" class="delete-media">Eliminar</a>
+                </td>
+                ` : '') + `
             </tr>`);
 
             $( row ).insertBefore( $( ".last-row" ) );
@@ -351,10 +349,6 @@
     var drops = [];
 
     function createDrop(el, data){
-        console.log("Agregando drop");
-        console.log($(el));
-        console.log("---------");
-
         var drop = new Dropzone(el, {
             url: '{{ route("admin.widgets.media.store") }}',  // /panel/widgets/media
             'paramName': 'file',
@@ -421,7 +415,6 @@
         });
 
         drop.on("removedfile", function(e) {
-            console.log($('#source'+e.id).data('url'));
             $('#source'+e.id).data('url', '');
             
         });

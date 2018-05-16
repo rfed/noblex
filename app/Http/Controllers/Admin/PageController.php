@@ -77,4 +77,9 @@ class PageController extends Controller
         return redirect('panel/pages')->with('danger', 'Página eliminada correctamente.');
     }
 
+    public function sort(Request $request){
+        $this->page->sort($request);
+    }
+
+
 }

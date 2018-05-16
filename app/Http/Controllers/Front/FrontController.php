@@ -18,7 +18,7 @@ class FrontController extends BaseController
     public function __construct(){
         $menu_raiz = Category::where('root_id', 0)->with('childs')->first();
 
-        $pages = Page::where('visible', 1)->where('footer', 1)->get();
+        $pages = Page::where('visible', 1)->where('footer', 1)->orderBy('position', 'ASC')->get();
 
         if (session_status() == PHP_SESSION_NONE) {
         	session_start();

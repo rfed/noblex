@@ -26,12 +26,12 @@
             <span>*Sexo</span>
 
             <label class="radio">
-                <input type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}/>
+                <input type="radio" name="gender" value="F" {{ old('gender') == 'F' ? 'checked' : '' }}/>
                 <span>Mujer</span>
             </label>
 
             <label class="radio">
-                <input type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}/>
+                <input type="radio" name="gender" value="M" {{ old('gender') == 'M' ? 'checked' : '' }}/>
                 <span>Hombre</span>
             </label>
 

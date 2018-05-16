@@ -24,7 +24,7 @@
 						<th>Nombre</th>
 						<th>SKU</th>
 						<th>Categoria</th>
-						<th>activo</th>
+						<th>Activo</th>
 						<th>Opciones</th>					
 					</tr>
 				</thead>
@@ -37,7 +37,7 @@
 							<td>{{ $producto->name }}</td>
 							<td>{{ $producto->sku }}</td>
 							<td>{{ $producto->category->name }}</td>
-							<td>{{ $producto->active }}</td>
+							<td>{{ $producto->active ? 'Si' : 'No' }}</td>
 							<td>
 								<div class="btn-group">
                     	        <a href="{{ route('admin.productos.edit', $producto->id) }}">

@@ -1857,7 +1857,8 @@ footer .access_list .networks_list p strong {
 	font-size: 23px;
 	margin: 0;
 	margin-top: -10px;
-	margin-bottom: 15px
+	margin-bottom: 15px;
+	padding-top:5px;
 }
 
 .exito:before {

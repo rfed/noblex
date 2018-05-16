@@ -153,6 +153,7 @@ Route::group([
 		'names' 	=> 'admin.pages',
 		'except'	=> 'show'
 	]);	
+	Route::post('pages/orden', 'Admin\PageController@sort');
 	Route::post('pages/upload', 'Admin\PageController@upload');
 
 	//Contacto

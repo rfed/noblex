@@ -12,6 +12,7 @@ $(function(){
 	});
 	*/
 
+	/*
 	$(document).on('click', '#modal' ,function() {
 		var id = $(this).data('id');
 		var name = $(this).data('name');
@@ -21,5 +22,13 @@ $(function(){
 		$("#widget-form-delete").attr('action', 'panel/widgets/'+id);
 		$("#form-delete").attr('action', url);
 	});
+	*/
+	$(document).on('click', '#modal' ,function() {
+		var id = $(this).data('id');
+		var name = $(this).data('name');
+		var url = $(this).data('url');
 
+		$("#nombre").html(name);
+		$("#form-delete").attr('action', url);
+	});
 });
