@@ -1,8 +1,3 @@
-@push('styles')
-    <link href="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('admin/assets/global/css/plugins.min.css') }}" rel="stylesheet" />
-@endpush
-
 <div class="table-toolbar">
 		<div class="row">
 			<div class="col-md-6">
@@ -73,8 +68,7 @@
     
 
 @push('scripts')
-    <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-	<script src="{{ asset('admin/assets/pages/widgets/js/main.js') }}"></script>
+<script src="{{ asset('admin/assets/pages/widgets/js/main.js') }}"></script>
 
 <script>
 $.ajaxSetup({

@@ -1,10 +1,5 @@
 @extends('admin.layouts.app')
 	
-@push('styles')
-	<link href="{{ asset('admin/assets/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('admin/assets/global/css/plugins.min.css') }}" rel="stylesheet" />
-@endpush
-
 @section('admin.includes.breadcrumbs')
 	{{ Breadcrumbs::render('categorias', $parentCategory) }}
 @endsection
@@ -89,7 +84,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('admin/assets/pages/categorias/js/main.js') }}"></script>
 	
 	<script>

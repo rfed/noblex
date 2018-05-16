@@ -13,6 +13,9 @@
 
     <link href="{{ asset('admin/assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('admin/assets/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/global/css/plugins.min.css') }}" rel="stylesheet" />
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @stack('styles')

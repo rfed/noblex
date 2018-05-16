@@ -9,7 +9,7 @@ $(function(){
 		"iDisplayLength": 10,
 		"aLengthMenu": [[10, 25, 50], [10, 25, 50]],
 		"language": {
-			"url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+			"url": "/admin/assets/global/plugins/datatables/Spanish.json"
 		},
 	});
 
