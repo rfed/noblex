@@ -45,14 +45,23 @@
 	<script src="{{ asset('admin/assets/pages/stories/js/jquery.stringtoslug.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/stories/js/speakingurl.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/stories/dropzone/dropzone.js') }}"></script>
-	<script src="{{ asset('admin/assets/pages/stories/js/app.js') }}"></script>
-	
+	<script src="{{ asset('admin/assets/pages/pages/tinymce/tinymce.min.js') }}"></script>
+	<script src="{{ asset('admin/assets/pages/stories/js/app.js') }}"></script>	
 
 	<script>
 		$(function() {
-
 			$("#title").stringToSlug();
-			
+
+			tinymce.init({ 
+				menubar: false,
+				selector:'textarea',
+				toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent image link unlink code',
+  				plugins: 'code image link',
+  				images_upload_url: '{{ url('panel/pages/upload') }}',
+  				content_css: '/assets/css/styles.css',
+  				body_id: 'legales',
+  				height: '300px'
+			});				
 		});
 	</script>
 @endpush

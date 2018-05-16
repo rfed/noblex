@@ -56,8 +56,8 @@
 			tinymce.init({ 
 				menubar: false,
 				selector:'textarea',
-				toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent image code',
-  				plugins: 'code image',
+				toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent image link unlink code',
+  				plugins: 'code image link',
   				images_upload_url: '{{ url('panel/pages/upload') }}'
 			});
 
