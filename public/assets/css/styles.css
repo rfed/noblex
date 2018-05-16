@@ -1387,7 +1387,9 @@ footer .access_list .networks_list p strong {
 }
 
 #institucional .main_head .section_tools,
-#legales .main_head .section_tools { display:none; }
+#legales .main_head .section_tools,
+#registro .main_head .section_tools,
+#login .main_head .section_tools { display:none; }
 
 .main_head .section_tools,
 .main_head .section_info {
