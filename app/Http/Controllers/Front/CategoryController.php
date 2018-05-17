@@ -32,8 +32,11 @@ class CategoryController extends FrontController
             //Verify if slug matches a page
             $page = Page::where('url', $slug)->where('visible', 1)->first();
             if ($page) {
+                $breadcrumbs[] = ['caption' => 'Home', 'link' => ''];
+                $breadcrumbs[] = ['caption' => $page->title, 'link' => ''];
+
                 $page_id = $page->template->reference;
-                return view('front.pages.template', compact('page', 'page_id'));
+                return view('front.pages.template', compact('page', 'page_id', 'breadcrumbs'));
             }
             else {
                 $randomCategories = Category::where('root_id', 1)

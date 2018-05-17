@@ -22,7 +22,7 @@
                 
                 @if($media->source && $media->source != '')
                 <div class="image">
-                    <a target="{{ $media->linkTarget() }}" href="{{ $media->linkUrl() }}" title="{{ $media->title }}">
+                    <a target="{{ $media->link_target }}" href="{{ $media->link }}" title="{{ $media->title }}">
                         <img src="{{ asset('storage/' . $media->source) }}" />
                     </a>
                 </div>
@@ -70,7 +70,7 @@
 
                     @if($media->link && $media->link != '')
                     <div class="link_block">
-                        <a href="{{ $media->link }}" class="btn link">Ver Todos</a>
+                        <a href="{{ $media->link }}" target="{{ $media->link_target }}" class="btn link">Ver Todos</a>
                     </div>
                     @endif
                 </div>

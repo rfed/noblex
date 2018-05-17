@@ -12,11 +12,11 @@
             <div class="big product_box_link">
                 
                 @if(!empty($media->source))
-                    <a href="{{ $media->linkUrl() }}" data-fancybox data-caption="Caption for single image">
+                    <a href="{{ $media->link }}" data-fancybox data-caption="Caption for single image">
                         <img src="{{ asset('storage/'.$media->source) }}" />
                     </a>
                 @else
-                    {!! !empty($video->link) ? LaravelVideoEmbed::parse($video->linkUrl(),[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '213' ]) : '' !!}
+                    {!! !empty($video->link) ? LaravelVideoEmbed::parse($video->link,[], [], ['type' => null, 'class' => 'iframe-class', 'data-html5-parameter' => true, 'width' => '100%', 'height' => '213' ]) : '' !!}
                 @endif
                 <?php /*
                 <a href="#">

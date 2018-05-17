@@ -7,8 +7,7 @@
 @section('content')
 
 <div class="container">
-
-	@if (count($products) <= 1)
+	@if (count($products) == 0)
 	<div class="cartel">Por favor seleccione al menos dos productos para poder compararlos.</div>
 	@else
 	<div class="table_content">

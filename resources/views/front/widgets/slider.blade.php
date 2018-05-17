@@ -1,7 +1,7 @@
+@if ($slider->active)
 <section>
     
     <div class="container">
-        
         <div class="row">
    
             <div class="carousel_product_box_link owl-carousel dots">
@@ -11,7 +11,7 @@
                     <div class="item product_box_link">
                         
                         <div class="image">
-                            <a target="{{ $med->linkTarget() }}" href="{{ $med->linkUrl() }}">
+                            <a target="{{ $med->link_target }}" href="{{ $med->link }}">
                                 <img src="{{ asset('storage/' . $med->source) }}" alt="Móviles" />
                             </a>
                         </div>
@@ -20,6 +20,7 @@
                             @if($med->title)
                             <div class="half_block">
                                 <p class="strong"><strong>{{ $med->title }}</strong></p>
+                                }
                             </div>
                             @endif
                             @if($med->description)
@@ -27,9 +28,9 @@
                                 <p>{!! $med->description !!}</p>
                             </div>
                             @endif
-                            @if($med->linkUrl() != "#")
+                            @if($med->link != "#")
                             <div class="link_block">
-                                <a target="{{ $med->linkTarget() }}" href="{{ $med->linkUrl() }}" class="btn link">Ver todos</a>
+                                <a target="{{ $med->link_target }}" href="{{ $med->link }}" class="btn link">Ver todos</a>
                             </div>
                             @endif
                         </div>
@@ -45,3 +46,4 @@
         @include('front.widgets.productos', $productos);
     @endif
 </section>
+@endif

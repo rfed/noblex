@@ -35,6 +35,7 @@ class EloquentWidgetMedia implements WidgetMediaInterface
                 'title'    		=> 'nullable|max:50',
                 'description'	=> 'nullable|max:100',
                 'link' 			=> 'nullable',
+                'link_target'   => 'nullable',
                 'type'          => 'nullable',
                 'subtitle'      => 'nullable',
                 'position'      => 'nullable',

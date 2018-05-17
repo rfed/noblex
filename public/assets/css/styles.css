@@ -2584,7 +2584,7 @@ body.template .content a {
 	line-height: 40px
 }
 
-#institucional img { width:100%; height:auto; }
+#institucional main img { width:100%; height:auto; }
 
 #institucional .section_text {
 	font-family: 'Core Sans DS 25';

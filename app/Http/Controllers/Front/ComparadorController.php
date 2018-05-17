@@ -31,40 +31,43 @@ class ComparadorController extends FrontController
             }
         }
 
-        //Obtener la categoria en analisis
-        $category = $products[0]->category;
-        foreach ($products as $product) {
-            if ($product->category->id != $category->id) {
-                $category = $product->category->parent;
-                break;
-            }
-        }
-        $breadcrumbs[] = ['caption' => $category->name, 'link' => url($category->url)];
-        $breadcrumbs[] = ['caption' => 'Comparador de productos', 'link' => ''];
+        if (count($products)) {
+            //Obtener la categoria en analisis
+            $category = $products[0]->category;
+            foreach ($products as $product) {
+                if ($product->category->id != $category->id) {
+                    $category = $product->category;
+                    break;
+                }
+            }        
 
-        $data = DB::select('select ap.product_id, g.name as attributegroup, a.name as attribute, ap.value
-                    from attribute_category_product ap
-                    inner join attributes a on a.id = ap.attribute_id
-                    left join attributegroups g on g.id = a.attributegroup_id
-                    where ap.product_id in ('.implode(",", $ids).')');
+            $breadcrumbs[] = ['caption' => $category->name, 'link' => url($category->url)];
+            $breadcrumbs[] = ['caption' => 'Comparador de productos', 'link' => ''];
 
-        foreach ($data as $row) {
-            if ($row->attributegroup == '') {
-                $group_name = "Características";
-            }
-            else {
-                $group_name = $row->attributegroup;
-            }
+            $data = DB::select('select ap.product_id, g.name as attributegroup, a.name as attribute, ap.value
+                        from attribute_category_product ap
+                        inner join attributes a on a.id = ap.attribute_id
+                        left join attributegroups g on g.id = a.attributegroup_id
+                        where ap.product_id in ('.implode(",", $ids).')');
 
-            if (!isset($groups[$group_name])) {
-                $groups[$group_name] = [];
-            }
+            foreach ($data as $row) {
+                if ($row->attributegroup == '') {
+                    $group_name = "Características";
+                }
+                else {
+                    $group_name = $row->attributegroup;
+                }
 
-            if (!isset($groups[$group_name][$row->attribute])) {
-                $groups[$group_name][] = $row->attribute;
-            }
+                if (!isset($groups[$group_name])) {
+                    $groups[$group_name] = [];
+                }
 
-            $values[$group_name.'-'.$row->attribute.'-'.$row->product_id] = $row->value;
+                if (!isset($groups[$group_name][$row->attribute])) {
+                    $groups[$group_name][] = $row->attribute;
+                }
+
+                $values[$group_name.'-'.$row->attribute.'-'.$row->product_id] = $row->value;
+            }
         }
 
         return view('front.pages.comparador', compact("page_id", "breadcrumbs", "groups", "values", "products", "category"));
@@ -84,23 +87,45 @@ class ComparadorController extends FrontController
             $comparador = [];
         }
 
-        if (isset($comparador[$product->sku])) {
-            unset($comparador[$product->sku]);
-        }
-        else {
-            if (count($comparador) < 2) {
-                $comparador[$product->sku] = $product->id;
-            }
-            else {
-                $error = TRUE;
+        foreach ($comparador as $id_p) {
+            $productComparado = Product::where('id', $id_p)->first();
+
+            if ($product->category_id != $productComparado->category_id) {
+
+                if ($productComparado->category->root_id != 1) {
+                    if ($product->category->root_id == $productComparado->category->root_id) {
+                        $error = FALSE;
+                        break;
+                    }
+                    else {
+                        $error = 'No es posible comparar productos de distintas categorías.';        
+                    }
+                }
+                
+                $error = 'No es posible comparar productos de distintas categorías.';
+                break;
             }
         }
 
-        $_SESSION['comparador'] = $comparador;
+        if ($error === FALSE) {
+            if (isset($comparador[$product->sku])) {
+                unset($comparador[$product->sku]);
+            }
+            else {
+                if (count($comparador) < 3) {
+                    $comparador[$product->sku] = $product->id;
+                }
+                else {
+                    $error = 'No es posible comparar más de tres productos.';
+                }
+            }
+
+            $_SESSION['comparador'] = $comparador;
+        }
 
         return response()->json([
            'comparar' => (count($comparador)>1) ? true : false,
-           'error' => $error ? 'No es posible comparar más de tres productos.' : ''
+           'error' => $error
         ]);
     }
 

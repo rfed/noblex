@@ -117,6 +117,7 @@
                 subtitle: '{{ $thumb->subtitle }}',
                 description: '{!! $thumb->description !!}',
                 link: '{!! $thumb->link !!}',
+                linkTarget: '{!! $thumb->link_target !!}',
                 type: '{!! $thumb->type !!}',
                 position: '{!! $thumb->position !!}',
 
@@ -155,6 +156,7 @@
                 subtitle: '',
                 description: '',
                 link: '',
+                linkTarget: '_self',
                 type: 'image',
                 position: last + 1,
 
@@ -246,9 +248,8 @@
 
             
             if((data.link && data.link !== '')){
-                var linkArr = data.link.split('|');
-                var linkTarget = linkArr.length > 1 ? linkArr[0] : '_self';
-                var linkUrl = linkArr.length > 1 ? linkArr[1] : '#';
+                var linkTarget = data.linkTarget;
+                var linkUrl = data.link;
             }
 
 
