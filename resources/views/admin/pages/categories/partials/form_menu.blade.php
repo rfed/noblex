@@ -33,7 +33,7 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="#" class="delete-info">
+                                    <a href="#" class="delete-info" data-id="{{ $info->id }}">
                                         <i class="icon-trash"></i> 
                                     </a>
                                 </div>
@@ -76,7 +76,7 @@ var total_info = {{ $categoria->info->count() }};
                 </td>
                 <td>
                     <div class="btn-group">
-                        <a href="#" class="add-delete">
+                        <a href="#" class="delete-info" data-id="">
                             <i class="icon-trash"></i> 
                         </a>
                     </div>
@@ -85,6 +85,12 @@ var total_info = {{ $categoria->info->count() }};
             total_info ++;
             td.insertBefore("#info-relacionada tr:last-child");
             return false;
+        });
+
+        $('body').on('click', '.delete-info', function(e){
+            e.preventDefault();
+            $('form').append('<input type="hidden" name="info_deleted[]" value="' + $(this).data('id') + '" />');
+            $(this).parent().parent().parent().remove();
         });
         
     });

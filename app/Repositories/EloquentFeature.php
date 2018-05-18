@@ -32,6 +32,7 @@ class EloquentFeature implements FeatureInterface
 
 			$rules = array(
                 'name'        			=> 'required',
+				'image'					=> 'required',
                 //'description'            => 'required'
             );
 
@@ -77,6 +78,7 @@ class EloquentFeature implements FeatureInterface
 		$feature = Feature::findOrFail($id);
 		$rules = array(
 			'name'        			=> 'required',
+			'image'					=> 'required',
 			//'description'            => 'required'
 		);
 

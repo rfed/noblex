@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="content container" id="erorr_404">
+<div class="content container" id="error_404">
 	<div style="text-align:center;">
 		<h1>Error 404</h1>
 		

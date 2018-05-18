@@ -55,12 +55,20 @@
 			tinymce.init({ 
 				menubar: false,
 				selector:'textarea',
-				toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent image link unlink code',
+				toolbar: 'undo redo styleselect bold italic underline alignleft aligncenter alignright bullist numlist outdent indent image link unlink removeformat code',
   				plugins: 'code image link',
   				images_upload_url: '{{ url('panel/pages/upload') }}',
   				content_css: '/assets/css/styles.css',
   				body_id: 'legales',
-  				height: '300px'
+  				height: '300px',
+  				style_formats: [
+					{title: 'Titular 2', format: 'h2'},
+					{title: 'Titular 3', format: 'h3'},
+					{title: 'Titular 4', format: 'h4'},
+					{title: 'Titular 5', format: 'h5'},
+					{title: 'Titular 6', format: 'h6'},
+					{title: 'Parrafo', block: 'p'}
+				]  				
 			});				
 		});
 	</script>

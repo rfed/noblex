@@ -68,6 +68,9 @@ Route::group([
 
 
 	// Productos
+	Route::get('productos/importar', 'Admin\ProductController@importForm');
+	Route::post('productos/importar', 'Admin\ProductController@import');
+	Route::get('productos/modelo', 'Admin\ProductController@downloadImportModel');
 	Route::resource('productos', 'Admin\ProductController', [
 		'names' => 'admin.productos'
 	]);
@@ -175,7 +178,6 @@ Route::group([
 
 Route::get('/', 'Front\HomeController@index')->name('home');
 
-Route::get('/{subcategory}/{product}', 'Front\ProductController@index')->name('productos');
 //Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!panel$).*$')->name('categoria');
 
 
@@ -221,5 +223,6 @@ Route::get('/comparador', 'Front\ComparadorController@index');
 Route::get('/busqueda', 'Front\BusquedaController@index')->name('busqueda.index');
 Route::get('/autocomplete', 'Front\BusquedaController@autocomplete')->name('autocomplete');
 
+Route::get('/{subcategory}/{product}', 'Front\ProductController@index')->name('productos');
 
 Route::get('/{slug}', 'Front\CategoryController@index')->where('slug', '^(?!login|register|contacto$).*$')->name('categoria');

@@ -5,7 +5,9 @@ namespace Noblex\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Noblex\Http\Controllers\Controller;
 use Noblex\Http\Requests\ProductStoreRequest;
+use Noblex\Category;
 use Noblex\Product;
+use Noblex\Feature;
 use Noblex\Attribute;
 use Noblex\Group;
 use Noblex\ProductMedia;
@@ -14,6 +16,8 @@ use Noblex\Repositories\EloquentCategory;
 use Noblex\Repositories\EloquentFeature;
 use Noblex\Repositories\Interfaces\ProductInterface;
 use Noblex\Repositories\Interfaces\AttributeInterface;
+use Maatwebsite\Excel\Facades\Excel;
+use Image;
 
 class ProductController extends Controller
 {
@@ -152,5 +156,247 @@ class ProductController extends Controller
         }else{
             return redirect('panel/productos/'.$producto->id.'/edit#attributes');
         }
+    }
+
+    public function importForm() {
+        return view('admin.pages.products.import');
+    }
+
+    public function import(Request $request) {
+        $file = $request->file('file');
+
+        $fields = ['nombre', 'subtitulo', 'slug', 'sku', 'marca', 'categoria', 'subcategoria', 'descripcion', 'activo', 'destacado', 'foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'ficha', 'manual', 'foto_preview', 'foto_promocional', 'back_promocional', 'cucarda', 'features_promocional', 'mas_features', 'bloque1_titulo', 'bloque1_subtitulo', 'bloque1_texto', 'bloque1_imagen', 'bloque1_alineacion', 'bloque2_titulo', 'bloque2_subtitulo', 'bloque2_texto', 'bloque2_imagen', 'bloque2_alineacion', 'bloque3_titulo', 'bloque3_subtitulo', 'bloque3_texto', 'bloque3_imagen', 'bloque3_alineacion', 'bloque4_titulo', 'bloque4_subtitulo', 'bloque4_texto', 'bloque4_imagen', 'bloque4_alineacion'];
+
+        $importedProducts = [];
+
+        $results = Excel::load($file, function($reader) use($fields, &$importedProducts) {
+ 
+            $importedProducts = [];
+            foreach ($reader->toArray() as $rows) {
+
+                foreach ($rows as $row) {
+                    $data = [];
+                    $attributes = [];
+                    $features = [];
+                    $mas_features = [];
+                    $media = [];
+
+                    foreach ($row as $key=>$value) {
+                        if (in_array(strtolower($key), $fields)) {
+                            
+                            switch ($key) {
+                                case 'nombre':
+                                    $data['name'] = $value;
+                                    break;
+                                case 'subtitulo':
+                                    $data['short_description'] = $value;
+                                    break;
+                                case 'slug':
+                                    $data['url'] = $value;
+                                    break;
+                                case 'sku':
+                                    $data['sku'] = $value;
+                                    break;
+                                case 'marca':
+                                    $data['brand_id'] = 1; // NOBLEX
+                                    break;
+                                case 'categoria':
+                                case 'subcategoria':
+                                    $category = Category::where('name', $value)->first();
+                                    if ($category) {
+                                        $data['category_id'] = $category->id;
+                                    }
+                                    break;
+                                case 'descripcion':
+                                    $data['description'] = $value;
+                                    break;
+                                case 'activo':
+                                    $data['active'] = ($value == '1' || strtolower($value) == 'si') ? 1 : 0;
+                                    break;
+                                case 'destacado':
+                                    $data['featured'] = ($value == '1' || strtolower($value) == 'si') ? 1 : 0;
+                                    break;
+                                case 'foto_1':
+                                case 'foto_2':
+                                case 'foto_3':
+                                case 'foto_4':
+                                case 'foto_5':
+                                case 'foto_6':
+                                    //TODO
+                                    break;
+                                case 'ficha':
+                                    $ficha_rows = explode("\n", $value);
+                                    foreach ($ficha_rows as $ficha_row) {
+                                        $ficha_data = explode(":", $ficha_row);
+                                        if (count($ficha_data)==2) {
+                                            $attribute_name = trim($ficha_data[0]);
+                                            $attribute_value = trim($ficha_data[1]);
+
+                                            $attribute = Attribute::where('name', $attribute_name)->first();
+                                            if (!$attribute) {
+                                                $attribute = Attribute::create([
+                                                    'name' => $attribute_name
+                                                ]);
+                                            }
+                                            $attributes[] = ['attribute_id' => $attribute->id, 'value' => $attribute_value];
+                                        }
+                                    }
+                                    break;
+                                case 'manual':
+                                    //TODO
+                                    break;
+                                case 'foto_preview':
+                                    if ($value) {
+                                        try {
+                                            $filename = basename($value);
+                                            $image = Image::make($value)->resize(331, 210);
+                                            \Storage::put('productos/'.$filename, $image);
+                                            $media['image_thumb'] = 'productos/'.$filename;
+                                        }
+                                        catch (Exception $e){
+                                        }
+                                    }
+                                    break;
+                                case 'foto_promocional':
+                                    //TODO
+                                    break;
+                                case 'back_promocional':
+                                    //TODO
+                                    break;
+                                case 'cucarda':
+                                    $data['tag'] = $value;
+                                    break;
+                                case 'features_promocional':
+                                    $features_list = explode(",", $value);
+                                    foreach ($features_list as $feature_name) {
+                                        $feature = Feature::where('name', $feature_name)->first();
+                                        if (!$feature) {
+                                            $feature = Feature::create([
+                                                'name' => $feature_name
+                                            ]);
+                                        }
+                                        $features[] = $feature->id;
+                                    }
+                                    break;
+                                case 'mas_features':
+                                    $features_list = explode(",", $value);
+                                    foreach ($features_list as $feature_name) {
+                                        $feature = Feature::where('name', $feature_name)->first();
+                                        if (!$feature) {
+                                            $feature = Feature::create([
+                                                'name' => $feature_name
+                                            ]);
+                                        }
+                                        $mas_features[] = $feature->id;
+                                    }
+                                    break;
+                                case 'bloque1_titulo':
+                                    $blocks['position_1']['title'] = $value;
+                                    break;
+                                case 'bloque1_subtitulo':
+                                    $blocks['position_1']['subtitle'] = $value;
+                                    break;
+                                case 'bloque1_texto':
+                                    $blocks['position_1']['description'] = $value;
+                                    break;
+                                case 'bloque1_imagen':
+                                    $blocks['position_1']['source'] = $value;
+                                    break;
+                                case 'bloque1_alineacion':
+                                    $blocks['position_1']['alignment'] = $value;
+                                    break;
+                                case 'bloque2_titulo':
+                                    $blocks['position_2']['title'] = $value;
+                                    break;
+                                case 'bloque2_subtitulo':
+                                    $blocks['position_2']['subtitle'] = $value;
+                                    break;
+                                case 'bloque2_texto':
+                                    $blocks['position_2']['description'] = $value;
+                                    break;
+                                case 'bloque2_imagen':
+                                    $blocks['position_2']['source'] = $value;
+                                    break;
+                                case 'bloque2_alineacion':
+                                    $blocks['position_2']['alignment'] = $value;
+                                    break;
+                                case 'bloque3_titulo':
+                                    $blocks['position_3']['title'] = $value;
+                                    break;
+                                case 'bloque3_subtitulo':
+                                    $blocks['position_3']['subtitle'] = $value;
+                                    break;
+                                case 'bloque3_texto':
+                                    $blocks['position_3']['description'] = $value;
+                                    break;
+                                case 'bloque3_imagen':
+                                    $blocks['position_3']['source'] = $value;
+                                    break;
+                                case 'bloque3_alineacion':
+                                    $blocks['position_3']['alignment'] = $value;
+                                    break;
+                                case 'bloque4_titulo':
+                                    $blocks['position_4']['title'] = $value;
+                                    break;
+                                case 'bloque4_subtitulo':
+                                    $blocks['position_4']['subtitle'] = $value;
+                                    break;
+                                case 'bloque4_texto':
+                                    $blocks['position_4']['description'] = $value;
+                                    break;
+                                case 'bloque4_imagen':
+                                    $blocks['position_4']['source'] = $value;
+                                    break;
+                                case 'bloque4_alineacion':
+                                    $blocks['position_4']['alignment'] = $value;
+                                    break;
+                            }
+                            
+                        }
+                        
+                    }
+
+                    $product = Product::where('sku', $data['sku'])->first();
+                    if ($product) {
+                        $product->fill($data);
+                        $product->save();
+                    }
+                    else {
+                        $product = Product::create($data);
+                    }
+
+                    $product->features()->sync($features);
+
+                    $row = \DB::table('attribute_category_product')
+                        ->where('product_id', $product->id)
+                        ->delete();
+                    foreach($attributes as $attribute){
+                        \DB::table('attribute_category_product')
+                            ->insert(['product_id' => $product->id, 'attribute_id' => $attribute['attribute_id'], 'value' => $attribute['value']]);
+                    }
+
+                    foreach ($media as $mediaType=>$mediaValue) {
+                        ProductMedia::where('product_id', $product->id)->where('type', $mediaType)->delete();
+
+                        $productMedia = new ProductMedia;
+                        $productMedia->product_id = $product->id;
+                        $productMedia->type = $mediaType;
+                        $productMedia->source = $mediaValue;
+                        $productMedia->position = 1;
+                        $productMedia->save();
+                    }
+
+                    $result = 'Producto importado con advertencias: No pudieron descargarse todas las imagenes';
+                    $importedProducts[$product->sku] = $result;
+                }
+
+            }
+        });
+
+        return view('admin.pages.products.import_result', compact('importedProducts'));
+    }
+
+    public function downloadImportModel() {
+        return \Storage::download('public/modelo-importacion.xlsx');
     }
 }

@@ -17,10 +17,10 @@
 		</div>
 
 		<div class="form-group {{ $errors->first('category_id') ? 'has-error' : '' }}" id="category">
-			{!! Form::label('template', 'Template', ['class' => 'control-label col-md-3']) !!}
+			{!! Form::label('template', 'Alineación', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
 				<select name="template_id" id="template_id" class="form-control">
-					<option value="">Seleccione un template</option>
+					<option value="">Seleccione un tipo de alineación</option>
 					
 					@foreach($templates as $template)
 						<option value="{{ $template->id }}" @if(@$page->template_id == $template->id) selected @endif>{{ $template->name }}</option>

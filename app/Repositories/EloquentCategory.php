@@ -48,12 +48,12 @@ class EloquentCategory implements CategoryInterface
 	{
 		$data = request()->validate([
             'name'    => 'required',
-            'url'     => 'nullable',
+            'url'     => 'required',
             'root_id' => 'required',
             'feautured_product' => 'nullable',
-            'title' => 'nullable',
+            'title' => 'required',
             'description' => 'nullable',
-            'image' => 'nullable',
+            'image' => 'required',
             'banner' => 'nullable',
             'banner_link' => 'nullable',
             'banner_target' => 'nullable',
@@ -83,11 +83,11 @@ class EloquentCategory implements CategoryInterface
 
 		$data = request()->validate([
             'name'    => 'required',
-            'url'       => 'nullable',
+            'url'       => 'required',
             'feautured_product' => 'nullable',
-            'title' => 'nullable',
+            'title' => 'required',
             'description' => 'nullable',
-            'image' => 'nullable',
+            'image' => 'required',
             'banner' => 'nullable',
             'banner_link' => 'nullable',
             'banner_target' => 'nullable',
@@ -119,6 +119,15 @@ class EloquentCategory implements CategoryInterface
                 }else{
                     $info['category_id'] = $categoria->id;
                     InfoInteres::create($info);
+                }
+            }
+        }
+
+        if ($request['info_deleted']) {
+            foreach ($request['info_deleted'] as $info_id) {
+                if (!empty($info_id)) {
+                    $_info = InfoInteres::findOrFail($info_id);
+                    $_info->delete();
                 }
             }
         }

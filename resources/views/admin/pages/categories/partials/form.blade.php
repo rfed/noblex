@@ -54,7 +54,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group {{ $errors->first('image') ? 'has-error' : '' }}">
   		 	<label for="image" class="control-label col-md-3">Imagen<br/><small>JPG/PNG 1140x433px</small>
   		 		<br/><br/>
   		 		<button type="button" id="loader" class="btn btn-primary">Examinar</button>
@@ -62,6 +62,7 @@
   		 	<div class="col-md-9">
   	    		<div id="image" class="dropzone">
   	    		</div>
+  	    		{!! $errors->first('image', '<span class="help-block"> :message </span>') !!}
   	    	</div>
   		</div>
 

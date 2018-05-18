@@ -2584,7 +2584,7 @@ body.template .content a {
 	line-height: 40px
 }
 
-#institucional main img { width:100%; height:auto; }
+#institucional main img { width:auto !important; height:auto !important; }
 
 #institucional .section_text {
 	font-family: 'Core Sans DS 25';
@@ -3247,4 +3247,65 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:b
 .popup > .content a:hover {
 	text-decoration: none
 }
+
+
+#error_404.content {
+		text-align: center;
+		padding-bottom: 20px
+}
+
+#error_404 h1 {
+		font-family: 'Core Sans DS 15';
+		font-size: 75px;
+		color: #3c317e;
+		line-height: 90px;
+		margin: 0
+}
+
+#error_404 h1 + p {
+		margin: 0;
+		line-height: 28px;
+		margin-bottom: 20px;
+		font-size: 25px;
+		color: #282828
+}
+
+#error_404 .btn.link {
+	font-size: 15px;
+		max-width: 180px
+}
+
+
+
+@media ( max-width: 767px ){
+		#error_404 .content h1 {
+			font-size: 50px
+		}
+
+		#error_404 .content h1 + p {
+			font-size: 20px;
+			line-height: 24px
+		}
+}
+
+body.template .content h2,
+body.template .content h3,
+body.template .content h4,
+body.template .content h5,
+body.template .content h6,
+#legales .content h2,
+#legales .content h3,
+#legales .content h4,
+#legales .content h5,
+#legales .content h6 {
+		font-family: 'Core Sans DS 25';
+		font-size: 24px;
+		margin: 0;
+		line-height: 25px;
+		margin-top: 15px;
+		margin-bottom: 5px;
+		font-weight: normal
+}
+
+#submit-newsletter { float: right; max-width: 120px; }
 

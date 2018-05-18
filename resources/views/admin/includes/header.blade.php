@@ -36,12 +36,14 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-default">
+                            <!--
                             <li>
                                 <a href="#">
                                     <i class="icon-user"></i> Perfil 
                                 </a>
                             </li>
                             <li class="divider"> </li>
+                            -->
                             <li>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                    onclick="event.preventDefault();

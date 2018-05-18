@@ -49,10 +49,17 @@ $('.product_list_carousel.owl-carousel').owlCarousel({
 });
 
 
+var activate
+
+if( $('.product_view.owl-carousel .item').length > 1 ){
+	activate = true
+}else{
+	activate = false
+}
 
 $('.product_view.owl-carousel').owlCarousel({
 	items: 1,
-	loop: true,
+	loop: activate,
 	animateOut: 'fadeOut',
 	animateIn: 'fadeIn',
 	nav: true,
@@ -240,6 +247,11 @@ $('.remove_item').click(function(e){
 	$.post('/comparador/handle', {item:$(this).data('item')}, function(response){
 		location.reload();
 	});	
+});
+
+$('.triggerChat').click(function(e){
+	e.preventDefault();
+	$('#ConversalabWebchat').trigger('click');
 });
 
 ConversalabWebchatSalesforceLauncher.init({

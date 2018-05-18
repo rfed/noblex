@@ -32,6 +32,9 @@ $(function(){
 	var image = new Dropzone('#image', {
 		'url': '/panel/categorias/categoriasUpload',
 		'paramName': 'image',
+		'resizeWidth': 1140,
+    	'resizeHeight': 433,
+    	'resizeMethod': 'crop',
 		//'autoProcessQueue': false,
 		'addRemoveLinks': true,
 		'dictRemoveFile': 'Eliminar imagen',
@@ -91,6 +94,9 @@ $(function(){
 	var banner = new Dropzone('#banner', {
 		'url': '/panel/categorias/categoriasUpload',
 		'paramName': 'banner',
+		'resizeWidth': 1140,
+    	'resizeHeight': 265,
+    	'resizeMethod': 'crop',
 		//'autoProcessQueue': false,
 		'addRemoveLinks': true,
 		'dictRemoveFile': 'Eliminar imagen',

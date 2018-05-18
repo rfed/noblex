@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             @if (count($promoboxes)>1)
-            
+                
                 <?php 
                 $promobox = $promoboxes[0];
                 $media = $promobox->media[0]; 

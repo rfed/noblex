@@ -161,6 +161,7 @@ return [
         Noblex\Providers\EventServiceProvider::class,
         Noblex\Providers\RouteServiceProvider::class,
         Merujan99\LaravelVideoEmbed\Providers\LaravelVideoEmbedServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -210,6 +211,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'LaravelVideoEmbed' => Merujan99\LaravelVideoEmbed\Facades\LaravelVideoEmbed::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

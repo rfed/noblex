@@ -7,7 +7,9 @@
 @section('hotlinks')
 	<div class="tags">
 		@foreach ($category->childs as $cat)
-        <a href="#{{ $cat->url }}" data-section="{{ $cat->url }}">{{ $cat->name }}</a>
+			@if (count($cat->products))
+        	<a href="#{{ $cat->url }}" data-section="{{ $cat->url }}">{{ $cat->name }}</a>
+        	@endif
         @endforeach
     </div>
 @endsection

@@ -2,11 +2,16 @@
 	
 @section('content')
 
+	<?php echo Session::get('import_result'); ?>
+
 	<div class="table-toolbar">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="btn-group">
 					<a href="{{ route('admin.productos.create') }}" id="sample_editable_1_new" class="btn sbold green"> Agregar
+						<i class="fa fa-plus"></i>
+					</a>
+					<a href="{{ url('panel/productos/importar') }}" id="sample_editable_2_new" class="btn sbold blue" style="margin-left:10px;"> Importar
 						<i class="fa fa-plus"></i>
 					</a>
 				</div>

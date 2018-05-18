@@ -186,13 +186,13 @@ class EloquentWidget implements WidgetInterface
 				$ids[] = $category->id;
 			}
 
-			$widgets = Widget::where('type', '!=', 5)
+			$widgets = Widget::where('type', '!=', 7)
 				->where('active', 1)
 				->whereRaw('(category_id in ('.implode(',', $ids).') or always=1)')
 				->orderBy('position', 'asc')->get();
 
 			if (!count($widgets)) {
-				return Widget::where('type', '!=', 5)
+				return Widget::where('type', '!=', 7)
 					->where('active', 1)
 					->where('home', 1)
 					->orderBy('position', 'asc')->get();				
@@ -202,7 +202,7 @@ class EloquentWidget implements WidgetInterface
 			}
 		}
 		else {
-			return Widget::where('type', '!=', 5)
+			return Widget::where('type', '!=', 7)
 				->where('active', 1)
 				->where('home', 1)
 				->orderBy('position', 'asc')->get();
