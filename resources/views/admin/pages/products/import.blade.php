@@ -19,7 +19,7 @@
 						<div class="form-body">
 
 							<div class="note note-info">
-			                    <p> Verifique que el archivo posea las columnas y formato aceptados. <a href="{{ url('panel/productos/modelo') }}">Descargue el modelo de importación haciendo click aquí</a>.</p>
+			                    <p> Verifique que el archivo posea las columnas y formato aceptados. <a href="{{ url('panel/productos/modelo') }}">Descargue el modelo de importación haciendo click aquí</a> o la <a href="{{ url('panel/productos/guia') }}">guía de importación haciendo click aquí</a>.</p>
 			                </div>
 
 							<div class="form-group">

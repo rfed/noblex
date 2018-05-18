@@ -71,6 +71,7 @@ Route::group([
 	Route::get('productos/importar', 'Admin\ProductController@importForm');
 	Route::post('productos/importar', 'Admin\ProductController@import');
 	Route::get('productos/modelo', 'Admin\ProductController@downloadImportModel');
+	Route::get('productos/guia', 'Admin\ProductController@downloadImportGuide');
 	Route::resource('productos', 'Admin\ProductController', [
 		'names' => 'admin.productos'
 	]);

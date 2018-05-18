@@ -399,4 +399,8 @@ class ProductController extends Controller
     public function downloadImportModel() {
         return \Storage::download('public/modelo-importacion.xlsx');
     }
+
+    public function downloadImportGuide() {
+        return \Storage::download('public/guia-importacion.docx');
+    }
 }

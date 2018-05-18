@@ -46,7 +46,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->findById($id);
-
+        $user->permissions = [];//'home', 'config'];
         return view('admin.pages.users.edit', compact("user"));
     }
 

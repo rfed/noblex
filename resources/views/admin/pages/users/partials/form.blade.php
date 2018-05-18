@@ -1,3 +1,6 @@
+<style>
+.mt-checkbox { float:left; width:250px; }
+</style>
 
 	<div class="form-body">
 
@@ -38,8 +41,52 @@
 		@else
 	    <div class="form-group">
 	        {!! Form::label('admin', 'Super Administrador', ['class' => 'control-label col-md-3']) !!}
-	        <div class="col-md-9">
+	        <div class="col-md-2">
 	            {!! Form::checkbox('admin', null, null, ['class' => 'make-switch', 'data-size' => 'small', 'id' => 'admin']) !!}
+	        </div>
+	        <div class="col-md-7">
+				<div class="mt-checkbox-list" style="padding:10px; display:{{ isset($user) && $user->admin ? 'none' : 'block' }}" id="permissions">
+				    <label class="mt-checkbox">
+				        <input type="checkbox" class="chkAll"> Todos
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="home" {{ isset($user) && in_array('home', $user->permissions) ? 'checked' : '' }}> Pagina Inicial
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="config"> Configuracion
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="categories"> Categorias
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="products"> Productos
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="newsletter"> Newsletter
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="stories"> Novedades
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="contents"> Paginas de Contenido
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="contacts"> Contactos
+				        <span></span>
+				    </label>
+				    <label class="mt-checkbox">
+				        <input type="checkbox" name="permissions[]" class="chk" value="customers"> Clientes
+				        <span></span>
+				    </label>
+				</div>	        	
 	        </div>
 	    </div>
 	    @endif
@@ -59,3 +106,23 @@
 			</div>
 		</div>
 	</div>
+
+
+@push('scripts')
+<script>
+	$(function() {
+		$('#admin').on('switchChange.bootstrapSwitch', function (e, data) {
+			if (!data) {
+				$('#permissions').show();
+			}
+			else {
+				$('#permissions').hide();
+			}
+		});
+
+		$('.chkAll').click(function(){
+			$('.chk').trigger('click');
+		});
+	});
+</script>
+@endpush	
