@@ -14,7 +14,7 @@ class AddForeignKeysToAttributesTable extends Migration {
 	{
 		Schema::table('attributes', function(Blueprint $table)
 		{
-			$table->foreign('attributegroup_id')->references('id')->on('attributegroups')->onUpdate('RESTRICT')->onDelete('CASCADE');
+			$table->foreign('attributegroup_id')->references('id')->on('attributegroups')->onUpdate('RESTRICT')->onDelete('SET NULL');
 		});
 	}
 

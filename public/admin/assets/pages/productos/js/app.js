@@ -35,3 +35,30 @@ function subcategorias(value, selected)
 	}
 
 }
+
+function removeManual(id_producto)
+{
+	$.ajax({
+		url: '/panel/productos/'+id_producto+'/destroyManual',
+		type: 'POST',
+		dataType: 'html',
+		data: {
+			id: id_producto,
+			_token: $("input[name='_token']").val()
+		},
+	})
+	.done(function(data) {
+		
+		if(data == 'true')
+		{
+			$('#ver-manual').fadeOut(400, function() {
+				$(this).remove();
+			});
+		}
+
+	})
+	.fail(function(xhr, status, error) {
+		console.log(xhr.responseText);
+	});
+	
+}

@@ -42,7 +42,7 @@ class EloquentProductSection
 
         $datos = $productSection->save();
 
-        return $productSection;
+        return $productSection->id;
 	}
 
     public function upload($product, $request)

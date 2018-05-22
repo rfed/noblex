@@ -14,7 +14,7 @@ class CreateStoriesTable extends Migration {
 	{
 		Schema::create('stories', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->integer('id', true);
 			$table->string('title', 200);
 			$table->string('url', 200);
 			$table->string('subtitle', 200);

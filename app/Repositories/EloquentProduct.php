@@ -110,6 +110,18 @@ class EloquentProduct implements ProductInterface
         $product->delete();
 	}
 
+
+    public function destroyManual($product)
+    {
+        $producto = Product::findOrFail($product->id);
+        $producto->manual = NULL;
+        $producto->save();
+        Storage::disk('public')->delete($product->manual);
+
+        return 'true';
+    }
+
+
 	public function findById($id) 
 	{
         return Product::findOrFail($id);

@@ -76,6 +76,8 @@ Route::group([
 		'names' => 'admin.productos'
 	]);
 
+	Route::post('productos/{product}/destroyManual', 'Admin\ProductController@destroyManual');
+
 
 	// Productos Media
 	Route::group([

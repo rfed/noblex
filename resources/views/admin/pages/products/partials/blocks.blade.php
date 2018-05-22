@@ -446,7 +446,7 @@
 		$('.btnSaveBlock').click(function(){
 
 			var n = $(this).data('pos');
-			var data = { 
+			var datos = { 
 				image: $('.image' + n).val(), 
 				title:$('.title' + n).val(), 
 				subtitle:$('#subtitle' + n).val(), 
@@ -455,13 +455,26 @@
 				id:$('#id' + n).val(),
 				position:$('#position' + n).val() 
 			};
+
             $.ajax({
                 url: '{{ url("/panel/productos/".$producto->id."/section") }}',
                 type: 'POST',
-                data: data,
+                data: datos,
             })
             .done(function(data) {
-                toastr.success('Bloque grabado con éxito.');
+            	
+            	if(data.errorValidation) 
+            	{
+            		for(item in data.errorValidation)
+            		{
+            			toastr.error(data.errorValidation[item][0]);
+            		}
+                }
+                else {
+                	$('#id' + n).val(data);
+					toastr.success('Bloque grabado con éxito.');
+                }
+
             }).
             fail(function(xhr, status, error){
             	console.log(xhr.responseText);
@@ -488,14 +501,15 @@
 				},
 				success: function(result) {
 					console.log(result);
-					toastr.success('Bloque eliminado con éxito.');					
+					toastr.success('Bloque eliminado con éxito.');	
+					$('#image'+n+' .dz-preview').remove();
 					$('.image' + n).val("");
 					$('.title' + n).val("");
 					$('#subtitle' + n).val("");
 					$('.description' + n).val("");
 					$('.alignment' + n).val("");
 					$('#id' + n).val("");
-					$('position' + n).val("");
+					$('#position' + n).val("");
 				},
 				error: function(error){
 					toastr.error('No fue posible eliminar el bloque.');

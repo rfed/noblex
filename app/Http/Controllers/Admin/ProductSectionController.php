@@ -21,7 +21,7 @@ class ProductSectionController extends Controller
 
     public function store($product, Request $request)
     {
-        $this->section->store($product, $request);
+        return $this->section->store($product, $request);
     }
 
     public function upload(Request $request, $product)

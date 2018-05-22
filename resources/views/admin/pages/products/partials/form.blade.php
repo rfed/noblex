@@ -131,7 +131,9 @@
 		<div class="col-md-9">
 			{!! Form::file('manual', ['class' => 'form-control', 'accept' => '.pdf']) !!}
 			@isset($producto->manual)
-				<small><a href='{{ url("storage/$producto->manual") }}' target='_blank'>Ver archivo cargado</a></small>
+				<div id="ver-manual">
+				<small><a href='{{ url("storage/$producto->manual") }}' target='_blank'>Ver archivo cargado</a></small> | <small><a href="#" onclick="removeManual(<?php echo $producto->id; ?>);return false;">Eliminar</a></small>
+				</div>
 			@endisset
 			<!-- <input type="file" name="manual" class="form-control" accept=".pdf"> -->
 		</div>

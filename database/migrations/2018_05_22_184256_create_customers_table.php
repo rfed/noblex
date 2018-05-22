@@ -20,7 +20,7 @@ class CreateCustomersTable extends Migration {
 			$table->string('email', 191);
 			$table->string('password', 191);
 			$table->string('remember_token', 100)->nullable();
-			$table->enum('gender', array('male','female'));
+			$table->enum('gender', array('M','F'));
 			$table->date('birth');
 			$table->timestamps();
 		});

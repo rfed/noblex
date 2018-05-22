@@ -115,6 +115,11 @@ class ProductController extends Controller
         return redirect()->route('admin.productos.index');
     }
 
+    public function destroyManual(Product $product)
+    {
+        return $this->product->destroyManual($product);
+    }
+
     public function atributos(Request $request){
         if($request->get('attributes')){
             $product = Product::findOrFail($request->product_id);

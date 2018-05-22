@@ -24,6 +24,7 @@ class CreateWidgetsMediaTable extends Migration {
 			$table->binary('subtitle', 200)->nullable();
 			$table->text('description', 65535)->nullable();
 			$table->string('link', 500)->nullable();
+			$table->string('link_target', 20)->nullable()->default('_self');
 		});
 	}
 
