@@ -57,7 +57,7 @@
 		<div class="form-group {{ $errors->first('image') ? 'has-error' : '' }}">
   		 	<label for="image" class="control-label col-md-3">Imagen<br/><small>JPG/PNG 1140x433px</small>
   		 		<br/><br/>
-  		 		<button type="button" id="loader" class="btn btn-primary">Examinar</button>
+  		 		<button type="button" id="loader-image" class="btn btn-primary">Examinar</button>
   		 	</label>
   		 	<div class="col-md-9">
   	    		<div id="image" class="dropzone">
@@ -69,7 +69,7 @@
 		<div class="form-group">
   		 	<label for="banner" class="control-label col-md-3">Banner<br/><small>JPG/PNG 1140x265px</small>
   		 		<br/><br/>
-  		 		<button type="button" id="loader_banner" class="btn btn-primary">Examinar</button>
+  		 		<button type="button" id="loader-banner" class="btn btn-primary">Examinar</button>
   		 	</label>
   		 	<div class="col-md-9">
   	    		<div id="banner" class="dropzone">
@@ -83,6 +83,7 @@
 				{!! $errors->first('banner_link', '<span class="help-block"> :message </span>') !!}
 			</div>
 		</div>
+
 		<div class="form-group {{ $errors->first('banner_target') ? 'has-error' : '' }}">
 			{!! Form::label('banner_target', 'Destino del enlace', ['class' => 'control-label col-md-3']) !!}
 			<div class="col-md-9">
@@ -109,5 +110,6 @@
 
 		{!! Form::hidden('image', null, ['id' => 'currentImage']) !!}
 		{!! Form::hidden('banner', null, ['id' => 'currentImage_banner']) !!}
+		{!! Form::hidden('id_categoria', (isset($categoria) ? $categoria->id : null)) !!}
 
 	</div>

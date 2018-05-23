@@ -7,7 +7,7 @@
  	<div class="col-md-9">
 		<div id="image_featured" class="dropzone">
 		</div>
-		{!! Form::hidden('image', @$currentMedia['image_featured'], ['id' => 'current_image_featured']) !!}
+		{!! Form::hidden('image_featured', @$currentMedia['image_featured'], ['id' => 'current_image_featured']) !!}
 	</div>
 </div>
 
@@ -19,7 +19,7 @@
  	<div class="col-md-9">
 		<div id="image_featured_background" class="dropzone">
 		</div>
-		{!! Form::hidden('image', @$currentMedia['image_featured_background'], ['id' => 'current_image_featured_background']) !!}
+		{!! Form::hidden('image_featured_background', @$currentMedia['image_featured_background'], ['id' => 'current_image_featured_background']) !!}
 	</div>
 </div>
 
@@ -31,7 +31,7 @@
  	<div class="col-md-9">
 		<div id="image_thumb" class="dropzone">
 		</div>
-		{!! Form::hidden('image', @$currentMedia['image_thumb'], ['id' => 'current_image_thumb']) !!}
+		{!! Form::hidden('image_thumb', @$currentMedia['image_thumb'], ['id' => 'current_image_thumb']) !!}
 	</div>
 </div>
 
@@ -42,6 +42,9 @@
  	</label>
  	<div class="col-md-9">
 		<div id="galeria" class="dropzone">
+		</div>
+		<div class="galeria">
+			<!-- inputs name galeria[] -->
 		</div>
 	</div>
 </div>
@@ -91,6 +94,7 @@
 	<script>	
 		
 		var arr_image = [];
+		var idfile_featured = {};
 		var product_id = {{$producto->id}};
 
 		var current_image_featured = '';
@@ -115,8 +119,8 @@
 				myDropzone = this;
 
 				this.on("success", function (file, responseText) {
-					$("#current_image_featured").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+					$("#current_image_featured").val(responseText.source);
+			        idfile_featured = { 'id': file.upload.uuid, 'image': responseText.source };
 			    });
 			}
 		});
@@ -131,6 +135,33 @@
 			}
 			current_image_featured = file;
 			$('.dz-progress').hide();
+		});
+
+		image_featured.on("removedfile", function(file, res) {
+
+			if(idfile_featured.image)  
+				var image = idfile_featured.image;
+			else
+				var image = $("#current_image_featured").val(); 
+
+			$.ajax({
+				url: '/panel/productos/'+product_id+'/deleteFilesImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					product_id: product_id,
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				console.log(data);
+				$("#current_image_featured").val('');
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+			});
+		
 		});
 
 		image_featured.on('error', function(file, res) {
@@ -154,6 +185,7 @@
 
 		////////// FEATURED //////////
 
+		var idfile_featured_background = {};
 		var current_image_featured_background = '';
 		var image_featured_background = new Dropzone('#image_featured_background', {
 			'url': 'files',
@@ -176,8 +208,8 @@
 				myDropzone = this;
 
 				this.on("success", function (file, responseText) {
-					$("#current_image_featured_background").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+					$("#current_image_featured_background").val(responseText.source);
+			        idfile_featured_background = { 'id': file.upload.uuid, 'image': responseText.source };
 			    });
 			}
 		});
@@ -192,6 +224,33 @@
 			}
 			current_image_featured_background = file;
 			$('.dz-progress').hide();
+		});
+
+		image_featured_background.on("removedfile", function(file, res) {
+
+			if(idfile_featured_background.image)  
+				var image = idfile_featured_background.image;
+			else
+				var image = $("#current_image_featured_background").val(); 
+
+			$.ajax({
+				url: '/panel/productos/'+product_id+'/deleteFilesImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					product_id: product_id,
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				console.log(data);
+				$("#current_image_featured_background").val('');
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+			});
+		
 		});
 
 		image_featured_background.on('error', function(file, res) {
@@ -210,11 +269,12 @@
 			image_featured_background.emit("addedfile", mockFile);
 			image_featured_background.emit("thumbnail", mockFile, "/storage/" + fileName);
 
-			currentFile = mockFile;
+			current_image_featured_background = mockFile;
 		}		
 
 		////////// THUMBNAIL //////////
 
+		var idfile_image_thumb = {};
 		var current_image_thumb = '';
 		var image_thumb = new Dropzone('#image_thumb', {
 			'url': 'files',
@@ -237,22 +297,49 @@
 				myDropzone = this;
 
 				this.on("success", function (file, responseText) {
-					$("#current_image_thumb").val(responseText);
-			        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
+					$("#current_image_thumb").val(responseText.source);
+			        idfile_image_thumb = { 'id': file.upload.uuid, 'image': responseText.source };
 			    });
 			}
 		});
 
-		image_featured_background.on("complete", function(file) {
+		image_thumb.on("complete", function(file) {
 			console.log(file);
 		});
 
-		image_featured_background.on("addedfile", function(file, res) {
+		image_thumb.on("addedfile", function(file, res) {
 			if (current_image_thumb) {
 				this.removeFile(current_image_thumb);
 			}
 			current_image_thumb = file;
 			$('.dz-progress').hide();
+		});
+
+		image_thumb.on("removedfile", function(file, res) {
+
+			if(idfile_image_thumb.image)  
+				var image = idfile_image_thumb.image;
+			else
+				var image = $("#current_image_thumb").val(); 
+
+			$.ajax({
+				url: '/panel/productos/'+product_id+'/deleteFilesImage',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					product_id: product_id,
+					image: image,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				console.log(data);
+				$("#current_image_thumb").val('');
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+			});
+		
 		});
 
 		image_thumb.on('error', function(file, res) {
@@ -280,6 +367,8 @@
 			}
 		});
 
+		////// GALERIA //////
+
 		var galeria = new Dropzone('#galeria', {
 			'url': 'files',
 			'paramName': 'image',
@@ -298,8 +387,16 @@
 			'thumbnailHeight': 120,
 			init: function() {
 
+				this.on("success", function(file, response) {
+					//file = response;
+					console.log($.parseJSON(file.xhr.response));
+					file.previewElement.id = $.parseJSON(file.xhr.response).id;
+					$(".dz-image img").last().attr('id', file.previewElement.id);
+				});
+
 				this.on("removedfile", function(e) {
 					console.log(e.id);
+
 					$.ajax({
                         url: 'files/'+e.id,
                         type: 'delete',
@@ -311,13 +408,6 @@
                         }
                     });
 					
-				});
-
-				this.on("success", function(file, response) {
-					//file = response;
-					console.log($.parseJSON(file.xhr.response));
-					file.previewElement.id = $.parseJSON(file.xhr.response).id;
-					$(".dz-image img").last().attr('id', file.previewElement.id);
 				});
 
 				this.on("sending",function(file,xhr,d){

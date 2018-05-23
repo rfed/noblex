@@ -2,9 +2,9 @@
 
 namespace Noblex\Repositories;
 
+use Illuminate\Support\Facades\Storage;
 use Noblex\Category;
 use Noblex\InfoInteres;
-
 use Noblex\Repositories\Interfaces\CategoryInterface;
 
 class EloquentCategory implements CategoryInterface
@@ -143,6 +143,13 @@ class EloquentCategory implements CategoryInterface
         if(!empty(request()->file('banner'))) {
             return $request->file('banner')->store('categories', 'public');
         }
+    }    
+
+    public function destroyImage($request) 
+    {
+        Storage::disk('public')->delete($request->image);
+
+        return response()->json(['delete' => true]);
     }    
 
 

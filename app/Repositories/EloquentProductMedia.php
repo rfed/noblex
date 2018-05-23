@@ -53,6 +53,16 @@ class EloquentProductMedia
             return $productMedia;
         }
     }
+
+    public function destroyImage($request)
+    {
+        $producto = ProductMedia::where('product_id', $request->product_id)->where('source', $request->image)->first();
+        $producto->delete();
+
+        Storage::disk('public')->delete($request->image);
+
+        return response()->json(['delete' => true]);
+    }
     
     public function destroy($id){
         return $media->delete() ? 'OK' : '';

@@ -1,7 +1,6 @@
 $(function(){
 
-	/*
-	$("#categorias").dataTable({
+	/*$("#categorias").dataTable({
 		"paginate": true,
 		"searching": true,
 		"ordering": true,
@@ -12,8 +11,7 @@ $(function(){
 		"language": {
 			"url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
 		},
-	});
-	*/
+	});*/
 
 	$(document).on('click', '#modal' ,function() {
 		var id = $(this).data('id');
@@ -23,131 +21,5 @@ $(function(){
 		$("#nombre").html(name);
 		$("#form-delete").attr('action', url);
 	});
-
-	var currentFile = '';
-	var arr_image = [];
-	if($('#image').length < 1){
-		return false;
-	}
-	var image = new Dropzone('#image', {
-		'url': '/panel/categorias/categoriasUpload',
-		'paramName': 'image',
-		'resizeWidth': 1140,
-    	'resizeHeight': 433,
-    	'resizeMethod': 'crop',
-		//'autoProcessQueue': false,
-		'addRemoveLinks': true,
-		'dictRemoveFile': 'Eliminar imagen',
-		'acceptedFiles': 'image/*',
-		'maxFiles': 1,
-		'headers': {
-			'X-CSRF-TOKEN': $("input[name='_token']").val()
-		},
-		'dictDefaultMessage': 'Haga click aquí para subir la imagen',
-		'clickable' : '#loader',
-		'previewTemplate': '<div class="dz-preview dz-file-preview"><img data-dz-thumbnail /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div></div>',
-		'thumbnailMethod': 'contain',
-		'thumbnailWidth': 600,
-		'thumbnailHeight': 400,
-		init: function() {
-			myDropzone = this;
-
-			this.on("success", function (file, responseText) {
-		        $("input[name='image']").val(responseText);
-		        arr_image.push({ 'id': file.upload.uuid, 'image': responseText });
-		    });	
-		}
-	});
-
-	image.on("addedfile", function(file, res) {
-		if (currentFile) {
-			this.removeFile(currentFile);
-		}
-		currentFile = file;
-		$('.dz-progress').hide();
-	});
-
-	image.on('error', function(file, res) {
-		var msg;
-
-		if(res == 'You can not upload any more files.')
-			msg = 'No puedes subir mas de una imagen.'
-
-		$(".dz-error-message:last > span").text(msg);
-	});
-
-	var fileName = $('#currentImage').val();
-	if (fileName) {
-	    var mockFile = { name: fileName, size: 12345 };
-		
-		image.emit("addedfile", mockFile);
-		image.emit("thumbnail", mockFile, "/storage/" + fileName);
-
-		currentFile = mockFile;
-	}
-
-
-	///////
-
-
-	var currentFile_banner = '';
-	var banner = new Dropzone('#banner', {
-		'url': '/panel/categorias/categoriasUpload',
-		'paramName': 'banner',
-		'resizeWidth': 1140,
-    	'resizeHeight': 265,
-    	'resizeMethod': 'crop',
-		//'autoProcessQueue': false,
-		'addRemoveLinks': true,
-		'dictRemoveFile': 'Eliminar imagen',
-		'acceptedFiles': 'image/*',
-		'maxFiles': 1,
-		'headers': {
-			'X-CSRF-TOKEN': $("input[name='_token']").val()
-		},
-		'dictDefaultMessage': 'Haga click aquí para subir la imagen',
-		'clickable' : '#loader_banner',
-		'previewTemplate': '<div class="dz-preview dz-file-preview"><img data-dz-thumbnail /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div></div>',
-		'thumbnailMethod': 'contain',
-		'thumbnailWidth': 600,
-		'thumbnailHeight': 400,
-		init: function() {
-			myDropzone = this;
-
-			this.on("success", function (file, responseText) {
-		        $("input[name='banner']").val(responseText);
-		        arr_image.push({ 'id': file.upload.uuid, 'banner': responseText });
-		    });	
-		}
-	});
-
-	banner.on("addedfile", function(file, res) {
-		if (currentFile_banner) {
-			this.removeFile(currentFile_banner);
-		}
-		currentFile_banner = file;
-		$('.dz-progress').hide();
-	});
-
-	banner.on('error', function(file, res) {
-		var msg;
-
-		if(res == 'You can not upload any more files.')
-			msg = 'No puedes subir mas de una imagen.'
-
-		$(".dz-error-message:last > span").text(msg);
-	});
-
-	var fileName_banner = $('#currentImage_banner').val();
-	if (fileName_banner) {
-	    var mockFile_banner = { name: fileName_banner, size: 12345 };
-		
-		banner.emit("addedfile", mockFile_banner);
-		banner.emit("thumbnail", mockFile_banner, "/storage/" + fileName_banner);
-
-		currentFile_banner = mockFile_banner;
-	}	
-
-	Dropzone.autoDiscover = false;
 
 });

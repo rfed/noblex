@@ -30,6 +30,7 @@ Route::group([
 	]);
 	Route::post('categorias/orden', 'Admin\CategoryController@sort');
 	Route::post('categorias/categoriasUpload', 'Admin\CategoryController@upload')->name('admin.categories.upload.store');
+	Route::post('categorias/deleteCategoriesImage', 'Admin\CategoryController@destroyImage')->name('admin.categories.upload.destroy');
 
 
 	// Usuarios
@@ -97,6 +98,8 @@ Route::group([
 		Route::post('{product}/files/ordenar', 'Admin\ProductMediaController@ordenar')->name('admin.productos.section.ordenar');
 
 		Route::delete('{product}/files/{id}', 'Admin\ProductMediaController@destroy')->name('admin.productos.files.destroy');
+
+		Route::post('{product}/deleteFilesImage', 'Admin\ProductMediaController@destroyImage')->name('admin.productos.files.destroy.images');
 
 	});
 

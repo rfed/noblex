@@ -69,6 +69,11 @@ class ProductMediaController extends Controller
         }
     }
 
+    public function destroyImage(Request $request, EloquentProductMedia $productMedia)
+    {
+        return $productMedia->destroyImage($request);
+    }
+
 
     public function ordenar(Request $request){
 

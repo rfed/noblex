@@ -6,6 +6,11 @@
 
 @push('styles')
 	<link rel="stylesheet" href="{{ asset('admin/assets/pages/features/dropzone/dropzone.min.css') }}">
+	<style>
+		.dz-message {
+		  opacity: 0; /* disappear text dropzone */
+		}
+	</style>
 @endpush
 
 @section('content')
@@ -108,7 +113,7 @@
 	<script src="{{ asset('admin/assets/pages/categorias/js/jquery.stringtoslug.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/categorias/js/speakingurl.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/pages/categorias/dropzone/dropzone.js') }}"></script>	
-    <script src="{{ asset('admin/assets/pages/categorias/js/main.js') }}"></script>
+    <script src="{{ asset('admin/assets/pages/categorias/dropzone/main.js') }}"></script>
 
 	<script>
 		$(function() {

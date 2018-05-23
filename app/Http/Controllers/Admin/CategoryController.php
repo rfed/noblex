@@ -76,6 +76,11 @@ class CategoryController extends Controller
         return $this->category->upload($request);
     }
 
+    public function destroyImage(Request $request)
+    {
+        return $this->category->destroyImage($request);
+    }
+
     public function edit(Request $request, $id)
     {
         $categoria = $this->category->findById($id);
