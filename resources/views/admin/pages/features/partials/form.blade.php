@@ -57,7 +57,7 @@
 					{!! Form::button('<i class="fa fa-check"></i> Agregar', ['type' => 'submit', 'class' => 'btn blue', 'id' => 'submitFile']) !!}
 				@endisset
 
-				<a href="{{ route('admin.brands.index') }}" type="button" class="btn default">Volver</a>
+				<a href="{{ route('admin.features.index') }}" type="button" class="btn default">Volver</a>
 
 			</div>
 		</div>

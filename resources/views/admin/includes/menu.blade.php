@@ -32,7 +32,7 @@
             </li>
             @endif
 
-            <li class="nav-item start {{ activeMenu('panel/inicio') }}">
+            <li class="nav-item start {{ activeMenu('panel/slider*') ? activeMenu('panel/slider*') : (activeMenu('panel/widgets*') ? activeMenu('panel/widgets*') : '') }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Pagina inicial</span>

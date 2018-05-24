@@ -10,11 +10,6 @@ $(function(){
 	        	text: 'Exportar Excel',
 	        	className: 'btn btn-success btn-sm',
 	        	title: 'Contactos',
-	        	exportOptions: {
-	                modifier: {
-	                    page: 'current'
-	                },
-	            },
 	            init: function(api, node, config) {
 			       $(node).removeClass('dt-button')
 			    },
