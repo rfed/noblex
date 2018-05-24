@@ -43,9 +43,6 @@
  	<div class="col-md-9">
 		<div id="galeria" class="dropzone">
 		</div>
-		<div class="galeria">
-			<!-- inputs name galeria[] -->
-		</div>
 	</div>
 </div>
 <!--
@@ -388,38 +385,51 @@
 			init: function() {
 
 				this.on("success", function(file, response) {
-					//file = response;
-					console.log($.parseJSON(file.xhr.response));
+					//console.log(file.xhr.response);
 					file.previewElement.id = $.parseJSON(file.xhr.response).id;
 					$(".dz-image img").last().attr('id', file.previewElement.id);
-				});
-
-				this.on("removedfile", function(e) {
-					console.log(e.id);
-
-					$.ajax({
-                        url: 'files/'+e.id,
-                        type: 'delete',
-                        success: function(result) {
-                            console.log(result);
-                        },
-                        error: function(error){
-                            console.log(error);
-                        }
-                    });
-					
-				});
-
-				this.on("sending",function(file,xhr,d){
-					console.log("manda este", d);
-					d.append("product_id", product_id)
-					d.append("type", 'image');
-					$('.dz-show').hide();
 				});
 			}
 		});
 
-		var medias = $.parseJSON('{!! !empty($producto) ? $producto->productsGallery->toJson() : "[]" !!}');
+		galeria.on("removedfile", function(file, response) {
+
+			// Cuando hago el post a la url files, hago un return de los datos.
+			if(file.id) {
+				var id = file.id;  
+				var image = file.image;
+			}
+			else{
+				var id = JSON.parse(file.xhr.response).id;
+				var image = JSON.parse(file.xhr.response).source;
+			}
+			
+			$.ajax({
+				url: 'files/'+id,
+				type: 'DELETE',
+				dataType: 'json',
+				data: {
+					image: image,
+					id: id,
+					_token: $("input[name='_token']").val(),
+				}
+			})
+			.done(function(data) {
+				console.log(data);
+			})
+			.fail(function(xhr, status, error) {
+				console.log(xhr.responseText);  
+			});
+		
+		});
+
+		galeria.on("addedfile", function(file) {
+			$('.dz-filename').hide();
+			$('.dz-progress').hide();
+			//console.log(file);
+		});
+
+		var medias = $.parseJSON('{!! !empty($producto) ? $producto->productsGallery : "[]" !!}');
 
 		$(document).ready(function(){
 			
@@ -429,10 +439,9 @@
 					product_id : product_id,
 					type: this.type, 
 					status: Dropzone.ADDED, 
+					image: this.source,
 					url: storageUrl + "/" +this.source,
-					
 				};
-
 
 				// Call the default addedfile event handler
 				galeria.emit("addedfile", mockFile);
