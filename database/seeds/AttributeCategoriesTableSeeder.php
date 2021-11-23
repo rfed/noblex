@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AttributeCategoriesTableSeeder extends Seeder
 {
@@ -43,34 +44,6 @@ class AttributeCategoriesTableSeeder extends Seeder
         DB::table('attribute_category')->insert([
         	'category_id'	=>	1,
         	'attribute_id'	=>	5,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
-        DB::table('attribute_category')->insert([
-        	'category_id'	=>	2,
-        	'attribute_id'	=>	1,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
-        DB::table('attribute_category')->insert([
-        	'category_id'	=>	2,
-        	'attribute_id'	=>	4,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
-        DB::table('attribute_category')->insert([
-        	'category_id'	=>	2,
-        	'attribute_id'	=>	5,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
-        DB::table('attribute_category')->insert([
-        	'category_id'	=>	2,
-        	'attribute_id'	=>	6,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

@@ -59,7 +59,7 @@ class CategoryController extends Controller
         }
         $features = Feature::orderBy('name')->get();
 
-        return view('admin.pages.categories.create', compact("root_id", "parentCategory", "products", "features"));
+        return view('admin.pages.categories.create', compact("root_id", "parentCategory", "features"));
     }
 
 
