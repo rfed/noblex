@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<title>Noblex</title>
+
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/datatables/datatables.min.css">
+	<link rel="stylesheet" href="assets/font-awesome/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="assets/css/media-queries.css">
+
+	<!-- GOOGLE CAPTCHA -->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body id="descargas">
+
+	<header class="header">
+
+		<div class="container">
+
+			<div class="block_menu_1">
+				<div class="logo">
+					<a href="#">
+						<img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+					</a>
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li>
+							<a href="#">Smartphone</a>
+
+							<div class="submenu">
+
+								<div class="submenu_content">
+
+									<button class="close" type="button">
+										<span class="fa fa-times"></span>
+										<span class="sr-only">Cerrar</span>
+									</button>
+
+									<div class="content">
+
+										<!-- CONTENIDO COLUMNA 1 -->
+										
+										<span><strong>TV</strong></span>
+
+										<ul>
+											<li>
+												<a href="#">Smart 4k</a>
+
+												<div>
+													<!-- CONTENIDO COLUMNA 2 -->
+
+													<a href="#">
+														<p class="title"><strong>Último lanzamiento</strong></p>
+														<p>DA65X6500X <strong>LED TV Smart 65&quot; Full UHD</strong></p>
+
+														<img src="assets/imgs/imagenes/prod_1.png" alt='DA65X6500X LED TV Smart 65 Full UHD' />
+													</a>
+
+													<!-- FIN CONTENIDO COLUMNA 2 -->
+
+
+													<div class="info">
+														<!-- CONTENIDO COLUMNA 3 -->
+
+														<p class="title"><strong>Info de interés</strong></p>
+
+														<a href="#">¿Qué es 4k?</a>
+														<a href="#">¿Cómo funciona XMotion?</a>
+														<a href="#">¿Qué aplicaciones traen los equipos?</a>
+
+														<!-- CONTENIDO COLUMNA 3 -->
+													</div>
+												</div>
+
+											</li>
+											<li>
+												<a href="#">Smart</a>
+											</li>
+											<li>
+												<a href="#">LED</a>
+											</li>
+										</ul>
+
+										<!-- FIN CONTENIDO COLUMNA 1 -->
+
+									</div>
+
+								</div>
+
+							</div>
+						</li>
+						<li>
+							<a href="#">Smartwatch</a>
+						</li>
+						<li>
+							<a href="#">E-reader</a>
+						</li>
+						<li>
+							<a href="#">Audio</a>
+						</li>
+						<li>
+							<a href="#">TV</a>
+						</li>
+						<li>
+							<a href="#">Tablets</a>
+						</li>
+						<li>
+							<a href="#">Aires Acondicionados</a>
+						</li>
+						<li>
+							<a href="#">Otros</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="block_menu_2">
+
+				<!-- CUANDO EL USUARIO ESTÁ LOGUEADO -->
+
+				<div class="user">
+					<a href="#">Hola <strong>Juana María</strong></a>
+
+					<div class="submenu">
+						<ul>
+							<li>
+								<a href="#">Preferencias</a>
+							</li>
+							<li>
+								<a href="#">Salir de la cuenta</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- -->
+
+
+
+
+				<!-- CUANDO EL USUARIO NO ESTÁ LOGUEADO -->
+
+				<!-- <div class="user">
+					<a href="#"><strong>Mi cuenta</strong></a>
+
+					<div class="submenu">
+						<ul>
+							<li>
+								<a href="#">Ingresar</a>
+							</li>
+							<li>
+								<a href="#">Registrarme</a>
+							</li>
+						</ul>
+					</div>
+				</div> -->
+
+				<!-- FIN NO LOGUEADO -->
+
+
+
+				<div class="search_box">
+					<form>
+						<div class="search_input">
+							<div>
+								<input type="text" placeholder="Buscar producto" />
+							</div>
+						</div>
+
+						<!-- RESULTADOS -->
+						<div class="results">
+							<ul>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+							</ul>
+						</div>
+						<!-- FIN RESULTADOS -->
+
+						<button type="button" class="search_btn">
+							<span class="fas fa-search"></span>
+							<span class="sr-only">Buscar</span>
+						</button>
+					</form>
+				</div>
+
+				<button class="btn_menu">
+					<span class="fa fa-bars"></span>
+					<span class="sr-only">Menu</span>
+				</button>
+			</div>
+
+		</div>
+
+	</header>
+
+
+
+	<!-- MENÚ MOBILE -->
+
+	<div class="menu_mobile">
+		<div class="menu">
+			<div class="container">
+
+
+				<!-- LA CLASE "open" ABRE EL MENÚ -->
+
+				<ul>
+					<li>
+						<a href="#">Smartphone</a>
+					</li>
+					<li>
+						<a href="#">Smartwatch</a>
+
+						<ul>
+							<li>
+								<a href="#">Smart 4k</a>
+							</li>
+							<li>
+								<a href="#">Smart</a>
+							</li>
+							<li>
+								<a href="#">LED</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">E-reader</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Audio</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">TV</a>
+					</li>
+					<li>
+						<a href="#">Tablets</a>
+					</li>
+					<li>
+						<a href="#">Aires Acondicionados</a>
+					</li>
+					<li>
+						<a href="#">Otros</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				
+				<div class="search_box">
+					<form>
+						<div class="search_input">
+							<div>
+								<input type="text" placeholder="Buscar productos" />
+							</div>
+						</div>
+
+						<button type="button" class="search_btn">
+							<span class="fas fa-search"></span>
+							<span class="sr-only">Buscar</span>
+						</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="user">
+			<div class="container">
+
+				<ul>
+					<li>
+						<a href="#"><strong>Mi cuenta</strong></a>
+						
+						<ul>
+							<li>
+								<a href="#">Ingresar</a>
+							</li>
+							<li>
+								<a href="#">Registrarme</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- FIN MENÚ MOBILE -->
+
+
+
+	<main>
+
+		<div class="main_head">
+			<div class="container">
+	
+				<div class="section_info">
+
+					<!-- BREADCRUMB DESKTOP -->
+
+					<div class="breadcrumb">
+						<p>
+							<a href="#">Home</a> > <span>Centro de Descarga</span>
+						</p>
+					</div>
+
+					<!-- FIN BREADCRUMB DESKTOP -->
+
+
+					<!-- <div class="tags">
+						<a href="#">Smart 4K</a>
+						<a href="#">Smart</a>
+						<a href="#">LED</a>
+					</div> -->
+				</div>
+
+				<!-- <div class="section_tools">
+					<a href="#" class="compare_btn">
+						<span class="fas fa-external-link-alt"></span>
+						<span>Comparar seleccionados</span>
+					</a>
+				</div> -->
+
+			</div>
+		</div>
+
+
+		<!-- BREADCRUMB MOBILE -->
+
+		<div class="section_info mobile container">
+			<div class="breadcrumb">
+				<p>
+					<a href="#">Home</a> > <span>Centro de Descarga</span>
+				</p>
+			</div>
+		</div>
+
+		<!-- FIN BREADCRUMB MOBILE -->
+
+
+		<div class="container">
+
+			<img src="assets/imgs/imagenes/download_banner.png" alt="Centro de descarga" />
+		
+
+			<table id="download_list">
+				<thead>
+						<th class="modelo">Modelo</th>
+						<th class="tipo">Tipo de producto</th>
+						<th class="descripcion">Descripción</th>
+						<th>Fecha de subida</th>
+						<th class="peso">Peso</th>
+						<th class="download_btn">Descargar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NB1405Pro</td>
+						<td>TV</td>
+						<td>Manual Notebook Intel Core i5 - NB1405Pro</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW - NOS32H20</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW - NOS32H20</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>32LC841HT</td>
+						<td>TV</td>
+						<td>Manual televisor LCD 32" - 32LC841HT</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NB1405Pro</td>
+						<td>TV</td>
+						<td>Manual Notebook Intel Core i5 - NB1405Pro</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+					<tr>
+						<td>NOS32H20</td>
+						<td>TV</td>
+						<td>Manual Acondicionador split frío y calor 3,2 KW</td>
+						<td>16/10/2012</td>
+						<td>5mb</td>
+						<td class="download_btn">
+							<a href="#" class="fa fa-download"></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="note">Todos los productos Noblex con sistema operativo Windows, cumplen con los requisitos de actualización a Windows 10 versión 1703. Encontrá toda la información necesaria para actualizar tu equipo en: <a href="https://support.microsoft.com/windows" target="_blank">https://support.microsoft.com/windows</a></p>
+
+		</div>
+
+	</main>
+
+
+	<footer>
+
+		<div class="fixed_tools">
+			<a href="#" class="scroll_top">
+				<span class="fa fa-angle-up"></span>
+				<span class="sr-only">volver arriba</span>
+			</a>
+
+			<a href="#" class="btn_chat">
+				<span class="fa fa-comment-dots"></span>
+				<span class="sr-only">Chat online</span>
+			</a>
+		</div>
+
+		<div class="container">
+
+			<div class="copyright">
+				<div>
+					<a href="#">
+						<img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+					</a>
+
+					<small>2018 Copyright Noblex, todos los derechos reservados - <a href="#">Políticas de Privacidad</a></small>
+				</div>
+
+				<div class="networks_list hidden-xs hidden-sm">
+					<ul>
+						<li>
+							<a href="#">
+								<span class="fab fa-facebook"></span>
+								<span class="sr-only">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-twitter"></span>
+								<span class="sr-only">twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-instagram"></span>
+								<span class="sr-only">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-youtube"></span>
+								<span class="sr-only">YouTube</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="access_list clearfix">
+				<div class="column col-xs-6 col-sm-3">
+					<div class="links">
+						<a href="#"><strong>Productos</strong></a>
+						<ul>
+							<li>
+								<a href="#">Smartwatch</a>
+							</li>
+							<li>
+								<a href="#">Productos AFA</a>
+							</li>
+							<li>
+								<a href="#">Action Cam</a>
+							</li>
+							<li>
+								<a href="#">Telefonía</a>
+							</li>
+							<li>
+								<a href="#">TV</a>
+							</li>
+							<li>
+								<a href="#">Computación</a>
+							</li>
+							<li>
+								<a href="#">Tablet</a>
+							</li>
+							<li>
+								<a href="#">Audio</a>
+							</li>
+							<li>
+								<a href="#">Aire Acondicionado</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="column col-xs-6 col-sm-4">
+					<div class="links">
+						<a href="#"><strong>Soporte</strong></a>
+
+						<ul>
+							<li>
+								<a href="#">Centro de Descarga</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="links">
+						<a href="#"><strong>Mas información</strong></a>
+
+						<ul>
+							<li>
+								<a href="#">Acerca de Noblex</a>
+							</li>
+							<li>
+								<a href="#">Contacto</a>
+							</li>
+							<li>
+								<a href="#">Ventas Corporativas</a>
+							</li>
+							<li>
+								<a href="#">Legales</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="links chat">
+						<a href="#">
+							<span>Chat online</span>
+							<span class="fa fa-comment-dots"></span>
+						</a>
+					</div>
+				</div>
+
+
+				<div class="column newsletter col-xs-12 col-sm-5">
+
+					<p><strong>Newsletter <span class="fa fa-envelope-open"></span></strong></p>
+					<span>Suscribite y enterate de los lanzamiento y las últimas novedades.</span>
+
+					<form>
+						<div>
+							<input type="text" placeholder="Nombre" />
+						</div>
+						<div>
+							<input type="text" placeholder="Correo electrónico" />
+						</div>
+						<div class="submit_block">
+							<!-- CAPTCHA V2: CAMBIAR LA data-sitekey -->
+							<div class="g-recaptcha" data-sitekey="6LflNj0UAAAAAANcGQiFKTufw6BtjghDFRYblqO0"></div>
+
+							<input type="submit" class="btn link" value="Enviar" />
+						</div>
+					</form>
+
+				</div>
+
+				<div class="networks_list col-xs-12 hidden-md hidden-lg">
+					<p><strong>Seguinos</strong></p>
+					<ul>
+						<li>
+							<a href="#">
+								<span class="fab fa-facebook"></span>
+								<span class="sr-only">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-twitter"></span>
+								<span class="sr-only">twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-instagram"></span>
+								<span class="sr-only">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-youtube"></span>
+								<span class="sr-only">YouTube</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+
+			<div class="zocalo">
+
+				<div>
+					<a href="http://www.newsan.com.ar/es/home/" target="_blank">
+						<img src="assets/imgs/iconos/newsan.png" alt="Newsan" />
+					</a>
+				</div>
+
+				<div>
+					<a href="https://www.id4you.com.ar" target="_blank">
+						<img src="assets/imgs/iconos/id4you.svg" alt="Diseño y desarrollo WEB by ID4YOU" />
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+	</footer>
+
+
+
+	<script src="assets/jquery/jquery-1.12.3.min.js"></script>
+	<script src="assets/datatables/datatables.min.js"></script>
+	<script src="assets/owl-carousel/owl.carousel.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script src="assets/js/css3-mediaqueries.js"></script>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.js"></script>
+</body>
+</html>

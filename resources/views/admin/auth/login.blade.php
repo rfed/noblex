@@ -40,7 +40,7 @@
             <span></span>
         </label>
         
-        <a href="{{ route('password.request') }}" class="forget-password pull-left" id="forget-password">
+        <a href="{{ route('admin.password.request') }}" class="forget-password pull-left" id="forget-password">
             Olvidaste la contraseña?
         </a>
             

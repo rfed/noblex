@@ -8,7 +8,7 @@
         </div>
     @endif
 
-    <form class="login-form" id="formEmail" method="POST" action="{{ route('password.email') }}">
+    <form class="login-form" id="formEmail" method="POST" action="{{ route('admin.password.email') }}">
         @csrf
     
         <h3 class="form-title font-green">Olvidaste la contraseña?</h3>
@@ -31,9 +31,21 @@
         
         <hr>
 
-        <a href="{{ url('/') }}" id="back-btn" class="btn green btn-outline">Volver</a>
+        <a href="{{ url('panel/') }}" id="back-btn" class="btn green btn-outline">Volver</a>
         <button type="submit" id="submit-email" class="btn btn-success uppercase pull-right">Enviar</button>
 
     </form>
 
 @endsection
+
+@push('scripts')
+    <script>
+        $(function(){
+            $('#formEmail').submit(function() {
+                $('#submit-email').prop('disabled', true);
+                $('#submit-email').attr('value', 'Enviando...');
+            });
+        });
+    </script>
+@endpush
+

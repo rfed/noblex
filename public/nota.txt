@@ -1,0 +1,16 @@
+Datos del <body>
+
+home.html			-> id="home"
+prodcuto.html			-> id="producto"
+categoria.html			-> id="categoria"
+categoria_individual.html	-> id="categoria"
+legales.html			-> id="legales"
+template.html			-> class="template"
+error_404.html			-> id="error_404"
+sin_resultados.html		-> id="sin_resultados"
+resultados.html			-> id="resultados"
+registro.html			-> id="registro"
+institucional.html		-> id="institucional"
+contacto.html			-> id="contacto"
+descargas.html			-> id="descargas"
+comparador_producto.html		-> id="comparador"

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<title>Noblex</title>
+
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/font-awesome/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="assets/css/media-queries.css">
+
+	<!-- GOOGLE CAPTCHA -->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body id="home">
+
+	<header class="header">
+
+		<div class="container">
+
+			<div class="block_menu_1">
+				<div class="logo">
+					<a href="#">
+						<img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+					</a>
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li>
+							<a href="#">Smartphone</a>
+
+							<div class="submenu">
+
+								<div class="submenu_content">
+
+									<button class="close" type="button">
+										<span class="fa fa-times"></span>
+										<span class="sr-only">Cerrar</span>
+									</button>
+
+									<div class="content">
+
+										<!-- CONTENIDO COLUMNA 1 -->
+										
+										<span><strong>TV</strong></span>
+
+										<ul>
+											<li>
+												<a href="#">Smart 4k</a>
+
+												<div>
+													<!-- CONTENIDO COLUMNA 2 -->
+
+													<a href="#">
+														<p class="title"><strong>Último lanzamiento</strong></p>
+														<p>DA65X6500X <strong>LED TV Smart 65&quot; Full UHD</strong></p>
+
+														<img src="assets/imgs/imagenes/prod_1.png" alt='DA65X6500X LED TV Smart 65 Full UHD' />
+													</a>
+
+													<!-- FIN CONTENIDO COLUMNA 2 -->
+
+
+													<div class="info">
+														<!-- CONTENIDO COLUMNA 3 -->
+
+														<p class="title"><strong>Info de interés</strong></p>
+
+														<a href="#">¿Qué es 4k?</a>
+														<a href="#">¿Cómo funciona XMotion?</a>
+														<a href="#">¿Qué aplicaciones traen los equipos?</a>
+
+														<!-- CONTENIDO COLUMNA 3 -->
+													</div>
+												</div>
+
+											</li>
+											<li>
+												<a href="#">Smart</a>
+											</li>
+											<li>
+												<a href="#">LED</a>
+											</li>
+										</ul>
+
+										<!-- FIN CONTENIDO COLUMNA 1 -->
+
+									</div>
+
+								</div>
+
+							</div>
+						</li>
+						<li>
+							<a href="#">Smartwatch</a>
+						</li>
+						<li>
+							<a href="#">E-reader</a>
+						</li>
+						<li>
+							<a href="#">Audio</a>
+						</li>
+						<li>
+							<a href="#">TV</a>
+						</li>
+						<li>
+							<a href="#">Tablets</a>
+						</li>
+						<li>
+							<a href="#">Aires Acondicionados</a>
+						</li>
+						<li>
+							<a href="#">Otros</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="block_menu_2">
+
+				<!-- CUANDO EL USUARIO ESTÁ LOGUEADO -->
+
+				<div class="user">
+					<a href="#">Hola <strong>Juana María</strong></a>
+
+					<div class="submenu">
+						<ul>
+							<li>
+								<a href="#">Preferencias</a>
+							</li>
+							<li>
+								<a href="#">Salir de la cuenta</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- -->
+
+
+
+
+				<!-- CUANDO EL USUARIO NO ESTÁ LOGUEADO -->
+
+				<!-- <div class="user">
+					<a href="#"><strong>Mi cuenta</strong></a>
+
+					<div class="submenu">
+						<ul>
+							<li>
+								<a href="#">Ingresar</a>
+							</li>
+							<li>
+								<a href="#">Registrarme</a>
+							</li>
+						</ul>
+					</div>
+				</div> -->
+
+				<!-- FIN NO LOGUEADO -->
+
+
+
+				<div class="search_box">
+					<form>
+						<div class="search_input">
+							<div>
+								<input type="text" placeholder="Buscar producto" />
+							</div>
+						</div>
+
+						<!-- RESULTADOS -->
+						<div class="results">
+							<ul>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+							</ul>
+						</div>
+						<!-- FIN RESULTADOS -->
+
+						<button type="button" class="search_btn">
+							<span class="fas fa-search"></span>
+							<span class="sr-only">Buscar</span>
+						</button>
+					</form>
+				</div>
+
+				<button class="btn_menu">
+					<span class="fa fa-bars"></span>
+					<span class="sr-only">Menu</span>
+				</button>
+			</div>
+
+		</div>
+
+	</header>
+
+
+
+	<!-- MENÚ MOBILE -->
+
+	<div class="menu_mobile">
+		<div class="menu">
+			<div class="container">
+
+
+				<!-- LA CLASE "open" ABRE EL MENÚ -->
+
+				<ul>
+					<li>
+						<a href="#">Smartphone</a>
+					</li>
+					<li>
+						<a href="#">Smartwatch</a>
+
+						<ul>
+							<li>
+								<a href="#">Smart 4k</a>
+							</li>
+							<li>
+								<a href="#">Smart</a>
+							</li>
+							<li>
+								<a href="#">LED</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">E-reader</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Audio</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">TV</a>
+					</li>
+					<li>
+						<a href="#">Tablets</a>
+					</li>
+					<li>
+						<a href="#">Aires Acondicionados</a>
+					</li>
+					<li>
+						<a href="#">Otros</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				
+				<div class="search_box">
+					<form>
+						<div class="search_input">
+							<div>
+								<input type="text" placeholder="Buscar productos" />
+							</div>
+						</div>
+
+						<button type="button" class="search_btn">
+							<span class="fas fa-search"></span>
+							<span class="sr-only">Buscar</span>
+						</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="user">
+			<div class="container">
+
+				<ul>
+					<li>
+						<a href="#"><strong>Mi cuenta</strong></a>
+						
+						<ul>
+							<li>
+								<a href="#">Ingresar</a>
+							</li>
+							<li>
+								<a href="#">Registrarme</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- FIN MENÚ MOBILE -->
+
+
+
+	<main>
+
+		<div class="main_head">
+			<div class="container">
+	
+				<div class="section_info">
+
+					<!-- BREADCRUMB DESKTOP -->
+
+					<div class="breadcrumb">
+						<p>
+							<span>Home</span>
+						</p>
+					</div>
+
+					<!-- FIN BREADCRUMB DESKTOP -->
+
+				</div>
+
+
+				<div class="section_tools">
+					<a href="#">
+						<span class="fa fa-file-alt"></span>
+						<span>Manuales de usuario</span>
+					</a>
+
+					<a href="#">
+						<span class="fa fa-wrench"></span>
+						<span>Soporte</span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+		
+
+		<!-- BREADCRUMB MOBILE -->
+
+		<div class="section_info mobile container">
+			<div class="breadcrumb">
+				<p>
+					<span>Home</span>
+				</p>
+			</div>
+		</div>
+
+		<!-- FIN BREADCRUMB MOBILE -->
+
+
+
+
+		<section>
+			<div class="container">
+				<div class="row">
+
+
+					<div class="carousel_product_box_link owl-carousel dots">
+
+						<!-- -->
+
+						<div class="item product_box_link">
+							<div class="image">
+								<a href="#">
+									<img src="assets/imgs/imagenes/banner_1.png" alt="Móviles" />
+								</a>
+							</div>
+
+							<div class="info">
+								<div class="half_block">
+									<p class="strong"><strong>Nuevos smartphones inspirados en vos</strong></p>
+								</div>
+
+								<div class="half_block">
+									<p>Sabemos la importancia que le das a al comunicación. Nuestra línea está inspirada en vos y fue creada 100% pensando en tu comodidad.</p>
+								</div>
+
+								<div class="link_block">
+									<a href="#" class="btn link">Ver todos</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- -->
+
+						<div class="item product_box_link">
+							<div class="image">
+								<img src="assets/imgs/imagenes/banner_1.png" alt="Móviles" />
+							</div>
+
+							<div class="info">
+								<div class="half_block">
+									<p class="strong"><strong>Nuevos smartphones inspirados en vos</strong></p>
+								</div>
+
+								<div class="half_block">
+									<p>Sabemos la importancia que le das a al comunicación. Nuestra línea está inspirada en vos y fue creada 100% pensando en tu comodidad.</p>
+								</div>
+
+								<div class="link_block">
+									<a href="#" class="btn link">Ver todos</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- -->
+
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+
+
+		<section class="divider">
+			<div class="container">
+				<div class="row">
+
+					<div class="item product_box_link">
+						<div class="image">
+							<a href="#">
+								<img src="assets/imgs/imagenes/banner_2.png" alt="Smartwatch" />
+							</a>
+						</div>
+
+						<div class="info">
+							<div class="half_block">
+								<p class="strong"><strong>Tecnología al alcance de tu mano</strong></p>
+							</div>
+
+							<div class="half_block">
+								<p>Ahora podés: Atender el teléfono, desbloquear el reloj y navegar el menú mediante el movimiento de tu muñeca, gracias a la función Smart Gesture. Y más!</p>
+							</div>
+
+							<div class="link_block">
+								<a href="#" class="btn link">Ver todos</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="product_links_bar">
+					<div class="col-xs-12 col-sm-4">
+						<a href="#">
+							<img src="assets/imgs/imagenes/mini_product_1.png" alt="Smartwatch" />
+						</a>
+					</div>
+
+					<div class="col-xs-12 col-sm-4">
+						<a href="#">
+							<img src="assets/imgs/imagenes/mini_product_2.png" alt="Smartwatch" />
+						</a>
+					</div>
+
+					<div class="col-xs-12 col-sm-4">
+						<a href="#">
+							<img src="assets/imgs/imagenes/mini_product_3.png" alt="Smartwatch" />
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+
+
+		<section class="divider">
+			<div class="container">
+				<div class="row">
+
+					<div class="item product_box_link">
+						<div class="image">
+							<a href="#">
+								<img src="assets/imgs/imagenes/banner_3.png" alt="TV" />
+							</a>
+						</div>
+
+						<div class="info">
+							<div class="half_block">
+								<p class="strong sizefix"><strong>Conocé nuestra línea y disfrutá del mundial</strong></p>
+							</div>
+
+							<div class="full_block no_padding">
+								<div>
+									<p>Experimentá la emoción de ver imágenes en la mejor definición y resolución. Accedé a lo mejor de Internet.</p>
+								</div>
+								<div>
+									<div class="features">
+										<img src="assets/imgs/iconos/ultra_hd.png" alt="Ultra HD" />
+										<img src="assets/imgs/iconos/sound.png" alt="" />
+										<img src="assets/imgs/iconos/xmotion.png" alt="Xmotion" />
+										<img src="assets/imgs/iconos/smart.png" alt="Smart" />
+										<img src="assets/imgs/iconos/youtube.png" alt="YouTube" />
+										<img src="assets/imgs/iconos/netflix.png" alt="Netflix" />
+									</div>
+								</div>
+							</div>
+
+							<div class="link_block">
+								<a href="#" class="btn link">Ver todos</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+
+		<section>
+			<div class="container">
+				<div class="row">
+
+					<div class="big product_box_link">
+						<a href="#">
+							<img src="assets/imgs/imagenes/video.png" alt="Video" />
+						</a>
+
+						<div class="info">
+							<div class="full_block">
+								<p class="strong"><strong>Verdadera alta definición</strong></p>
+
+								<p>Viví el mundial mejor que en el estadio</p>
+
+								<span>Hablamos de verdadera alta resolución. 4k es la abreviatura de de 4.000 píxeles (4096 x 2160 píxeles)</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+			<div class="padding_bottom product_list_carousel owl-carousel">
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_1.png" alt='LED TV Smart 65" Full UHD' />
+
+							<span class="feature"><span>65"</span></span>
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_2.png" alt='LED TV Smart 65" Full UHD' />
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
+
+							<span class="feature"><span>65"</span></span>
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+				<div class="item">
+					<a href="#">
+						<div class="image">
+							<img src="assets/imgs/imagenes/product_3.png" alt='LED TV Smart 65" Full UHD' />
+						</div>
+						<span class="id">DA65X500X</span>
+						<p class="title"><strong>LED TV Smart 65" Full UHD</strong></p>
+						<span class="description">Conectividad para todos tus dispositivos 4K2K (3840 x 2160 pixeles) Bluetooth</span>
+
+						<button class="btn link">Comprar</button>
+					</a>
+				</div>
+
+				<!-- -->
+
+			</div>
+
+		</section>
+
+
+
+		<section class="divider promobox">
+			<div class="container">
+				<div class="row">
+
+					<div class="item col-xs-6">
+						<a href="#">
+							<img src="assets/imgs/imagenes/promo_1.png" alt="Conocé nuestros productos en la Tienda Oficinal de MercadoLibre" />
+						</a>
+					</div>
+
+					<div class="item col-xs-6">
+						<a href="#">
+							<img src="assets/imgs/imagenes/promo_2.png" alt="Tablets - pura diversión en todo momento y lugar" />
+						</a>
+					</div>
+
+					<div class="item col-xs-6">
+						<a href="#">
+							<img src="assets/imgs/imagenes/promo_3.png" alt="Headphones - Genial que tus oídos vean" />
+						</a>
+					</div>
+
+					<div class="item col-xs-6">
+						<a href="#">
+							<img src="assets/imgs/imagenes/promo_4.png" alt="E-reader En todo lugar y en todo tiempo" />
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+
+
+		<section class="divider">
+			<div class="container">
+
+				<a href="#">
+					<img src="assets/imgs/imagenes/banner_4.png" alt="Vamos Argentina - NOBLEX proveedor Oficial de la Selección Argentina" />
+				</a>
+
+			</div>
+		</section>
+
+
+	</main>
+
+
+
+	<footer>
+
+		<div class="fixed_tools">
+			<a href="#" class="scroll_top">
+				<span class="fa fa-angle-up"></span>
+				<span class="sr-only">volver arriba</span>
+			</a>
+
+			<a href="#" class="btn_chat">
+				<span class="fa fa-comment-dots"></span>
+				<span class="sr-only">Chat online</span>
+			</a>
+		</div>
+
+		<div class="container">
+
+			<div class="copyright">
+				<div>
+					<a href="#">
+						<img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+					</a>
+
+					<small>2018 Copyright Noblex, todos los derechos reservados - <a href="#">Políticas de Privacidad</a></small>
+				</div>
+
+				<div class="networks_list hidden-xs hidden-sm">
+					<ul>
+						<li>
+							<a href="#">
+								<span class="fab fa-facebook"></span>
+								<span class="sr-only">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-twitter"></span>
+								<span class="sr-only">twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-instagram"></span>
+								<span class="sr-only">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-youtube"></span>
+								<span class="sr-only">YouTube</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="access_list clearfix">
+				<div class="column col-xs-6 col-sm-3">
+					<div class="links">
+						<a href="#"><strong>Productos</strong></a>
+						<ul>
+							<li>
+								<a href="#">Smartwatch</a>
+							</li>
+							<li>
+								<a href="#">Productos AFA</a>
+							</li>
+							<li>
+								<a href="#">Action Cam</a>
+							</li>
+							<li>
+								<a href="#">Telefonía</a>
+							</li>
+							<li>
+								<a href="#">TV</a>
+							</li>
+							<li>
+								<a href="#">Computación</a>
+							</li>
+							<li>
+								<a href="#">Tablet</a>
+							</li>
+							<li>
+								<a href="#">Audio</a>
+							</li>
+							<li>
+								<a href="#">Aire Acondicionado</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="column col-xs-6 col-sm-4">
+					<div class="links">
+						<a href="#"><strong>Soporte</strong></a>
+
+						<ul>
+							<li>
+								<a href="#">Centro de Descarga</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="links">
+						<a href="#"><strong>Mas información</strong></a>
+
+						<ul>
+							<li>
+								<a href="#">Acerca de Noblex</a>
+							</li>
+							<li>
+								<a href="#">Contacto</a>
+							</li>
+							<li>
+								<a href="#">Ventas Corporativas</a>
+							</li>
+							<li>
+								<a href="#">Legales</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="links chat">
+						<a href="#">
+							<span>Chat online</span>
+							<span class="fa fa-comment-dots"></span>
+						</a>
+					</div>
+				</div>
+
+
+				<div class="column newsletter col-xs-12 col-sm-5">
+
+					<p><strong>Newsletter <span class="fa fa-envelope-open"></span></strong></p>
+					<span>Suscribite y enterate de los lanzamiento y las últimas novedades.</span>
+
+					<form>
+						<div>
+							<input type="text" placeholder="Nombre" />
+						</div>
+						<div>
+							<input type="text" placeholder="Correo electrónico" />
+						</div>
+						<div class="submit_block">
+							<!-- CAPTCHA V2: CAMBIAR LA data-sitekey -->
+							<div class="g-recaptcha" data-sitekey="6LflNj0UAAAAAANcGQiFKTufw6BtjghDFRYblqO0"></div>
+
+							<input type="submit" class="btn link" value="Enviar" />
+						</div>
+					</form>
+
+				</div>
+
+				<div class="networks_list col-xs-12 hidden-md hidden-lg">
+					<p><strong>Seguinos</strong></p>
+					<ul>
+						<li>
+							<a href="#">
+								<span class="fab fa-facebook"></span>
+								<span class="sr-only">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-twitter"></span>
+								<span class="sr-only">twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-instagram"></span>
+								<span class="sr-only">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-youtube"></span>
+								<span class="sr-only">YouTube</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+
+			<div class="zocalo">
+
+				<div>
+					<a href="http://www.newsan.com.ar/es/home/" target="_blank">
+						<img src="assets/imgs/iconos/newsan.png" alt="Newsan" />
+					</a>
+				</div>
+
+				<div>
+					<a href="https://www.id4you.com.ar" target="_blank">
+						<img src="assets/imgs/iconos/id4you.svg" alt="Diseño y desarrollo WEB by ID4YOU" />
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+	</footer>
+
+
+
+	<script src="assets/jquery/jquery-1.12.3.min.js"></script>
+	<script src="assets/owl-carousel/owl.carousel.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script src="assets/js/css3-mediaqueries.js"></script>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.js"></script>
+</body>
+</html>

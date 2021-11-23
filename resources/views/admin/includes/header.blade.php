@@ -5,11 +5,11 @@
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="{{ route('home') }}">
-                <img src="{{ asset('admin/assets/layouts/img/logo.png') }}" alt="logo" class="logo-default" />
+            <a href="{{ route('admin.home') }}">
+                <img src="{{ asset('assets/imgs/iconos/noblex_blanco.png') }}" alt="logo" class="logo-default img-responsive" />
             </a>
 
-            <div class="menu-toggler sidebar-toggler">
+            <div class="menu-toggler sidebar-toggler hidden">
                 <span></span>
             </div>
 
@@ -26,7 +26,7 @@
         <div class="top-menu">
             <ul class="nav navbar-nav pull-right">
                 @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a></li>
                 @else
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <li class="dropdown dropdown-user">
@@ -36,20 +36,22 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-default">
+                            <!--
                             <li>
                                 <a href="#">
                                     <i class="icon-user"></i> Perfil 
                                 </a>
                             </li>
                             <li class="divider"> </li>
+                            -->
                             <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                    onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                     <i class="icon-key"></i> Salir
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>

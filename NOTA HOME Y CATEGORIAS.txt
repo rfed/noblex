@@ -1,0 +1,22 @@
+HOME:
+
+slide_home (titulo, subtitulo, image)  (MIN: 1, MAX: 4 IMAGES)
+
+categorias_destacadas_home (titulo, subtitulo, imagen, link (url), imagen (NULL si existe 1 video) )
+
+videos_categorias_destacadas_home (id_categorias_destacadas, video) (1 o 3 videos o ningun video o 1 imagen. )
+
+productos_relacionados_home (id_categorias_destacadas, sku)
+
+ICONOS DEL HOME (Solo imagen del icono de la categoria (table features -> image) ) (category_feature)
+
+promoboxes (2 o 4 imagenes) (image, link(url) )
+
+banner_home (image, link(url) )
+
+
+
+
+Categorias:
+
+info_interes (id_categoria, info, link(url) )

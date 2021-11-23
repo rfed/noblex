@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form class="login-form" method="POST" action="{{ route('password.request') }}">
+    <form class="login-form" method="POST" action="{{ route('admin.password.request') }}" id="formReset">
         @csrf
 
         <input type="hidden" name="token" value="{{ $token }}">
@@ -39,8 +39,19 @@
 
         <hr>
 
-        <button type="submit" class="btn btn-success uppercase pull-right">Enviar</button>
+        <button type="submit" id="form-reset" class="btn btn-success uppercase pull-right">Enviar</button>
 
     </form>
     
 @endsection
+
+@push('scripts')
+    <script>
+        $(function(){
+            $('#formReset').submit(function() {
+                $('#submit-reset').prop('disabled', true);
+                $('#submit-reset').attr('value', 'Enviando...');
+            });
+        });
+    </script>
+@endpush

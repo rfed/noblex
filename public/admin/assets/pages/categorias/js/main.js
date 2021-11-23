@@ -1,6 +1,6 @@
 $(function(){
 
-	$("#categorias").dataTable({
+	/*$("#categorias").dataTable({
 		"paginate": true,
 		"searching": true,
 		"ordering": true,
@@ -11,7 +11,7 @@ $(function(){
 		"language": {
 			"url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
 		},
-	});
+	});*/
 
 	$(document).on('click', '#modal' ,function() {
 		var id = $(this).data('id');
@@ -21,4 +21,5 @@ $(function(){
 		$("#nombre").html(name);
 		$("#form-delete").attr('action', url);
 	});
+
 });

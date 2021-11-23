@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<title>Noblex</title>
+
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/font-awesome/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="assets/css/media-queries.css">
+
+	<!-- GOOGLE CAPTCHA -->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body class="template">
+
+	<header class="header">
+
+		<div class="container">
+
+			<div class="block_menu_1">
+				<div class="logo">
+					<a href="#">
+						<img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+					</a>
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li>
+							<a href="#">Smartphone</a>
+
+							<div class="submenu">
+
+								<div class="submenu_content">
+
+									<button class="close" type="button">
+										<span class="fa fa-times"></span>
+										<span class="sr-only">Cerrar</span>
+									</button>
+
+									<div class="content">
+
+										<!-- CONTENIDO COLUMNA 1 -->
+										
+										<span><strong>TV</strong></span>
+
+										<ul>
+											<li>
+												<a href="#">Smart 4k</a>
+
+												<div>
+													<!-- CONTENIDO COLUMNA 2 -->
+
+													<a href="#">
+														<p class="title"><strong>Último lanzamiento</strong></p>
+														<p>DA65X6500X <strong>LED TV Smart 65&quot; Full UHD</strong></p>
+
+														<img src="assets/imgs/imagenes/prod_1.png" alt='DA65X6500X LED TV Smart 65 Full UHD' />
+													</a>
+
+													<!-- FIN CONTENIDO COLUMNA 2 -->
+
+
+													<div class="info">
+														<!-- CONTENIDO COLUMNA 3 -->
+
+														<p class="title"><strong>Info de interés</strong></p>
+
+														<a href="#">¿Qué es 4k?</a>
+														<a href="#">¿Cómo funciona XMotion?</a>
+														<a href="#">¿Qué aplicaciones traen los equipos?</a>
+
+														<!-- CONTENIDO COLUMNA 3 -->
+													</div>
+												</div>
+
+											</li>
+											<li>
+												<a href="#">Smart</a>
+											</li>
+											<li>
+												<a href="#">LED</a>
+											</li>
+										</ul>
+
+										<!-- FIN CONTENIDO COLUMNA 1 -->
+
+									</div>
+
+								</div>
+
+							</div>
+						</li>
+						<li>
+							<a href="#">Smartwatch</a>
+						</li>
+						<li>
+							<a href="#">E-reader</a>
+						</li>
+						<li>
+							<a href="#">Audio</a>
+						</li>
+						<li>
+							<a href="#">TV</a>
+						</li>
+						<li>
+							<a href="#">Tablets</a>
+						</li>
+						<li>
+							<a href="#">Aires Acondicionados</a>
+						</li>
+						<li>
+							<a href="#">Otros</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="block_menu_2">
+
+				<!-- CUANDO EL USUARIO ESTÁ LOGUEADO -->
+
+				<div class="user">
+					<a href="#">Hola <strong>Juana María</strong></a>
+
+					<div class="submenu">
+						<ul>
+							<li>
+								<a href="#">Preferencias</a>
+							</li>
+							<li>
+								<a href="#">Salir de la cuenta</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- -->
+
+
+
+
+				<!-- CUANDO EL USUARIO NO ESTÁ LOGUEADO -->
+
+				<!-- <div class="user">
+					<a href="#"><strong>Mi cuenta</strong></a>
+
+					<div class="submenu">
+						<ul>
+							<li>
+								<a href="#">Ingresar</a>
+							</li>
+							<li>
+								<a href="#">Registrarme</a>
+							</li>
+						</ul>
+					</div>
+				</div> -->
+
+				<!-- FIN NO LOGUEADO -->
+
+
+
+				<div class="search_box">
+					<form>
+						<div class="search_input">
+							<div>
+								<input type="text" placeholder="Buscar producto" />
+							</div>
+						</div>
+
+						<!-- RESULTADOS -->
+						<div class="results">
+							<ul>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+								<li>
+									<a href="#">Resultado predictivo</a>
+								</li>
+							</ul>
+						</div>
+						<!-- FIN RESULTADOS -->
+
+						<button type="button" class="search_btn">
+							<span class="fas fa-search"></span>
+							<span class="sr-only">Buscar</span>
+						</button>
+					</form>
+				</div>
+
+				<button class="btn_menu">
+					<span class="fa fa-bars"></span>
+					<span class="sr-only">Menu</span>
+				</button>
+			</div>
+
+		</div>
+
+	</header>
+
+
+
+	<!-- MENÚ MOBILE -->
+
+	<div class="menu_mobile">
+		<div class="menu">
+			<div class="container">
+
+
+				<!-- LA CLASE "open" ABRE EL MENÚ -->
+
+				<ul>
+					<li>
+						<a href="#">Smartphone</a>
+					</li>
+					<li>
+						<a href="#">Smartwatch</a>
+
+						<ul>
+							<li>
+								<a href="#">Smart 4k</a>
+							</li>
+							<li>
+								<a href="#">Smart</a>
+							</li>
+							<li>
+								<a href="#">LED</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Audio</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Aires</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">TV</a>
+					</li>
+					<li>
+						<a href="#">Tablets</a>
+					</li>
+					<li>
+						<a href="#">Otros</a>
+
+						<ul>
+							<li>
+								<a href="#">Adorables</a>
+							</li>
+							<li>
+								<a href="#">Auriculares</a>
+							</li>
+							<li>
+								<a href="#">Hogar</a>
+							</li>
+							<li>
+								<a href="#">Portatil</a>
+							</li>
+							<li>
+								<a href="#">Auto</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				
+				<div class="search_box">
+					<form>
+						<div class="search_input">
+							<div>
+								<input type="text" placeholder="Buscar productos" />
+							</div>
+						</div>
+
+						<button type="button" class="search_btn">
+							<span class="fas fa-search"></span>
+							<span class="sr-only">Buscar</span>
+						</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="user">
+			<div class="container">
+
+				<ul>
+					<li>
+						<a href="#"><strong>Mi cuenta</strong></a>
+						
+						<ul>
+							<li>
+								<a href="#">Ingresar</a>
+							</li>
+							<li>
+								<a href="#">Registrarme</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- FIN MENÚ MOBILE -->
+
+
+
+	<main>
+
+		<div class="main_head">
+			<div class="container">
+	
+				<div class="section_info">
+
+					<!-- BREADCRUMB DESKTOP -->
+
+					<div class="breadcrumb">
+						<p>
+							<a href="#">Home</a> > <span>Template ejemplo</span>
+						</p>
+					</div>
+
+					<!-- FIN BREADCRUMB DESKTOP -->
+
+
+					<!-- <div class="tags">
+						<a href="#">Smart 4K</a>
+						<a href="#">Smart</a>
+						<a href="#">LED</a>
+					</div> -->
+				</div>
+
+				<!-- <div class="section_tools">
+					<a href="#" class="compare_btn">
+						<span class="fas fa-external-link-alt"></span>
+						<span>Comparar seleccionados</span>
+					</a>
+				</div> -->
+
+			</div>
+		</div>
+
+
+		<!-- BREADCRUMB MOBILE -->
+
+		<div class="section_info mobile container">
+			<div class="breadcrumb">
+				<p>
+					<a href="#">Home</a> > <span>Template ejemplo</span>
+				</p>
+			</div>
+		</div>
+
+		<!-- FIN BREADCRUMB MOBILE -->
+
+		<div class="content container">
+
+			<h1 class="section_title">Template ejemplo</h1>
+
+			<p>Al ingresar al Web Site de <strong>NOBLEX ARGENTINA S.A.</strong>. (En adelante NOBLEX ARGENTINA S.A.) Usted reconoce y acepta los siguientes términos y condiciones. De no concordar con dichos términos NO UTILICE este site. La información legal se aplica a todas las páginas de NOBLEX ARGENTINA S.A. <a href="#">Web Site</a>, a menos que esté explícitamente identificado lo contrario en alguna página específica.</p>
+
+			<img src="assets/imgs/imagenes/template_img.png" alt="Imagen" />
+
+			<h2>Ingrese bajo su propia responsabilidad</h2>
+			<p>Al ingresar a este sitio usted reconoce y acepta que su uso es bajo su responsabilidad y que ninguna de las partes involucradas en la creación, producción de este Web Site, es responsable de cualquier perjuicio directo, incidental, consecuente, indirecto o de pérdida, costo o gasto alguno (incluyendo pero no limitándose a honorarios legales, peritos o cualquier otro desembolso) que pueda surgir directa o indirectamente a través de su acceso, uso o browsing del site o a través del downloading de material, textos, datos, imágenes, videos o audios de este site, incluyendo pero no limitado a lo causado por un virus, defectos, acción humana o inacción del sistema informático, línea telefónica, hardware, software, errores en el programa, fallas o demoras en transmisiones o en conexiones con la red.</p>
+
+
+			<h2>No existe garantía sobre contenidos</h2>
+			<p>Información o materiales: aunque las especificaciones, características, ilustraciones, equipos y otra información contenida en el site se basan en información actualizada, y aún cuando NOBLEX ARGENTINA S.A. se esfuerza por asegurar que todo el material del site sea correcto, no podemos garantizar su precisión.</p>
+
+			<p>Todo contenido, información y material contenido en este site es provisto “tal cual es”, sin garantía alguna, ya sea expresa o implícita, incluyendo pero no limitados a la garantía implícita de comercialización, aptitud para un propósito determinado.</p>
+
+			<iframe class="embed-responsive-item" width="560" height="489" src="https://www.youtube.com/embed/aSWNieTamoI?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+			<p>Los copyrights pertenecen a NOBLEX ARGENTINA S.A.:NOBLEX ARGENTINA S.A. es propietario del copyright del site, así como también del dominio, y ninguna sección de éstos, incluyendo pero no limitados a texto, audio o video podrá ser utilizada en este sentido sin el consentimiento por escrito de NOBLEX ARGENTINA S.A. a menos que así sea indicado. Sin renunciar a los derechos mencionados usted puede bajar una copia del material en este site sólo para su uso personal y no comercial, siempre que no borre o modifique cualquier copyright, marca o notificación de propiedad. Toda modificación, reenvío o uso de este material en este site con cual fuese el propósito, constituye una violación a los derechos legales de NOBLEX ARGENTINA S.A.</p>
+
+			<p>El nombre NOBLEX ARGENTINA S.A., los logos y marcas pertenecen a NOBLEX ARGENTINA S.A.:Al ingresar a este sitio usted reconoce y acepta que el nombre, logo y marca contenidos en este site son propiedad o licencia de NOBLEX ARGENTINA S.A. y no podrán utilizarlos sin su previa autorización por escrito. NOBLEX ARGENTINA S.A. hará cumplir su derecho de propiedad intelectual, siendo los sonidos, gráficos, tablas, textos, videos, información o imágenes de lugares o personas propiedad de NOBLEX ARGENTINA S.A., estando expresamente prohibida su utilización salvo previa autorización escrita de NOBLEX ARGENTINA S.A.. El uso de estos materiales está prohibido a menos que estuviese específicamente previsto en este site. El uso desautorizado de estos materiales será motivo de demanda por daños y perjuicios, incluyendo pero no limitados a aquellos relacionados con la violación de marcas, copyrights, derechos de privacidad o publicidad.</p>
+
+
+			<p>Uso de información son confidencialidad</p>
+			<p>Al ingresar a este site usted reconoce y acepta que toda comunicación, datos o material que transmita a este site, de cualquier forma y con cualquier motivo, no será considerada confidencial o patentada, salvo que sea indicado en forma expresa lo contrario. Más aún, también reconoce y acepta que toda idea, concepto, técnicas, procedimientos, métodos, sistemas, diseños, planes, tablas u otro material que transmita a este site importa la expresa autorización a NOBLEX ARGENTINA S.A. para su utilización en cualquier lugar, momento y con cualquier propósito.</p>
+
+
+			<h2>Conducta ilegal</h2>
+			<p>No envíe o transmita a este site material pornográfico, obsceno, profano, difamatorio, injurioso, amenazante, ilegal u otro que pueda alentar o constituir conductas consideradas ofensa criminal y/o que puedan generar responsabilidad civil. No obstante NOBLEX ARGENTINA S.A. u otras partes involucradas en la creación, producción o prestación de este site pueden monitorear o revisar transmisiones, envíos, discusiones o chats, NOBLEX ARGENTINA S.A. y todas las partes involucradas en la creación, producción o prestación de este site no asumen responsabilidad u obligación alguna que pueda surgir del contenido incluyendo pero no limitados a reclamos de difamación, calumnias, injurias, obscenidad, pornografía, o mala interpretación.<br />
+			Hiperlinks<p>
+
+			<p>Aunque este site pueda estar ligado a otros sites, NOBLEX ARGENTINA S.A. no realiza directa o indirectamente cualquier aprobación, asociación, auspicio, promoción o afiliación con el site en cuestión a menos que esté específicamente establecido. Al ingresar a este site usted reconoce y acepta que NOBLEX ARGENTINA S.A. no haya revisado todos los sites ligados a éste y que no sea responsable del contenido de las páginas fuera del site o de cualquier otro site ligado a éste. El linking a cualquier página fuera del site u otros sites corre por su propia responsabilidad.</p>
+
+
+			<h2>Revisión de esta página</h2>
+			<p>NOBLEX ARGENTINA S.A. se reserva el derecho a revisar esta información legal en cualquier momento y por cualquier motivo, como así también el derecho a realizar modificaciones dentro del site cuando lo considere necesario, a su libre arbitrio, sin necesidad de notificación alguna. Al ingresar a este site usted reconoce y acepta que la página puede estar sujeta a dichas revisiones. Sugerimos visitar periódicamente esta página del site para revisar dichos términos y condiciones.</p>
+
+			<p>SI USTED NO ESTÁ DE ACUERDO CON ESTOS TÉRMINOS, LE SUGERIMOS NO UTILIZAR ESTE SITIO.</p>
+		</div>
+
+
+	</main>
+
+
+	<footer>
+
+		<div class="fixed_tools">
+			<a href="#" class="scroll_top">
+				<span class="fa fa-angle-up"></span>
+				<span class="sr-only">volver arriba</span>
+			</a>
+
+			<a href="#" class="btn_chat">
+				<span class="fa fa-comment-dots"></span>
+				<span class="sr-only">Chat online</span>
+			</a>
+		</div>
+
+		<div class="container">
+
+			<div class="copyright">
+				<div>
+					<a href="#">
+						<img src="assets/imgs/iconos/noblex.svg" alt="Noblex" />
+					</a>
+
+					<small>2018 Copyright Noblex, todos los derechos reservados - <a href="#">Políticas de Privacidad</a></small>
+				</div>
+
+				<div class="networks_list hidden-xs hidden-sm">
+					<ul>
+						<li>
+							<a href="#">
+								<span class="fab fa-facebook"></span>
+								<span class="sr-only">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-twitter"></span>
+								<span class="sr-only">twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-instagram"></span>
+								<span class="sr-only">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-youtube"></span>
+								<span class="sr-only">YouTube</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="access_list clearfix">
+				<div class="column col-xs-6 col-sm-3">
+					<div class="links">
+						<a href="#"><strong>Productos</strong></a>
+						<ul>
+							<li>
+								<a href="#">Smartwatch</a>
+							</li>
+							<li>
+								<a href="#">Productos AFA</a>
+							</li>
+							<li>
+								<a href="#">Action Cam</a>
+							</li>
+							<li>
+								<a href="#">Telefonía</a>
+							</li>
+							<li>
+								<a href="#">TV</a>
+							</li>
+							<li>
+								<a href="#">Computación</a>
+							</li>
+							<li>
+								<a href="#">Tablet</a>
+							</li>
+							<li>
+								<a href="#">Audio</a>
+							</li>
+							<li>
+								<a href="#">Aire Acondicionado</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="column col-xs-6 col-sm-4">
+					<div class="links">
+						<a href="#"><strong>Soporte</strong></a>
+
+						<ul>
+							<li>
+								<a href="#">Centro de Descarga</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="links">
+						<a href="#"><strong>Mas información</strong></a>
+
+						<ul>
+							<li>
+								<a href="#">Acerca de Noblex</a>
+							</li>
+							<li>
+								<a href="#">Contacto</a>
+							</li>
+							<li>
+								<a href="#">Ventas Corporativas</a>
+							</li>
+							<li>
+								<a href="#">Legales</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="links chat">
+						<a href="#">
+							<span>Chat online</span>
+							<span class="fa fa-comment-dots"></span>
+						</a>
+					</div>
+				</div>
+
+
+				<div class="column newsletter col-xs-12 col-sm-5">
+
+					<p><strong>Newsletter <span class="fa fa-envelope-open"></span></strong></p>
+					<span>Suscribite y enterate de los lanzamiento y las últimas novedades.</span>
+
+					<form>
+						<div>
+							<input type="text" placeholder="Nombre" />
+						</div>
+						<div>
+							<input type="text" placeholder="Correo electrónico" />
+						</div>
+						<div class="submit_block">
+							<!-- CAPTCHA V2: CAMBIAR LA data-sitekey -->
+							<div class="g-recaptcha" data-sitekey="6LflNj0UAAAAAANcGQiFKTufw6BtjghDFRYblqO0"></div>
+
+							<input type="submit" class="btn link" value="Enviar" />
+						</div>
+					</form>
+
+				</div>
+
+				<div class="networks_list col-xs-12 hidden-md hidden-lg">
+					<p><strong>Seguinos</strong></p>
+					<ul>
+						<li>
+							<a href="#">
+								<span class="fab fa-facebook"></span>
+								<span class="sr-only">Facebook</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-twitter"></span>
+								<span class="sr-only">twitter</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-instagram"></span>
+								<span class="sr-only">Instagram</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="fab fa-youtube"></span>
+								<span class="sr-only">YouTube</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+
+			<div class="zocalo">
+
+				<div>
+					<a href="http://www.newsan.com.ar/es/home/" target="_blank">
+						<img src="assets/imgs/iconos/newsan.png" alt="Newsan" />
+					</a>
+				</div>
+
+				<div>
+					<a href="https://www.id4you.com.ar" target="_blank">
+						<img src="assets/imgs/iconos/id4you.svg" alt="Diseño y desarrollo WEB by ID4YOU" />
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+	</footer>
+
+
+
+	<script src="assets/jquery/jquery-1.12.3.min.js"></script>
+	<script src="assets/owl-carousel/owl.carousel.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script src="assets/js/css3-mediaqueries.js"></script>
+	<script src="assets/js/html5shiv.js"></script>
+	<script src="assets/js/respond.js"></script>
+</body>
+</html>
