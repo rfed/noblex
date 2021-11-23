@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Noblex\Attributegroup;
+use Noblex\Group;
 
 class AttributeGroupsTableSeeder extends Seeder
 {
@@ -12,15 +12,15 @@ class AttributeGroupsTableSeeder extends Seeder
      */
     public function run()
     {
-    	Attributegroup::create([
+    	Group::create([
     		'name'	=> 'Pantalla'
     	]);
 
-    	Attributegroup::create([
+    	Group::create([
     		'name'	=> 'Conectividad'
     	]);
 
-    	Attributegroup::create([
+    	Group::create([
     		'name'	=> 'Audio'
     	]);
     }
